@@ -1,0 +1,23 @@
+{
+  "keywords": [
+    "artificial intelligence",
+    "machine learning",
+    "large language model",
+    "LLM",
+    "GPT",
+    "ChatGPT",
+    "generative AI",
+    "neural network",
+    "deep learning",
+    "AI model",
+    "prompt injection",
+    "AI security"
+  ],
+  "maxItems": 30,
+  "displayItems": 60,
+  "llm": {
+    "provider": "gemini",
+    "model": "gemini-1.5-flash",
+    "rpmLimit": 10
+  }
+}

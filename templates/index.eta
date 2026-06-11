@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Security Trends Dashboard</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>AI Security Trends Dashboard</h1>
+      <nav>
+        <a href="index.html">ホーム</a>
+        <a href="about.html">このサイトについて</a>
+      </nav>
+    </header>
+    <main>
+      <section class="summary">
+        <%~ include("partials/summaryCard", { label: "総CVE件数", value: it.stats.totalCount }) %>
+        <%~ include("partials/summaryCard", { label: "CRITICAL", value: it.stats.severityCounts.CRITICAL }) %>
+        <%~ include("partials/summaryCard", { label: "HIGH", value: it.stats.severityCounts.HIGH }) %>
+        <%~ include("partials/summaryCard", { label: "MEDIUM", value: it.stats.severityCounts.MEDIUM }) %>
+      </section>
+
+      <section class="charts">
+        <h2>カテゴリ別件数</h2>
+        <ul id="category-chart" class="bar-chart">
+          <% Object.entries(it.stats.categoryCounts).forEach(function (entry) { %>
+          <li data-value="<%= entry[1] %>">
+            <span class="bar-label"><%= entry[0] %></span>
+            <span class="bar"></span>
+            <span class="bar-value"><%= entry[1] %></span>
+          </li>
+          <% }) %>
+        </ul>
+      </section>
+
+      <section class="cve-list">
+        <h2>最新のAI関連CVE</h2>
+        <div class="filters">
+          <label>
+            重要度
+            <select id="severity-filter">
+              <option value="">すべて</option>
+              <option value="CRITICAL">CRITICAL</option>
+              <option value="HIGH">HIGH</option>
+              <option value="MEDIUM">MEDIUM</option>
+              <option value="LOW">LOW</option>
+              <option value="NONE">NONE</option>
+              <option value="UNKNOWN">不明</option>
+            </select>
+          </label>
+          <label>
+            カテゴリ
+            <select id="category-filter">
+              <option value="">すべて</option>
+              <option value="prompt-injection">prompt-injection</option>
+              <option value="model-vuln">model-vuln</option>
+              <option value="ai-library">ai-library</option>
+              <option value="ai-service">ai-service</option>
+              <option value="other">other</option>
+              <option value="unclassified">未分類</option>
+            </select>
+          </label>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>CVE ID</th>
+              <th>重要度</th>
+              <th>CVSS</th>
+              <th>カテゴリ</th>
+              <th>要約</th>
+              <th>公開日</th>
+            </tr>
+          </thead>
+          <tbody id="cve-rows">
+            <% it.stats.recent.forEach(function (cve) { %>
+            <%~ include("partials/cveRow", { cve: cve }) %>
+            <% }) %>
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <footer>
+      <p>
+        最終更新: <%= it.stats.generatedAt %> | データ出典:
+        <a href="https://nvd.nist.gov/" rel="noopener noreferrer" target="_blank">NVD</a>
+      </p>
+    </footer>
+    <script src="assets/filter.js"></script>
+    <script src="assets/charts.js"></script>
+  </body>
+</html>
