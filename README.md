@@ -49,11 +49,32 @@ GitHub Pages（actions/deploy-pages）
 5. 年別 JSON（`data/cve/<year>.json`）と `data/index.json` を更新してコミット
 6. 静的サイトをビルドして GitHub Pages へデプロイ
 
+## 技術選定理由
+
+| 技術 | 採用理由 |
+| ---- | -------- |
+| **TypeScript / Node.js 20 LTS** | 型安全性による実行前エラー検出。LTS版で長期サポートが保証され、本番運用に適する |
+| **Gemini API（無料枠）** | 1分間15リクエスト・1日1,500リクエストまで無料。日次バッチ処理（CVE数十件/日）の要件を完全にカバーし、**月額0円**で運用可能 |
+| **GitHub Actions** | CI/CDとスケジュール実行を追加インフラなしで提供。`schedule: cron` で日次自動化、`workflow_dispatch` でオンデマンド実行を両立 |
+| **GitHub Pages** | 静的ファイルのみのホスティングを無料提供。サーバーレス構成でセキュリティ面のリスクを最小化 |
+| **Eta テンプレート** | Zero-dependency な軽量テンプレートエンジン。XSS対策の自動エスケープが組み込まれており、追加ライブラリ不要 |
+| **Vitest + v8 カバレッジ** | ESM ネイティブ対応でトランスパイル不要。CI でカバレッジ80%閾値を強制し、品質を担保 |
+
+## 運用方針
+
+- **日次自動更新**: GitHub Actions の `schedule: cron` により毎朝 JST 07:00 に自動実行
+- **レート制限対策**: 無料枠は 15 RPM だが、安全マージンを確保し自己制限 10 RPM（`config/settings.json` の `rpmLimit`）で運用。超過分は `carryover` で次回実行に持ち越す設計で追加コストなしの長期運用を実現
+- **オンデマンド実行**: `workflow_dispatch` トリガーにより GitHub UI から手動実行も可能
+- **データ永続化**: 収集済みデータを `data/` に JSON でコミット保存。GitHub 自体がデータストアを兼ねる
+
 ## セットアップ
 
 ```bash
 npm ci
-cp .env.example .env   # APIキーを設定
+
+# 環境変数を設定（.env.example に必要なキーの一覧あり）
+export GEMINI_API_KEY=your_key_here   # 必須
+export NVD_API_KEY=your_key_here      # 任意（省略可・省略時はレート制限が低め）
 npm run pipeline       # 収集 + 要約
 npm run build          # dist/ に静的サイト生成
 ```
