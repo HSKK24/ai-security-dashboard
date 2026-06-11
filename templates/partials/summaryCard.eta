@@ -1,0 +1,4 @@
+<div class="summary-card">
+  <span class="summary-value"><%= it.value %></span>
+  <span class="summary-label"><%= it.label %></span>
+</div>

@@ -1,0 +1,25 @@
+<tr
+  class="cve-row"
+  data-severity="<%= it.cve.severity ?? "UNKNOWN" %>"
+  data-category="<%= it.cve.category ?? "unclassified" %>"
+>
+  <td>
+    <a href="<%= it.cve.sourceUrl %>" rel="noopener noreferrer" target="_blank"><%= it.cve.id %></a>
+  </td>
+  <td>
+    <span class="severity severity-<%= (it.cve.severity ?? "unknown").toLowerCase() %>">
+      <%= it.cve.severity ?? "不明" %>
+    </span>
+  </td>
+  <td><%= it.cve.cvssScore ?? "-" %></td>
+  <td><%= it.cve.category ?? "未分類" %></td>
+  <td class="summary-cell">
+    <% if (it.cve.summaryJa) { %>
+    <%= it.cve.summaryJa %>
+    <% } else { %>
+    <%= it.cve.descriptionEn %>
+    <span class="fallback-note">（日本語要約は準備中）</span>
+    <% } %>
+  </td>
+  <td><%= it.cve.publishedAt.slice(0, 10) %></td>
+</tr>

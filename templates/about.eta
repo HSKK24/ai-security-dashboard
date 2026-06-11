@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>このサイトについて | AI Security Trends Dashboard</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>AI Security Trends Dashboard</h1>
+      <nav>
+        <a href="index.html">ホーム</a>
+        <a href="about.html">このサイトについて</a>
+      </nav>
+    </header>
+    <main>
+      <section class="about">
+        <h2>このサイトについて</h2>
+        <p>
+          NVD (National Vulnerability Database) からAI / LLM関連のCVEを日次で収集し、
+          LLMによる日本語要約・分類を付与して公開しているダッシュボードです。
+        </p>
+        <h3>仕組み</h3>
+        <ul>
+          <li>収集: NVD API 2.0 から差分取得し、AI関連キーワードでフィルタ</li>
+          <li>要約・分類: Gemini API による構造化出力（JSONスキーマ強制 + Zod再検証）</li>
+          <li>公開: GitHub Actions で日次ビルドし GitHub Pages へデプロイ</li>
+        </ul>
+        <h3>注意事項</h3>
+        <ul>
+          <li>日本語要約は機械生成であり、正確な情報は必ずNVDの原文を参照してください。</li>
+          <li>掲載件数: <%= it.stats.totalCount %> 件（最終更新: <%= it.stats.generatedAt %>）</li>
+        </ul>
+        <h3>データ出典</h3>
+        <p>
+          本サイトのCVEデータは
+          <a href="https://nvd.nist.gov/" rel="noopener noreferrer" target="_blank">NVD</a>
+          のAPIを利用しています。This product uses the NVD API but is not endorsed or certified by
+          the NVD.
+        </p>
+      </section>
+    </main>
+    <footer>
+      <p>MIT License</p>
+    </footer>
+  </body>
+</html>
