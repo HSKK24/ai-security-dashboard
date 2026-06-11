@@ -5,6 +5,8 @@ import { nvdResponseSchema } from "./nvdSchema";
 
 const NVD_API_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0";
 const PAGE_SIZE = 2000;
+// totalResults の不正値による無限ループを防ぐ上限（2000件 × 50 = 10万件）
+const MAX_PAGES = 50;
 
 export class NvdApiError extends Error {
   constructor(
@@ -82,6 +84,7 @@ export async function fetchModifiedCves(
 ): Promise<NvdVulnerability[]> {
   let collected: NvdVulnerability[] = [];
   let startIndex = 0;
+  let pageCount = 0;
 
   for (;;) {
     const params = new URLSearchParams({
@@ -94,6 +97,11 @@ export async function fetchModifiedCves(
     collected = [...collected, ...page.vulnerabilities];
     startIndex += page.vulnerabilities.length;
     if (page.vulnerabilities.length === 0 || startIndex >= page.totalResults) {
+      return collected;
+    }
+    pageCount += 1;
+    if (pageCount >= MAX_PAGES) {
+      logger.warn(`NVD pagination exceeded ${MAX_PAGES} pages; stopping early`);
       return collected;
     }
   }

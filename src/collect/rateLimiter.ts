@@ -23,6 +23,7 @@ export class RateLimiter {
     if (remaining > 0) {
       await (this.deps.sleep ?? defaultSleep)(remaining);
     }
-    this.lastCallAt = now + Math.max(remaining, 0);
+    // sleep が想定より長くかかった場合のズレを防ぐため、実際の経過後時刻で更新する
+    this.lastCallAt = (this.deps.now ?? Date.now)();
   }
 }

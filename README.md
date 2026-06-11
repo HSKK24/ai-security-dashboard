@@ -1,11 +1,26 @@
 # AI Security Trends Dashboard
 
+[![CI](https://github.com/HSKK24/ai-security-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/HSKK24/ai-security-dashboard/actions/workflows/ci.yml)
+
+🌐 **ライブデモ**: https://hskk24.github.io/ai-security-dashboard/
+
+## なぜ作ったか
+
+AI の普及にともない、LLM やその周辺ライブラリを狙った脆弱性（プロンプトインジェクション、モデル改ざん、AIフレームワークの RCE など）が急増しています。
+しかし AI 関連の CVE は NVD の膨大な報告に埋もれやすく、情報セキュリティ担当者が日々追いかけるのは負担が大きいのが実情です。
+このダッシュボードは AI / LLM 関連の CVE だけを自動抽出し、日本語要約付きで毎日更新することで「AI のセキュリティ動向をいち早く把握する」ことを目的としています。
+
+## 概要
+
 NVD (National Vulnerability Database) から AI / LLM 関連の CVE を日次で収集し、
 Gemini API で日本語要約・分類を付与して GitHub Pages で公開するダッシュボードです。
+
+![ダッシュボード画面](docs/screenshot.png)
 
 - 運用コスト: 月額 0 円（Gemini 無料枠 + GitHub Actions ランナー + GitHub Pages）
 - 完全静的サイト（サーバーレス・DBレス）
 - TypeScript / Node.js 20 LTS / ESM
+- 開発には Claude Code（Anthropic）を活用しています
 
 ## アーキテクチャ
 
