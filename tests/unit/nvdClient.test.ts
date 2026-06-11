@@ -90,6 +90,20 @@ describe("fetchModifiedCves", () => {
     expect(calls[1]?.url).toContain("startIndex=2");
   });
 
+  it("stops early when pagination exceeds the page limit", async () => {
+    // totalResults が不正に大きい値を返し続けても無限ループしないことを確認する
+    const bogusPage = {
+      resultsPerPage: 1,
+      startIndex: 0,
+      totalResults: 999_999_999,
+      vulnerabilities: [minimalVuln("CVE-2026-0001")],
+    };
+    const { fetchImpl, calls } = fetchStub([jsonResponse(bogusPage)]);
+    const result = await fetchModifiedCves(RANGE, { fetchImpl, sleep: noSleep });
+    expect(calls).toHaveLength(50);
+    expect(result).toHaveLength(50);
+  });
+
   it("backs off and recovers from transient 429 responses", async () => {
     const sleeps: number[] = [];
     const sleep = async (ms: number): Promise<void> => {
