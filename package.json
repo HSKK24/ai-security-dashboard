@@ -9,8 +9,8 @@
     "node": ">=20"
   },
   "scripts": {
-    "pipeline": "tsx --env-file=.env src/index.ts pipeline",
-    "build": "tsx --env-file=.env src/index.ts build",
+    "pipeline": "tsx --env-file-if-present=.env src/index.ts pipeline",
+    "build": "tsx --env-file-if-present=.env src/index.ts build",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src tests --ext .ts",
     "format": "prettier --write .",
