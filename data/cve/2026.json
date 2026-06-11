@@ -8,8 +8,8 @@
     "cvssScore": 7.8,
     "severity": "HIGH",
     "publishedAt": "2026-06-10T00:16:53.827Z",
-    "lastModifiedAt": "2026-06-10T20:19:06.020Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-06-11T12:16:31.507Z",
+    "fetchedAt": "2026-06-11T13:41:08.759Z",
     "llmStatus": "failed"
   },
   {
@@ -126,7 +126,7 @@
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:41.660Z",
     "lastModifiedAt": "2026-06-11T04:08:59.193Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "fetchedAt": "2026-06-11T13:41:08.759Z",
     "llmStatus": "failed"
   },
   {
@@ -400,7 +400,7 @@
     "publishedAt": "2026-05-29T19:16:24.720Z",
     "lastModifiedAt": "2026-06-02T03:16:17.250Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-44648",
@@ -413,7 +413,7 @@
     "publishedAt": "2026-05-29T19:16:24.570Z",
     "lastModifiedAt": "2026-05-29T20:17:38.110Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-45312",
@@ -426,7 +426,7 @@
     "publishedAt": "2026-05-29T13:16:22.770Z",
     "lastModifiedAt": "2026-06-02T02:16:16.050Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-48116",
@@ -439,7 +439,7 @@
     "publishedAt": "2026-05-28T22:17:01.390Z",
     "lastModifiedAt": "2026-05-30T04:17:22.667Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-47713",
@@ -452,7 +452,7 @@
     "publishedAt": "2026-05-28T22:17:01.250Z",
     "lastModifiedAt": "2026-06-03T16:51:22.890Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-45403",
@@ -465,7 +465,7 @@
     "publishedAt": "2026-05-28T22:17:00.907Z",
     "lastModifiedAt": "2026-06-02T14:48:13.717Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-45023",
@@ -478,7 +478,7 @@
     "publishedAt": "2026-05-28T22:17:00.080Z",
     "lastModifiedAt": "2026-05-29T16:07:40.747Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-44843",
@@ -491,7 +491,7 @@
     "publishedAt": "2026-05-26T21:16:39.003Z",
     "lastModifiedAt": "2026-05-29T19:48:48.150Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-44209",
@@ -504,7 +504,7 @@
     "publishedAt": "2026-05-26T21:16:37.620Z",
     "lastModifiedAt": "2026-05-29T15:29:42.387Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-44723",
@@ -517,7 +517,7 @@
     "publishedAt": "2026-05-26T17:16:46.680Z",
     "lastModifiedAt": "2026-05-28T19:14:42.703Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-41863",
@@ -530,7 +530,7 @@
     "publishedAt": "2026-05-25T07:16:16.377Z",
     "lastModifiedAt": "2026-06-01T14:22:15.893Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-42271",
@@ -543,7 +543,7 @@
     "publishedAt": "2026-05-08T04:16:21.820Z",
     "lastModifiedAt": "2026-06-09T01:22:09.190Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-41182",
@@ -556,7 +556,7 @@
     "publishedAt": "2026-04-23T02:16:16.123Z",
     "lastModifiedAt": "2026-05-29T16:14:18.860Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-34070",
@@ -569,6 +569,6 @@
     "publishedAt": "2026-03-31T03:15:58.947Z",
     "lastModifiedAt": "2026-06-01T16:23:18.117Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   }
 ]
