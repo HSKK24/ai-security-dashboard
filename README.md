@@ -2,7 +2,12 @@
 
 [![CI](https://github.com/HSKK24/ai-security-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/HSKK24/ai-security-dashboard/actions/workflows/ci.yml)
 
-🌐 **ライブデモ**: https://hskk24.github.io/ai-security-dashboard/
+🌐 **Live Demo**: https://hskk24.github.io/ai-security-dashboard/
+
+## Overview (English)
+
+A daily-updated dashboard that automatically extracts AI/LLM-related CVEs from the NVD (National Vulnerability Database), enriches them with Japanese summaries via the Gemini API, and publishes the results as a fully static site on GitHub Pages.
+Zero running cost — Gemini free tier + GitHub Actions + GitHub Pages.
 
 ## なぜ作ったか
 
@@ -73,8 +78,13 @@ GitHub Pages（actions/deploy-pages）
 npm ci
 
 # 環境変数を設定（.env.example に必要なキーの一覧あり）
-export GEMINI_API_KEY=your_key_here   # 必須
+# bash / macOS / Linux
+export GEMINI_API_KEY=your_key_here
 export NVD_API_KEY=your_key_here      # 任意（省略可・省略時はレート制限が低め）
+
+# PowerShell (Windows)
+# $env:GEMINI_API_KEY = "your_key_here"
+# $env:NVD_API_KEY    = "your_key_here"
 npm run pipeline       # 収集 + 要約
 npm run build          # dist/ に静的サイト生成
 ```
