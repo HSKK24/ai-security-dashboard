@@ -1,7 +1,7 @@
 {
-  "lastRunAt": "2026-06-12T00:43:49.092Z",
+  "lastRunAt": "2026-06-12T23:07:35.000Z",
   "totalCount": 45,
-  "latestModifiedCursor": "2026-06-11T17:16:31.270Z",
+  "latestModifiedCursor": "2026-06-12T17:47:36.123Z",
   "carryover": [
     "CVE-2026-46477",
     "CVE-2026-46476",

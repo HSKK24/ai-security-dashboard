@@ -9,7 +9,7 @@
     "severity": "HIGH",
     "publishedAt": "2026-06-11T14:16:26.557Z",
     "lastModifiedAt": "2026-06-11T17:16:31.270Z",
-    "fetchedAt": "2026-06-12T00:42:43.024Z",
+    "fetchedAt": "2026-06-12T23:06:28.630Z",
     "llmStatus": "ok"
   },
   {
@@ -122,11 +122,11 @@
     "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, assistant create and update mass-assignment allows cross-workspace assistant takeover. This issue has been patched in version 3.1.2.",
     "summaryJa": null,
     "category": null,
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:41.810Z",
-    "lastModifiedAt": "2026-06-09T02:06:17.323Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-06-12T17:47:36.123Z",
+    "fetchedAt": "2026-06-12T23:06:28.630Z",
     "llmStatus": "pending"
   },
   {
