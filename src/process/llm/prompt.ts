@@ -14,7 +14,7 @@ const MAX_DESCRIPTION_LENGTH = 4000;
  * デリミタタグの偽装を除去し、入力長を制限してからタグで隔離する。
  */
 export function sanitizeDescription(description: string): string {
-  return description.replace(/<\/?cve_description>/gi, "").slice(0, MAX_DESCRIPTION_LENGTH);
+  return description.replace(/<\s*\/?\s*cve_description[^>]*>/gi, "").slice(0, MAX_DESCRIPTION_LENGTH);
 }
 
 export function buildUserPrompt(descriptionEn: string): string {

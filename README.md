@@ -1,6 +1,7 @@
 # AI Security Trends Dashboard
 
 [![CI](https://github.com/HSKK24/ai-security-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/HSKK24/ai-security-dashboard/actions/workflows/ci.yml)
+[![Last Updated](https://img.shields.io/github/last-commit/HSKK24/ai-security-dashboard?label=last%20updated)](https://github.com/HSKK24/ai-security-dashboard/commits/main)
 
 🌐 **Live Demo**: https://hskk24.github.io/ai-security-dashboard/
 
