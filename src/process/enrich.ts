@@ -5,7 +5,7 @@ import type { CveRecord } from "../store/cveSchema";
 import type { LLMClient, LLMRequest, LLMResult } from "./llm/LLMClient";
 import { RESPONSE_SCHEMA, SYSTEM_PROMPT, buildUserPrompt, llmOutputSchema } from "./llm/prompt";
 
-const RATE_LIMIT_BACKOFF_MS = 5000;
+const RATE_LIMIT_BACKOFF_MS = 65_000;
 
 export interface EnrichOptions {
   rpmLimit: number;
