@@ -94,27 +94,27 @@
     "id": "CVE-2026-46477",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46477",
     "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, dataset create and update mass-assignment allows cross-workspace dataset takeover. This issue has been patched in version 3.1.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Flowiseのバージョン3.1.2より前のバージョンにおいて、データセットの作成および更新機能におけるマスアサインメントの脆弱性が存在します。この脆弱性により、攻撃者は異なるワークスペースのデータセットを不正に乗っ取ることが可能でした。本脆弱性はバージョン3.1.2で修正されています。",
+    "category": "ai-service",
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-06-08T16:16:42.097Z",
     "lastModifiedAt": "2026-06-09T02:06:17.323Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-46476",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46476",
     "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, CustomTemplate create and update mass-assignment allows cross-workspace template takeover. This issue has been patched in version 3.1.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Flowiseのバージョン3.1.2より前において、CustomTemplateの作成および更新機能におけるマスアサインメントの脆弱性が存在します。この脆弱性により、攻撃者はクロスワークスペースでテンプレートを乗っ取ることが可能になります。この問題はバージョン3.1.2で修正済みです。",
+    "category": "ai-service",
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-06-08T16:16:41.950Z",
     "lastModifiedAt": "2026-06-09T02:06:17.323Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-46475",
@@ -126,86 +126,86 @@
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:41.810Z",
     "lastModifiedAt": "2026-06-12T17:47:36.123Z",
-    "fetchedAt": "2026-06-12T23:06:28.630Z",
-    "llmStatus": "pending"
+    "fetchedAt": "2026-06-13T12:02:32.372Z",
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-46444",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46444",
     "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, all CRUD endpoints for OpenAI Assistants Vector Store have no authentication middleware and the route path /api/v1/openai-assistants-vector-store is not in WHITELIST_URLS. However, it is also not protected by the main auth middleware when accessed via API key 窶・the route requires API key auth (not whitelisted), but no permission checks exist on any operation. This issue has been patched in version 3.1.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "FlowiseのOpenAI Assistants Vector StoreにおけるCRUDエンドポイントに認証ミドルウェアが欠如しており、APIキーでアクセスした場合でも権限チェックが行われない脆弱性がありました。これにより、未認証のユーザーがベクターストアのデータに対して作成、読み取り、更新、削除の操作を可能にする恐れがありました。この問題はバージョン3.1.2で修正されています。",
+    "category": "ai-service",
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:41.660Z",
     "lastModifiedAt": "2026-06-11T04:08:59.193Z",
     "fetchedAt": "2026-06-11T13:41:08.759Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-46443",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46443",
     "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, when credentials are fetched with a credentialName filter parameter, the encryptedData field is not stripped from the response. The code properly omits encryptedData when no filter is used but fails to do so when a filter is used. This issue has been patched in version 3.1.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Flowiseのバージョン3.1.2より前において、`credentialName`フィルターパラメータを使用して資格情報を取得する際に、レスポンスから`encryptedData`フィールドが削除されず含まれてしまう脆弱性がありました。この問題により、本来非公開であるべき暗号化されたデータが漏洩する可能性がありました。本脆弱性はバージョン3.1.2で修正済みです。",
+    "category": "other",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-06-08T16:16:41.493Z",
     "lastModifiedAt": "2026-06-11T04:08:36.827Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-46442",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46442",
     "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, POST /api/v1/node-custom-function lacks route-level authorization, allowing any authenticated user or API key to submit arbitrary JavaScript to the Custom JS Function node. When E2B_APIKEY is not configured 窶・the common deployment case 窶・Flowise executes this code inside a NodeVM sandbox. This sandbox can be escaped, allowing an attacker to reach the host process object and execute system commands via child_process. The result is authenticated remote code execution on the Flowise server host. This issue has been patched in version 3.1.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Flowiseのバージョン3.1.2より前において、`POST /api/v1/node-custom-function`ルートの認可制御の欠如により、認証されたユーザーまたはAPIキーが任意のJavaScriptコードをCustom JS Functionノードに送信可能でした。これにより、E2B_APIKEYが未設定の一般的なデプロイケースでは、NodeVMサンドボックスからの脱出を経てホストプロセスにアクセスし、システムコマンドを実行可能となり、Flowiseサーバーホスト上での認証済みリモートコード実行（RCE）につながります。この脆弱性はバージョン3.1.2でパッチが適用されています。",
+    "category": "other",
     "cvssScore": 9.9,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-08T16:16:41.347Z",
     "lastModifiedAt": "2026-06-11T04:07:08.640Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-46441",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46441",
     "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, a mass assignment vulnerability exists in the assistant update endpoint of FlowiseAI. The endpoint allows authenticated users to modify server-controlled properties such as workspaceId, createdDate, and updatedDate when updating an assistant resource. Due to missing server-side validation and authorization checks, an attacker can manipulate the workspaceId field and reassign assistants to arbitrary workspaces. This breaks tenant isolation in multi-workspace environments. This issue has been patched in version 3.1.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "FlowiseAIのバージョン3.1.2より前において、アシスタント更新エンドポイントにマスアサインメントの脆弱性が存在しました。これにより、認証済みユーザーがworkspaceIdなどのサーバー制御プロパティを不正に変更し、アシスタントを任意のワークスペースに再割り当てすることが可能でした。この脆弱性は、マルチワークスペース環境でのテナント分離を破壊する可能性があり、バージョン3.1.2で修正されました。",
+    "category": "other",
     "cvssScore": 9.6,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-08T16:16:41.190Z",
     "lastModifiedAt": "2026-06-11T04:06:52.607Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-46440",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46440",
     "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, the checkBasicAuth endpoint validates credentials in plaintext without rate limiting and with direct comparison. This issue has been patched in version 3.1.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Flowiseのバージョン3.1.2より前のバージョンにおいて、`checkBasicAuth`エンドポイントに認証情報が平文で検証され、レート制限なしで直接比較される脆弱性が存在します。これにより、攻撃者はブルートフォース攻撃を実行し、不正にアクセスする可能性があります。この問題はバージョン3.1.2で修正されました。",
+    "category": "other",
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-08T16:16:41.043Z",
     "lastModifiedAt": "2026-06-11T04:06:33.593Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-42863",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-42863",
     "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, a mass assignment vulnerability exists in the chatflow update endpoint of FlowiseAI. The endpoint allows clients to modify server-controlled properties such as deployed, isPublic, workspaceId, createdDate, and updatedDate when updating a chatflow object. Due to missing server-side validation and authorization checks, an authenticated user can manipulate internal attributes of a chatflow and reassign it to another workspace. This allows cross-workspace resource reassignment and unauthorized modification of deployment and visibility settings. This issue has been patched in version 3.1.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "FlowiseAIのチャットフロー更新エンドポイントにおいて、マスアサインメントの脆弱性が存在します。認証されたユーザーは、サーバー側での検証および認可チェックの不足により、展開状況や公開設定、ワークスペースIDなどのサーバー制御プロパティを不正に変更可能でした。これにより、ワークスペースを跨いだリソースの再割り当てや、デプロイおよび公開設定の無許可での変更が可能となります。この脆弱性はバージョン3.1.2で修正されました。",
+    "category": "ai-service",
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:39.820Z",
     "lastModifiedAt": "2026-06-11T03:58:49.717Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-42862",
@@ -218,7 +218,7 @@
     "publishedAt": "2026-06-08T16:16:39.677Z",
     "lastModifiedAt": "2026-06-11T03:56:29.467Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-42861",
