@@ -14,7 +14,7 @@ export const llmStatusSchema = z.enum(["ok", "failed", "pending"]);
 
 export const cveRecordSchema = z.object({
   id: z.string().regex(/^CVE-\d{4}-\d{4,}$/),
-  sourceUrl: z.string().url(),
+  sourceUrl: z.string().url().refine((u) => new URL(u).protocol === "https:"),
   descriptionEn: z.string(),
   summaryJa: z.string().nullable(),
   category: categorySchema.nullable(),
@@ -33,7 +33,7 @@ export const indexDataSchema = z.object({
   totalCount: z.number().int().min(0),
   latestModifiedCursor: z.string(),
   carryover: z.array(z.string()),
-  years: z.array(z.string()),
+  years: z.array(z.string().regex(/^\d{4}$/)),
 });
 
 export const settingsSchema = z.object({

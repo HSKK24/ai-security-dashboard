@@ -72,7 +72,10 @@ async function runPipeline(): Promise<void> {
   });
 
   const years = await saveByYear(repo, records);
-  const cursor = records.reduce(
+  // Advance cursor only over enriched records so pending carryover items can be
+  // re-fetched from NVD if year files are ever pruned.
+  const enrichedRecords = records.filter((r) => r.llmStatus !== "pending");
+  const cursor = enrichedRecords.reduce(
     (max, record) => maxIso(max, record.lastModifiedAt),
     index.latestModifiedCursor,
   );
