@@ -13,11 +13,11 @@
     "prompt injection",
     "AI security"
   ],
-  "maxItems": 7,
+  "maxItems": 15,
   "displayItems": 60,
   "llm": {
     "provider": "gemini",
-    "model": "gemini-2.0-flash",
-    "rpmLimit": 10
+    "model": "gemini-2.5-flash",
+    "rpmLimit": 5
   }
 }
