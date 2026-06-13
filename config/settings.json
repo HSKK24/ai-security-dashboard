@@ -13,7 +13,7 @@
     "prompt injection",
     "AI security"
   ],
-  "maxItems": 15,
+  "maxItems": 10,
   "displayItems": 60,
   "llm": {
     "provider": "gemini",

@@ -52,4 +52,13 @@ describe("toJstDisplay", () => {
     // 2026-06-12T23:07:00.000Z = 2026-06-13 08:07 JST (+9h)
     expect(toJstDisplay("2026-06-12T23:07:00.000Z")).toBe("2026/06/13 08:07 JST");
   });
+
+  it("handles midnight boundary correctly", () => {
+    // 2026-06-12T15:00:00.000Z = 2026-06-13 00:00 JST
+    expect(toJstDisplay("2026-06-12T15:00:00.000Z")).toBe("2026/06/13 00:00 JST");
+  });
+
+  it("returns unparsable input unchanged", () => {
+    expect(toJstDisplay("not-a-date")).toBe("not-a-date");
+  });
 });

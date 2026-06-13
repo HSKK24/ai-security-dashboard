@@ -25,6 +25,8 @@ export function maxIso(a: string, b: string): string {
 }
 
 export function toJstDisplay(iso: string): string {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return iso;
   return (
     new Intl.DateTimeFormat("ja-JP", {
       timeZone: "Asia/Tokyo",
@@ -34,6 +36,6 @@ export function toJstDisplay(iso: string): string {
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
-    }).format(new Date(iso)) + " JST"
+    }).format(date) + " JST"
   );
 }
