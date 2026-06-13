@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isoDaysAgo, maxIso, nowIso, toUtcIso, yearOf } from "../../src/lib/time";
+import { isoDaysAgo, maxIso, nowIso, toJstDisplay, toUtcIso, yearOf } from "../../src/lib/time";
 
 describe("toUtcIso", () => {
   it("treats zone-less NVD timestamps as UTC", () => {
@@ -44,5 +44,12 @@ describe("nowIso", () => {
   it("returns a valid ISO8601 timestamp", () => {
     const value = nowIso();
     expect(new Date(value).toISOString()).toBe(value);
+  });
+});
+
+describe("toJstDisplay", () => {
+  it("converts UTC timestamp to JST display string", () => {
+    // 2026-06-12T23:07:00.000Z = 2026-06-13 08:07 JST (+9h)
+    expect(toJstDisplay("2026-06-12T23:07:00.000Z")).toBe("2026/06/13 08:07 JST");
   });
 });

@@ -7,7 +7,7 @@ import { renderSite } from "./build/render";
 import { filterByKeywords } from "./collect/keywordFilter";
 import { fetchModifiedCves } from "./collect/nvdClient";
 import { logger } from "./lib/logger";
-import { isoDaysAgo, maxIso, nowIso, yearOf } from "./lib/time";
+import { isoDaysAgo, maxIso, nowIso, toJstDisplay, yearOf } from "./lib/time";
 import { mergeRecords } from "./process/dedup";
 import { enrichRecords } from "./process/enrich";
 import { createLLMClient } from "./process/llm/factory";
@@ -93,7 +93,7 @@ async function runBuild(): Promise<void> {
   const records = await repo.loadAllRecords(index.years);
   const stats = aggregate(records, {
     displayItems: settings.displayItems,
-    generatedAt: nowIso(),
+    generatedAt: toJstDisplay(nowIso()),
   });
   const distDir = join(rootDir, "dist");
   await renderSite({ templatesDir: join(rootDir, "templates"), distDir, stats });
