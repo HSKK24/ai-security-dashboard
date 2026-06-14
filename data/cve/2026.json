@@ -126,7 +126,7 @@
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:41.810Z",
     "lastModifiedAt": "2026-06-12T17:47:36.123Z",
-    "fetchedAt": "2026-06-13T22:52:31.675Z",
+    "fetchedAt": "2026-06-14T22:57:54.399Z",
     "llmStatus": "ok"
   },
   {
@@ -341,131 +341,131 @@
     "id": "CVE-2026-10214",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-10214",
     "descriptionEn": "A weakness has been identified in zhayujie chatgpt-on-wechat up to 2.0.8. This issue affects the function _get_safety_warning of the file agent/tools/bash/bash.py of the component Bash Tool. Executing a manipulation can lead to os command injection. The attack can be launched remotely. The exploit has been made available to the public and could be used for attacks. Upgrading to version 2.0.9 is capable of addressing this issue. This patch is called 16d9b449c9aa53ccee44144a762a2737d7ba4fc4. It is recommended to upgrade the affected component.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "zhayujie chatgpt-on-wechatのバージョン2.0.8以前において、Bash Toolコンポーネントの`agent/tools/bash/bash.py`ファイル内の`_get_safety_warning`関数にOSコマンドインジェクションの脆弱性が存在します。この脆弱性により、リモートからの操作によって任意のOSコマンドが実行される可能性があります。本脆弱性はバージョン2.0.9へのアップグレードで対処されます。",
+    "category": "ai-service",
     "cvssScore": 7.3,
     "severity": "HIGH",
     "publishedAt": "2026-06-01T03:16:25.123Z",
     "lastModifiedAt": "2026-06-01T15:15:37.293Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-46372",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46372",
     "descriptionEn": "SillyTavern is a locally installed user interface that allows users to interact with text generation large language models, image generation engines, and text-to-speech voice models. Prior to 1.18.0, SillyTavern exposes /api/search/searxng, which accepts attacker-controlled baseUrl and uses it directly to build outbound server-side fetches. An authenticated low-privilege user can point baseUrl at an internal or loopback HTTP service and receive the /search response body. This vulnerability is fixed in 1.18.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "SillyTavernのバージョン1.18.0より前において、`/api/search/searxng`エンドポイントにサーバーサイドリクエストフォージェリ（SSRF）の脆弱性が存在します。攻撃者が制御する`baseUrl`パラメータがサーバサイドフェッチに直接利用されるため、認証された低権限ユーザーが内部またはループバックHTTPサービスへリクエストを送信し、その応答ボディを取得することが可能です。この問題はバージョン1.18.0で修正されています。",
+    "category": "other",
     "cvssScore": 8.5,
     "severity": "HIGH",
     "publishedAt": "2026-05-29T19:16:25.483Z",
     "lastModifiedAt": "2026-05-29T20:17:38.110Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-44652",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44652",
     "descriptionEn": "SillyTavern is a locally installed user interface that allows users to interact with text generation large language models, image generation engines, and text-to-speech voice models. Prior to 1.18.0, corsProxyMiddleware forwards req.params.url directly into fetch(url, ...). It only blocks circular requests to its own host and does not enforce destination allowlist or private/loopback restrictions, enabling SSRF. This vulnerability is fixed in 1.18.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "SillyTavernのcorsProxyMiddlewareにServer-Side Request Forgery (SSRF) の脆弱性が存在します。これは、req.params.urlが不適切なURL検証なしに直接fetch関数に渡されるため、攻撃者が内部ネットワークへのアクセスなど、任意のサーバーサイドリクエストを偽造できる可能性があります。この脆弱性はバージョン1.18.0で修正されました。",
+    "category": "other",
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-05-29T19:16:25.143Z",
     "lastModifiedAt": "2026-05-29T20:17:38.110Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-44651",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44651",
     "descriptionEn": "SillyTavern is a locally installed user interface that allows users to interact with text generation large language models, image generation engines, and text-to-speech voice models. Prior to 1.18.0, when fetch(url) throws, the code sends:\nres.status(500).send('Error occurred while trying to proxy to: ' + url + ' ' + error). The url value is attacker-controlled (req.params.url) and is not HTML-escaped before rendering. This vulnerability is fixed in 1.18.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "SillyTavernのバージョン1.18.0未満において、プロキシ処理中のエラーメッセージに、攻撃者が制御可能なURLがHTMLエスケープされずに含まれる脆弱性がありました。これにより、攻撃者は細工したURLを介してクロスサイトスクリプティング（XSS）攻撃を実行する可能性があります。この問題はバージョン1.18.0で修正されています。",
+    "category": "other",
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-05-29T19:16:24.993Z",
     "lastModifiedAt": "2026-05-29T20:17:38.110Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-44650",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44650",
     "descriptionEn": "SillyTavern is a locally installed user interface that allows users to interact with text generation large language models, image generation engines, and text-to-speech voice models. Prior to 1.18.0, POST /api/extensions/delete endpoint accepts extensionName: \".\" which bypasses sanitize-filename validation, causing the entire user extensions directory to be recursively deleted. No authentication is required in the default configuration. This vulnerability is fixed in 1.18.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "SillyTavernのバージョン1.18.0より前のバージョンにおいて、POST /api/extensions/deleteエンドポイントが不正な入力（\".\"）を受け入れることでsanitize-filenameの検証をバイパスし、ユーザー拡張ディレクトリ全体が再帰的に削除される脆弱性が存在します。デフォルト設定では認証なしでこの脆弱性を悪用可能です。この問題はバージョン1.18.0で修正されています。",
+    "category": "other",
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-05-29T19:16:24.857Z",
     "lastModifiedAt": "2026-05-29T20:17:38.110Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-44649",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44649",
     "descriptionEn": "SillyTavern is a locally installed user interface that allows users to interact with text generation large language models, image generation engines, and text-to-speech voice models. Prior to 1.18.0, SillyTavern accepts Remote-User (Authelia) and X-Authentik-Username (Authentik) HTTP headers to automatically log in users when SSO is configured. There is no validation that these headers originate from a trusted reverse proxy. Any network client that can reach the SillyTavern port directly can inject these headers and authenticate as any user, including administrators, without a password. This vulnerability is exploitable only when sso.autheliaAuth: true or sso.authentikAuth: true is set in config.yaml (both default to false). This vulnerability is fixed in 1.18.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "SillyTavernのバージョン1.18.0未満において、シングルサインオン(SSO)設定時に認証バイパスの脆弱性が存在します。`sso.autheliaAuth`または`sso.authentikAuth`が有効な場合、`Remote-User`や`X-Authentik-Username`といったHTTPヘッダーの検証が不十分なため、攻撃者は信頼されていないリバースプロキシからのヘッダーを偽装し、任意のユーザーとしてパスワードなしで認証できてしまいます。この問題はバージョン1.18.0で修正されています。",
+    "category": "other",
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-05-29T19:16:24.720Z",
     "lastModifiedAt": "2026-06-02T03:16:17.250Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-44648",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44648",
     "descriptionEn": "SillyTavern is a locally installed user interface that allows users to interact with text generation large language models, image generation engines, and text-to-speech voice models. Prior to 1.18.0, SillyTavern relies on cookie-session for authentication, storing all session data (user handle, permissions) in a signed cookie. The endpoints POST /api/users/change-password and POST /api/users/recover-step2 only update the password hash in the database but do not expire current sessions. Because the session is stateless and stored entirely in the client cookie, there is no server-side mechanism to revoke a token once issued. This vulnerability is fixed in 1.18.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "SillyTavernのバージョン1.18.0未満において、パスワード変更やアカウントリカバリ時に既存のセッションが失効しない脆弱性が存在します。認証にcookie-sessionを利用し、セッションデータがクライアント側の署名付きクッキーに保存されるため、サーバー側でトークンを取り消すメカニズムがありませんでした。これにより、パスワードが変更された後も、古いセッションを持つユーザーは継続してアクセス可能でした。",
+    "category": "other",
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-05-29T19:16:24.570Z",
     "lastModifiedAt": "2026-05-29T20:17:38.110Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-45312",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-45312",
     "descriptionEn": "RAGFlow is an open-source RAG (Retrieval-Augmented Generation) engine. In 0.24.0 and earlier, a Jinja2 template injection in the prompt generator (rag/prompts/generator.py) allows any authenticated user to execute arbitrary OS commands on the server. Any normal user can register, create a Canvas workflow with a DuckDuckGo + LLM component chain, and trigger the SSTI.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "RAGFlowのバージョン0.24.0以前において、プロンプトジェネレーター（rag/prompts/generator.py）にJinja2テンプレートインジェクションの脆弱性が存在します。これにより、認証されたユーザーはサーバー上で任意のOSコマンドを実行できます。通常のユーザーも登録し、DuckDuckGoとLLMコンポーネントチェーンを含むCanvasワークフローを作成することで、このサーバーサイドテンプレートインジェクション（SSTI）を悪用可能です。",
+    "category": "ai-library",
     "cvssScore": 9.9,
     "severity": "CRITICAL",
     "publishedAt": "2026-05-29T13:16:22.770Z",
     "lastModifiedAt": "2026-06-02T02:16:16.050Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-48116",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-48116",
     "descriptionEn": "AnythingLLM is an application that turns pieces of content into context that any LLM can use as references during chatting. Prior to 1.13.0, the filesystem-search-files agent skill passes its LLM-controlled pattern parameter to ripgrep as a positional argument without a -- end-of-options separator. ripgrep parses any argument that starts with - as an option, so a pattern of --pre=/bin/sh turns ripgrep into a script executor: it runs /bin/sh <file> for every file it walks. An attacker who can chat with an agent on a deployment with the filesystem plugin enabled (the default in the official Docker image) can use this, together with the sibling filesystem-write-text-file skill, to run arbitrary commands inside the AnythingLLM server container. This vulnerability is fixed in 1.13.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "AnythingLLM 1.13.0より前のバージョンにおいて、filesystem-search-filesエージェントスキルがLLM制御のパターンパラメータをripgrepにオプション区切りなしで渡していました。これにより、攻撃者は特定のパターンを悪用してripgrepを介し任意のコマンドを実行することが可能となり、filesystem-write-text-fileスキルと組み合わせることでAnythingLLMサーバーコンテナ内で任意のコードを実行できました。この脆弱性はバージョン1.13.0で修正されています。",
+    "category": "ai-service",
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-05-28T22:17:01.390Z",
     "lastModifiedAt": "2026-05-30T04:17:22.667Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-47713",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47713",
     "descriptionEn": "AnythingLLM is an application that turns pieces of content into context that any LLM can use as references during chatting. Prior to 1.13.0, an approved mobile device token created in single-user mode can survive single-user -> multi-user migration even when the device record has userId = null. In multi-user mode, that stale token is still accepted by the mobile authentication middleware. Because no user is attached to the request, downstream mobile handlers fall back to unscoped data-access branches and return workspaces and workspace content without per-user filtering. This permits a pre-migration mobile token to enumerate a workspace assigned only to another user and retrieve victim-owned thread metadata and chat content in multi-user mode. This vulnerability is fixed in 1.13.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "AnythingLLMのバージョン1.13.0より前のバージョンには、シングルユーザーモードで作成されたモバイルデバイストークンがマルチユーザーモードへの移行後も有効となる脆弱性が存在しました。この古いトークンが悪用されると、他のユーザーに割り当てられたワークスペースや、その中のスレッドメタデータおよびチャットコンテンツが認証なしにアクセスされる可能性があります。本脆弱性はバージョン1.13.0で修正されています。",
+    "category": "other",
     "cvssScore": 2,
     "severity": "LOW",
     "publishedAt": "2026-05-28T22:17:01.250Z",
     "lastModifiedAt": "2026-06-03T16:51:22.890Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-45403",
