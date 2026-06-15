@@ -70,11 +70,11 @@
     "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, evaluation create and update mass-assignment allows cross-workspace evaluation takeover. This issue has been patched in version 3.1.2.",
     "summaryJa": "Flowiseのバージョン3.1.2より前のバージョンにおいて、評価の作成および更新機能にマスアサインメントの脆弱性が存在します。この脆弱性を悪用されると、ワークスペースをまたいだ評価の乗っ取りが可能となります。本問題はバージョン3.1.2で修正済みです。",
     "category": "other",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:42.443Z",
-    "lastModifiedAt": "2026-06-09T02:06:17.323Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-06-15T13:56:30.973Z",
+    "fetchedAt": "2026-06-15T23:28:21.775Z",
     "llmStatus": "ok"
   },
   {
@@ -83,11 +83,11 @@
     "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, DatasetRow create and update mass-assignment allows cross-workspace row takeover. This issue has been patched in version 3.1.2.",
     "summaryJa": "Flowiseのバージョン3.1.2未満において、DatasetRowの作成・更新時のマスアサインメントの脆弱性により、異なるワークスペースのデータ行が乗っ取られる可能性がありました。この問題はバージョン3.1.2で修正済みです。",
     "category": "other",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:42.277Z",
-    "lastModifiedAt": "2026-06-09T02:06:17.323Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-06-15T13:58:37.763Z",
+    "fetchedAt": "2026-06-15T23:28:21.775Z",
     "llmStatus": "ok"
   },
   {
@@ -96,11 +96,11 @@
     "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, dataset create and update mass-assignment allows cross-workspace dataset takeover. This issue has been patched in version 3.1.2.",
     "summaryJa": "Flowiseのバージョン3.1.2より前のバージョンにおいて、データセットの作成および更新機能におけるマスアサインメントの脆弱性が存在します。この脆弱性により、攻撃者は異なるワークスペースのデータセットを不正に乗っ取ることが可能でした。本脆弱性はバージョン3.1.2で修正されています。",
     "category": "ai-service",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:42.097Z",
-    "lastModifiedAt": "2026-06-09T02:06:17.323Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-06-15T14:02:35.157Z",
+    "fetchedAt": "2026-06-15T23:28:21.775Z",
     "llmStatus": "ok"
   },
   {
@@ -109,11 +109,11 @@
     "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, CustomTemplate create and update mass-assignment allows cross-workspace template takeover. This issue has been patched in version 3.1.2.",
     "summaryJa": "Flowiseのバージョン3.1.2より前において、CustomTemplateの作成および更新機能におけるマスアサインメントの脆弱性が存在します。この脆弱性により、攻撃者はクロスワークスペースでテンプレートを乗っ取ることが可能になります。この問題はバージョン3.1.2で修正済みです。",
     "category": "ai-service",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:41.950Z",
-    "lastModifiedAt": "2026-06-09T02:06:17.323Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-06-15T14:04:20.547Z",
+    "fetchedAt": "2026-06-15T23:28:21.775Z",
     "llmStatus": "ok"
   },
   {
@@ -126,7 +126,7 @@
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:41.810Z",
     "lastModifiedAt": "2026-06-12T17:47:36.123Z",
-    "fetchedAt": "2026-06-14T22:57:54.399Z",
+    "fetchedAt": "2026-06-15T23:28:21.775Z",
     "llmStatus": "ok"
   },
   {
@@ -471,117 +471,117 @@
     "id": "CVE-2026-45403",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-45403",
     "descriptionEn": "AnythingLLM is an application that turns pieces of content into context that any LLM can use as references during chatting. Prior to 1.13.0, the AnythingLLM agent filesystem copy tool validates only the top-level source and destination paths. The recursive copy helper then descends into child entries using fs.stat() and copies files with fs.copyFile() without validating each child or rejecting symlinks. Because both APIs follow symlinks, a symlink nested inside an allowed source directory can point outside the allowed filesystem root and cause outside file contents to be copied into an allowed destination as a regular file. This vulnerability is fixed in 1.13.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "AnythingLLMのバージョン1.13.0未満において、ファイルシステムコピーツールに脆弱性が存在します。この脆弱性により、シンボリックリンクを悪用することで、許可されたソースディレクトリ外のファイル内容が、意図しない宛先に通常のファイルとしてコピーされる可能性があります。これは、コピー処理がトップレベルのパスのみを検証し、シンボリックリンクを追跡してしまうことに起因します。",
+    "category": "other",
     "cvssScore": 2,
     "severity": "LOW",
     "publishedAt": "2026-05-28T22:17:00.907Z",
     "lastModifiedAt": "2026-06-02T14:48:13.717Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-45023",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-45023",
     "descriptionEn": "AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. Prior to 0.6.59, POST /api/blocks/{block_id}/execute endpoint executes blocks without consuming any credits, regardless of the user's balance. The credit check that exists in the graph execution path (manager.py) is never reached when blocks are called directly via the external API, allowing unlimited free execution of all blocks. This vulnerability is fixed in 0.6.59.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "AutoGPTのバージョン0.6.59より前において、APIエンドポイント`/api/blocks/{block_id}/execute`を介してブロックを直接実行すると、クレジット消費なしで処理が実行される脆弱性がありました。これは、通常のグラフ実行パスにあるクレジットチェックが迂回されるため、ユーザーのクレジット残高に関わらず、無制限にブロックを無料で実行できる状態を引き起こしました。この問題はバージョン0.6.59で修正されています。",
+    "category": "ai-service",
     "cvssScore": 5.4,
     "severity": "MEDIUM",
     "publishedAt": "2026-05-28T22:17:00.080Z",
     "lastModifiedAt": "2026-05-29T16:07:40.747Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-44843",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44843",
     "descriptionEn": "LangChain is a framework for building agents and LLM-powered applications. Prior to 0.3.85 and 1.3.3, LangChain contains older runtime code paths that deserialize run inputs, run outputs, or other application-controlled payloads using overly broad object allowlists. These paths may call load() with allowed_objects=\"all\". This does not enable arbitrary Python object deserialization, but it does allow any trusted LangChain-serializable object to be revived, which is broader than these runtime paths require. As a result, attacker-supplied LangChain serialized constructor dictionaries may cause trusted runtime paths to instantiate classes with untrusted constructor arguments. This vulnerability is fixed in 0.3.85 and 1.3.3.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LangChainの旧バージョン（0.3.85および1.3.3未満）には、古いランタイムパスがオブジェクト逆シリアル化時に過度に広い許可リストを使用する脆弱性が存在します。これにより、攻撃者は提供したLangChainシリアル化コンストラクタ辞書を介して、信頼できない引数でクラスをインスタンス化させる可能性があります。この脆弱性はバージョン0.3.85および1.3.3で修正されています。",
+    "category": "ai-library",
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-05-26T21:16:39.003Z",
     "lastModifiedAt": "2026-05-29T19:48:48.150Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-44209",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44209",
     "descriptionEn": "Banks generates meaningful LLM prompts using a template language that makes sense. Prior to 2.4.2, banks uses jinja2.Environment() (unsandboxed) to render prompt templates. Applications that pass user-supplied strings as the template argument to Prompt() are vulnerable to Server-Side Template Injection (SSTI), which can lead to Remote Code Execution (RCE) on the host system. This vulnerability is fixed in 2.4.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Banksライブラリは、LLMプロンプト生成にJinja2テンプレートを使用しています。バージョン2.4.2より前では、サンドボックス化されていないJinja2環境を使用してプロンプトテンプレートをレンダリングしていました。これにより、アプリケーションがユーザー提供の文字列をテンプレート引数として渡す場合、Server-Side Template Injection (SSTI) を介したリモートコード実行 (RCE) の脆弱性が存在します。",
+    "category": "ai-library",
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-05-26T21:16:37.620Z",
     "lastModifiedAt": "2026-05-29T15:29:42.387Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-44723",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44723",
     "descriptionEn": "Vowpal Wabbit is a machine learning system. The workflow .github/workflows/python_checks.yml embeds ${{ github.event.pull_request.title }} directly inside double-quoted bash strings in four separate steps across four jobs, each passing it as a CLI argument to the Python test script run_tests_model_gen_and_load.py. The shell interprets the expanded string before invoking Python, allowing an attacker to break out of the quotes and execute arbitrary commands on the runner. The pull_request trigger fires on PRs targeting any branch (branches: ['*']), with no additional access gate. This vulnerability is fixed by the 998e390e80a7e8192d7849b7784bc113dbd190ad commit.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Vowpal Wabbitのワークフローファイル`.github/workflows/python_checks.yml`には、コマンドインジェクションの脆弱性が存在します。`pull_request.title`がエスケープされずにbash文字列に直接埋め込まれるため、攻撃者は細工したPRタイトルを介してCI/CDランナー上で任意のコマンドを実行できます。この脆弱性は、コミット`998e390e80a7e8192d7849b7784bc113dbd190ad`で修正されました。",
+    "category": "other",
     "cvssScore": 5,
     "severity": "MEDIUM",
     "publishedAt": "2026-05-26T17:16:46.680Z",
     "lastModifiedAt": "2026-05-28T19:14:42.703Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-41863",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-41863",
     "descriptionEn": "Spring AI's support for Anthropic's Skills API used LLM-influenced filenames unsanitized in Path.resolve before writing files to disk. This could allow a malicious user to write files outside the intended target directory, including restricted directories.\n\nAffected versions:\nSpring AI: 1.1.0 through 1.1.x",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Spring AIのAnthropic Skills APIサポートにおいて、LLMによって生成されたファイル名が、ディスクへのファイル書き込み前に`Path.resolve`で適切にサニタイズされていませんでした。これにより、悪意のあるユーザーが意図したディレクトリ外にファイルを書き込み、制限されたディレクトリへアクセスする可能性がありました。",
+    "category": "ai-library",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-05-25T07:16:16.377Z",
     "lastModifiedAt": "2026-06-01T14:22:15.893Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-42271",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-42271",
     "descriptionEn": "LiteLLM is a proxy server (AI Gateway) to call LLM APIs in OpenAI (or native) format. From version 1.74.2 to before version 1.83.7, two endpoints used to preview an MCP server before saving it 窶・POST /mcp-rest/test/connection and POST /mcp-rest/test/tools/list 窶・accepted a full server configuration in the request body, including the command, args, and env fields used by the stdio transport. When called with a stdio configuration, the endpoints attempted to connect, which spawned the supplied command as a subprocess on the proxy host with the privileges of the proxy process. The endpoints were gated only by a valid proxy API key, with no role check. Any authenticated user 窶・including holders of low-privilege internal-user keys 窶・could therefore run arbitrary commands on the host. This issue has been patched in version 1.83.7.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LiteLLMのバージョン1.74.2から1.83.7未満において、特定のテストエンドポイント（`POST /mcp-rest/test/connection`および`POST /mcp-rest/test/tools/list`）にコマンドインジェクションの脆弱性が存在しました。これらのエンドポイントは、`stdio`トランスポート設定を通じてコマンド、引数、環境変数をリクエストボディで受け入れ、プロキシホスト上で任意のコマンドをプロキシプロセスの権限で実行することが可能でした。有効なAPIキーを持つ認証済みユーザーであれば、権限の低い内部ユーザーキーの保持者を含め、ホスト上で任意のコマンドを実行できる状態でした。本脆弱性はバージョン1.83.7で修正済みです。",
+    "category": "ai-service",
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-05-08T04:16:21.820Z",
     "lastModifiedAt": "2026-06-09T01:22:09.190Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-41182",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-41182",
     "descriptionEn": "LangSmith Client SDKs provide SDK's for interacting with the LangSmith platform. Prior to version 0.5.19 of the JavaScript SDK and version 0.7.31 of the Python SDK, the LangSmith SDK's output redaction controls (hideOutputs in JS, hide_outputs in Python) do not apply to streaming token events. When an LLM run produces streaming output, each chunk is recorded as a new_token event containing the raw token value. These events bypass the redaction pipeline entirely 窶・prepareRunCreateOrUpdateInputs (JS) and _hide_run_outputs (Python) only process the inputs and outputs fields on a run, never the events array. As a result, applications relying on output redaction to prevent sensitive LLM output from being stored in LangSmith will still leak the full streamed content via run events. Version 0.5.19 of the JavaScript SDK and version 0.7.31 of the Python SDK fix the issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LangSmith Client SDKsのJavaScript版（0.5.19未満）およびPython版（0.7.31未満）において、出力の秘匿化機能（hideOutputs/hide_outputs）がストリーミングトークンイベントに適用されません。これにより、LLMが生成するストリーミング出力の生トークン値が秘匿化パイプラインをバイパスし、機密性の高い情報がLangSmithプラットフォームに漏洩する可能性があります。本問題はJavaScript SDK v0.5.19およびPython SDK v0.7.31で修正されました。",
+    "category": "ai-library",
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-04-23T02:16:16.123Z",
     "lastModifiedAt": "2026-05-29T16:14:18.860Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-34070",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-34070",
     "descriptionEn": "LangChain is a framework for building agents and LLM-powered applications. Prior to version 1.2.22, multiple functions in langchain_core.prompts.loading read files from paths embedded in deserialized config dicts without validating against directory traversal or absolute path injection. When an application passes user-influenced prompt configurations to load_prompt() or load_prompt_from_config(), an attacker can read arbitrary files on the host filesystem, constrained only by file-extension checks (.txt for templates, .json/.yaml for examples). This issue has been patched in version 1.2.22.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LangChainフレームワークのバージョン1.2.22より前のバージョンにおいて、`langchain_core.prompts.loading`の関数は、非シリアル化された設定辞書に埋め込まれたパスからファイルを読み込む際にディレクトリトラバーサルや絶対パスインジェクションの検証を欠いていました。これにより、ユーザーが制御可能なプロンプト設定を渡すアプリケーションでは、攻撃者がファイル拡張子の制約内でホストファイルシステム上の任意のファイルを読み取ることが可能となります。この脆弱性はバージョン1.2.22で修正済みです。",
+    "category": "ai-library",
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-03-31T03:15:58.947Z",
     "lastModifiedAt": "2026-06-01T16:23:18.117Z",
     "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   }
 ]
