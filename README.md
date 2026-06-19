@@ -55,6 +55,12 @@ GitHub Pages（actions/deploy-pages）
 5. 年別 JSON（`data/cve/<year>.json`）と `data/index.json` を更新してコミット
 6. 静的サイトをビルドして GitHub Pages へデプロイ
 
+### 表示ウィンドウ
+
+ダッシュボードに表示する CVE は `config/settings.json` の `displayDays` で指定した日数（デフォルト 90 日）以内に公開されたものに限定します。
+CVE が蓄積しても視認性が保たれ、古いエントリが自動的に表示から外れます。
+集計カード（総CVE件数・severity分布）は全期間のデータベースを対象としています。
+
 ## 技術選定理由
 
 | 技術 | 採用理由 |
@@ -69,7 +75,8 @@ GitHub Pages（actions/deploy-pages）
 ## 運用方針
 
 - **日次自動更新**: GitHub Actions の `schedule: cron` により毎朝 JST 07:00 に自動実行
-- **レート制限対策**: 無料枠は 15 RPM だが、安全マージンを確保し自己制限 10 RPM（`config/settings.json` の `rpmLimit`）で運用。超過分は `carryover` で次回実行に持ち越す設計で追加コストなしの長期運用を実現
+- **レート制限対策**: 無料枠は 15 RPM だが、安全マージンを確保し自己制限 5 RPM（`config/settings.json` の `rpmLimit`）で運用。超過分は `carryover` で次回実行に持ち越す設計で追加コストなしの長期運用を実現
+- **表示ウィンドウ**: `displayDays`（デフォルト 90 日）以内の CVE のみ表示。蓄積しても視認性を維持
 - **オンデマンド実行**: `workflow_dispatch` トリガーにより GitHub UI から手動実行も可能
 - **データ永続化**: 収集済みデータを `data/` に JSON でコミット保存。GitHub 自体がデータストアを兼ねる
 

@@ -27,7 +27,7 @@ function makeStats(): DashboardStats {
         publishedAt: "2026-06-02T00:00:00.000Z",
       }),
     ],
-    { displayItems: 60, generatedAt: "2026-06-10T22:00:00.000Z" },
+    { displayDays: 90, generatedAt: "2026-06-10T22:00:00.000Z" },
   );
 }
 

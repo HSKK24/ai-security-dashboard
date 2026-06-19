@@ -26,7 +26,7 @@ function countBy<T>(
 
 export function aggregate(
   records: readonly CveRecord[],
-  options: { displayItems: number; generatedAt: string },
+  options: { displayDays: number; generatedAt: string },
 ): DashboardStats {
   const severityCounts = countBy(records, (record) => record.severity ?? UNKNOWN_SEVERITY, [
     ...severitySchema.options,
@@ -36,9 +36,12 @@ export function aggregate(
     ...categorySchema.options,
     UNCLASSIFIED_CATEGORY,
   ]);
+  const cutoffMs =
+    new Date(options.generatedAt).getTime() - options.displayDays * 24 * 60 * 60 * 1000;
+  const cutoff = new Date(cutoffMs).toISOString().slice(0, 10);
   const recent = [...records]
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
-    .slice(0, options.displayItems);
+    .filter((r) => r.publishedAt.slice(0, 10) >= cutoff);
 
   return {
     generatedAt: options.generatedAt,

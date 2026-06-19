@@ -104,7 +104,7 @@ async function runBuild(): Promise<void> {
   const index = await repo.loadIndex();
   const records = await repo.loadAllRecords(index.years);
   const stats = aggregate(records, {
-    displayItems: settings.displayItems,
+    displayDays: settings.displayDays,
     generatedAt: toJstDisplay(nowIso()),
   });
   const distDir = join(rootDir, "dist");

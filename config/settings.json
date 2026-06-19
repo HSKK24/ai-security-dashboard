@@ -14,7 +14,7 @@
     "AI security"
   ],
   "maxItems": 10,
-  "displayItems": 60,
+  "displayDays": 90,
   "llm": {
     "provider": "gemini",
     "model": "gemini-2.5-flash",

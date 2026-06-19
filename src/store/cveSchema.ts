@@ -39,7 +39,7 @@ export const indexDataSchema = z.object({
 export const settingsSchema = z.object({
   keywords: z.array(z.string().min(1)).min(1),
   maxItems: z.number().int().positive(),
-  displayItems: z.number().int().positive(),
+  displayDays: z.number().int().positive(),
   llm: z.object({
     provider: z.enum(["gemini", "github"]),
     model: z.string().min(1),
