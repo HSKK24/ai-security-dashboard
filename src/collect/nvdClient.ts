@@ -82,7 +82,7 @@ export async function fetchModifiedCves(
   range: { since: string; until: string },
   options: NvdClientOptions = {},
 ): Promise<NvdVulnerability[]> {
-  let collected: NvdVulnerability[] = [];
+  const collected: NvdVulnerability[] = [];
   let startIndex = 0;
   let pageCount = 0;
 
@@ -94,7 +94,7 @@ export async function fetchModifiedCves(
       startIndex: String(startIndex),
     });
     const page = await requestPage(params, options);
-    collected = [...collected, ...page.vulnerabilities];
+    collected.push(...page.vulnerabilities);
     startIndex += page.vulnerabilities.length;
     if (page.vulnerabilities.length === 0 || startIndex >= page.totalResults) {
       return collected;

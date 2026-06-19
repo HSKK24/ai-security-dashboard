@@ -16,7 +16,7 @@ export const cveRecordSchema = z.object({
   id: z.string().regex(/^CVE-\d{4}-\d{4,}$/),
   sourceUrl: z.string().url().refine((u) => new URL(u).protocol === "https:"),
   descriptionEn: z.string(),
-  summaryJa: z.string().nullable(),
+  summaryJa: z.string().min(1).max(2000).nullable(),
   category: categorySchema.nullable(),
   cvssScore: z.number().min(0).max(10).nullable(),
   severity: severitySchema.nullable(),
