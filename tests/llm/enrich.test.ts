@@ -29,16 +29,41 @@ describe("enrichRecords", () => {
     expect(calls[0]?.userPrompt).toContain("<cve_description>\nSome CVE text.\n</cve_description>");
   });
 
-  it("makes zero LLM calls when nothing is pending", async () => {
+  it("makes zero LLM calls when all records are ok", async () => {
     const { client, calls } = fakeLlmClient([llmOk("不要", "other")]);
-    const records = [
-      makeRecord({ llmStatus: "ok", summaryJa: "既存", category: "other" }),
-      makeRecord({ id: "CVE-2026-0002", llmStatus: "failed" }),
-    ];
+    const records = [makeRecord({ llmStatus: "ok", summaryJa: "既存", category: "other" })];
     const outcome = await enrichRecords(records, client, OPTIONS);
     expect(calls).toHaveLength(0);
     expect(outcome.records).toEqual(records);
     expect(outcome.carryover).toEqual([]);
+  });
+
+  it("retries failed records on subsequent runs", async () => {
+    const { client, calls } = fakeLlmClient([llmOk("リトライ成功。", "other")]);
+    const okRecord = makeRecord({ llmStatus: "ok", summaryJa: "既存", category: "other" });
+    const failedRecord = makeRecord({ id: "CVE-2026-0002", llmStatus: "failed" });
+    const outcome = await enrichRecords([okRecord, failedRecord], client, OPTIONS);
+    expect(calls).toHaveLength(1);
+    expect(outcome.records[0]).toEqual(okRecord);
+    expect(outcome.records[1]).toMatchObject({
+      id: "CVE-2026-0002",
+      summaryJa: "リトライ成功。",
+      llmStatus: "ok",
+    });
+    expect(outcome.carryover).toEqual([]);
+  });
+
+  it("defers failed records to carryover when budget is exhausted", async () => {
+    const { client, calls } = fakeLlmClient([llmOk("1件目。", "other")]);
+    const records = [
+      makeRecord({ id: "CVE-2026-0001" }),
+      makeRecord({ id: "CVE-2026-0002", llmStatus: "failed" }),
+    ];
+    const outcome = await enrichRecords(records, client, { ...OPTIONS, maxItems: 1 });
+    expect(calls).toHaveLength(1);
+    expect(outcome.records[0]?.llmStatus).toBe("ok");
+    expect(outcome.records[1]?.llmStatus).toBe("failed");
+    expect(outcome.carryover).toEqual(["CVE-2026-0002"]);
   });
 
   it("makes zero LLM calls for an empty record set", async () => {

@@ -69,7 +69,7 @@ export async function enrichRecords(
   let rateLimited = false;
 
   for (const record of records) {
-    if (record.llmStatus !== "pending") {
+    if (record.llmStatus === "ok") {
       enriched.push(record);
       continue;
     }
