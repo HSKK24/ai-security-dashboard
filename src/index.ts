@@ -103,9 +103,11 @@ async function runBuild(): Promise<void> {
   const repo = new FileRepository(join(rootDir, "data"));
   const index = await repo.loadIndex();
   const records = await repo.loadAllRecords(index.years);
+  const now = nowIso();
   const stats = aggregate(records, {
     displayDays: settings.displayDays,
-    generatedAt: toJstDisplay(nowIso()),
+    generatedAt: toJstDisplay(now),
+    now,
   });
   const distDir = join(rootDir, "dist");
   await renderSite({ templatesDir: join(rootDir, "templates"), distDir, stats });
