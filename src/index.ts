@@ -65,8 +65,17 @@ async function runPipeline(): Promise<void> {
   const existing = await repo.loadAllRecords(index.years);
   const merged = mergeRecords(existing, incoming);
 
+  // Carryover records (deferred from the previous run) are processed first
+  // to prevent starvation when daily inflow saturates maxItems.
+  const carryoverIds = new Set(index.carryover);
+  const needsEnrich = (r: CveRecord) => r.llmStatus === "pending" || r.llmStatus === "failed";
+  const prioritized = [
+    ...merged.filter((r) => carryoverIds.has(r.id) && needsEnrich(r)),
+    ...merged.filter((r) => !(carryoverIds.has(r.id) && needsEnrich(r))),
+  ];
+
   const client = createLLMClient(settings);
-  const { records, carryover } = await enrichRecords(merged, client, {
+  const { records, carryover } = await enrichRecords(prioritized, client, {
     rpmLimit: settings.llm.rpmLimit,
     maxItems: settings.maxItems,
   });
