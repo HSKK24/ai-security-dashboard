@@ -27,21 +27,21 @@ describe("aggregate", () => {
   ];
 
   it("counts severities including UNKNOWN", () => {
-    const stats = aggregate(records, { displayDays: 30, generatedAt: GENERATED_AT });
+    const stats = aggregate(records, { displayDays: 30, generatedAt: GENERATED_AT, now: GENERATED_AT });
     expect(stats.severityCounts.HIGH).toBe(2);
     expect(stats.severityCounts.UNKNOWN).toBe(1);
     expect(stats.severityCounts.CRITICAL).toBe(0);
   });
 
   it("counts categories including unclassified", () => {
-    const stats = aggregate(records, { displayDays: 30, generatedAt: GENERATED_AT });
+    const stats = aggregate(records, { displayDays: 30, generatedAt: GENERATED_AT, now: GENERATED_AT });
     expect(stats.categoryCounts["prompt-injection"]).toBe(1);
     expect(stats.categoryCounts["ai-library"]).toBe(1);
     expect(stats.categoryCounts.unclassified).toBe(1);
   });
 
   it("sorts recent records by publishedAt descending", () => {
-    const stats = aggregate(records, { displayDays: 30, generatedAt: GENERATED_AT });
+    const stats = aggregate(records, { displayDays: 30, generatedAt: GENERATED_AT, now: GENERATED_AT });
     expect(stats.recent.map((r) => r.id)).toEqual(["CVE-2026-0002", "CVE-2026-0003", "CVE-2026-0001"]);
     expect(stats.totalCount).toBe(3);
     expect(stats.generatedAt).toBe(GENERATED_AT);
@@ -53,7 +53,7 @@ describe("aggregate", () => {
       publishedAt: "2026-04-01T00:00:00.000Z", // 70 days before GENERATED_AT
     });
     // totalCount counts all records; recent only shows within the window
-    const stats = aggregate([...records, oldRecord], { displayDays: 30, generatedAt: GENERATED_AT });
+    const stats = aggregate([...records, oldRecord], { displayDays: 30, generatedAt: GENERATED_AT, now: GENERATED_AT });
     expect(stats.recent.map((r) => r.id)).not.toContain("CVE-2026-OLD");
     expect(stats.recent).toHaveLength(3);
     expect(stats.totalCount).toBe(4);
@@ -61,12 +61,12 @@ describe("aggregate", () => {
 
   it("does not mutate the input order", () => {
     const before = records.map((r) => r.id);
-    aggregate(records, { displayDays: 30, generatedAt: GENERATED_AT });
+    aggregate(records, { displayDays: 30, generatedAt: GENERATED_AT, now: GENERATED_AT });
     expect(records.map((r) => r.id)).toEqual(before);
   });
 
   it("handles an empty record set", () => {
-    const stats = aggregate([], { displayDays: 30, generatedAt: GENERATED_AT });
+    const stats = aggregate([], { displayDays: 30, generatedAt: GENERATED_AT, now: GENERATED_AT });
     expect(stats.totalCount).toBe(0);
     expect(stats.recent).toEqual([]);
     expect(stats.severityCounts.HIGH).toBe(0);
