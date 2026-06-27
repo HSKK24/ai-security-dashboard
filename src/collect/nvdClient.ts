@@ -31,10 +31,17 @@ export interface NvdClientOptions {
   sleep?: (ms: number) => Promise<void>;
   retries?: number;
   baseDelayMs?: number;
+  fetchTimeoutMs?: number;
 }
 
+const FETCH_TIMEOUT_MS = 30_000;
+
 function isRetryable(error: unknown): boolean {
-  return error instanceof NvdApiError && (error.status === 429 || error.status >= 500);
+  if (error instanceof NvdApiError && (error.status === 429 || error.status >= 500)) {
+    return true;
+  }
+  // AbortError はタイムアウト起因の一時的な失敗として扱いリトライする
+  return error instanceof Error && error.name === "AbortError";
 }
 
 async function requestPage(
@@ -42,6 +49,7 @@ async function requestPage(
   options: NvdClientOptions,
 ): Promise<NvdResponse> {
   const fetchImpl = options.fetchImpl ?? fetch;
+  const timeoutMs = options.fetchTimeoutMs ?? FETCH_TIMEOUT_MS;
   const headers: Record<string, string> = { Accept: "application/json" };
   if (options.apiKey) {
     headers.apiKey = options.apiKey;
@@ -49,14 +57,23 @@ async function requestPage(
 
   const response = await withRetry(
     async () => {
-      const res = await fetchImpl(`${NVD_API_URL}?${params.toString()}`, { headers });
-      if (res.status === 429) {
-        throw new NvdRateLimitError();
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const res = await fetchImpl(`${NVD_API_URL}?${params.toString()}`, {
+          headers,
+          signal: controller.signal,
+        });
+        if (res.status === 429) {
+          throw new NvdRateLimitError();
+        }
+        if (!res.ok) {
+          throw new NvdApiError(res.status);
+        }
+        return res;
+      } finally {
+        clearTimeout(timer);
       }
-      if (!res.ok) {
-        throw new NvdApiError(res.status);
-      }
-      return res;
     },
     {
       retries: options.retries ?? 3,

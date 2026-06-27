@@ -156,6 +156,58 @@ describe("fetchModifiedCves", () => {
     const headers = calls[0]?.init?.headers as Record<string, string>;
     expect(headers.apiKey).toBe("test-key");
   });
+
+  it("aborts a hanging fetch after fetchTimeoutMs and retries", async () => {
+    const sleeps: number[] = [];
+    const sleep = async (ms: number): Promise<void> => {
+      sleeps.push(ms);
+    };
+    let callCount = 0;
+    const fetchImpl = (async (_input: string | URL, init?: RequestInit) => {
+      callCount += 1;
+      if (callCount === 1) {
+        return new Promise<Response>((_resolve, reject) => {
+          init?.signal?.addEventListener("abort", () => {
+            const err = new Error("This operation was aborted");
+            err.name = "AbortError";
+            reject(err);
+          });
+        });
+      }
+      return new Response(JSON.stringify(emptyFixture), { status: 200 });
+    }) as typeof fetch;
+
+    const result = await fetchModifiedCves(RANGE, {
+      fetchImpl,
+      sleep,
+      fetchTimeoutMs: 10,
+      baseDelayMs: 5,
+    });
+    expect(result).toEqual([]);
+    expect(callCount).toBe(2);
+    expect(sleeps.length).toBeGreaterThan(0);
+  });
+
+  it("throws when fetch times out and all retries are exhausted", async () => {
+    const fetchImpl = (async (_input: string | URL, init?: RequestInit) => {
+      return new Promise<Response>((_resolve, reject) => {
+        init?.signal?.addEventListener("abort", () => {
+          const err = new Error("This operation was aborted");
+          err.name = "AbortError";
+          reject(err);
+        });
+      });
+    }) as typeof fetch;
+
+    await expect(
+      fetchModifiedCves(RANGE, {
+        fetchImpl,
+        sleep: noSleep,
+        fetchTimeoutMs: 10,
+        retries: 1,
+      }),
+    ).rejects.toThrow(/aborted/i);
+  });
 });
 
 describe("fetchCveById", () => {
