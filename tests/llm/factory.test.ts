@@ -8,7 +8,7 @@ function makeSettings(provider: "gemini" | "github"): Settings {
   return {
     keywords: ["LLM"],
     maxItems: 30,
-    displayItems: 60,
+    displayDays: 90,
     llm: { provider, model: "test-model", rpmLimit: 10 },
   };
 }
