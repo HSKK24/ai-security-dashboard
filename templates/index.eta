@@ -88,7 +88,11 @@
     </main>
     <footer>
       <p>
-        最終更新: <%= it.stats.generatedAt %> | データ出典:
+        パイプライン最終実行: <%= it.stats.lastRunAt %><% if (it.stats.lastRunStats) { %>
+        （NVD <%= it.stats.lastRunStats.nvdFetched %>件スキャン →
+        マッチ <%= it.stats.lastRunStats.keywordMatched %>件 →
+        LLM処理 <%= it.stats.lastRunStats.llmEnriched %>件）<% } %> |
+        累計 <%= it.stats.totalCount %>件 | データ出典:
         <a href="https://nvd.nist.gov/" rel="noopener noreferrer" target="_blank">NVD</a>
       </p>
     </footer>

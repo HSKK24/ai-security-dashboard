@@ -24,23 +24,33 @@ async function loadSettings(): Promise<Settings> {
   return settingsSchema.parse(raw);
 }
 
+interface CollectOutcome {
+  records: CveRecord[];
+  nvdFetched: number;
+  keywordMatched: number;
+}
+
 async function collectNewRecords(
   settings: Settings,
   index: IndexData,
   fetchedAt: string,
-): Promise<CveRecord[]> {
+): Promise<CollectOutcome> {
   const since = index.latestModifiedCursor || isoDaysAgo(INITIAL_LOOKBACK_DAYS);
   const until = nowIso();
   try {
     const vulns = await fetchModifiedCves({ since, until }, { apiKey: process.env.NVD_API_KEY });
     const matched = filterByKeywords(vulns, settings.keywords);
     logger.info(`NVD: fetched ${vulns.length} modified CVEs, ${matched.length} matched keywords`);
-    return normalizeAll(matched, fetchedAt);
+    return {
+      records: normalizeAll(matched, fetchedAt),
+      nvdFetched: vulns.length,
+      keywordMatched: matched.length,
+    };
   } catch (error) {
     // NVD側の障害時は新規取得を諦め、前回データのみでサイトを更新し続ける
     const reason = error instanceof Error ? error.message : String(error);
     logger.error(`NVD collection failed; continuing with existing data: ${reason}`);
-    return [];
+    return { records: [], nvdFetched: 0, keywordMatched: 0 };
   }
 }
 
@@ -61,7 +71,11 @@ async function runPipeline(): Promise<void> {
   const index = await repo.loadIndex();
   const fetchedAt = nowIso();
 
-  const incoming = await collectNewRecords(settings, index, fetchedAt);
+  const { records: incoming, nvdFetched, keywordMatched } = await collectNewRecords(
+    settings,
+    index,
+    fetchedAt,
+  );
   const existing = await repo.loadAllRecords(index.years);
   const merged = mergeRecords(existing, incoming);
 
@@ -80,6 +94,12 @@ async function runPipeline(): Promise<void> {
     maxItems: settings.maxItems,
   });
 
+  // 今回マッチした新規CVEのうち、要約に成功した件数
+  const incomingIds = new Set(incoming.map((r) => r.id));
+  const llmEnriched = records.filter(
+    (r) => r.llmStatus === "ok" && incomingIds.has(r.id),
+  ).length;
+
   const years = await saveByYear(repo, records);
   // Advance cursor only over enriched records so pending carryover items can be
   // re-fetched from NVD if year files are ever pruned.
@@ -94,6 +114,7 @@ async function runPipeline(): Promise<void> {
     latestModifiedCursor: cursor,
     carryover,
     years,
+    lastRunStats: { nvdFetched, keywordMatched, llmEnriched },
   });
   logger.info(`pipeline completed: total=${records.length} carryover=${carryover.length}`);
 }
@@ -108,6 +129,8 @@ async function runBuild(): Promise<void> {
     displayDays: settings.displayDays,
     generatedAt: toJstDisplay(now),
     now,
+    lastRunAt: index.lastRunAt ? toJstDisplay(index.lastRunAt) : "未実行",
+    lastRunStats: index.lastRunStats,
   });
   const distDir = join(rootDir, "dist");
   await renderSite({ templatesDir: join(rootDir, "templates"), distDir, stats });

@@ -27,7 +27,13 @@ function makeStats(): DashboardStats {
         publishedAt: "2026-06-02T00:00:00.000Z",
       }),
     ],
-    { displayDays: 90, generatedAt: "2026-06-10T22:00:00.000Z", now: "2026-06-10T22:00:00.000Z" },
+    {
+      displayDays: 90,
+      generatedAt: "2026-06-10T22:00:00.000Z",
+      now: "2026-06-10T22:00:00.000Z",
+      lastRunAt: "2026-06-10 07:00 JST",
+      lastRunStats: { nvdFetched: 892, keywordMatched: 3, llmEnriched: 3 },
+    },
   );
 }
 
@@ -51,6 +57,15 @@ describe("renderPage", () => {
     const eta = createRenderer(templatesDir);
     const html = renderPage(eta, "index", { stats: makeStats() });
     expect(html).toContain("日本語要約は準備中");
+  });
+
+  it("renders the pipeline run summary in the footer", () => {
+    const eta = createRenderer(templatesDir);
+    const html = renderPage(eta, "index", { stats: makeStats() });
+    expect(html).toContain("パイプライン最終実行: 2026-06-10 07:00 JST");
+    expect(html).toContain("NVD 892件スキャン");
+    expect(html).toContain("マッチ 3件");
+    expect(html).toContain("LLM処理 3件");
   });
 
   it("renders the about page with the total count", () => {

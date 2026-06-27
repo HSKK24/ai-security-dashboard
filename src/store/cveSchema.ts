@@ -28,12 +28,19 @@ export const cveRecordSchema = z.object({
 
 export const cveRecordListSchema = z.array(cveRecordSchema);
 
+export const runStatsSchema = z.object({
+  nvdFetched: z.number().int().min(0),
+  keywordMatched: z.number().int().min(0),
+  llmEnriched: z.number().int().min(0),
+});
+
 export const indexDataSchema = z.object({
   lastRunAt: z.string(),
   totalCount: z.number().int().min(0),
   latestModifiedCursor: z.string(),
   carryover: z.array(z.string()),
   years: z.array(z.string().regex(/^\d{4}$/)),
+  lastRunStats: runStatsSchema.optional(),
 });
 
 export const settingsSchema = z.object({
@@ -51,5 +58,6 @@ export type Category = z.infer<typeof categorySchema>;
 export type Severity = z.infer<typeof severitySchema>;
 export type LlmStatus = z.infer<typeof llmStatusSchema>;
 export type CveRecord = z.infer<typeof cveRecordSchema>;
+export type RunStats = z.infer<typeof runStatsSchema>;
 export type IndexData = z.infer<typeof indexDataSchema>;
 export type Settings = z.infer<typeof settingsSchema>;

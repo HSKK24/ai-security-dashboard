@@ -1,5 +1,7 @@
-import type { CveRecord } from "../store/cveSchema";
+import type { CveRecord, RunStats } from "../store/cveSchema";
 import { categorySchema, severitySchema } from "../store/cveSchema";
+
+export type { RunStats } from "../store/cveSchema";
 
 export const UNKNOWN_SEVERITY = "UNKNOWN";
 export const UNCLASSIFIED_CATEGORY = "unclassified";
@@ -11,6 +13,8 @@ export interface DashboardStats {
   severityCounts: Record<string, number>;
   categoryCounts: Record<string, number>;
   recent: CveRecord[];
+  lastRunAt: string;
+  lastRunStats: RunStats | null;
 }
 
 function countBy<T>(
@@ -27,7 +31,13 @@ function countBy<T>(
 
 export function aggregate(
   records: readonly CveRecord[],
-  options: { displayDays: number; generatedAt: string; now: string },
+  options: {
+    displayDays: number;
+    generatedAt: string;
+    now: string;
+    lastRunAt: string;
+    lastRunStats?: RunStats;
+  },
 ): DashboardStats {
   const severityCounts = countBy(records, (record) => record.severity ?? UNKNOWN_SEVERITY, [
     ...severitySchema.options,
@@ -51,5 +61,7 @@ export function aggregate(
     severityCounts,
     categoryCounts,
     recent,
+    lastRunAt: options.lastRunAt,
+    lastRunStats: options.lastRunStats ?? null,
   };
 }
