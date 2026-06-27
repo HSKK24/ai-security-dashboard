@@ -1,9 +1,14 @@
 {
-  "lastRunAt": "2026-06-24T22:59:16.669Z",
+  "lastRunAt": "2026-06-27T11:30:34.346Z",
   "totalCount": 45,
   "latestModifiedCursor": "2026-06-15T14:04:20.547Z",
   "carryover": [],
   "years": [
     "2026"
-  ]
+  ],
+  "lastRunStats": {
+    "nvdFetched": 0,
+    "keywordMatched": 0,
+    "llmEnriched": 0
+  }
 }
