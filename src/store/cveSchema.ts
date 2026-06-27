@@ -14,7 +14,10 @@ export const llmStatusSchema = z.enum(["ok", "failed", "pending"]);
 
 export const cveRecordSchema = z.object({
   id: z.string().regex(/^CVE-\d{4}-\d{4,}$/),
-  sourceUrl: z.string().url().refine((u) => new URL(u).protocol === "https:"),
+  sourceUrl: z
+    .string()
+    .url()
+    .refine((u) => new URL(u).protocol === "https:"),
   descriptionEn: z.string(),
   summaryJa: z.string().min(1).max(2000).nullable(),
   category: categorySchema.nullable(),

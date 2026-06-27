@@ -71,11 +71,11 @@ async function runPipeline(): Promise<void> {
   const index = await repo.loadIndex();
   const fetchedAt = nowIso();
 
-  const { records: incoming, nvdFetched, keywordMatched } = await collectNewRecords(
-    settings,
-    index,
-    fetchedAt,
-  );
+  const {
+    records: incoming,
+    nvdFetched,
+    keywordMatched,
+  } = await collectNewRecords(settings, index, fetchedAt);
   const existing = await repo.loadAllRecords(index.years);
   const merged = mergeRecords(existing, incoming);
 
@@ -96,9 +96,7 @@ async function runPipeline(): Promise<void> {
 
   // 今回マッチした新規CVEのうち、要約に成功した件数
   const incomingIds = new Set(incoming.map((r) => r.id));
-  const llmEnriched = records.filter(
-    (r) => r.llmStatus === "ok" && incomingIds.has(r.id),
-  ).length;
+  const llmEnriched = records.filter((r) => r.llmStatus === "ok" && incomingIds.has(r.id)).length;
 
   const years = await saveByYear(repo, records);
   // Advance cursor only over enriched records so pending carryover items can be

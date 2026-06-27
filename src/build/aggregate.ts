@@ -47,8 +47,7 @@ export function aggregate(
     ...categorySchema.options,
     UNCLASSIFIED_CATEGORY,
   ]);
-  const cutoffMs =
-    new Date(options.now).getTime() - options.displayDays * 24 * 60 * 60 * 1000;
+  const cutoffMs = new Date(options.now).getTime() - options.displayDays * 24 * 60 * 60 * 1000;
   const cutoff = new Date(cutoffMs).toISOString().slice(0, 10);
   const recent = [...records]
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
