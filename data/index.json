@@ -1,14 +1,19 @@
 {
-  "lastRunAt": "2026-06-27T11:30:34.346Z",
-  "totalCount": 45,
-  "latestModifiedCursor": "2026-06-15T14:04:20.547Z",
+  "lastRunAt": "2026-06-27T23:05:17.974Z",
+  "totalCount": 55,
+  "latestModifiedCursor": "2026-06-17T01:21:07.113Z",
   "carryover": [],
   "years": [
-    "2026"
+    "2026",
+    "2018",
+    "2017",
+    "2016",
+    "2014",
+    "2011"
   ],
   "lastRunStats": {
-    "nvdFetched": 0,
-    "keywordMatched": 0,
-    "llmEnriched": 0
+    "nvdFetched": 100000,
+    "keywordMatched": 10,
+    "llmEnriched": 10
   }
 }

@@ -1,0 +1,41 @@
+[
+  {
+    "id": "CVE-2016-6224",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2016-6224",
+    "descriptionEn": "ecryptfs-setup-swap in eCryptfs does not prevent the unencrypted swap partition from activating during boot when using GPT partitioning on a (1) NVMe or (2) MMC drive, which allows local users to obtain sensitive information via unspecified vectors.  NOTE: this vulnerability exists because of an incomplete fix for CVE-2015-8946.",
+    "summaryJa": "eCryptfsのecryptfs-setup-swapは、NVMeまたはMMCドライブでGPTパーティショニングを使用する際に、暗号化されていないスワップパーティションが起動時にアクティベートされるのを阻止できません。これにより、ローカルユーザーが機密情報を取得する可能性があります。本脆弱性は、CVE-2015-8946に対する不完全な修正が原因です。",
+    "category": "other",
+    "cvssScore": 3.3,
+    "severity": "LOW",
+    "publishedAt": "2016-07-22T14:59:01.787Z",
+    "lastModifiedAt": "2026-06-17T00:50:39.310Z",
+    "fetchedAt": "2026-06-27T22:51:50.749Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2015-8946",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2015-8946",
+    "descriptionEn": "ecryptfs-setup-swap in eCryptfs before 111 does not prevent the unencrypted swap partition from activating during boot when using GPT partitioning and certain versions of systemd, which allows local users to obtain sensitive information via unspecified vectors.",
+    "summaryJa": "eCryptfsのecryptfs-setup-swap機能において、バージョン111より前のものに脆弱性が存在します。GPTパーティションと特定のsystemdバージョンを使用している場合、起動時に暗号化されていないスワップパーティションがアクティブ化されるのを防げず、ローカルユーザーが機密情報を取得する可能性があります。",
+    "category": "other",
+    "cvssScore": 3.3,
+    "severity": "LOW",
+    "publishedAt": "2016-07-22T14:59:00.147Z",
+    "lastModifiedAt": "2026-06-17T00:35:32.363Z",
+    "fetchedAt": "2026-06-27T22:51:50.749Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2015-8890",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2015-8890",
+    "descriptionEn": "platform/msm_shared/partition_parser.c in the Qualcomm components in Android before 2016-07-05 on Nexus 5 and 7 (2013) devices does not validate certain GUID Partition Table (GPT) data, which allows attackers to bypass intended access restrictions via a crafted MultiMediaCard (MMC), aka Android internal bug 28822878 and Qualcomm internal bug CR823461.",
+    "summaryJa": "QualcommコンポーネントのAndroid版（Nexus 5および7 2013）に存在する`partition_parser.c`の脆弱性は、GUIDパーティションテーブル（GPT）データの検証不足に起因します。攻撃者は、細工されたMultiMediaCard（MMC）を使用することで、本来のアクセス制限を迂回し、システムへのアクセスを許してしまう可能性があります。",
+    "category": "other",
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2016-07-11T01:59:28.210Z",
+    "lastModifiedAt": "2026-06-17T00:35:26.150Z",
+    "fetchedAt": "2026-06-27T22:51:50.749Z",
+    "llmStatus": "ok"
+  }
+]

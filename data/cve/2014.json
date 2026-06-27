@@ -1,0 +1,15 @@
+[
+  {
+    "id": "CVE-2014-2357",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2014-2357",
+    "descriptionEn": "The GPT library in the Telegyr 8979 Master Protocol application in SUBNET SubSTATION Server 2 before SSNET 2.12 HF18808 allows remote attackers to cause a denial of service (persistent service crash) via a long RTU-to-Master message.",
+    "summaryJa": "SUBNET SubSTATION Server 2のTelegyr 8979 Master Protocolアプリケーションに含まれるGPTライブラリにサービス運用妨害（DoS）の脆弱性が存在します。SSNET 2.12 HF18808より前のバージョンにおいて、リモートの攻撃者が長いRTU-to-Masterメッセージを送信することで、永続的なサービスクラッシュを引き起こす可能性があります。",
+    "category": "other",
+    "cvssScore": 8.3,
+    "severity": "HIGH",
+    "publishedAt": "2014-08-11T22:55:04.210Z",
+    "lastModifiedAt": "2026-06-17T00:06:28.280Z",
+    "fetchedAt": "2026-06-27T22:51:50.749Z",
+    "llmStatus": "ok"
+  }
+]

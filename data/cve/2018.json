@@ -1,0 +1,28 @@
+[
+  {
+    "id": "CVE-2016-10425",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2016-10425",
+    "descriptionEn": "In Android before 2018-04-05 or earlier security patch level on Qualcomm Snapdragon Automobile, Snapdragon Mobile, and Snapdragon Wear MDM9206, SD 210/SD 212/SD 205, SD 400, SD 410/12, SD 425, SD 430, SD 450, SD 615/16/SD 415, SD 617, SD 625, SD 650/52, SD 800, SD 808, SD 810, SD 820, SD 820A, and SD 835, if GPT listener response is passed a large buffer offset, a buffer overflow occurs.",
+    "summaryJa": "Qualcomm Snapdragonを搭載したAndroidデバイスにおいて、2018年4月5日以前のセキュリティパッチレベルで、GPTリスナー応答に大きなバッファオフセットを渡すとバッファオーバーフローが発生します。これにより、Snapdragon Automobile、Snapdragon Mobile、Snapdragon Wearの多数のモデルが影響を受けます。",
+    "category": "other",
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2018-04-18T14:29:10.667Z",
+    "lastModifiedAt": "2026-06-17T00:39:39.390Z",
+    "fetchedAt": "2026-06-27T22:51:50.749Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2017-11072",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-11072",
+    "descriptionEn": "In Android for MSM, Firefox OS for MSM, QRD Android, with all Android releases from CAF using the Linux kernel, while calculating CRC for GPT header fields with partition entries greater than 16384 buffer overflow occurs.",
+    "summaryJa": "Qualcomm製チップセットを搭載したAndroidおよびFirefox OSデバイスにおいて、GPTヘッダーフィールドのCRC計算処理中にバッファオーバーフローの脆弱性が存在します。この問題は、パーティションエントリが16384を超えると発生し、システムに影響を与える可能性があります。",
+    "category": "other",
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2018-01-16T16:29:00.220Z",
+    "lastModifiedAt": "2026-06-17T01:01:10.670Z",
+    "fetchedAt": "2026-06-27T22:51:50.749Z",
+    "llmStatus": "ok"
+  }
+]
