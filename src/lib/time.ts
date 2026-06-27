@@ -37,5 +37,7 @@ export function toJstDisplay(iso: string): string {
     hour12: false,
   }).formatToParts(date);
   const get = (type: string) => parts.find((p) => p.type === type)?.value ?? "";
-  return `${get("year")}/${get("month")}/${get("day")} ${get("hour")}:${get("minute")} JST`;
+  // Some ICU versions format midnight as "24" instead of "00" with hour12:false
+  const hour = get("hour") === "24" ? "00" : get("hour");
+  return `${get("year")}/${get("month")}/${get("day")} ${hour}:${get("minute")} JST`;
 }
