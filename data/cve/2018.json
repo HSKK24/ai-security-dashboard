@@ -1,5 +1,57 @@
 [
   {
+    "id": "CVE-2018-17247",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-17247",
+    "descriptionEn": "Elasticsearch Security versions 6.5.0 and 6.5.1 contain an XXE flaw in Machine Learning's find_file_structure API. If a policy allowing external network access has been added to Elasticsearch's Java Security Manager then an attacker could send a specially crafted request capable of leaking content of local files on the Elasticsearch node. This could allow a user to access information that they should not have access to.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2018-12-20T22:29:00.427Z",
+    "lastModifiedAt": "2026-06-17T01:45:35.840Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2018-3824",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-3824",
+    "descriptionEn": "X-Pack Machine Learning versions before 6.2.4 and 5.6.9 had a cross-site scripting (XSS) vulnerability. If an attacker is able to inject data into an index that has a ML job running against it, then when another user views the results of the ML job it could allow the attacker to obtain sensitive information from or perform destructive actions on behalf of that other ML user.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.1,
+    "severity": "MEDIUM",
+    "publishedAt": "2018-09-19T19:29:00.360Z",
+    "lastModifiedAt": "2026-06-17T01:57:51.120Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2018-3823",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-3823",
+    "descriptionEn": "X-Pack Machine Learning versions before 6.2.4 and 5.6.9 had a cross-site scripting (XSS) vulnerability. Users with manage_ml permissions could create jobs containing malicious data as part of their configuration that could allow the attacker to obtain sensitive information from or perform destructive actions on behalf of other ML users viewing the results of the jobs.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.4,
+    "severity": "MEDIUM",
+    "publishedAt": "2018-09-19T19:29:00.220Z",
+    "lastModifiedAt": "2026-06-17T01:57:50.987Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2018-11262",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-11262",
+    "descriptionEn": "In Android for MSM, Firefox OS for MSM, and QRD Android with all Android releases from CAF using the Linux kernel while trying to find out total number of partition via a non zero check, there could be possibility where the 'TotalPart' could cross 'GptHeader->MaxPtCnt' and which could result in OOB write in patching GPT.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2018-09-04T16:29:00.473Z",
+    "lastModifiedAt": "2026-06-17T01:35:36.240Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2016-10425",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2016-10425",
     "descriptionEn": "In Android before 2018-04-05 or earlier security patch level on Qualcomm Snapdragon Automobile, Snapdragon Mobile, and Snapdragon Wear MDM9206, SD 210/SD 212/SD 205, SD 400, SD 410/12, SD 425, SD 430, SD 450, SD 615/16/SD 415, SD 617, SD 625, SD 650/52, SD 800, SD 808, SD 810, SD 820, SD 820A, and SD 835, if GPT listener response is passed a large buffer offset, a buffer overflow occurs.",

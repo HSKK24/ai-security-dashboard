@@ -1,0 +1,15 @@
+[
+  {
+    "id": "CVE-2019-20634",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2019-20634",
+    "descriptionEn": "An issue was discovered in Proofpoint Email Protection through 2019-09-08. By collecting scores from Proofpoint email headers, it is possible to build a copy-cat Machine Learning Classification model and extract insights from this model. The insights gathered allow an attacker to craft emails that receive preferable scores, with a goal of delivering malicious emails.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 3.7,
+    "severity": "LOW",
+    "publishedAt": "2020-03-30T21:15:12.373Z",
+    "lastModifiedAt": "2026-06-17T02:30:50.703Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "pending"
+  }
+]
