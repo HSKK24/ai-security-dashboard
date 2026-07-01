@@ -10,46 +10,46 @@
     "publishedAt": "2022-12-06T22:15:10.587Z",
     "lastModifiedAt": "2026-06-17T05:04:02.730Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-41902",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-41902",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. The function MakeGrapplerFunctionItem takes arguments that determine the sizes of inputs and outputs. If the inputs given are greater than or equal to the sizes of the outputs, an out-of-bounds memory read or a crash is triggered. We have patched the issue in GitHub commit a65411a1d69edfb16b25907ffb8f73556ce36bb7. The fix will be included in TensorFlow 2.11.0. We will also cherrypick this commit on TensorFlow 2.8.4, 2.9.3, and 2.10.1.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`MakeGrapplerFunctionItem`関数において、入力サイズが出力サイズ以上の場合に、境界外メモリ読み取りまたはクラッシュが発生する脆弱性が存在します。この問題はGitHubコミットa65411a1d69edfb16b25907ffb8f73556ce36bb7で修正され、TensorFlow 2.11.0、および2.8.4、2.9.3、2.10.1にバックポートされます。",
+    "category": "ai-library",
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2022-12-06T22:15:10.513Z",
     "lastModifiedAt": "2026-06-17T05:04:01.777Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-41911",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-41911",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. When printing a tensor, we get it's data as a `const char*` array (since that's the underlying storage) and then we typecast it to the element type. However, conversions from `char` to `bool` are undefined if the `char` is not `0` or `1`, so sanitizers/fuzzers will crash. The issue has been patched in GitHub commit `1be74370327`. The fix will be included in TensorFlow 2.11.0. We will also cherrypick this commit on TensorFlow 2.10.1, TensorFlow 2.9.3, and TensorFlow 2.8.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowのテンソル出力処理において、`const char*`から要素型への型変換時に、`char`が`0`または`1`でない場合の`char`から`bool`への変換が未定義動作となり、クラッシュを引き起こす脆弱性があります。この問題は、TensorFlow 2.11.0、2.10.1、2.9.3、および2.8.4で修正されました。",
+    "category": "ai-library",
     "cvssScore": 4.8,
     "severity": "MEDIUM",
     "publishedAt": "2022-11-18T22:15:22.743Z",
     "lastModifiedAt": "2026-06-17T05:04:02.847Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-41909",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-41909",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. An input `encoded` that is not a valid `CompositeTensorVariant` tensor will trigger a segfault in `tf.raw_ops.CompositeTensorVariantToComponents`. We have patched the issue in GitHub commits bf594d08d377dc6a3354d9fdb494b32d45f91971 and 660ce5a89eb6766834bdc303d2ab3902aef99d3d. The fix will be included in TensorFlow 2.11. We will also cherrypick this commit on TensorFlow 2.10.1, 2.9.3, and TensorFlow 2.8.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.CompositeTensorVariantToComponents`において、無効な`CompositeTensorVariant`テンソルが入力された場合、セグメンテーションフォールトが発生する脆弱性があります。この問題は、TensorFlow 2.11、2.10.1、2.9.3、および2.8.4で修正されました。",
+    "category": "ai-library",
     "cvssScore": 4.8,
     "severity": "MEDIUM",
     "publishedAt": "2022-11-18T22:15:22.223Z",
     "lastModifiedAt": "2026-06-17T05:04:02.613Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-41908",
