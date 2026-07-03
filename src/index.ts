@@ -112,8 +112,7 @@ async function runPipeline(): Promise<void> {
     latestModifiedCursor: cursor,
     carryover,
     years,
-    lastRunStats:
-      nvdFetched > 0 ? { nvdFetched, keywordMatched, llmEnriched } : index.lastRunStats,
+    lastRunStats: nvdFetched > 0 ? { nvdFetched, keywordMatched, llmEnriched } : index.lastRunStats,
   });
   logger.info(`pipeline completed: total=${records.length} carryover=${carryover.length}`);
 }
