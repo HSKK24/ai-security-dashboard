@@ -10,6 +10,7 @@ import { logger } from "./lib/logger";
 import { isoDaysAgo, maxIso, nowIso, toJstDisplay, yearOf } from "./lib/time";
 import { mergeRecords } from "./process/dedup";
 import { enrichRecords } from "./process/enrich";
+import { prioritizeCarryover } from "./process/prioritize";
 import { createLLMClient } from "./process/llm/factory";
 import { normalizeAll } from "./process/normalize";
 import type { CveRecord, IndexData, Settings } from "./store/cveSchema";
@@ -79,14 +80,7 @@ async function runPipeline(): Promise<void> {
   const existing = await repo.loadAllRecords(index.years);
   const merged = mergeRecords(existing, incoming);
 
-  // Carryover records (deferred from the previous run) are processed first
-  // to prevent starvation when daily inflow saturates maxItems.
-  const carryoverIds = new Set(index.carryover);
-  const needsEnrich = (r: CveRecord) => r.llmStatus === "pending" || r.llmStatus === "failed";
-  const prioritized = [
-    ...merged.filter((r) => carryoverIds.has(r.id) && needsEnrich(r)),
-    ...merged.filter((r) => !(carryoverIds.has(r.id) && needsEnrich(r))),
-  ];
+  const prioritized = prioritizeCarryover(merged, new Set(index.carryover));
 
   const client = createLLMClient(settings);
   const { records, carryover } = await enrichRecords(prioritized, client, {
