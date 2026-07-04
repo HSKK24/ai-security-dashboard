@@ -35,6 +35,7 @@ export const runStatsSchema = z.object({
   nvdFetched: z.number().int().min(0),
   keywordMatched: z.number().int().min(0),
   llmEnriched: z.number().int().min(0),
+  nvdFetchFailed: z.boolean(),
 });
 
 export const indexDataSchema = z.object({
@@ -43,6 +44,8 @@ export const indexDataSchema = z.object({
   latestModifiedCursor: z.string(),
   carryover: z.array(z.string()),
   years: z.array(z.string().regex(/^\d{4}$/)),
+  // NVD取得が最後に成功した時刻（一度も成功していなければ null）
+  lastSuccessfulNvdFetchAt: z.string().nullable(),
   lastRunStats: runStatsSchema.optional(),
 });
 

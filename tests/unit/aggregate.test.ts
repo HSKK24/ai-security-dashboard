@@ -95,18 +95,35 @@ describe("aggregate", () => {
   });
 
   it("passes through lastRunAt and lastRunStats", () => {
+    const lastRunStats = {
+      nvdFetched: 892,
+      keywordMatched: 3,
+      llmEnriched: 3,
+      nvdFetchFailed: false,
+    };
     const stats = aggregate(records, {
       displayDays: 30,
       generatedAt: GENERATED_AT,
       now: GENERATED_AT,
       lastRunAt: "2026-06-27 07:01 JST",
-      lastRunStats: { nvdFetched: 892, keywordMatched: 3, llmEnriched: 3 },
+      lastRunStats,
     });
     expect(stats.lastRunAt).toBe("2026-06-27 07:01 JST");
-    expect(stats.lastRunStats).toEqual({ nvdFetched: 892, keywordMatched: 3, llmEnriched: 3 });
+    expect(stats.lastRunStats).toEqual(lastRunStats);
   });
 
-  it("defaults lastRunStats to null when omitted", () => {
+  it("passes through lastSuccessfulNvdFetchAt", () => {
+    const stats = aggregate(records, {
+      displayDays: 30,
+      generatedAt: GENERATED_AT,
+      now: GENERATED_AT,
+      lastRunAt: GENERATED_AT,
+      lastSuccessfulNvdFetchAt: "2026-06-26 07:01 JST",
+    });
+    expect(stats.lastSuccessfulNvdFetchAt).toBe("2026-06-26 07:01 JST");
+  });
+
+  it("defaults lastRunStats and lastSuccessfulNvdFetchAt to null when omitted", () => {
     const stats = aggregate(records, {
       displayDays: 30,
       generatedAt: GENERATED_AT,
@@ -114,6 +131,7 @@ describe("aggregate", () => {
       lastRunAt: "未実行",
     });
     expect(stats.lastRunStats).toBeNull();
+    expect(stats.lastSuccessfulNvdFetchAt).toBeNull();
     expect(stats.lastRunAt).toBe("未実行");
   });
 

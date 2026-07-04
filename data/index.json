@@ -768,9 +768,11 @@
     "2014",
     "2011"
   ],
+  "lastSuccessfulNvdFetchAt": "2026-07-03T12:08:04.638Z",
   "lastRunStats": {
     "nvdFetched": 3248,
     "keywordMatched": 37,
-    "llmEnriched": 3
+    "llmEnriched": 3,
+    "nvdFetchFailed": false
   }
 }

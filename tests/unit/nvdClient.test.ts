@@ -117,7 +117,8 @@ describe("fetchModifiedCves", () => {
     const result = await fetchModifiedCves(RANGE, { fetchImpl, sleep, baseDelayMs: 10 });
     expect(result).toEqual([]);
     expect(calls).toHaveLength(3);
-    expect(sleeps).toEqual([10, 20]);
+    // レートリミッタ由来の待機（数千ms）を除外し、バックオフの待機だけを検証する
+    expect(sleeps.filter((ms) => ms < 1000)).toEqual([10, 20]);
   });
 
   it("throws NvdRateLimitError when 429 persists beyond retries", async () => {
@@ -186,6 +187,104 @@ describe("fetchModifiedCves", () => {
     expect(result).toEqual([]);
     expect(callCount).toBe(2);
     expect(sleeps.length).toBeGreaterThan(0);
+  });
+
+  it("waits between page requests according to the unauthenticated rate limit", async () => {
+    const sleeps: number[] = [];
+    const sleep = async (ms: number): Promise<void> => {
+      sleeps.push(ms);
+    };
+    const page1 = {
+      resultsPerPage: 1,
+      startIndex: 0,
+      totalResults: 2,
+      vulnerabilities: [minimalVuln("CVE-2026-0001")],
+    };
+    const page2 = {
+      resultsPerPage: 1,
+      startIndex: 1,
+      totalResults: 2,
+      vulnerabilities: [minimalVuln("CVE-2026-0002")],
+    };
+    const { fetchImpl, calls } = fetchStub([jsonResponse(page1), jsonResponse(page2)]);
+    // 時刻を固定し、2ページ目の直前にフル間隔の待機が入ることを確認する
+    const result = await fetchModifiedCves(RANGE, { fetchImpl, sleep, now: () => 1_000_000 });
+    expect(result).toHaveLength(2);
+    expect(calls).toHaveLength(2);
+    // intervalForRpm(8) = 7500ms（初回リクエストは待機なし）
+    expect(sleeps).toEqual([7500]);
+  });
+
+  it("uses the higher rate limit when an API key is provided", async () => {
+    const sleeps: number[] = [];
+    const sleep = async (ms: number): Promise<void> => {
+      sleeps.push(ms);
+    };
+    const page1 = {
+      resultsPerPage: 1,
+      startIndex: 0,
+      totalResults: 2,
+      vulnerabilities: [minimalVuln("CVE-2026-0001")],
+    };
+    const page2 = {
+      resultsPerPage: 1,
+      startIndex: 1,
+      totalResults: 2,
+      vulnerabilities: [minimalVuln("CVE-2026-0002")],
+    };
+    const { fetchImpl } = fetchStub([jsonResponse(page1), jsonResponse(page2)]);
+    await fetchModifiedCves(RANGE, {
+      fetchImpl,
+      sleep,
+      apiKey: "test-key",
+      now: () => 1_000_000,
+    });
+    // intervalForRpm(90) = 667ms
+    expect(sleeps).toEqual([667]);
+  });
+
+  it("applies rate limiting to retry attempts as well", async () => {
+    const sleeps: number[] = [];
+    const sleep = async (ms: number): Promise<void> => {
+      sleeps.push(ms);
+    };
+    const { fetchImpl, calls } = fetchStub([statusResponse(429), jsonResponse(emptyFixture)]);
+    const result = await fetchModifiedCves(RANGE, {
+      fetchImpl,
+      sleep,
+      baseDelayMs: 10,
+      now: () => 1_000_000,
+    });
+    expect(result).toEqual([]);
+    expect(calls).toHaveLength(2);
+    // バックオフ(10ms)の後、再試行の直前にもレートリミッタが7500ms待機する
+    expect(sleeps).toEqual([10, 7500]);
+  });
+
+  it("stops early when the collection deadline is exceeded", async () => {
+    // ページが尽きない状況で、締切超過により打ち切られることを確認する
+    const bogusPage = {
+      resultsPerPage: 1,
+      startIndex: 0,
+      totalResults: 999_999_999,
+      vulnerabilities: [minimalVuln("CVE-2026-0001")],
+    };
+    let t = 1_000_000;
+    const { fetchImpl, calls } = fetchStub([
+      () => {
+        // 1リクエストごとに35万ms経過したことにする（締切60万msなので3ページ目前で超過）
+        t += 350_000;
+        return new Response(JSON.stringify(bogusPage), { status: 200 });
+      },
+    ]);
+    const result = await fetchModifiedCves(RANGE, {
+      fetchImpl,
+      sleep: noSleep,
+      now: () => t,
+      collectionDeadlineMs: 600_000,
+    });
+    expect(calls).toHaveLength(2);
+    expect(result).toHaveLength(2);
   });
 
   it("throws when fetch times out and all retries are exhausted", async () => {

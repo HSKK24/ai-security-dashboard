@@ -29,6 +29,7 @@ interface CollectOutcome {
   records: CveRecord[];
   nvdFetched: number;
   keywordMatched: number;
+  nvdFetchFailed: boolean;
 }
 
 async function collectNewRecords(
@@ -46,12 +47,13 @@ async function collectNewRecords(
       records: normalizeAll(matched, fetchedAt),
       nvdFetched: vulns.length,
       keywordMatched: matched.length,
+      nvdFetchFailed: false,
     };
   } catch (error) {
     // NVD側の障害時は新規取得を諦め、前回データのみでサイトを更新し続ける
     const reason = error instanceof Error ? error.message : String(error);
     logger.error(`NVD collection failed; continuing with existing data: ${reason}`);
-    return { records: [], nvdFetched: 0, keywordMatched: 0 };
+    return { records: [], nvdFetched: 0, keywordMatched: 0, nvdFetchFailed: true };
   }
 }
 
@@ -76,6 +78,7 @@ async function runPipeline(): Promise<void> {
     records: incoming,
     nvdFetched,
     keywordMatched,
+    nvdFetchFailed,
   } = await collectNewRecords(settings, index, fetchedAt);
   const existing = await repo.loadAllRecords(index.years);
   const merged = mergeRecords(existing, incoming);
@@ -106,7 +109,9 @@ async function runPipeline(): Promise<void> {
     latestModifiedCursor: cursor,
     carryover,
     years,
-    lastRunStats: nvdFetched > 0 ? { nvdFetched, keywordMatched, llmEnriched } : index.lastRunStats,
+    // 取得失敗時も今回の実行結果を正直に記録する（stale値の使い回しをしない）
+    lastRunStats: { nvdFetched, keywordMatched, llmEnriched, nvdFetchFailed },
+    lastSuccessfulNvdFetchAt: nvdFetchFailed ? index.lastSuccessfulNvdFetchAt : nowIso(),
   });
   logger.info(`pipeline completed: total=${records.length} carryover=${carryover.length}`);
 }
@@ -123,6 +128,9 @@ async function runBuild(): Promise<void> {
     now,
     lastRunAt: index.lastRunAt ? toJstDisplay(index.lastRunAt) : "未実行",
     lastRunStats: index.lastRunStats,
+    lastSuccessfulNvdFetchAt: index.lastSuccessfulNvdFetchAt
+      ? toJstDisplay(index.lastSuccessfulNvdFetchAt)
+      : null,
   });
   const distDir = join(rootDir, "dist");
   await renderSite({ templatesDir: join(rootDir, "templates"), distDir, stats });

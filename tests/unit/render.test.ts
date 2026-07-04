@@ -10,7 +10,7 @@ import { makeRecord } from "../helpers/factories";
 
 const templatesDir = fileURLToPath(new URL("../../templates", import.meta.url));
 
-function makeStats(): DashboardStats {
+function makeStats(overrides: { nvdFetchFailed?: boolean } = {}): DashboardStats {
   return aggregate(
     [
       makeRecord({
@@ -32,7 +32,13 @@ function makeStats(): DashboardStats {
       generatedAt: "2026-06-10T22:00:00.000Z",
       now: "2026-06-10T22:00:00.000Z",
       lastRunAt: "2026-06-10 07:00 JST",
-      lastRunStats: { nvdFetched: 892, keywordMatched: 3, llmEnriched: 3 },
+      lastRunStats: {
+        nvdFetched: 892,
+        keywordMatched: 3,
+        llmEnriched: 3,
+        nvdFetchFailed: overrides.nvdFetchFailed ?? false,
+      },
+      lastSuccessfulNvdFetchAt: "2026-06-09 07:00 JST",
     },
   );
 }
@@ -66,6 +72,15 @@ describe("renderPage", () => {
     expect(html).toContain("NVD 892件スキャン");
     expect(html).toContain("マッチ 3件");
     expect(html).toContain("LLM処理 3件");
+    expect(html).not.toContain("NVD取得失敗");
+  });
+
+  it("renders a fetch-failure notice with the last successful scan time", () => {
+    const eta = createRenderer(templatesDir);
+    const html = renderPage(eta, "index", { stats: makeStats({ nvdFetchFailed: true }) });
+    expect(html).toContain("NVD取得失敗");
+    expect(html).toContain("最終成功スキャン: 2026-06-09 07:00 JST");
+    expect(html).not.toContain("NVD 892件スキャン");
   });
 
   it("renders the about page with the total count", () => {

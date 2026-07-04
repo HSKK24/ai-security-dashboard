@@ -1,5 +1,6 @@
 import { logger } from "../lib/logger";
 import { withRetry } from "../lib/retry";
+import { RateLimiter, intervalForRpm } from "./rateLimiter";
 import type { NvdResponse, NvdVulnerability } from "./nvdSchema";
 import { nvdResponseSchema } from "./nvdSchema";
 
@@ -7,6 +8,11 @@ const NVD_API_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0";
 const PAGE_SIZE = 2000;
 // totalResults の不正値による無限ループを防ぐ上限（2000件 × 50 = 10万件）
 const MAX_PAGES = 50;
+// NVD公式レート制限（キーあり50req/30s、なし5req/30s）に安全マージンを乗せた値
+const NVD_RPM_WITH_KEY = 90;
+const NVD_RPM_WITHOUT_KEY = 8;
+// CIジョブの30分タイムアウトを圧迫しないよう、収集フェーズ全体の締切
+const COLLECTION_DEADLINE_MS = 600_000;
 
 export class NvdApiError extends Error {
   constructor(
@@ -29,9 +35,11 @@ export interface NvdClientOptions {
   apiKey?: string;
   fetchImpl?: typeof fetch;
   sleep?: (ms: number) => Promise<void>;
+  now?: () => number;
   retries?: number;
   baseDelayMs?: number;
   fetchTimeoutMs?: number;
+  collectionDeadlineMs?: number;
 }
 
 const FETCH_TIMEOUT_MS = 30_000;
@@ -47,6 +55,7 @@ function isRetryable(error: unknown): boolean {
 async function requestPage(
   params: URLSearchParams,
   options: NvdClientOptions,
+  limiter?: RateLimiter,
 ): Promise<NvdResponse> {
   const fetchImpl = options.fetchImpl ?? fetch;
   const timeoutMs = options.fetchTimeoutMs ?? FETCH_TIMEOUT_MS;
@@ -57,6 +66,8 @@ async function requestPage(
 
   const response = await withRetry(
     async () => {
+      // リトライによる再アクセスも含め、全fetchにレート制御を適用する
+      await limiter?.wait();
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), timeoutMs);
       try {
@@ -100,17 +111,31 @@ export async function fetchModifiedCves(
   options: NvdClientOptions = {},
 ): Promise<NvdVulnerability[]> {
   const collected: NvdVulnerability[] = [];
+  const rpm = options.apiKey ? NVD_RPM_WITH_KEY : NVD_RPM_WITHOUT_KEY;
+  const limiter = new RateLimiter(intervalForRpm(rpm), {
+    sleep: options.sleep,
+    now: options.now,
+  });
+  const now = options.now ?? Date.now;
+  const deadlineMs = options.collectionDeadlineMs ?? COLLECTION_DEADLINE_MS;
+  const startedAt = now();
   let startIndex = 0;
   let pageCount = 0;
 
   for (;;) {
+    if (now() - startedAt > deadlineMs) {
+      logger.warn(
+        `NVD collection deadline (${deadlineMs}ms) exceeded; stopping early with ${pageCount} pages fetched`,
+      );
+      return collected;
+    }
     const params = new URLSearchParams({
       lastModStartDate: range.since,
       lastModEndDate: range.until,
       resultsPerPage: String(PAGE_SIZE),
       startIndex: String(startIndex),
     });
-    const page = await requestPage(params, options);
+    const page = await requestPage(params, options, limiter);
     collected.push(...page.vulnerabilities);
     startIndex += page.vulnerabilities.length;
     if (page.vulnerabilities.length === 0 || startIndex >= page.totalResults) {

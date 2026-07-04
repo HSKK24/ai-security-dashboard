@@ -25,6 +25,7 @@ describe("FileRepository", () => {
       latestModifiedCursor: "2026-06-07T11:30:00.000Z",
       carryover: ["CVE-2026-0002"],
       years: ["2026"],
+      lastSuccessfulNvdFetchAt: "2026-06-10T22:00:00.000Z",
     };
     await repo.saveIndex(index);
     await expect(repo.loadIndex()).resolves.toEqual(index);

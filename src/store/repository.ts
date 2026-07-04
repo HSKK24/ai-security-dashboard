@@ -9,6 +9,7 @@ export const emptyIndex: IndexData = {
   latestModifiedCursor: "",
   carryover: [],
   years: [],
+  lastSuccessfulNvdFetchAt: null,
 };
 
 function isNotFound(error: unknown): boolean {

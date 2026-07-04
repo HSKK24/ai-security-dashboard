@@ -88,7 +88,8 @@
     </main>
     <footer>
       <p>
-        パイプライン最終実行: <%= it.stats.lastRunAt %><% if (it.stats.lastRunStats) { %>
+        パイプライン最終実行: <%= it.stats.lastRunAt %><% if (it.stats.lastRunStats && it.stats.lastRunStats.nvdFetchFailed) { %>
+        （NVD取得失敗 — 最終成功スキャン: <%= it.stats.lastSuccessfulNvdFetchAt || "記録なし" %>）<% } else if (it.stats.lastRunStats) { %>
         （NVD <%= it.stats.lastRunStats.nvdFetched %>件スキャン →
         マッチ <%= it.stats.lastRunStats.keywordMatched %>件 →
         LLM処理 <%= it.stats.lastRunStats.llmEnriched %>件）<% } %> |

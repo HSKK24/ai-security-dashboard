@@ -15,6 +15,7 @@ export interface DashboardStats {
   recent: CveRecord[];
   lastRunAt: string;
   lastRunStats: RunStats | null;
+  lastSuccessfulNvdFetchAt: string | null;
 }
 
 function countBy<T>(
@@ -37,6 +38,7 @@ export function aggregate(
     now: string;
     lastRunAt: string;
     lastRunStats?: RunStats;
+    lastSuccessfulNvdFetchAt?: string | null;
   },
 ): DashboardStats {
   const severityCounts = countBy(records, (record) => record.severity ?? UNKNOWN_SEVERITY, [
@@ -62,5 +64,6 @@ export function aggregate(
     recent,
     lastRunAt: options.lastRunAt,
     lastRunStats: options.lastRunStats ?? null,
+    lastSuccessfulNvdFetchAt: options.lastSuccessfulNvdFetchAt ?? null,
   };
 }
