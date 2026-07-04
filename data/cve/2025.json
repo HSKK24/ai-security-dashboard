@@ -1,5 +1,31 @@
 [
   {
+    "id": "CVE-2025-68669",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-68669",
+    "descriptionEn": "5ire is a cross-platform desktop artificial intelligence assistant and model context protocol client. In versions 0.15.2 and prior, an RCE vulnerability exists in useMarkdown.ts, where the markdown-it-mermaid plugin is initialized with securityLevel: 'loose'. This configuration explicitly permits the rendering of HTML tags within Mermaid diagram nodes. This issue has not been patched at time of publication.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.6,
+    "severity": "CRITICAL",
+    "publishedAt": "2025-12-23T23:15:45.470Z",
+    "lastModifiedAt": "2026-06-17T09:59:24.520Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "failed"
+  },
+  {
+    "id": "CVE-2025-68665",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-68665",
+    "descriptionEn": "LangChain is a framework for building LLM-powered applications. Prior to @langchain/core versions 0.3.80 and 1.1.8, and prior to langchain versions 0.3.37 and 1.2.3, a serialization injection vulnerability exists in LangChain JS's toJSON() method (and subsequently when string-ifying objects using JSON.stringify(). The method did not escape objects with 'lc' keys when serializing free-form data in kwargs. The 'lc' key is used internally by LangChain to mark serialized objects. When user-controlled data contains this key structure, it is treated as a legitimate LangChain object during deserialization rather than plain user data. This issue has been patched in @langchain/core versions 0.3.80 and 1.1.8, and langchain versions 0.3.37 and 1.2.3",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.6,
+    "severity": "HIGH",
+    "publishedAt": "2025-12-23T23:15:45.097Z",
+    "lastModifiedAt": "2026-06-17T09:59:24.050Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "failed"
+  },
+  {
     "id": "CVE-2025-67744",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-67744",
     "descriptionEn": "DeepChat is an open-source artificial intelligence agent platform that unifies models, tools, and agents. Prior to version 0.5.3, a security vulnerability exists in the Mermaid diagram rendering component that allows arbitrary JavaScript execution. Due to the exposure of the Electron IPC renderer to the DOM, this Cross-Site Scripting (XSS) flaw escalates to full Remote Code Execution (RCE), allowing an attacker to execute arbitrary system commands. Two concurrent issues, unsafe Mermaid configuration and an exposed IPC interface, cause this issue. Version 0.5.3 contains a patch.",
@@ -2793,32 +2819,6 @@
     "lastModifiedAt": "2026-06-17T09:51:28.387Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2025-68669",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-68669",
-    "descriptionEn": "5ire is a cross-platform desktop artificial intelligence assistant and model context protocol client. In versions 0.15.2 and prior, an RCE vulnerability exists in useMarkdown.ts, where the markdown-it-mermaid plugin is initialized with securityLevel: 'loose'. This configuration explicitly permits the rendering of HTML tags within Mermaid diagram nodes. This issue has not been patched at time of publication.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 9.6,
-    "severity": "CRITICAL",
-    "publishedAt": "2025-12-23T23:15:45.470Z",
-    "lastModifiedAt": "2026-06-17T09:59:24.520Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "failed"
-  },
-  {
-    "id": "CVE-2025-68665",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-68665",
-    "descriptionEn": "LangChain is a framework for building LLM-powered applications. Prior to @langchain/core versions 0.3.80 and 1.1.8, and prior to langchain versions 0.3.37 and 1.2.3, a serialization injection vulnerability exists in LangChain JS's toJSON() method (and subsequently when string-ifying objects using JSON.stringify(). The method did not escape objects with 'lc' keys when serializing free-form data in kwargs. The 'lc' key is used internally by LangChain to mark serialized objects. When user-controlled data contains this key structure, it is treated as a legitimate LangChain object during deserialization rather than plain user data. This issue has been patched in @langchain/core versions 0.3.80 and 1.1.8, and langchain versions 0.3.37 and 1.2.3",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.6,
-    "severity": "HIGH",
-    "publishedAt": "2025-12-23T23:15:45.097Z",
-    "lastModifiedAt": "2026-06-17T09:59:24.050Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "failed"
   },
   {
     "id": "CVE-2025-68664",
