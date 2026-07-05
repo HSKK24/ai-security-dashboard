@@ -1048,8 +1048,8 @@
     "cvssScore": 8.4,
     "severity": "HIGH",
     "publishedAt": "2025-08-26T14:15:38.303Z",
-    "lastModifiedAt": "2026-06-17T09:35:21.363Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-07-05T16:19:38.510Z",
+    "fetchedAt": "2026-07-05T22:48:08.728Z",
     "llmStatus": "pending"
   },
   {
