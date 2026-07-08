@@ -1,68 +1,42 @@
 [
   {
-    "id": "CVE-2025-14148",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-14148",
-    "descriptionEn": "IBM UCD - IBM DevOps Deploy 8.1 through 8.1.2.3 could allow an authenticated user with LLM integration configuration privileges to recover a previously saved LLM API Token.",
-    "summaryJa": "IBM DevOps Deployのバージョン8.1から8.1.2.3において、LLM統合設定権限を持つ認証済みユーザーが、以前に保存されたLLM APIトークンを回復できる脆弱性が存在します。この問題により、機密性の高いAPIトークンが不正に取得される可能性があります。",
-    "category": "other",
-    "cvssScore": 6.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2025-12-15T20:15:49.043Z",
-    "lastModifiedAt": "2026-06-17T08:35:24.870Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2025-66452",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-66452",
-    "descriptionEn": "LibreChat is a ChatGPT clone with additional features. In versions 0.8.0 and below, there is no handler for JSON parsing errors; SyntaxError from express.json() includes user input in the error message, which gets reflected in responses. User input (including HTML/JavaScript) can be exposed in error responses, creating an XSS risk if Content-Type isn't strictly enforced. This issue does not have a fix at the time of publication.",
-    "summaryJa": "LibreChatのバージョン0.8.0以下において、JSONパースエラー処理の不備により、ユーザー入力がエラーメッセージにそのまま含まれてレスポンスに反映されます。これにより、HTMLやJavaScriptを含むユーザー入力がエラーレスポンスを通じて公開され、Content-Typeが厳密に適用されない環境下ではクロスサイトスクリプティング（XSS）のリスクが生じます。",
-    "category": "other",
-    "cvssScore": 6.1,
-    "severity": "MEDIUM",
-    "publishedAt": "2025-12-11T23:15:50.880Z",
-    "lastModifiedAt": "2026-06-17T09:56:52.187Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "ok"
-  },
-  {
     "id": "CVE-2025-66451",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-66451",
     "descriptionEn": "LibreChat is a ChatGPT clone with additional features. In versions 0.8.0 and below, when creating prompts, JSON requests are sent to define and modify the prompts via PATCH endpoint for prompt groups (/api/prompts/groups/:groupId). However, the request bodies are not sufficiently validated for proper input, enabling users to modify prompts in a way that was not intended as part of the front end system. The patchPromptGroup function passes req.body directly to updatePromptGroup() without filtering sensitive fields. This issue is fixed in version 0.8.1.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LibreChatのバージョン0.8.0以前において、プロンプトグループの変更に関するAPIエンドポイント（PATCH /api/prompts/groups/:groupId）に不十分な入力検証の脆弱性が存在します。JSONリクエストのボディが適切にフィルタリングされずに直接処理されるため、認証されたユーザーが意図しない方法でプロンプトの内容を変更できる可能性があります。この問題はバージョン0.8.1で修正されました。",
+    "category": "other",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2025-12-11T23:15:50.690Z",
     "lastModifiedAt": "2026-06-17T09:56:52.073Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-66450",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-66450",
     "descriptionEn": "LibreChat is a ChatGPT clone with additional features. In versions 0.8.0 and below, when a user posts a question, the iconURL parameter of the POST request can be modified by an attacker. The malicious code is then stored in the chat which can then be shared to other users. When sharing chats with a potentially malicious “tracker”, resources loaded can lead to loss of privacy for users who view the chat link that is sent to them. This issue is fixed in version 0.8.1.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LibreChatのバージョン0.8.0以前において、POSTリクエストのiconURLパラメータが攻撃者によって改ざんされる脆弱性が存在します。この脆弱性により、悪意のあるコードがチャットに保存され、共有されたチャットリンクを閲覧したユーザーのプライバシーが侵害される可能性があります。具体的には、チャット内の悪意のあるリソース読み込みを通じて情報漏洩が発生する恐れがあります。",
+    "category": "ai-service",
     "cvssScore": 5.4,
     "severity": "MEDIUM",
     "publishedAt": "2025-12-11T22:15:56.153Z",
     "lastModifiedAt": "2026-06-17T09:56:51.963Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-67510",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-67510",
     "descriptionEn": "Neuron is a PHP framework for creating and orchestrating AI Agents. In versions 2.8.11 and below, the MySQLWriteTool executes arbitrary SQL provided by the caller using PDO::prepare() + execute() without semantic restrictions. This is consistent with the name (“write tool”), but in an LLM/agent context it becomes a high-risk capability: prompt injection or indirect prompt manipulation can cause execution of destructive queries such as DROP TABLE, TRUNCATE, DELETE, ALTER, or privilege-related statements (subject to DB permissions). Deployments that expose an agent with MySQLWriteTool enabled to untrusted input and/or run the tool with a DB user that has broad privileges are impacted. This issue is fixed in version 2.8.12.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Neuron PHPフレームワークのバージョン2.8.11以前において、AIエージェントのMySQLWriteToolに脆弱性が存在します。このツールは、プロンプトインジェクションまたは間接的なプロンプト操作を通じて、セマンティックな制限なく任意のSQLクエリ（例: DROP TABLE、TRUNCATE）を実行可能であり、データベースの破壊や権限昇格につながる可能性があります。この問題はバージョン2.8.12で修正されました。",
+    "category": "prompt-injection",
     "cvssScore": 9.4,
     "severity": "CRITICAL",
     "publishedAt": "2025-12-10T23:15:48.983Z",
     "lastModifiedAt": "2026-06-17T09:57:45.917Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-67509",
@@ -75,33 +49,33 @@
     "publishedAt": "2025-12-10T23:15:48.823Z",
     "lastModifiedAt": "2026-06-17T09:57:45.723Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2025-65959",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-65959",
     "descriptionEn": "Open WebUI is a self-hosted artificial intelligence platform designed to operate entirely offline. Prior to 0.6.37, a Stored XSS vulnerability was discovered in Open-WebUI's Notes PDF download functionality. An attacker can import a Markdown file containing malicious SVG tags into Notes, allowing them to execute arbitrary JavaScript code and steal session tokens when a victim downloads the note as PDF. This vulnerability can be exploited by any authenticated user, and unauthenticated external attackers can steal session tokens from users (both admin and regular users) by sharing specially crafted markdown files. This vulnerability is fixed in 0.6.37.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Open WebUIのノートPDFダウンロード機能に保存型XSS脆弱性が発見されました。攻撃者は悪意のあるSVGタグを含むMarkdownファイルをノートにインポートし、被害者がPDFをダウンロードする際に任意のJavaScriptコードを実行させ、セッショントークンを窃取できます。この脆弱性はバージョン0.6.37で修正されました。",
+    "category": "ai-service",
     "cvssScore": 8.7,
     "severity": "HIGH",
     "publishedAt": "2025-12-04T21:16:08.970Z",
     "lastModifiedAt": "2026-06-17T09:56:09.130Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-65958",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-65958",
     "descriptionEn": "Open WebUI is a self-hosted artificial intelligence platform designed to operate entirely offline. Prior to 0.6.37, a Server-Side Request Forgery (SSRF) vulnerability in Open WebUI allows any authenticated user to force the server to make HTTP requests to arbitrary URLs. This can be exploited to access cloud metadata endpoints (AWS/GCP/Azure), scan internal networks, access internal services behind firewalls, and exfiltrate sensitive information. No special permissions beyond basic authentication are required. This vulnerability is fixed in 0.6.37.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Open WebUIのバージョン0.6.37より前のバージョンに、認証済みのユーザーがサーバーサイドリクエストフォージェリ（SSRF）を実行できる脆弱性が存在します。これにより、サーバーに任意のHTTPリクエストを強制させ、クラウドメタデータエンドポイントへのアクセス、内部ネットワークのスキャン、機密情報の漏洩につながる可能性があります。この脆弱性はバージョン0.6.37で修正されています。",
+    "category": "ai-service",
     "cvssScore": 8.5,
     "severity": "HIGH",
     "publishedAt": "2025-12-04T20:16:19.973Z",
     "lastModifiedAt": "2026-06-17T09:56:09.020Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-63681",
@@ -2843,6 +2817,32 @@
     "severity": "CRITICAL",
     "publishedAt": "2025-12-16T01:15:52.657Z",
     "lastModifiedAt": "2026-06-17T09:58:04.410Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2025-14148",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-14148",
+    "descriptionEn": "IBM UCD - IBM DevOps Deploy 8.1 through 8.1.2.3 could allow an authenticated user with LLM integration configuration privileges to recover a previously saved LLM API Token.",
+    "summaryJa": "IBM DevOps Deployのバージョン8.1から8.1.2.3において、LLM統合設定権限を持つ認証済みユーザーが、以前に保存されたLLM APIトークンを回復できる脆弱性が存在します。この問題により、機密性の高いAPIトークンが不正に取得される可能性があります。",
+    "category": "other",
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2025-12-15T20:15:49.043Z",
+    "lastModifiedAt": "2026-06-17T08:35:24.870Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2025-66452",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-66452",
+    "descriptionEn": "LibreChat is a ChatGPT clone with additional features. In versions 0.8.0 and below, there is no handler for JSON parsing errors; SyntaxError from express.json() includes user input in the error message, which gets reflected in responses. User input (including HTML/JavaScript) can be exposed in error responses, creating an XSS risk if Content-Type isn't strictly enforced. This issue does not have a fix at the time of publication.",
+    "summaryJa": "LibreChatのバージョン0.8.0以下において、JSONパースエラー処理の不備により、ユーザー入力がエラーメッセージにそのまま含まれてレスポンスに反映されます。これにより、HTMLやJavaScriptを含むユーザー入力がエラーレスポンスを通じて公開され、Content-Typeが厳密に適用されない環境下ではクロスサイトスクリプティング（XSS）のリスクが生じます。",
+    "category": "other",
+    "cvssScore": 6.1,
+    "severity": "MEDIUM",
+    "publishedAt": "2025-12-11T23:15:50.880Z",
+    "lastModifiedAt": "2026-06-17T09:56:52.187Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
     "llmStatus": "ok"
   }
