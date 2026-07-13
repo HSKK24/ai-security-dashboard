@@ -1,5 +1,18 @@
 [
   {
+    "id": "CVE-2026-56259",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56259",
+    "descriptionEn": "Crawl4AI before 0.8.8 contains credential exfiltration vulnerabilities in the Docker API server that allow attackers to redirect LLM API calls to attacker-controlled endpoints and read arbitrary environment variables. Attackers can exploit the unauthenticated /md, /llm, and /llm/job endpoints by supplying a malicious base_url parameter and setting api_token to env:VARIABLE_NAME to exfiltrate provider API keys and server secrets including JWT SECRET_KEY for authentication bypass.",
+    "summaryJa": "Crawl4AI 0.8.8未満のバージョンには、Docker APIサーバーに資格情報漏洩の脆弱性が存在します。攻撃者は、認証されていない/md、/llm、/llm/jobエンドポイントを悪用し、悪意のあるbase_urlパラメータとapi_tokenを設定することで、LLM APIコールを制御下のエンドポイントにリダイレクトし、任意の環境変数を読み取ることが可能です。これにより、プロバイダーのAPIキーやサーバーシークレットが漏洩し、認証バイパスにつながる可能性があります。",
+    "category": "ai-service",
+    "cvssScore": 8.2,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-12T12:16:45.013Z",
+    "lastModifiedAt": "2026-07-13T18:09:30.873Z",
+    "fetchedAt": "2026-07-13T22:42:29.936Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2026-61447",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61447",
     "descriptionEn": "PraisonAI before 1.6.78 contains a remote code execution vulnerability in CodeAgent._execute_python() that executes LLM-generated Python code without AST validation, import restrictions, or sandbox enforcement. Attackers can influence LLM output through prompt injection to exfiltrate all environment secrets and execute arbitrary code on the host system.",
@@ -8,8 +21,8 @@
     "cvssScore": 10,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-11T14:16:23.377Z",
-    "lastModifiedAt": "2026-07-11T14:16:23.377Z",
-    "fetchedAt": "2026-07-12T22:35:42.083Z",
+    "lastModifiedAt": "2026-07-13T18:05:36.130Z",
+    "fetchedAt": "2026-07-13T22:42:29.936Z",
     "llmStatus": "ok"
   },
   {
@@ -21,8 +34,8 @@
     "cvssScore": 9.9,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-11T14:16:23.240Z",
-    "lastModifiedAt": "2026-07-11T14:16:23.240Z",
-    "fetchedAt": "2026-07-12T22:35:42.083Z",
+    "lastModifiedAt": "2026-07-13T18:05:36.130Z",
+    "fetchedAt": "2026-07-13T22:42:29.936Z",
     "llmStatus": "ok"
   },
   {
@@ -34,86 +47,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-07-11T14:16:22.870Z",
-    "lastModifiedAt": "2026-07-11T14:16:22.870Z",
-    "fetchedAt": "2026-07-12T22:35:42.083Z",
-    "llmStatus": "failed"
-  },
-  {
-    "id": "CVE-2026-50180",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50180",
-    "descriptionEn": "Langroid is a framework for building large-language-model-powered applications. Prior to version 0.64.0, `SQLChatAgent` in `langroid` ships a `_validate_query` defense-in-depth layer whose `_DANGEROUS_SQL_PATTERNS` regex blocklist enumerates dangerous SQL primitives by specific function name. The list misses the canonical PostgreSQL filesystem-disclosure family `pg_read_file()`, `pg_stat_file()`, `pg_ls_logdir()`, `pg_ls_waldir()`, `pg_current_logfile()` (and similar `SELECT`-shaped functions in the same family). It also leaves SQL Server `OPENDATASOURCE` and SQLite `ATTACH '<file>' AS x` (DATABASE keyword omitted) unblocked. An attacker able to shape the LLM's generated SQL (directly via prompt input or transitively via prompt-injection in data the LLM ingests) can read arbitrary files from the PostgreSQL host through ordinary `SELECT` queries, even with the agent's strict default configuration (`allow_dangerous_operations=False`, `allowed_statement_types=['SELECT']`). The payloads survive the statement-type allowlist (each is a `SELECT`) and pass through the regex blocklist (none of the function names match), then reach the live SQLAlchemy engine via `SQLChatAgent.run_query`. Version 0.64.0 contains a patch for the issue.",
-    "summaryJa": "Langroidフレームワークの`SQLChatAgent`において、危険なSQLパターンを検出するブロックリストの不備によりSQLインジェクションの脆弱性が存在します。PostgreSQLのファイルシステム関連関数やSQL Server、SQLiteの特定の機能がブロックリストから漏れていたため、攻撃者はLLMが生成するSQLを操作することで、`SELECT`クエリを通じてホストシステムから任意のファイルを読み取ることが可能でした。この問題はバージョン0.64.0で対処されています。",
-    "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-07-10T00:16:33.197Z",
-    "lastModifiedAt": "2026-07-10T21:16:54.860Z",
-    "fetchedAt": "2026-07-10T22:47:58.673Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-44342",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44342",
-    "descriptionEn": "New API is a large language mode (LLM) gateway and artificial intelligence (AI) asset management system. Prior to 0.12.0-alpha.1, the email and WeChat account binding endpoints GET /api/oauth/email/bind and GET /api/oauth/wechat/bind used GET requests for state-changing account operations, allowing an attacker to trigger a logged-in user's browser to bind an attacker-controlled email address or OAuth identity in deployments where session cookies could be sent on cross-site navigations. This issue is fixed in version 0.12.0-alpha.1.",
-    "summaryJa": "New APIの0.12.0-alpha.1より前のバージョンにおいて、アカウントバインディングエンドポイントが状態変更操作にGETリクエストを使用する脆弱性がありました。これにより、セッションCookieがクロスサイトナビゲーションで送信される環境下で、攻撃者はログイン中のユーザーのブラウザを悪用し、攻撃者制御のメールアドレスやOAuth IDをバインドさせることが可能でした。この問題はバージョン0.12.0-alpha.1で修正されています。",
-    "category": "ai-service",
-    "cvssScore": 5.3,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-07-09T23:17:05.217Z",
-    "lastModifiedAt": "2026-07-10T19:17:58.040Z",
-    "fetchedAt": "2026-07-10T22:47:58.673Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-33655",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-33655",
-    "descriptionEn": "New API is a large language mode (LLM) gateway and artificial intelligence (AI) asset management system. Prior to 0.12.0-alpha.1, the default SSRF protection configuration did not apply IP filtering to hostnames; with ApplyIPFilterForDomain disabled by default, URL validation checked domain allow/block rules but did not resolve a hostname and validate the resolved IP address, allowing authenticated users to configure Webhook, Bark, or Gotify notification URLs that point at an internal or metadata IP address. This issue is fixed in version 0.12.0-alpha.1.",
-    "summaryJa": "New API (LLMゲートウェイおよびAI資産管理システム)のバージョン0.12.0-alpha.1より前のバージョンにおいて、デフォルトのSSRF保護設定に不備がありました。`ApplyIPFilterForDomain`が無効であったため、URL検証時にホスト名のIPアドレス解決と検証が行われず、認証済みユーザーが内部またはメタデータIPアドレスを指すWebhookなどの通知URLを設定可能でした。この問題はバージョン0.12.0-alpha.1で修正されています。",
-    "category": "ai-service",
-    "cvssScore": 7.7,
-    "severity": "HIGH",
-    "publishedAt": "2026-07-09T23:17:04.763Z",
-    "lastModifiedAt": "2026-07-10T19:17:58.040Z",
-    "fetchedAt": "2026-07-10T22:47:58.673Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-44512",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44512",
-    "descriptionEn": "Open Neural Network Exchange (ONNX) is an open standard for machine learning interoperability. From 1.9.0 before 1.22.0, onnx.version_converter.convert_version() can dereference a null pointer in Upsample_6_7::adapt_upsample_6_7() in onnx/version_converter/adapters/upsample_6_7.h when processing an untrusted model with an Upsample node that has zero inputs, causing an unrecoverable denial of service. This issue is fixed in version 1.22.0.",
-    "summaryJa": "ONNXのバージョン1.9.0から1.22.0未満において、不正なモデルを処理する際にヌルポインタデリファレンス脆弱性が存在します。Upsampleノードの入力がゼロの場合、`onnx.version_converter.convert_version()`がヌルポインタをデリファレンスし、回復不能なサービス拒否（DoS）を引き起こす可能性があります。この問題はバージョン1.22.0で修正されています。",
-    "category": "ai-library",
-    "cvssScore": 5.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-07-08T20:16:49.913Z",
-    "lastModifiedAt": "2026-07-10T19:03:20.407Z",
-    "fetchedAt": "2026-07-10T22:47:58.673Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-15154",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-15154",
-    "descriptionEn": "A flaw was found in `guardrails-detectors`, a component of Red Hat OpenShift AI. This vulnerability, known as Regular Expression Denial of Service (ReDoS), allows a remote attacker to provide specially crafted regular expressions to the public detection API. This can cause catastrophic backtracking, leading to a worker process consuming 100% CPU indefinitely and resulting in a denial of service for the entire guardrails-mediated LLM pipeline.",
-    "summaryJa": "Red Hat OpenShift AIのコンポーネントである`guardrails-detectors`において、正規表現サービス拒否（ReDoS）の脆弱性が発見されました。リモートの攻撃者は、特別に細工された正規表現を公開検出APIに提供することで、ワーカープロセスがCPUを100%消費し、Guardrailsを介したLLMパイプライン全体にサービス拒否（DoS）状態をもたらす可能性があります。",
-    "category": "ai-service",
-    "cvssScore": 6.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-07-08T20:16:48.430Z",
-    "lastModifiedAt": "2026-07-10T15:24:29.933Z",
-    "fetchedAt": "2026-07-10T22:47:58.673Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-56259",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56259",
-    "descriptionEn": "Crawl4AI before 0.8.8 contains credential exfiltration vulnerabilities in the Docker API server that allow attackers to redirect LLM API calls to attacker-controlled endpoints and read arbitrary environment variables. Attackers can exploit the unauthenticated /md, /llm, and /llm/job endpoints by supplying a malicious base_url parameter and setting api_token to env:VARIABLE_NAME to exfiltrate provider API keys and server secrets including JWT SECRET_KEY for authentication bypass.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.2,
-    "severity": "HIGH",
-    "publishedAt": "2026-07-12T12:16:45.013Z",
-    "lastModifiedAt": "2026-07-12T12:16:45.013Z",
-    "fetchedAt": "2026-07-12T22:35:42.083Z",
+    "lastModifiedAt": "2026-07-13T18:05:36.130Z",
+    "fetchedAt": "2026-07-13T22:42:29.936Z",
     "llmStatus": "pending"
   },
   {
@@ -122,11 +57,11 @@
     "descriptionEn": "Missing Authorization vulnerability in Drupal AI (Artificial Intelligence) allows Forceful Browsing. This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.2.17, from 1.3.0 to 1.3.8, from 1.4.0 to 1.4.3.",
     "summaryJa": "Drupal AI (Artificial Intelligence)モジュールのバージョン0.0.0から1.2.17、1.3.0から1.3.8、および1.4.0から1.4.3に認証不備の脆弱性が存在します。この脆弱性により、攻撃者は認可されていないリソースにアクセスできる強制的なブラウジングが可能となる恐れがあります。",
     "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 3.3,
+    "severity": "LOW",
     "publishedAt": "2026-07-10T22:16:39.597Z",
-    "lastModifiedAt": "2026-07-10T22:16:39.597Z",
-    "fetchedAt": "2026-07-11T22:35:37.686Z",
+    "lastModifiedAt": "2026-07-13T19:16:40.057Z",
+    "fetchedAt": "2026-07-13T22:42:29.936Z",
     "llmStatus": "ok"
   },
   {
@@ -135,11 +70,11 @@
     "descriptionEn": "Improper Neutralization of Input During Web Page Generation (\"Cross-site Scripting\") vulnerability in Drupal AI (Artificial Intelligence) allows Cross-Site Scripting (XSS). This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.2.17, from 1.3.0 to 1.3.8, from 1.4.0 to 1.4.3.",
     "summaryJa": "Drupal AIモジュールに、Webページ生成時の入力不適切な無害化（クロスサイトスクリプティング）の脆弱性が存在します。この脆弱性により、攻撃者は悪意のあるスクリプトを挿入し、ユーザーのブラウザ上で実行させることが可能です。影響を受けるのはバージョン0.0.0から1.2.17、1.3.0から1.3.8、および1.4.0から1.4.3までのAIモジュールです。",
     "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 6.1,
+    "severity": "MEDIUM",
     "publishedAt": "2026-07-10T22:16:39.500Z",
-    "lastModifiedAt": "2026-07-10T22:16:39.500Z",
-    "fetchedAt": "2026-07-11T22:35:37.686Z",
+    "lastModifiedAt": "2026-07-13T17:16:51.200Z",
+    "fetchedAt": "2026-07-13T22:42:29.936Z",
     "llmStatus": "ok"
   },
   {
@@ -151,8 +86,8 @@
     "cvssScore": 7.6,
     "severity": "HIGH",
     "publishedAt": "2026-07-10T21:16:55.977Z",
-    "lastModifiedAt": "2026-07-10T21:16:55.977Z",
-    "fetchedAt": "2026-07-10T22:47:58.673Z",
+    "lastModifiedAt": "2026-07-13T18:09:30.873Z",
+    "fetchedAt": "2026-07-13T22:42:29.936Z",
     "llmStatus": "ok"
   },
   {
@@ -190,8 +125,8 @@
     "cvssScore": 7.4,
     "severity": "HIGH",
     "publishedAt": "2026-07-10T16:16:34.923Z",
-    "lastModifiedAt": "2026-07-10T17:25:46.957Z",
-    "fetchedAt": "2026-07-10T22:47:58.673Z",
+    "lastModifiedAt": "2026-07-13T19:17:24.127Z",
+    "fetchedAt": "2026-07-13T22:42:29.936Z",
     "llmStatus": "ok"
   },
   {
@@ -247,6 +182,45 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2026-50180",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50180",
+    "descriptionEn": "Langroid is a framework for building large-language-model-powered applications. Prior to version 0.64.0, `SQLChatAgent` in `langroid` ships a `_validate_query` defense-in-depth layer whose `_DANGEROUS_SQL_PATTERNS` regex blocklist enumerates dangerous SQL primitives by specific function name. The list misses the canonical PostgreSQL filesystem-disclosure family `pg_read_file()`, `pg_stat_file()`, `pg_ls_logdir()`, `pg_ls_waldir()`, `pg_current_logfile()` (and similar `SELECT`-shaped functions in the same family). It also leaves SQL Server `OPENDATASOURCE` and SQLite `ATTACH '<file>' AS x` (DATABASE keyword omitted) unblocked. An attacker able to shape the LLM's generated SQL (directly via prompt input or transitively via prompt-injection in data the LLM ingests) can read arbitrary files from the PostgreSQL host through ordinary `SELECT` queries, even with the agent's strict default configuration (`allow_dangerous_operations=False`, `allowed_statement_types=['SELECT']`). The payloads survive the statement-type allowlist (each is a `SELECT`) and pass through the regex blocklist (none of the function names match), then reach the live SQLAlchemy engine via `SQLChatAgent.run_query`. Version 0.64.0 contains a patch for the issue.",
+    "summaryJa": "Langroidフレームワークの`SQLChatAgent`において、危険なSQLパターンを検出するブロックリストの不備によりSQLインジェクションの脆弱性が存在します。PostgreSQLのファイルシステム関連関数やSQL Server、SQLiteの特定の機能がブロックリストから漏れていたため、攻撃者はLLMが生成するSQLを操作することで、`SELECT`クエリを通じてホストシステムから任意のファイルを読み取ることが可能でした。この問題はバージョン0.64.0で対処されています。",
+    "category": "ai-library",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-07-10T00:16:33.197Z",
+    "lastModifiedAt": "2026-07-10T21:16:54.860Z",
+    "fetchedAt": "2026-07-10T22:47:58.673Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-44342",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44342",
+    "descriptionEn": "New API is a large language mode (LLM) gateway and artificial intelligence (AI) asset management system. Prior to 0.12.0-alpha.1, the email and WeChat account binding endpoints GET /api/oauth/email/bind and GET /api/oauth/wechat/bind used GET requests for state-changing account operations, allowing an attacker to trigger a logged-in user's browser to bind an attacker-controlled email address or OAuth identity in deployments where session cookies could be sent on cross-site navigations. This issue is fixed in version 0.12.0-alpha.1.",
+    "summaryJa": "New APIの0.12.0-alpha.1より前のバージョンにおいて、アカウントバインディングエンドポイントが状態変更操作にGETリクエストを使用する脆弱性がありました。これにより、セッションCookieがクロスサイトナビゲーションで送信される環境下で、攻撃者はログイン中のユーザーのブラウザを悪用し、攻撃者制御のメールアドレスやOAuth IDをバインドさせることが可能でした。この問題はバージョン0.12.0-alpha.1で修正されています。",
+    "category": "ai-service",
+    "cvssScore": 5.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-09T23:17:05.217Z",
+    "lastModifiedAt": "2026-07-10T19:17:58.040Z",
+    "fetchedAt": "2026-07-10T22:47:58.673Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-33655",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-33655",
+    "descriptionEn": "New API is a large language mode (LLM) gateway and artificial intelligence (AI) asset management system. Prior to 0.12.0-alpha.1, the default SSRF protection configuration did not apply IP filtering to hostnames; with ApplyIPFilterForDomain disabled by default, URL validation checked domain allow/block rules but did not resolve a hostname and validate the resolved IP address, allowing authenticated users to configure Webhook, Bark, or Gotify notification URLs that point at an internal or metadata IP address. This issue is fixed in version 0.12.0-alpha.1.",
+    "summaryJa": "New API (LLMゲートウェイおよびAI資産管理システム)のバージョン0.12.0-alpha.1より前のバージョンにおいて、デフォルトのSSRF保護設定に不備がありました。`ApplyIPFilterForDomain`が無効であったため、URL検証時にホスト名のIPアドレス解決と検証が行われず、認証済みユーザーが内部またはメタデータIPアドレスを指すWebhookなどの通知URLを設定可能でした。この問題はバージョン0.12.0-alpha.1で修正されています。",
+    "category": "ai-service",
+    "cvssScore": 7.7,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-09T23:17:04.763Z",
+    "lastModifiedAt": "2026-07-10T19:17:58.040Z",
+    "fetchedAt": "2026-07-10T22:47:58.673Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2026-58122",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-58122",
     "descriptionEn": "Hermes WebUI before 0.51.307 contains an authentication bypass vulnerability that allows unauthenticated remote attackers to circumvent local-origin IP restrictions on onboarding endpoints by supplying a spoofed X-Forwarded-For header with a loopback address. Attackers can exploit this bypass to perform server-side request forgery against internal services including cloud metadata endpoints, overwrite LLM provider configuration and API keys with attacker-controlled values, or initiate OAuth device-code flows to obtain persistent access tokens stored in auth.json.",
@@ -291,11 +265,11 @@
     "descriptionEn": "LiteLLM is a proxy server (AI Gateway) to call LLM APIs in OpenAI (or native) format. Prior to 1.84.0, LiteLLM's MCP Streamable HTTP endpoint allowed an unauthenticated attacker to use a fabricated Authorization header to trigger an OAuth2 passthrough fallback path that replaced failed LiteLLM key validation with an empty UserAPIKeyAuth() object, allowing requests to reach MCP tooling without a valid LiteLLM key. This issue is fixed in version 1.84.0.",
     "summaryJa": "LiteLLMのMCP Streamable HTTPエンドポイントに認証されていない脆弱性があり、攻撃者は偽造されたAuthorizationヘッダーを使用することで、OAuth2パススルーのフォールバックパスを悪用できました。これにより、有効なLiteLLMキーなしでMCPツールにリクエストを送信することが可能になります。この問題はバージョン1.84.0で修正されました。",
     "category": "ai-service",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 8.2,
+    "severity": "HIGH",
     "publishedAt": "2026-07-08T20:16:57.683Z",
-    "lastModifiedAt": "2026-07-09T16:25:45.200Z",
-    "fetchedAt": "2026-07-09T23:00:31.736Z",
+    "lastModifiedAt": "2026-07-13T13:32:04.470Z",
+    "fetchedAt": "2026-07-13T22:42:29.936Z",
     "llmStatus": "ok"
   },
   {
@@ -304,11 +278,11 @@
     "descriptionEn": "LiteLLM is a proxy server (AI Gateway) to call LLM APIs in OpenAI (or native) format. Prior to 1.82.0-stable, LiteLLM's Custom Code Guardrails production create and update paths did not apply the same sandboxing and validation used by the test endpoint, allowing a privileged user with access to create or update guardrails to submit custom Python code that executed in the LiteLLM proxy environment and could expose secrets available to the process. This issue is fixed in version 1.82.0-stable.",
     "summaryJa": "LiteLLMのカスタムコードガードレールの生成および更新パスにおいて、サンドボックス化とバリデーションが不十分でした。この脆弱性により、特権を持つユーザーはLiteLLMプロキシ環境内で任意のPythonコードを実行し、プロセスがアクセス可能なシークレットを漏洩させる可能性がありました。本問題はバージョン1.82.0-stableで修正されています。",
     "category": "ai-service",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 7.2,
+    "severity": "HIGH",
     "publishedAt": "2026-07-08T20:16:57.547Z",
-    "lastModifiedAt": "2026-07-09T16:25:45.200Z",
-    "fetchedAt": "2026-07-09T23:00:31.736Z",
+    "lastModifiedAt": "2026-07-13T13:46:42.603Z",
+    "fetchedAt": "2026-07-13T22:42:29.936Z",
     "llmStatus": "ok"
   },
   {
@@ -317,11 +291,11 @@
     "descriptionEn": "LiteLLM is a proxy server (AI Gateway) to call LLM APIs in OpenAI (or native) format. Prior to 1.83.7-stable, LiteLLM Skills archive extraction did not sufficiently validate file paths from uploaded skill ZIP archives, allowing an authenticated user with access to LiteLLM LLM API routes or a key whose allowed_routes includes /v1/skills, anthropic_routes, or llm_api_routes to upload a crafted skill archive containing path traversal entries that could be written outside the intended extraction or staging directory. This issue is fixed in version 1.83.7-stable.",
     "summaryJa": "LiteLLMのAIゲートウェイ機能において、スキルアーカイブ抽出時のファイルパス検証が不十分でした。これにより、認証されたユーザーは細工されたZIPアーカイブをアップロードし、意図された抽出ディレクトリ外にファイルを書き込むことが可能でした。この脆弱性はバージョン1.83.7-stableで修正されています。",
     "category": "ai-service",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
     "publishedAt": "2026-07-08T20:16:57.413Z",
-    "lastModifiedAt": "2026-07-09T16:25:45.200Z",
-    "fetchedAt": "2026-07-09T23:00:31.736Z",
+    "lastModifiedAt": "2026-07-13T13:23:26.020Z",
+    "fetchedAt": "2026-07-13T22:42:29.936Z",
     "llmStatus": "ok"
   },
   {
@@ -330,11 +304,11 @@
     "descriptionEn": "LiteLLM is a proxy server (AI Gateway) to call LLM APIs in OpenAI (or native) format. Prior to 1.83.10-stable, LiteLLM's /health/test_connection endpoint resolved request-supplied environment and OIDC file references in litellm_params, allowing a proxy administrator or another privileged caller with permission to test model connections to read files from the local filesystem via an oidc/file/ reference. This issue is fixed in version 1.83.10-stable.",
     "summaryJa": "LiteLLMのバージョン1.83.10-stableより前において、プロキシの`/health/test_connection`エンドポイントにファイル読み取りの脆弱性がありました。特権を持つユーザーは、リクエストで指定されたOIDCファイル参照を通じて、ローカルファイルシステム上の任意のファイルを読み取ることが可能でした。この問題はバージョン1.83.10-stableで修正されています。",
     "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 4.9,
+    "severity": "MEDIUM",
     "publishedAt": "2026-07-08T20:16:57.277Z",
-    "lastModifiedAt": "2026-07-09T16:25:45.200Z",
-    "fetchedAt": "2026-07-09T23:00:31.736Z",
+    "lastModifiedAt": "2026-07-13T13:20:24.483Z",
+    "fetchedAt": "2026-07-13T22:42:29.936Z",
     "llmStatus": "ok"
   },
   {
@@ -347,6 +321,32 @@
     "severity": "MEDIUM",
     "publishedAt": "2026-07-08T20:16:57.123Z",
     "lastModifiedAt": "2026-07-10T18:22:49.657Z",
+    "fetchedAt": "2026-07-10T22:47:58.673Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-44512",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44512",
+    "descriptionEn": "Open Neural Network Exchange (ONNX) is an open standard for machine learning interoperability. From 1.9.0 before 1.22.0, onnx.version_converter.convert_version() can dereference a null pointer in Upsample_6_7::adapt_upsample_6_7() in onnx/version_converter/adapters/upsample_6_7.h when processing an untrusted model with an Upsample node that has zero inputs, causing an unrecoverable denial of service. This issue is fixed in version 1.22.0.",
+    "summaryJa": "ONNXのバージョン1.9.0から1.22.0未満において、不正なモデルを処理する際にヌルポインタデリファレンス脆弱性が存在します。Upsampleノードの入力がゼロの場合、`onnx.version_converter.convert_version()`がヌルポインタをデリファレンスし、回復不能なサービス拒否（DoS）を引き起こす可能性があります。この問題はバージョン1.22.0で修正されています。",
+    "category": "ai-library",
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-08T20:16:49.913Z",
+    "lastModifiedAt": "2026-07-13T17:02:01.533Z",
+    "fetchedAt": "2026-07-13T22:42:29.936Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-15154",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-15154",
+    "descriptionEn": "A flaw was found in `guardrails-detectors`, a component of Red Hat OpenShift AI. This vulnerability, known as Regular Expression Denial of Service (ReDoS), allows a remote attacker to provide specially crafted regular expressions to the public detection API. This can cause catastrophic backtracking, leading to a worker process consuming 100% CPU indefinitely and resulting in a denial of service for the entire guardrails-mediated LLM pipeline.",
+    "summaryJa": "Red Hat OpenShift AIのコンポーネントである`guardrails-detectors`において、正規表現サービス拒否（ReDoS）の脆弱性が発見されました。リモートの攻撃者は、特別に細工された正規表現を公開検出APIに提供することで、ワーカープロセスがCPUを100%消費し、Guardrailsを介したLLMパイプライン全体にサービス拒否（DoS）状態をもたらす可能性があります。",
+    "category": "ai-service",
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-08T20:16:48.430Z",
+    "lastModifiedAt": "2026-07-10T15:24:29.933Z",
     "fetchedAt": "2026-07-10T22:47:58.673Z",
     "llmStatus": "ok"
   },

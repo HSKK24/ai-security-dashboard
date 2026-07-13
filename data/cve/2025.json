@@ -1,146 +1,120 @@
 [
   {
-    "id": "CVE-2025-33204",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-33204",
-    "descriptionEn": "NVIDIA NeMo Framework for all platforms contains a vulnerability in the NLP and LLM components, where malicious data created by an attacker could cause code injection. A successful exploit of this vulnerability may lead to code execution, escalation of privileges, information disclosure, and data tampering.",
-    "summaryJa": "NVIDIA NeMo FrameworkのNLPおよびLLMコンポーネントに脆弱性が存在します。攻撃者が作成した悪意のあるデータによりコードインジェクションが発生する可能性があります。この脆弱性が悪用されると、コード実行、権限昇格、情報漏洩、およびデータ改ざんにつながる恐れがあります。",
-    "category": "ai-library",
-    "cvssScore": 7.8,
-    "severity": "HIGH",
-    "publishedAt": "2025-11-25T18:15:52.357Z",
-    "lastModifiedAt": "2026-06-17T09:13:14.127Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2025-13380",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-13380",
-    "descriptionEn": "The AI Engine for WordPress: ChatGPT, GPT Content Generator plugin for WordPress is vulnerable to Arbitrary File Read in all versions up to, and including, 1.0.1. This is due to insufficient validation of user-supplied file paths in the 'lqdai_update_post' AJAX endpoint and the use of file_get_contents() with user-controlled URLs without protocol restrictions in the insert_image() function. This makes it possible for authenticated attackers, with Contributor-level access and above, to read the contents of arbitrary files on the server, which can contain sensitive information.",
-    "summaryJa": "WordPress用プラグイン「AI Engine for WordPress: ChatGPT, GPT Content Generator」のバージョン1.0.1以前に、任意ファイル読み取りの脆弱性があります。これは、'lqdai_update_post' AJAXエンドポイントにおけるファイルパス検証の不備と、insert_image()関数でのプロトコル制限がないユーザー制御URLの使用に起因します。この脆弱性により、寄稿者以上の権限を持つ認証済み攻撃者は、サーバー上の任意の機密ファイルを読み取ることが可能です。",
-    "category": "ai-library",
-    "cvssScore": 6.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2025-11-25T08:15:50.050Z",
-    "lastModifiedAt": "2026-06-17T08:34:01.410Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "ok"
-  },
-  {
     "id": "CVE-2025-62155",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-62155",
     "descriptionEn": "New API is a large language mode (LLM) gateway and artificial intelligence (AI) asset management system. Prior to version 0.9.6, a recently patched SSRF vulnerability contains a bypass method that can bypass the existing security fix and still allow SSRF to occur.\nBecause the existing fix only applies security restrictions to the first URL request, a 302 redirect can bypass existing security measures and successfully access the intranet. This issue has been patched in version 0.9.6.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LLMゲートウェイおよびAI資産管理システム「New API」のバージョン0.9.6より前のバージョンにおいて、既存のSSRF脆弱性修正をバイパスできる手法が見つかりました。このバイパスは302リダイレクトを利用し、最初のURLリクエストにのみ適用されるセキュリティ制限を回避して、イントラネットへのアクセスを可能にします。この問題はバージョン0.9.6で修正済みです。",
+    "category": "ai-service",
     "cvssScore": 8.5,
     "severity": "HIGH",
     "publishedAt": "2025-11-25T00:15:46.560Z",
     "lastModifiedAt": "2026-06-17T09:51:28.490Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-65107",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-65107",
     "descriptionEn": "Langfuse is an open source large language model engineering platform. In versions from 2.95.0 to before 2.95.12 and from 3.17.0 to before 3.131.0, in SSO provider configurations without an explicit AUTH_<PROVIDER>_CHECK setting, a potential account takeover may happen if an authenticated user is made to call a specifically crafted URL via a CSRF or phishing attack. This issue has been patched in versions 2.95.12 and 3.131.0. A workaround for this issue involves setting AUTH_<PROVIDER>_CHECK.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LangfuseのSSOプロバイダ設定において、`AUTH_<PROVIDER>_CHECK`が明示的に設定されていないバージョン2.95.0〜2.95.11および3.17.0〜3.130.0にアカウント乗っ取りの脆弱性が存在します。これは、認証済みユーザーがCSRFやフィッシング攻撃により細工されたURLを呼び出すことで発生する可能性があります。本脆弱性はバージョン2.95.12および3.131.0で修正されており、`AUTH_<PROVIDER>_CHECK`を設定することで回避可能です。",
+    "category": "ai-library",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2025-11-21T22:16:33.127Z",
     "lastModifiedAt": "2026-06-17T09:55:27.457Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-65106",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-65106",
     "descriptionEn": "LangChain is a framework for building agents and LLM-powered applications. From versions 0.3.79 and prior and 1.0.0 to 1.0.6, a template injection vulnerability exists in LangChain's prompt template system that allows attackers to access Python object internals through template syntax. This vulnerability affects applications that accept untrusted template strings (not just template variables) in ChatPromptTemplate and related prompt template classes. This issue has been patched in versions 0.3.80 and 1.0.7.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LangChainのプロンプトテンプレートシステムにテンプレートインジェクションの脆弱性が存在し、攻撃者はテンプレート構文を介してPythonオブジェクトの内部にアクセスできる可能性があります。この脆弱性はバージョン0.3.79以前および1.0.0から1.0.6に影響し、ChatPromptTemplateなどのプロンプトテンプレートクラスで信頼できないテンプレート文字列を受け入れるアプリケーションが対象です。本問題はバージョン0.3.80および1.0.7で修正されています。",
+    "category": "ai-library",
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2025-11-21T22:16:32.933Z",
     "lastModifiedAt": "2026-06-17T09:55:27.350Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-62609",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-62609",
     "descriptionEn": "MLX is an array framework for machine learning on Apple silicon. Prior to version 0.29.4, there is a segmentation fault in mlx::core::load_gguf() when loading malicious GGUF files. Untrusted pointer from external gguflib library is dereferenced without validation, causing application crash. This issue has been patched in version 0.29.4.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Apple Silicon向け機械学習用配列フレームワークであるMLXのバージョン0.29.4より前において、悪意のあるGGUFファイルをロードする際に`mlx::core::load_gguf()`でセグメンテーション違反が発生します。外部の`gguflib`ライブラリからの信頼されていないポインタが検証なしで逆参照されるため、アプリケーションがクラッシュする可能性があります。この問題はバージョン0.29.4で修正されました。",
+    "category": "ai-library",
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2025-11-21T19:16:02.467Z",
     "lastModifiedAt": "2026-06-17T09:52:09.567Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-62608",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-62608",
     "descriptionEn": "MLX is an array framework for machine learning on Apple silicon. Prior to version 0.29.4, there is a heap buffer overflow in mlx::core::load() when parsing malicious NumPy .npy files. Attacker-controlled file causes 13-byte out-of-bounds read, leading to crash or information disclosure. This issue has been patched in version 0.29.4.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "MLX（Appleシリコン向け機械学習配列フレームワーク）のバージョン0.29.4より前において、`mlx::core::load()`関数が不正なNumPy .npyファイルをパースする際にヒープバッファオーバーフローの脆弱性が存在します。この脆弱性を悪用されると、攻撃者によって細工されたファイルにより13バイトの境界外読み取りが発生し、アプリケーションのクラッシュや情報漏洩につながる可能性があります。本問題はバージョン0.29.4で修正されています。",
+    "category": "ai-library",
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2025-11-21T19:16:02.267Z",
     "lastModifiedAt": "2026-06-17T09:52:09.447Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-12973",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-12973",
     "descriptionEn": "The S2B AI Assistant – ChatBot, ChatGPT, OpenAI, Content & Image Generator plugin for WordPress is vulnerable to arbitrary file uploads due to missing file type validation in the storeFile() function in all versions up to, and including, 1.7.8. This makes it possible for authenticated attackers, with Editor-level access and above, to upload arbitrary files on the affected site's server which may make remote code execution possible.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "WordPress向けプラグイン「S2B AI Assistant – ChatBot, ChatGPT, OpenAI, Content & Image Generator」のバージョン1.7.8以前に、`storeFile()`関数におけるファイルタイプ検証の不備により、認証された攻撃者（エディターレベル以上）が任意のファイルをアップロードできる脆弱性が存在します。この脆弱性を悪用されると、影響を受けるサーバー上でリモートコード実行が可能となる可能性があります。",
+    "category": "ai-library",
     "cvssScore": 7.2,
     "severity": "HIGH",
     "publishedAt": "2025-11-21T17:15:50.267Z",
     "lastModifiedAt": "2026-06-17T08:33:18.510Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-62426",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-62426",
     "descriptionEn": "vLLM is an inference and serving engine for large language models (LLMs). From version 0.5.5 to before 0.11.1, the /v1/chat/completions and /tokenize endpoints allow a chat_template_kwargs request parameter that is used in the code before it is properly validated against the chat template. With the right chat_template_kwargs parameters, it is possible to block processing of the API server for long periods of time, delaying all other requests. This issue has been patched in version 0.11.1.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "vLLMのバージョン0.5.5から0.11.1未満において、`/v1/chat/completions`および`/tokenize`エンドポイントの`chat_template_kwargs`パラメータが、適切な検証前に使用される脆弱性がありました。これにより、悪意のあるパラメータが指定された場合、APIサーバーの処理を長時間ブロックし、他の全ての要求を遅延させることが可能でした。この問題はバージョン0.11.1で修正されています。",
+    "category": "ai-library",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2025-11-21T02:15:43.570Z",
     "lastModifiedAt": "2026-06-17T09:51:53.037Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-62372",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-62372",
     "descriptionEn": "vLLM is an inference and serving engine for large language models (LLMs). From version 0.5.5 to before 0.11.1, users can crash the vLLM engine serving multimodal models by passing multimodal embedding inputs with correct ndim but incorrect shape (e.g. hidden dimension is wrong), regardless of whether the model is intended to support such inputs (as defined in the Supported Models page). This issue has been patched in version 0.11.1.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "vLLMは、大規模言語モデル（LLM）の推論・提供エンジンです。バージョン0.5.5から0.11.1未満において、ユーザーが正しいndimだが誤った形状のマルチモーダル埋め込み入力を渡すことで、vLLMエンジンがクラッシュする脆弱性がありました。この問題は、モデルが当該入力をサポートしているかどうかにかかわらず発生し、バージョン0.11.1で修正されました。",
+    "category": "ai-library",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2025-11-21T02:15:43.393Z",
     "lastModifiedAt": "2026-06-17T09:51:47.210Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-62164",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-62164",
     "descriptionEn": "vLLM is an inference and serving engine for large language models (LLMs). From versions 0.10.2 to before 0.11.1, a memory corruption vulnerability could lead to a crash (denial-of-service) and potentially remote code execution (RCE), exists in the Completions API endpoint. When processing user-supplied prompt embeddings, the endpoint loads serialized tensors using torch.load() without sufficient validation. Due to a change introduced in PyTorch 2.8.0, sparse tensor integrity checks are disabled by default. As a result, maliciously crafted tensors can bypass internal bounds checks and trigger an out-of-bounds memory write during the call to to_dense(). This memory corruption can crash vLLM and potentially lead to code execution on the server hosting vLLM. This issue has been patched in version 0.11.1.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "vLLMのCompletions APIエンドポイントにおいて、バージョン0.10.2から0.11.1未満でメモリ破損の脆弱性が存在します。PyTorch 2.8.0以降の疎テンソル整合性チェック無効化と、ユーザー提供のプロンプト埋め込みに対する不十分な検証が原因です。これにより、不正に作成されたテンソルが境界外メモリ書き込みを引き起こし、vLLMのクラッシュ（サービス拒否）やリモートコード実行につながる可能性があります。",
+    "category": "ai-library",
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2025-11-21T02:15:43.193Z",
     "lastModifiedAt": "2026-06-17T09:51:29.260Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-62453",
@@ -2843,6 +2817,32 @@
     "severity": "MEDIUM",
     "publishedAt": "2025-11-27T10:15:50.993Z",
     "lastModifiedAt": "2026-06-17T08:34:01.197Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2025-33204",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-33204",
+    "descriptionEn": "NVIDIA NeMo Framework for all platforms contains a vulnerability in the NLP and LLM components, where malicious data created by an attacker could cause code injection. A successful exploit of this vulnerability may lead to code execution, escalation of privileges, information disclosure, and data tampering.",
+    "summaryJa": "NVIDIA NeMo FrameworkのNLPおよびLLMコンポーネントに脆弱性が存在します。攻撃者が作成した悪意のあるデータによりコードインジェクションが発生する可能性があります。この脆弱性が悪用されると、コード実行、権限昇格、情報漏洩、およびデータ改ざんにつながる恐れがあります。",
+    "category": "ai-library",
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2025-11-25T18:15:52.357Z",
+    "lastModifiedAt": "2026-06-17T09:13:14.127Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2025-13380",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-13380",
+    "descriptionEn": "The AI Engine for WordPress: ChatGPT, GPT Content Generator plugin for WordPress is vulnerable to Arbitrary File Read in all versions up to, and including, 1.0.1. This is due to insufficient validation of user-supplied file paths in the 'lqdai_update_post' AJAX endpoint and the use of file_get_contents() with user-controlled URLs without protocol restrictions in the insert_image() function. This makes it possible for authenticated attackers, with Contributor-level access and above, to read the contents of arbitrary files on the server, which can contain sensitive information.",
+    "summaryJa": "WordPress用プラグイン「AI Engine for WordPress: ChatGPT, GPT Content Generator」のバージョン1.0.1以前に、任意ファイル読み取りの脆弱性があります。これは、'lqdai_update_post' AJAXエンドポイントにおけるファイルパス検証の不備と、insert_image()関数でのプロトコル制限がないユーザー制御URLの使用に起因します。この脆弱性により、寄稿者以上の権限を持つ認証済み攻撃者は、サーバー上の任意の機密ファイルを読み取ることが可能です。",
+    "category": "ai-library",
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2025-11-25T08:15:50.050Z",
+    "lastModifiedAt": "2026-06-17T08:34:01.410Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
     "llmStatus": "ok"
   }
