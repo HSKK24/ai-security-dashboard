@@ -1,5 +1,187 @@
 [
   {
+    "id": "CVE-2026-61439",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61439",
+    "descriptionEn": "PraisonAI versions before 4.6.78 contain a prompt injection defense misconfiguration where the block threshold defaults to CRITICAL severity, allowing HIGH-level threats to pass through unblocked. Attackers can submit single-vector prompt injection attacks such as instruction overrides or financial manipulation that trigger HIGH severity detection but are logged without blocking, enabling system prompt extraction and unauthorized tool invocations.",
+    "summaryJa": "PraisonAIのバージョン4.6.78より前のバージョンには、プロンプトインジェクション防御の誤設定が存在します。ブロック閾値がデフォルトでCRITICALに設定されているため、HIGHレベルの脅威がブロックされずに通過してしまいます。これにより、攻撃者は指示の上書きや金融操作などのプロンプトインジェクション攻撃を実行し、システムプロンプトの抽出や不正なツール呼び出しが可能になります。",
+    "category": "prompt-injection",
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-11T14:16:22.870Z",
+    "lastModifiedAt": "2026-07-14T15:17:08.340Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-47475",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47475",
+    "descriptionEn": "NVIDIA TensorRT-LLM contains a vulnerability in the OpenAI-compatible inference API where an attacker could trigger a reachable assertion in the sampler thread. A successful exploit of this vulnerability might lead to denial of service.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.2,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-14T21:16:56.547Z",
+    "lastModifiedAt": "2026-07-14T21:16:56.547Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-47473",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47473",
+    "descriptionEn": "NVIDIA TensorRT-LLM contains a vulnerability where an attacker could cause a write-what-where condition. A successful exploit of this vulnerability might lead to data tampering, denial of service, and information disclosure.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.4,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-14T21:16:56.440Z",
+    "lastModifiedAt": "2026-07-14T21:16:56.440Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-47472",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47472",
+    "descriptionEn": "NVIDIA TensorRT-LLM contains a vulnerability in its inter-process communication layer where an attacker with local same-user access could cause deserialization. A successful exploit of this vulnerability might lead to code execution, information disclosure, data tampering, and denial of service.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-14T21:16:56.333Z",
+    "lastModifiedAt": "2026-07-14T21:16:56.333Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-47471",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47471",
+    "descriptionEn": "NVIDIA TensorRT-LLM for any platform contains a vulnerability in tensor deserialization, where an attacker could cause a heap based buffer overflow. A successful exploit of this vulnerability might lead to information disclosure, data tampering, or denial of service.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-14T21:16:56.230Z",
+    "lastModifiedAt": "2026-07-14T21:16:56.230Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-47470",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47470",
+    "descriptionEn": "NVIDIA TensorRT-LLM for any platform contains a vulnerability in the gRPC server chat API endpoint, where an attacker could cause CWE-20 by local attack. A successful exploit of this vulnerability might lead to denial of service.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.2,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-14T21:16:56.123Z",
+    "lastModifiedAt": "2026-07-14T21:16:56.123Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-24271",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-24271",
+    "descriptionEn": "NVIDIA TensorRT-LLM contains a vulnerability in the OpenAI-compatible inference API, where an attacker could cause allocation of GPU resources without limits or throttling. A successful exploit of this vulnerability might lead to denial of service.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.2,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-14T21:16:44.717Z",
+    "lastModifiedAt": "2026-07-14T21:16:44.717Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-24259",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-24259",
+    "descriptionEn": "NVIDIA TensorRT-LLM for Linux contains a vulnerability where an attacker could cause missing authentication for a critical function. A successful exploit of this vulnerability might lead to code execution, data tampering, and information disclosure.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.4,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-14T21:16:44.510Z",
+    "lastModifiedAt": "2026-07-14T21:16:44.510Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-24234",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-24234",
+    "descriptionEn": "NVIDIA TensorRT-LLM for Linux contains a vulnerability in the multimodal media fetching functions, where a network-accessible attacker could cause server-side request forgery. A successful exploit of this vulnerability might lead to denial of service and information disclosure.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.8,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-14T21:16:44.293Z",
+    "lastModifiedAt": "2026-07-14T21:16:44.293Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-24233",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-24233",
+    "descriptionEn": "NVIDIA TensorRT-LLM for Linux contains a vulnerability in the restricted unpickler used for model weight deserialization, where a local, unauthenticated attacker could cause deserialization of untrusted data. A successful exploit of this vulnerability might lead to code execution, escalation of privileges, data tampering, and information disclosure.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.4,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-14T21:16:44.187Z",
+    "lastModifiedAt": "2026-07-14T21:16:44.187Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-24229",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-24229",
+    "descriptionEn": "NVIDIA TensorRT-LLM for Linux contains a vulnerability in the disaggregated orchestrator component, where an attacker could read, write, or delete internal cluster state by sending requests to the FastAPI server. A successful exploit of this vulnerability might lead to information disclosure, data tampering, and denial of service.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.3,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-14T21:16:44.087Z",
+    "lastModifiedAt": "2026-07-14T21:16:44.087Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-24226",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-24226",
+    "descriptionEn": "NVIDIA TensorRT-LLM for Linux contains a vulnerability where an attacker could cause improper control of code generation. A successful exploit of this vulnerability might lead to code execution, data tampering, and information disclosure.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-14T21:16:43.880Z",
+    "lastModifiedAt": "2026-07-14T21:16:43.880Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-24220",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-24220",
+    "descriptionEn": "NVIDIA TensorRT-LLM for any platform contains a vulnerability in visual gen server, where an attacker could cause an unsafe deserialization by unauthorized zeroMQ deserialization. A successful exploit of this vulnerability might lead to code execution.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.4,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-14T21:16:43.773Z",
+    "lastModifiedAt": "2026-07-14T21:16:43.773Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-15628",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-15628",
+    "descriptionEn": "A security flaw has been discovered in zhayujie chatgpt-on-wechat CowAgent up to 2.1.1. This issue affects the function Vision._download_to_data_url of the file agent/tools/vision/vision.py of the component Vision Tool. Performing a manipulation of the argument image results in server-side request forgery. It is possible to initiate the attack remotely. The exploit has been released to the public and may be used for attacks. Upgrading to version 2.1.2 is capable of addressing this issue. The patch is named e85290cddcbb5ffc9c235927f4c92e5b4c3ec264. The affected component should be upgraded.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-14T04:17:16.077Z",
+    "lastModifiedAt": "2026-07-14T15:26:24.850Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-56259",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56259",
     "descriptionEn": "Crawl4AI before 0.8.8 contains credential exfiltration vulnerabilities in the Docker API server that allow attackers to redirect LLM API calls to attacker-controlled endpoints and read arbitrary environment variables. Attackers can exploit the unauthenticated /md, /llm, and /llm/job endpoints by supplying a malicious base_url parameter and setting api_token to env:VARIABLE_NAME to exfiltrate provider API keys and server secrets including JWT SECRET_KEY for authentication bypass.",
@@ -8,8 +190,8 @@
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-07-12T12:16:45.013Z",
-    "lastModifiedAt": "2026-07-13T18:09:30.873Z",
-    "fetchedAt": "2026-07-13T22:42:29.936Z",
+    "lastModifiedAt": "2026-07-14T18:29:21.830Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
     "llmStatus": "ok"
   },
   {
@@ -34,22 +216,9 @@
     "cvssScore": 9.9,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-11T14:16:23.240Z",
-    "lastModifiedAt": "2026-07-13T18:05:36.130Z",
-    "fetchedAt": "2026-07-13T22:42:29.936Z",
+    "lastModifiedAt": "2026-07-14T15:17:08.617Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-61439",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61439",
-    "descriptionEn": "PraisonAI versions before 4.6.78 contain a prompt injection defense misconfiguration where the block threshold defaults to CRITICAL severity, allowing HIGH-level threats to pass through unblocked. Attackers can submit single-vector prompt injection attacks such as instruction overrides or financial manipulation that trigger HIGH severity detection but are logged without blocking, enabling system prompt extraction and unauthorized tool invocations.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.5,
-    "severity": "HIGH",
-    "publishedAt": "2026-07-11T14:16:22.870Z",
-    "lastModifiedAt": "2026-07-13T18:05:36.130Z",
-    "fetchedAt": "2026-07-13T22:42:29.936Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-13235",
@@ -138,8 +307,8 @@
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-10T15:16:49.417Z",
-    "lastModifiedAt": "2026-07-10T17:41:47.303Z",
-    "fetchedAt": "2026-07-10T22:47:58.673Z",
+    "lastModifiedAt": "2026-07-14T02:16:57.743Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
     "llmStatus": "ok"
   },
   {
@@ -177,8 +346,8 @@
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2026-07-10T00:16:33.340Z",
-    "lastModifiedAt": "2026-07-10T15:49:19.093Z",
-    "fetchedAt": "2026-07-10T22:47:58.673Z",
+    "lastModifiedAt": "2026-07-14T02:16:55.357Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
     "llmStatus": "ok"
   },
   {
@@ -229,8 +398,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-09T22:17:09.363Z",
-    "lastModifiedAt": "2026-07-10T21:17:00.080Z",
-    "fetchedAt": "2026-07-11T22:35:37.686Z",
+    "lastModifiedAt": "2026-07-14T22:17:26.557Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
     "llmStatus": "ok"
   },
   {
@@ -359,8 +528,8 @@
     "cvssScore": 6.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-08T15:16:26.120Z",
-    "lastModifiedAt": "2026-07-09T16:39:17.737Z",
-    "fetchedAt": "2026-07-09T23:00:31.736Z",
+    "lastModifiedAt": "2026-07-14T14:16:32.897Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
     "llmStatus": "ok"
   },
   {
@@ -554,8 +723,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-06-30T22:16:57.963Z",
-    "lastModifiedAt": "2026-07-02T17:42:23.640Z",
-    "fetchedAt": "2026-07-04T11:33:42.505Z",
+    "lastModifiedAt": "2026-07-14T22:17:29.780Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
     "llmStatus": "ok"
   },
   {
@@ -580,8 +749,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-30T17:16:23.907Z",
-    "lastModifiedAt": "2026-07-01T18:21:53.250Z",
-    "fetchedAt": "2026-07-04T11:33:42.505Z",
+    "lastModifiedAt": "2026-07-14T22:17:27.663Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
     "llmStatus": "ok"
   },
   {
@@ -788,8 +957,8 @@
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-06-09T16:16:43.450Z",
-    "lastModifiedAt": "2026-06-09T19:36:10.547Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-14T22:17:11.507Z",
+    "fetchedAt": "2026-07-14T22:44:32.502Z",
     "llmStatus": "ok"
   },
   {
