@@ -3,27 +3,27 @@
     "id": "CVE-2025-64321",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-64321",
     "descriptionEn": "Improper Neutralization of Input Used for LLM Prompting vulnerability in Salesforce Agentforce Vibes Extension allows Manipulating Writeable Configuration Files.This issue affects Agentforce Vibes Extension: before 3.3.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Salesforce Agentforce Vibes Extensionのバージョン3.3.0未満に、LLMプロンプトに使用される入力の不適切な無害化の脆弱性が存在します。この脆弱性により、攻撃者は書き込み可能な設定ファイルを操作できる可能性があります。",
+    "category": "prompt-injection",
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2025-11-04T19:17:11.790Z",
     "lastModifiedAt": "2026-06-17T09:54:12.313Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-64320",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-64320",
     "descriptionEn": "Improper Neutralization of Input Used for LLM Prompting vulnerability in Salesforce Agentforce Vibes Extension allows Code Injection.This issue affects Agentforce Vibes Extension: before 3.2.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Salesforce Agentforce Vibes Extensionにおいて、LLMのプロンプトに使用される入力の不適切な無害化の脆弱性が存在します。この脆弱性により、攻撃者はコードインジェクションを実行できる可能性があります。影響を受けるのはバージョン3.2.0より前のAgentforce Vibes Extensionです。",
+    "category": "prompt-injection",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2025-11-04T19:17:11.693Z",
     "lastModifiedAt": "2026-06-17T09:54:12.177Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-64318",
@@ -1698,8 +1698,8 @@
     "cvssScore": 6.6,
     "severity": "MEDIUM",
     "publishedAt": "2025-03-31T22:15:21.983Z",
-    "lastModifiedAt": "2026-06-17T09:10:47.417Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-07-16T15:21:36.193Z",
+    "fetchedAt": "2026-07-16T22:45:38.104Z",
     "llmStatus": "pending"
   },
   {
@@ -1711,8 +1711,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2025-03-31T22:15:21.873Z",
-    "lastModifiedAt": "2026-06-17T09:10:47.273Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-07-16T15:21:36.193Z",
+    "fetchedAt": "2026-07-16T22:45:38.104Z",
     "llmStatus": "pending"
   },
   {
