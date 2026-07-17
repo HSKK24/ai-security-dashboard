@@ -1,107 +1,81 @@
 [
   {
-    "id": "CVE-2025-64321",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-64321",
-    "descriptionEn": "Improper Neutralization of Input Used for LLM Prompting vulnerability in Salesforce Agentforce Vibes Extension allows Manipulating Writeable Configuration Files.This issue affects Agentforce Vibes Extension: before 3.3.0.",
-    "summaryJa": "Salesforce Agentforce Vibes Extensionのバージョン3.3.0未満に、LLMプロンプトに使用される入力の不適切な無害化の脆弱性が存在します。この脆弱性により、攻撃者は書き込み可能な設定ファイルを操作できる可能性があります。",
-    "category": "prompt-injection",
-    "cvssScore": 5.3,
-    "severity": "MEDIUM",
-    "publishedAt": "2025-11-04T19:17:11.790Z",
-    "lastModifiedAt": "2026-06-17T09:54:12.313Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2025-64320",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-64320",
-    "descriptionEn": "Improper Neutralization of Input Used for LLM Prompting vulnerability in Salesforce Agentforce Vibes Extension allows Code Injection.This issue affects Agentforce Vibes Extension: before 3.2.0.",
-    "summaryJa": "Salesforce Agentforce Vibes Extensionにおいて、LLMのプロンプトに使用される入力の不適切な無害化の脆弱性が存在します。この脆弱性により、攻撃者はコードインジェクションを実行できる可能性があります。影響を受けるのはバージョン3.2.0より前のAgentforce Vibes Extensionです。",
-    "category": "prompt-injection",
-    "cvssScore": 6.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2025-11-04T19:17:11.693Z",
-    "lastModifiedAt": "2026-06-17T09:54:12.177Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "ok"
-  },
-  {
     "id": "CVE-2025-64318",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-64318",
     "descriptionEn": "Improper Neutralization of Input Used for LLM Prompting vulnerability in Salesforce Mulesoft Anypoint Code Builder allows Manipulating Writeable Configuration Files.This issue affects Mulesoft Anypoint Code Builder: before 1.12.1.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Salesforce Mulesoft Anypoint Code Builderのバージョン1.12.1より前の製品において、LLMプロンプトに使用される入力の不適切な無害化の脆弱性が存在します。この脆弱性により、攻撃者は書き込み可能な設定ファイルを操作することが可能になります。",
+    "category": "prompt-injection",
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2025-11-04T19:17:11.480Z",
     "lastModifiedAt": "2026-06-17T09:54:11.893Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-10875",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-10875",
     "descriptionEn": "Improper Neutralization of Input Used for LLM Prompting vulnerability in Salesforce Mulesoft Anypoint Code Builder allows Code Injection.This issue affects Mulesoft Anypoint Code Builder: before 1.11.6.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Salesforce Mulesoft Anypoint Code Builderのバージョン1.11.6未満において、LLMプロンプトに用いられる入力の不適切な無害化の脆弱性が存在します。この脆弱性により、攻撃者はコードインジェクションを実行する可能性があります。",
+    "category": "prompt-injection",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2025-11-04T19:17:09.160Z",
     "lastModifiedAt": "2026-06-17T08:29:11.647Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-12156",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-12156",
     "descriptionEn": "The Ai Auto Tool Content Writing Assistant (Gemini Writer, ChatGPT ) All in One plugin for WordPress is vulnerable to unauthorized modification of data due to a missing capability check on the save_post_data() function in versions 2.0.7 to 2.2.6. This makes it possible for authenticated attackers, with Subscriber-level access and above, to create and publish arbitrary posts.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "WordPress用「Ai Auto Tool Content Writing Assistant (Gemini Writer, ChatGPT ) All in One」プラグインのバージョン2.0.7から2.2.6において、save_post_data()関数に能力チェックが欠如しているため、認証された攻撃者によるデータの不正な変更が可能です。これにより、購読者レベル以上の権限を持つ攻撃者が任意の投稿を作成・公開できる可能性があります。",
+    "category": "ai-library",
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2025-11-04T05:16:08.120Z",
     "lastModifiedAt": "2026-06-17T08:31:48.650Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-11257",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-11257",
     "descriptionEn": "The LLM Hubspot Blog Import plugin for WordPress is vulnerable to unauthorized modification of data due to a missing capability check on the 'process_save_blogs' AJAX endpoint in all versions up to, and including, 1.0.1. This makes it possible for authenticated attackers, with Subscriber-level access and above, to trigger an import of all Hubspot data.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "WordPress用「LLM Hubspot Blog Import」プラグインのバージョン1.0.1以前において、'process_save_blogs' AJAXエンドポイントに機能チェックが不足しているため、データの不正な改ざんの脆弱性が存在します。これにより、Subscriber以上の認証済み攻撃者が、全てのHubspotデータのインポートを不正にトリガーできる可能性があります。",
+    "category": "other",
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2025-10-24T09:15:42.680Z",
     "lastModifiedAt": "2026-06-17T08:29:57.763Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-62356",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-62356",
     "descriptionEn": "A path traversal vulnerability in all versions of the Qodo Qodo Gen IDE enables a threat actor to read arbitrary local files in and outside of current projects on an end user’s system. The vulnerability can be reached directly and through indirect prompt injection.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Qodo Qodo Gen IDEの全バージョンにパス・トラバーサル脆弱性が存在します。この脆弱性により、攻撃者はエンドユーザーのシステム上で、現在のプロジェクト内外を問わず任意のローカルファイルを読み取ることができます。この脆弱性は、直接的または間接的なプロンプトインジェクションを介して悪用される可能性があります。",
+    "category": "prompt-injection",
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2025-10-17T16:15:39.283Z",
     "lastModifiedAt": "2026-06-17T09:51:45.490Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-62353",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-62353",
     "descriptionEn": "A path traversal vulnerability in all versions of the Windsurf IDE enables a threat actor to read and write arbitrary local files in and outside of current projects on an end user’s system. The vulnerability can be reached directly and through indirect prompt injection.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Windsurf IDEの全バージョンにパス・トラバーサル脆弱性が存在します。この脆弱性により、攻撃者はエンドユーザーシステム上のプロジェクト内外の任意のローカルファイルを読み書き可能です。本脆弱性は、直接的な方法またはプロンプトインジェクションを介して悪用される可能性があります。",
+    "category": "prompt-injection",
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2025-10-17T16:15:39.150Z",
     "lastModifiedAt": "2026-06-17T09:51:45.290Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-58747",
@@ -2843,6 +2817,32 @@
     "severity": "HIGH",
     "publishedAt": "2025-11-04T23:15:44.330Z",
     "lastModifiedAt": "2026-06-17T09:53:50.220Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2025-64321",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-64321",
+    "descriptionEn": "Improper Neutralization of Input Used for LLM Prompting vulnerability in Salesforce Agentforce Vibes Extension allows Manipulating Writeable Configuration Files.This issue affects Agentforce Vibes Extension: before 3.3.0.",
+    "summaryJa": "Salesforce Agentforce Vibes Extensionのバージョン3.3.0未満に、LLMプロンプトに使用される入力の不適切な無害化の脆弱性が存在します。この脆弱性により、攻撃者は書き込み可能な設定ファイルを操作できる可能性があります。",
+    "category": "prompt-injection",
+    "cvssScore": 5.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2025-11-04T19:17:11.790Z",
+    "lastModifiedAt": "2026-06-17T09:54:12.313Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2025-64320",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-64320",
+    "descriptionEn": "Improper Neutralization of Input Used for LLM Prompting vulnerability in Salesforce Agentforce Vibes Extension allows Code Injection.This issue affects Agentforce Vibes Extension: before 3.2.0.",
+    "summaryJa": "Salesforce Agentforce Vibes Extensionにおいて、LLMのプロンプトに使用される入力の不適切な無害化の脆弱性が存在します。この脆弱性により、攻撃者はコードインジェクションを実行できる可能性があります。影響を受けるのはバージョン3.2.0より前のAgentforce Vibes Extensionです。",
+    "category": "prompt-injection",
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2025-11-04T19:17:11.693Z",
+    "lastModifiedAt": "2026-06-17T09:54:12.177Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
     "llmStatus": "ok"
   }
