@@ -1,5 +1,31 @@
 [
   {
+    "id": "CVE-2026-57495",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-57495",
+    "descriptionEn": "AgenticMail gives AI agents real email addresses and phone numbers. In @agenticmail/claudecode prior to version 0.2.39, @agenticmail/codex prior to version 0.1.33, @agenticmail/core prior to version 0.9.43, and @agenticmail/openclaw prior to version 0.5.71, two inbound-mail handlers act on a privileged effect without verifying that the sender is the operator, while a sibling handler in the same repo does. The higher-impact one: any external email routed to the bridge inbox causes the dispatcher to resume the operator's Claude Code session with `permissionMode: 'bypassPermissions'`, embedding the attacker-controlled `from`/`subject`/`preview` verbatim into the prompt the resumed agent reads — an indirect prompt injection into a fully-privileged agent (Bash/Write/Edit/WebFetch + the agenticmail MCP toolbelt) running as the operator's OAuth identity. The sibling operator-query email-reply hook gates the same untrusted-From provenance with `isOperatorReplySender(replyFrom, config.operatorEmail)` (fail-closed); the bridge-wake path — a strictly higher-privilege effect — has no equivalent. @agenticmail/claudecode 0.2.39, @agenticmail/codex 0.1.33, @agenticmail/core 0.9.43, and @agenticmail/openclaw 0.5.71 contain a fix.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-07-20T22:17:17.107Z",
+    "lastModifiedAt": "2026-07-20T22:17:17.107Z",
+    "fetchedAt": "2026-07-20T22:44:26.235Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-63766",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63766",
+    "descriptionEn": "GPT-SoVITS through 20250606v2pro contains an OS command injection vulnerability in webui.py where ASR, slice, denoise, and uvr5 functions interpolate unsanitized Gradio textbox values directly into shell commands executed with shell=True. Attackers can inject shell metacharacters through path parameters to execute arbitrary OS commands as the server process user without authentication.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-07-20T20:16:46.170Z",
+    "lastModifiedAt": "2026-07-20T20:16:46.170Z",
+    "fetchedAt": "2026-07-20T22:44:26.235Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-46341",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46341",
     "descriptionEn": "The Apify MCP server enables AI agents to extract data from websites using ready-made scrapers, crawlers, and automation tools available on the Apify Store. Prior to 0.9.21, the fetch-apify-docs tool in src/tools/common/fetch_apify_docs.ts validates allowlisted documentation domains with String.startsWith() rather than URL hostname comparison, allowing attacker-controlled URLs such as `https://docs.apify.com.evil.com/` and `https://docs.apify.com@evil.com/` to pass the ALLOWED_DOC_DOMAINS check and return arbitrary fetched content to the LLM. This issue is fixed in version 0.9.21.",
@@ -35,7 +61,7 @@
     "severity": null,
     "publishedAt": "2026-07-16T16:19:12.860Z",
     "lastModifiedAt": "2026-07-18T03:16:36.890Z",
-    "fetchedAt": "2026-07-19T22:39:29.054Z",
+    "fetchedAt": "2026-07-20T22:44:26.235Z",
     "llmStatus": "ok"
   },
   {
