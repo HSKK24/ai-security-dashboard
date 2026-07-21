@@ -3,26 +3,65 @@
     "id": "CVE-2026-57495",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-57495",
     "descriptionEn": "AgenticMail gives AI agents real email addresses and phone numbers. In @agenticmail/claudecode prior to version 0.2.39, @agenticmail/codex prior to version 0.1.33, @agenticmail/core prior to version 0.9.43, and @agenticmail/openclaw prior to version 0.5.71, two inbound-mail handlers act on a privileged effect without verifying that the sender is the operator, while a sibling handler in the same repo does. The higher-impact one: any external email routed to the bridge inbox causes the dispatcher to resume the operator's Claude Code session with `permissionMode: 'bypassPermissions'`, embedding the attacker-controlled `from`/`subject`/`preview` verbatim into the prompt the resumed agent reads — an indirect prompt injection into a fully-privileged agent (Bash/Write/Edit/WebFetch + the agenticmail MCP toolbelt) running as the operator's OAuth identity. The sibling operator-query email-reply hook gates the same untrusted-From provenance with `isOperatorReplySender(replyFrom, config.operatorEmail)` (fail-closed); the bridge-wake path — a strictly higher-privilege effect — has no equivalent. @agenticmail/claudecode 0.2.39, @agenticmail/codex 0.1.33, @agenticmail/core 0.9.43, and @agenticmail/openclaw 0.5.71 contain a fix.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "AgenticMailの複数のコンポーネントにおいて、受信メールハンドラが送信者検証を怠る脆弱性が存在します。これにより、攻撃者は外部メールを介して、オペレーターのOAuth IDで実行される特権的なAIエージェント（Claude Codeセッション）に対し、間接的なプロンプトインジェクションを実行できます。結果として、攻撃者制御のデータが特権モードで動作するエージェントのプロンプトに挿入され、エージェントが意図しない操作を実行する可能性があります。",
+    "category": "prompt-injection",
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-07-20T22:17:17.107Z",
     "lastModifiedAt": "2026-07-20T22:17:17.107Z",
-    "fetchedAt": "2026-07-20T22:44:26.235Z",
-    "llmStatus": "pending"
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-63766",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63766",
     "descriptionEn": "GPT-SoVITS through 20250606v2pro contains an OS command injection vulnerability in webui.py where ASR, slice, denoise, and uvr5 functions interpolate unsanitized Gradio textbox values directly into shell commands executed with shell=True. Attackers can inject shell metacharacters through path parameters to execute arbitrary OS commands as the server process user without authentication.",
+    "summaryJa": "GPT-SoVITSのwebui.pyにおいて、OSコマンドインジェクションの脆弱性が存在します。ASR、slice、denoise、uvr5機能が、Gradioのテキストボックスから受け取った未サニタイズの値をシェルコマンドに直接挿入するため、攻撃者は認証なしで任意のOSコマンドをサーバープロセスユーザーとして実行できる可能性があります。",
+    "category": "ai-library",
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-07-20T20:16:46.170Z",
+    "lastModifiedAt": "2026-07-21T17:17:12.783Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-65056",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65056",
+    "descriptionEn": "mcp-webresearch 0.1.7 contains a server-side request forgery vulnerability that allows attackers to access internal network services by supplying loopback, link-local, or cloud metadata addresses to the visit_page tool, which only validates the URL protocol without filtering private or reserved IP ranges. Attackers can steer the LLM-controlled URL argument through prompt injection to navigate the server's Playwright browser to internal endpoints such as cloud instance metadata services, causing the server to return sensitive internal page content including credentials into the model context.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.2,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-21T21:16:54.287Z",
+    "lastModifiedAt": "2026-07-21T21:16:54.287Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-47393",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47393",
+    "descriptionEn": "PraisonAI is a multi-agent teams system. CVE-2026-44338 (GHSA-6rmh-7xcm-cpxj) documents that PraisonAI ships a code-generator (`praisonai.deploy.api.generate_api_server_code`) that emits a Flask API server with authentication disabled by default. Users who follow the documented quickstart (`praisonai deploy --type api`) get a server that binds to `0.0.0.0` per the recommended sample YAML, exposes `/chat` and `/agents` endpoints, runs `praisonai.run()` on user-supplied JSON input — LLM orchestration with the API key materials present in the process environment, and does not require any authentication. Versions prior to 4.6.40 still ship the generator with `auth_enabled` defaulting to `False`. The fix shape is opt-in via `APIConfig(auth_enabled=True, auth_token=...)`. Version 4.6.40 fixes the issue.",
     "summaryJa": null,
     "category": null,
     "cvssScore": 9.8,
     "severity": "CRITICAL",
-    "publishedAt": "2026-07-20T20:16:46.170Z",
-    "lastModifiedAt": "2026-07-20T20:16:46.170Z",
-    "fetchedAt": "2026-07-20T22:44:26.235Z",
+    "publishedAt": "2026-07-21T16:17:12.270Z",
+    "lastModifiedAt": "2026-07-21T18:59:43.940Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-47391",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47391",
+    "descriptionEn": "PraisonAI is a multi-agent teams system. Prior to version 4.6.40, PraisonAI's first-party A2A server example exposes an unauthenticated A2A JSON-RPC endpoint and registers a `calculate(expression)` tool implemented with Python `eval()`. The example also binds to `0.0.0.0`. A remote unauthenticated attacker can send `message/send` to `/a2a`; the request reaches `agent.chat()`, and a real LLM can invoke the registered `calculate` tool. In testing with `gemini/gemini-2.5-flash-lite`, this resulted in arbitrary Python execution in the server process, confirmed by creation of a marker file from an unauthenticated HTTP request. The issue affects deployments following the official A2A example or similar unauthenticated public A2A deployments with unsafe tools. The default unauthenticated A2A surface also exposes task history and task cancellation APIs, increasing confidentiality and integrity impact. Version 4.6.40 patches the issue.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-07-21T16:17:11.920Z",
+    "lastModifiedAt": "2026-07-21T18:59:43.940Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "pending"
   },
   {
@@ -61,7 +100,7 @@
     "severity": null,
     "publishedAt": "2026-07-16T16:19:12.860Z",
     "lastModifiedAt": "2026-07-18T03:16:36.890Z",
-    "fetchedAt": "2026-07-20T22:44:26.235Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -970,8 +1009,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-22T23:16:30.490Z",
-    "lastModifiedAt": "2026-07-15T02:22:24.063Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-07-21T12:18:51.240Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -1035,8 +1074,8 @@
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-06-11T14:16:26.557Z",
-    "lastModifiedAt": "2026-07-15T02:18:04.337Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-07-21T12:17:17.557Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -1289,15 +1328,15 @@
   {
     "id": "CVE-2026-44654",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44654",
-    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. In versions up to and including 0.8.3, a shared-agent editor can delete file records through `DELETE /api/files` that the owner has reused across multiple agents. The deletion removes the file globally 窶・not just from the shared agent 窶・breaking the owner's other private agents that reference the same `file_id`. The private agent retains a stale `file_id` reference that no longer resolves. A shared-agent editor can destroy files that the owner uses across multiple agents. The owner's private agents 窶・which the attacker has no access to 窶・break silently with stale `file_id` references. This is a cross-agent integrity violation: editing access to one agent should not affect another. Version 0.8.4 contains a patch.",
-    "summaryJa": "LibreChatのバージョン0.8.3以前において、共有エージェントの編集者が`DELETE /api/files`エンドポイントを利用することで、オーナーが複数のエージェントで共有しているファイルをグローバルに削除できる脆弱性がありました。これにより、オーナーの他のプライベートエージェントでファイル参照が壊れ、整合性違反が発生します。この問題はバージョン0.8.4で修正されています。",
-    "category": "other",
+    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. In versions up to and including 0.8.3, a shared-agent editor can delete file records through `DELETE /api/files` that the owner has reused across multiple agents. The deletion removes the file globally — not just from the shared agent — breaking the owner's other private agents that reference the same `file_id`. The private agent retains a stale `file_id` reference that no longer resolves. A shared-agent editor can destroy files that the owner uses across multiple agents. The owner's private agents — which the attacker has no access to — break silently with stale `file_id` references. This is a cross-agent integrity violation: editing access to one agent should not affect another. Version 0.8.4 contains a patch.",
+    "summaryJa": null,
+    "category": null,
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-06-02T23:16:38.260Z",
-    "lastModifiedAt": "2026-06-04T19:20:42.937Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "ok"
+    "lastModifiedAt": "2026-07-21T19:10:00.107Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-44653",
@@ -1308,8 +1347,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-06-02T23:16:38.123Z",
-    "lastModifiedAt": "2026-06-04T19:17:38.770Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-21T19:10:00.107Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -1354,15 +1393,15 @@
   {
     "id": "CVE-2026-25879",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-25879",
-    "descriptionEn": "Langroid is a framework for building large-language-model-powered applications. Prior to version 0.63.0, SQLChatAgent executes SQL produced by an LLM, which is influenceable by prompt injection. When configured with a database role that has privileges enabling code execution or filesystem access (e.g., PostgreSQL pg_execute_server_program, MySQL FILE, MSSQL xp_cmdshell), an attacker who can shape the agent's input 窶・including indirectly via data returned to the LLM 窶・can coerce execution of dialect-specific primitives such as `COPY ... FROM PROGRAM`, achieving RCE on the database host. Fixed in v0.63.0 by defaulting SQLChatAgent to a SELECT-only sqlglot-parsed statement allowlist with a dialect-aware dangerous-pattern blocklist; allow_dangerous_operations=True restores the previous unrestricted behavior for trusted deployments.",
-    "summaryJa": "LangroidフレームワークのSQLChatAgentにおいて、プロンプトインジェクションによりLLMが生成するSQLを悪用される脆弱性があります。データベースの特権設定によっては、攻撃者がエージェントの入力を操作することでSQLコマンドインジェクションを介してデータベースホスト上でRCEを達成する可能性があります。この問題はバージョン0.63.0で、デフォルトでSELECT文のみを許可するセキュアな設定を導入することで修正されました。",
-    "category": "prompt-injection",
+    "descriptionEn": "Langroid is a framework for building large-language-model-powered applications. Prior to version 0.63.0, SQLChatAgent executes SQL produced by an LLM, which is influenceable by prompt injection. When configured with a database role that has privileges enabling code execution or filesystem access (e.g., PostgreSQL pg_execute_server_program, MySQL FILE, MSSQL xp_cmdshell), an attacker who can shape the agent's input — including indirectly via data returned to the LLM — can coerce execution of dialect-specific primitives such as `COPY ... FROM PROGRAM`, achieving RCE on the database host. Fixed in v0.63.0 by defaulting SQLChatAgent to a SELECT-only sqlglot-parsed statement allowlist with a dialect-aware dangerous-pattern blocklist; allow_dangerous_operations=True restores the previous unrestricted behavior for trusted deployments.",
+    "summaryJa": null,
+    "category": null,
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-01T23:16:21.930Z",
-    "lastModifiedAt": "2026-06-02T17:16:27.750Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "ok"
+    "lastModifiedAt": "2026-07-21T19:10:00.107Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-10214",
@@ -1464,8 +1503,8 @@
     "cvssScore": 9.9,
     "severity": "CRITICAL",
     "publishedAt": "2026-05-29T13:16:22.770Z",
-    "lastModifiedAt": "2026-06-02T02:16:16.050Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-21T12:10:00.090Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -1477,8 +1516,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-05-28T22:17:01.390Z",
-    "lastModifiedAt": "2026-05-30T04:17:22.667Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-21T10:10:00.103Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -1490,8 +1529,8 @@
     "cvssScore": 2,
     "severity": "LOW",
     "publishedAt": "2026-05-28T22:17:01.250Z",
-    "lastModifiedAt": "2026-06-03T16:51:22.890Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-21T10:10:00.103Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -1503,8 +1542,8 @@
     "cvssScore": 2,
     "severity": "LOW",
     "publishedAt": "2026-05-28T22:17:00.907Z",
-    "lastModifiedAt": "2026-06-02T14:48:13.717Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-21T10:10:00.103Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -1516,8 +1555,8 @@
     "cvssScore": 5.4,
     "severity": "MEDIUM",
     "publishedAt": "2026-05-28T22:17:00.080Z",
-    "lastModifiedAt": "2026-05-29T16:07:40.747Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-21T10:10:00.103Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -1750,8 +1789,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-03-27T00:16:22.333Z",
-    "lastModifiedAt": "2026-07-15T02:19:12.300Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-07-21T12:17:51.353Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -1776,8 +1815,8 @@
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2026-03-09T21:16:15.537Z",
-    "lastModifiedAt": "2026-07-15T02:18:57.717Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-07-21T12:17:46.680Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -1841,8 +1880,8 @@
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2026-01-27T22:15:57.280Z",
-    "lastModifiedAt": "2026-07-15T02:18:50.887Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-07-21T12:17:34.303Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -1854,8 +1893,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-01-21T22:15:49.077Z",
-    "lastModifiedAt": "2026-07-15T02:18:37.430Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-07-21T12:17:29.847Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
