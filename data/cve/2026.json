@@ -1,5 +1,122 @@
 [
   {
+    "id": "CVE-2026-65056",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65056",
+    "descriptionEn": "mcp-webresearch 0.1.7 contains a server-side request forgery vulnerability that allows attackers to access internal network services by supplying loopback, link-local, or cloud metadata addresses to the visit_page tool, which only validates the URL protocol without filtering private or reserved IP ranges. Attackers can steer the LLM-controlled URL argument through prompt injection to navigate the server's Playwright browser to internal endpoints such as cloud instance metadata services, causing the server to return sensitive internal page content including credentials into the model context.",
+    "summaryJa": "mcp-webresearch 0.1.7には、サーバーサイドリクエストフォージェリ（SSRF）の脆弱性があります。visit_pageツールがURLプロトコルのみを検証し、プライベートIPアドレス範囲を適切にフィルタリングしないため、攻撃者はプロンプトインジェクションによりLLM制御下のURL引数を操作し、Playwrightブラウザを介して内部ネットワークサービスにアクセス可能です。その結果、サーバーの機密情報（認証情報など）がモデルコンテキストに漏洩する恐れがあります。",
+    "category": "prompt-injection",
+    "cvssScore": 8.2,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-21T21:16:54.287Z",
+    "lastModifiedAt": "2026-07-22T16:18:51.307Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-47393",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47393",
+    "descriptionEn": "PraisonAI is a multi-agent teams system. CVE-2026-44338 (GHSA-6rmh-7xcm-cpxj) documents that PraisonAI ships a code-generator (`praisonai.deploy.api.generate_api_server_code`) that emits a Flask API server with authentication disabled by default. Users who follow the documented quickstart (`praisonai deploy --type api`) get a server that binds to `0.0.0.0` per the recommended sample YAML, exposes `/chat` and `/agents` endpoints, runs `praisonai.run()` on user-supplied JSON input — LLM orchestration with the API key materials present in the process environment, and does not require any authentication. Versions prior to 4.6.40 still ship the generator with `auth_enabled` defaulting to `False`. The fix shape is opt-in via `APIConfig(auth_enabled=True, auth_token=...)`. Version 4.6.40 fixes the issue.",
+    "summaryJa": "PraisonAIのAPIサーバーコードジェネレータは、デフォルトで認証が無効なFlask APIサーバーを生成する脆弱性があります。これにより、クイックスタートガイドに従ってデプロイされたサーバーは、LLMオーケストレーション機能を認証なしで外部に公開し、環境変数に存在するAPIキーなどの機密情報への不正アクセスを許す可能性があります。この問題はバージョン4.6.40で修正されました。",
+    "category": "ai-library",
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-07-21T16:17:12.270Z",
+    "lastModifiedAt": "2026-07-22T15:17:17.247Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-47391",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47391",
+    "descriptionEn": "PraisonAI is a multi-agent teams system. Prior to version 4.6.40, PraisonAI's first-party A2A server example exposes an unauthenticated A2A JSON-RPC endpoint and registers a `calculate(expression)` tool implemented with Python `eval()`. The example also binds to `0.0.0.0`. A remote unauthenticated attacker can send `message/send` to `/a2a`; the request reaches `agent.chat()`, and a real LLM can invoke the registered `calculate` tool. In testing with `gemini/gemini-2.5-flash-lite`, this resulted in arbitrary Python execution in the server process, confirmed by creation of a marker file from an unauthenticated HTTP request. The issue affects deployments following the official A2A example or similar unauthenticated public A2A deployments with unsafe tools. The default unauthenticated A2A surface also exposes task history and task cancellation APIs, increasing confidentiality and integrity impact. Version 4.6.40 patches the issue.",
+    "summaryJa": "PraisonAIのバージョン4.6.40未満において、A2Aサーバーの公式例が認証されていないJSON-RPCエンドポイントを公開していました。リモートの認証されていない攻撃者は、LLMを介してPythonの`eval()`を使用する`calculate`ツールを呼び出すことで、サーバー上で任意のPythonコードを実行可能でした。この脆弱性は機密性と完全性にも影響を与え、バージョン4.6.40で修正されています。",
+    "category": "ai-library",
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-07-21T16:17:11.920Z",
+    "lastModifiedAt": "2026-07-21T18:59:43.940Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-44654",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44654",
+    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. In versions up to and including 0.8.3, a shared-agent editor can delete file records through `DELETE /api/files` that the owner has reused across multiple agents. The deletion removes the file globally — not just from the shared agent — breaking the owner's other private agents that reference the same `file_id`. The private agent retains a stale `file_id` reference that no longer resolves. A shared-agent editor can destroy files that the owner uses across multiple agents. The owner's private agents — which the attacker has no access to — break silently with stale `file_id` references. This is a cross-agent integrity violation: editing access to one agent should not affect another. Version 0.8.4 contains a patch.",
+    "summaryJa": "LibreChatのバージョン0.8.3以前には、共有エージェントの編集者が`DELETE /api/files`エンドポイントを介してファイルを削除できる脆弱性があります。この操作はファイルがオーナーによって複数のエージェントで再利用されている場合でもグローバルに適用され、結果としてオーナーの他のプライベートエージェントが参照するファイルIDを無効化し、機能不全に陥らせる可能性があります。これにより、クロスエージェント間の整合性が侵害されます。",
+    "category": "ai-service",
+    "cvssScore": 8.1,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-02T23:16:38.260Z",
+    "lastModifiedAt": "2026-07-21T19:10:00.107Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-25879",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-25879",
+    "descriptionEn": "Langroid is a framework for building large-language-model-powered applications. Prior to version 0.63.0, SQLChatAgent executes SQL produced by an LLM, which is influenceable by prompt injection. When configured with a database role that has privileges enabling code execution or filesystem access (e.g., PostgreSQL pg_execute_server_program, MySQL FILE, MSSQL xp_cmdshell), an attacker who can shape the agent's input — including indirectly via data returned to the LLM — can coerce execution of dialect-specific primitives such as `COPY ... FROM PROGRAM`, achieving RCE on the database host. Fixed in v0.63.0 by defaulting SQLChatAgent to a SELECT-only sqlglot-parsed statement allowlist with a dialect-aware dangerous-pattern blocklist; allow_dangerous_operations=True restores the previous unrestricted behavior for trusted deployments.",
+    "summaryJa": "LangroidフレームワークのSQLChatAgentにおいて、プロンプトインジェクションによりLLMが生成するSQLが影響を受ける脆弱性が存在します。データベースがコード実行やファイルシステムアクセス権限を持つ設定の場合、攻撃者はエージェントの入力を操作することで、データベースホスト上でリモートコード実行（RCE）を達成する可能性があります。この脆弱性はバージョン0.63.0で修正され、デフォルトでSELECTのみを許可する安全な運用が採用されました。",
+    "category": "prompt-injection",
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-06-01T23:16:21.930Z",
+    "lastModifiedAt": "2026-07-21T19:10:00.107Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-65589",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65589",
+    "descriptionEn": "n8n versions before 1.123.64 fail to properly mask custom HTTP header credentials in LLM sub-node execution data, writing plaintext API keys and secrets to workflow execution records. Authenticated users with access to execution data can read exposed header values and credentials that persist in the database and can be exported.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-07-22T12:18:18.857Z",
+    "lastModifiedAt": "2026-07-22T16:27:18.220Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-44192",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44192",
+    "descriptionEn": "A flaw was found in the Ansible Lightspeed Model Context Protocol (MCP) server. This vulnerability, known as path traversal, allows an attacker to manipulate an AI agent through indirect prompt injection. By doing so, the attacker can cause the server to write files to unauthorized locations on the user's system. This can result in the exposure of sensitive host information and enable the attacker to execute malicious commands, potentially leading to a full system compromise.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.6,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-22T12:18:00.063Z",
+    "lastModifiedAt": "2026-07-22T16:23:35.893Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-63261",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63261",
+    "descriptionEn": "Uncontrolled Resource Consumption (CWE-400) in Kibana can lead to denial of service via Excessive Allocation (CAPEC-130). A low-privileged authenticated user can send a specially crafted request to a Kibana machine learning feature, causing the server to exhaust available memory and become unavailable to all users.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-21T23:18:02.817Z",
+    "lastModifiedAt": "2026-07-22T20:37:38.603Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-63145",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63145",
+    "descriptionEn": "Incorrect Authorization (CWE-863) in Kibana can lead to integrity compromise of Machine Learning audit and notification records via Accessing Functionality Not Properly Constrained by ACLs (CAPEC-1).\n\nA vulnerability exists in Kibana's Machine Learning functionality where a Machine Learning management endpoint performs an insufficient authorization check. The endpoint validates only a coarse privilege level but does not verify that the requesting user has access to the specific Machine Learning job or notification resources provided in the request. As a result, a low-privileged user with Machine Learning access in any Kibana space can manipulate Machine Learning audit and notification records for arbitrary jobs—including jobs in other spaces or belonging to other users—by leveraging Kibana's internally elevated credentials to write to restricted Machine Learning system indices that the user cannot access directly.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 4.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-21T23:18:02.460Z",
+    "lastModifiedAt": "2026-07-22T20:37:38.603Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-57495",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-57495",
     "descriptionEn": "AgenticMail gives AI agents real email addresses and phone numbers. In @agenticmail/claudecode prior to version 0.2.39, @agenticmail/codex prior to version 0.1.33, @agenticmail/core prior to version 0.9.43, and @agenticmail/openclaw prior to version 0.5.71, two inbound-mail handlers act on a privileged effect without verifying that the sender is the operator, while a sibling handler in the same repo does. The higher-impact one: any external email routed to the bridge inbox causes the dispatcher to resume the operator's Claude Code session with `permissionMode: 'bypassPermissions'`, embedding the attacker-controlled `from`/`subject`/`preview` verbatim into the prompt the resumed agent reads — an indirect prompt injection into a fully-privileged agent (Bash/Write/Edit/WebFetch + the agenticmail MCP toolbelt) running as the operator's OAuth identity. The sibling operator-query email-reply hook gates the same untrusted-From provenance with `isOperatorReplySender(replyFrom, config.operatorEmail)` (fail-closed); the bridge-wake path — a strictly higher-privilege effect — has no equivalent. @agenticmail/claudecode 0.2.39, @agenticmail/codex 0.1.33, @agenticmail/core 0.9.43, and @agenticmail/openclaw 0.5.71 contain a fix.",
@@ -8,8 +125,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-07-20T22:17:17.107Z",
-    "lastModifiedAt": "2026-07-20T22:17:17.107Z",
-    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "lastModifiedAt": "2026-07-22T14:17:22.687Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
     "llmStatus": "ok"
   },
   {
@@ -24,45 +141,6 @@
     "lastModifiedAt": "2026-07-21T17:17:12.783Z",
     "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-65056",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65056",
-    "descriptionEn": "mcp-webresearch 0.1.7 contains a server-side request forgery vulnerability that allows attackers to access internal network services by supplying loopback, link-local, or cloud metadata addresses to the visit_page tool, which only validates the URL protocol without filtering private or reserved IP ranges. Attackers can steer the LLM-controlled URL argument through prompt injection to navigate the server's Playwright browser to internal endpoints such as cloud instance metadata services, causing the server to return sensitive internal page content including credentials into the model context.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.2,
-    "severity": "HIGH",
-    "publishedAt": "2026-07-21T21:16:54.287Z",
-    "lastModifiedAt": "2026-07-21T21:16:54.287Z",
-    "fetchedAt": "2026-07-21T22:43:05.183Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-47393",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47393",
-    "descriptionEn": "PraisonAI is a multi-agent teams system. CVE-2026-44338 (GHSA-6rmh-7xcm-cpxj) documents that PraisonAI ships a code-generator (`praisonai.deploy.api.generate_api_server_code`) that emits a Flask API server with authentication disabled by default. Users who follow the documented quickstart (`praisonai deploy --type api`) get a server that binds to `0.0.0.0` per the recommended sample YAML, exposes `/chat` and `/agents` endpoints, runs `praisonai.run()` on user-supplied JSON input — LLM orchestration with the API key materials present in the process environment, and does not require any authentication. Versions prior to 4.6.40 still ship the generator with `auth_enabled` defaulting to `False`. The fix shape is opt-in via `APIConfig(auth_enabled=True, auth_token=...)`. Version 4.6.40 fixes the issue.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 9.8,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-07-21T16:17:12.270Z",
-    "lastModifiedAt": "2026-07-21T18:59:43.940Z",
-    "fetchedAt": "2026-07-21T22:43:05.183Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-47391",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47391",
-    "descriptionEn": "PraisonAI is a multi-agent teams system. Prior to version 4.6.40, PraisonAI's first-party A2A server example exposes an unauthenticated A2A JSON-RPC endpoint and registers a `calculate(expression)` tool implemented with Python `eval()`. The example also binds to `0.0.0.0`. A remote unauthenticated attacker can send `message/send` to `/a2a`; the request reaches `agent.chat()`, and a real LLM can invoke the registered `calculate` tool. In testing with `gemini/gemini-2.5-flash-lite`, this resulted in arbitrary Python execution in the server process, confirmed by creation of a marker file from an unauthenticated HTTP request. The issue affects deployments following the official A2A example or similar unauthenticated public A2A deployments with unsafe tools. The default unauthenticated A2A surface also exposes task history and task cancellation APIs, increasing confidentiality and integrity impact. Version 4.6.40 patches the issue.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 9.8,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-07-21T16:17:11.920Z",
-    "lastModifiedAt": "2026-07-21T18:59:43.940Z",
-    "fetchedAt": "2026-07-21T22:43:05.183Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-46341",
@@ -1009,8 +1087,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-22T23:16:30.490Z",
-    "lastModifiedAt": "2026-07-21T12:18:51.240Z",
-    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "lastModifiedAt": "2026-07-22T12:18:12.113Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
     "llmStatus": "ok"
   },
   {
@@ -1321,22 +1399,9 @@
     "cvssScore": 6.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-06-03T18:16:23.377Z",
-    "lastModifiedAt": "2026-06-04T16:28:59.003Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-22T20:10:00.127Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-44654",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44654",
-    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. In versions up to and including 0.8.3, a shared-agent editor can delete file records through `DELETE /api/files` that the owner has reused across multiple agents. The deletion removes the file globally — not just from the shared agent — breaking the owner's other private agents that reference the same `file_id`. The private agent retains a stale `file_id` reference that no longer resolves. A shared-agent editor can destroy files that the owner uses across multiple agents. The owner's private agents — which the attacker has no access to — break silently with stale `file_id` references. This is a cross-agent integrity violation: editing access to one agent should not affect another. Version 0.8.4 contains a patch.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.1,
-    "severity": "HIGH",
-    "publishedAt": "2026-06-02T23:16:38.260Z",
-    "lastModifiedAt": "2026-07-21T19:10:00.107Z",
-    "fetchedAt": "2026-07-21T22:43:05.183Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-44653",
@@ -1360,8 +1425,8 @@
     "cvssScore": 9.6,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-02T23:16:35.947Z",
-    "lastModifiedAt": "2026-06-04T19:08:10.297Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-22T19:10:00.120Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
     "llmStatus": "ok"
   },
   {
@@ -1373,8 +1438,8 @@
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2026-06-02T23:16:35.687Z",
-    "lastModifiedAt": "2026-06-04T19:00:26.457Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-22T19:10:00.120Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
     "llmStatus": "ok"
   },
   {
@@ -1386,22 +1451,9 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-02T17:16:32.073Z",
-    "lastModifiedAt": "2026-06-03T16:54:36.473Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-22T19:10:00.120Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-25879",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-25879",
-    "descriptionEn": "Langroid is a framework for building large-language-model-powered applications. Prior to version 0.63.0, SQLChatAgent executes SQL produced by an LLM, which is influenceable by prompt injection. When configured with a database role that has privileges enabling code execution or filesystem access (e.g., PostgreSQL pg_execute_server_program, MySQL FILE, MSSQL xp_cmdshell), an attacker who can shape the agent's input — including indirectly via data returned to the LLM — can coerce execution of dialect-specific primitives such as `COPY ... FROM PROGRAM`, achieving RCE on the database host. Fixed in v0.63.0 by defaulting SQLChatAgent to a SELECT-only sqlglot-parsed statement allowlist with a dialect-aware dangerous-pattern blocklist; allow_dangerous_operations=True restores the previous unrestricted behavior for trusted deployments.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 9.8,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-06-01T23:16:21.930Z",
-    "lastModifiedAt": "2026-07-21T19:10:00.107Z",
-    "fetchedAt": "2026-07-21T22:43:05.183Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-10214",
@@ -1412,8 +1464,8 @@
     "cvssScore": 7.3,
     "severity": "HIGH",
     "publishedAt": "2026-06-01T03:16:25.123Z",
-    "lastModifiedAt": "2026-06-01T15:15:37.293Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-22T07:10:00.107Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
     "llmStatus": "ok"
   },
   {
@@ -1425,8 +1477,8 @@
     "cvssScore": 8.5,
     "severity": "HIGH",
     "publishedAt": "2026-05-29T19:16:25.483Z",
-    "lastModifiedAt": "2026-05-29T20:17:38.110Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-22T06:10:00.170Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
     "llmStatus": "ok"
   },
   {
@@ -1438,8 +1490,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-05-29T19:16:25.143Z",
-    "lastModifiedAt": "2026-05-29T20:17:38.110Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-22T06:10:00.170Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
     "llmStatus": "ok"
   },
   {
@@ -1451,8 +1503,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-05-29T19:16:24.993Z",
-    "lastModifiedAt": "2026-05-29T20:17:38.110Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-22T06:10:00.170Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
     "llmStatus": "ok"
   },
   {
@@ -1464,8 +1516,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-05-29T19:16:24.857Z",
-    "lastModifiedAt": "2026-05-29T20:17:38.110Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-22T06:10:00.170Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
     "llmStatus": "ok"
   },
   {
@@ -1477,8 +1529,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-05-29T19:16:24.720Z",
-    "lastModifiedAt": "2026-06-02T03:16:17.250Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-22T06:10:00.170Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
     "llmStatus": "ok"
   },
   {
@@ -1490,8 +1542,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-05-29T19:16:24.570Z",
-    "lastModifiedAt": "2026-05-29T20:17:38.110Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-22T06:10:00.170Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
     "llmStatus": "ok"
   },
   {
