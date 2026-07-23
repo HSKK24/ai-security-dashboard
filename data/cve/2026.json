@@ -1,5 +1,70 @@
 [
   {
+    "id": "CVE-2026-65589",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65589",
+    "descriptionEn": "n8n versions before 1.123.64 fail to properly mask custom HTTP header credentials in LLM sub-node execution data, writing plaintext API keys and secrets to workflow execution records. Authenticated users with access to execution data can read exposed header values and credentials that persist in the database and can be exported.",
+    "summaryJa": "n8nのバージョン1.123.64より前において、LLMサブノードの実行データ処理時にカスタムHTTPヘッダーの資格情報が適切にマスクされず、APIキーやシークレットが平文でワークフロー実行記録に書き込まれる脆弱性があります。これにより、実行データにアクセス可能な認証済みユーザーは、データベースに永続的に保存されエクスポート可能な資格情報を読み取ることが可能となります。",
+    "category": "other",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-07-22T12:18:18.857Z",
+    "lastModifiedAt": "2026-07-23T14:18:01.630Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-44192",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44192",
+    "descriptionEn": "A flaw was found in the Ansible Lightspeed Model Context Protocol (MCP) server. This vulnerability, known as path traversal, allows an attacker to manipulate an AI agent through indirect prompt injection. By doing so, the attacker can cause the server to write files to unauthorized locations on the user's system. This can result in the exposure of sensitive host information and enable the attacker to execute malicious commands, potentially leading to a full system compromise.",
+    "summaryJa": "Ansible Lightspeed Model Context Protocol (MCP) サーバーにおいて、パス・トラバーサル（間接プロンプト・インジェクションとして知られる）の脆弱性が発見されました。これにより、攻撃者はAIエージェントを操作し、サーバーにユーザーシステム上の不正な場所にファイルを書き込ませることが可能です。結果として、機密情報の漏洩や悪意のあるコマンド実行を招き、システムが完全に侵害される危険性があります。",
+    "category": "prompt-injection",
+    "cvssScore": 6.6,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-22T12:18:00.063Z",
+    "lastModifiedAt": "2026-07-22T16:23:35.893Z",
+    "fetchedAt": "2026-07-22T22:51:11.267Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-63261",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63261",
+    "descriptionEn": "Uncontrolled Resource Consumption (CWE-400) in Kibana can lead to denial of service via Excessive Allocation (CAPEC-130). A low-privileged authenticated user can send a specially crafted request to a Kibana machine learning feature, causing the server to exhaust available memory and become unavailable to all users.",
+    "summaryJa": "Kibanaの機械学習機能において、制御されていないリソース消費（CWE-400）の脆弱性が存在します。認証済みの低権限ユーザーが特別に細工されたリクエストを送信することで、サーバーの利用可能なメモリを枯渇させ、サービス拒否状態を引き起こす可能性があります。",
+    "category": "ai-service",
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-21T23:18:02.817Z",
+    "lastModifiedAt": "2026-07-22T20:37:38.603Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-63145",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63145",
+    "descriptionEn": "Incorrect Authorization (CWE-863) in Kibana can lead to integrity compromise of Machine Learning audit and notification records via Accessing Functionality Not Properly Constrained by ACLs (CAPEC-1).\n\nA vulnerability exists in Kibana's Machine Learning functionality where a Machine Learning management endpoint performs an insufficient authorization check. The endpoint validates only a coarse privilege level but does not verify that the requesting user has access to the specific Machine Learning job or notification resources provided in the request. As a result, a low-privileged user with Machine Learning access in any Kibana space can manipulate Machine Learning audit and notification records for arbitrary jobs—including jobs in other spaces or belonging to other users—by leveraging Kibana's internally elevated credentials to write to restricted Machine Learning system indices that the user cannot access directly.",
+    "summaryJa": "KibanaのMachine Learning機能に不適切な認可の脆弱性が存在します。この脆弱性により、低権限のユーザーがMachine Learning管理エンドポイントを悪用し、他のユーザーやスペースに属するML監査レコードや通知レコードを操作できる可能性があります。これは、Kibanaの内部で昇格された認証情報を利用して、直接アクセスできない制限されたシステムインデックスへの書き込みが行われることで発生します。",
+    "category": "ai-service",
+    "cvssScore": 4.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-21T23:18:02.460Z",
+    "lastModifiedAt": "2026-07-22T20:37:38.603Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-65699",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65699",
+    "descriptionEn": "AgentGPT through 1.0.0 contains an authorization bypass through user-controlled key vulnerability that allows authenticated users to attach tasks to another user's agent run by supplying a target run_id in the request body without ownership verification. The AgentCRUD.create_task and validate_task_count functions look up the target AgentRun using the client-supplied run_id without confirming the run belongs to the requesting user, enabling an attacker who obtains a valid run_id to corrupt task history, exhaust the per-run loop budget, and drive LLM costs against the victim's run.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 4.2,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-23T18:17:01.153Z",
+    "lastModifiedAt": "2026-07-23T19:17:05.160Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-65056",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65056",
     "descriptionEn": "mcp-webresearch 0.1.7 contains a server-side request forgery vulnerability that allows attackers to access internal network services by supplying loopback, link-local, or cloud metadata addresses to the visit_page tool, which only validates the URL protocol without filtering private or reserved IP ranges. Attackers can steer the LLM-controlled URL argument through prompt injection to navigate the server's Playwright browser to internal endpoints such as cloud instance metadata services, causing the server to return sensitive internal page content including credentials into the model context.",
@@ -8,8 +73,8 @@
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-07-21T21:16:54.287Z",
-    "lastModifiedAt": "2026-07-22T16:18:51.307Z",
-    "fetchedAt": "2026-07-22T22:51:11.267Z",
+    "lastModifiedAt": "2026-07-23T15:24:59.880Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -34,87 +99,9 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-21T16:17:11.920Z",
-    "lastModifiedAt": "2026-07-21T18:59:43.940Z",
-    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "lastModifiedAt": "2026-07-23T15:17:11.303Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-44654",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44654",
-    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. In versions up to and including 0.8.3, a shared-agent editor can delete file records through `DELETE /api/files` that the owner has reused across multiple agents. The deletion removes the file globally — not just from the shared agent — breaking the owner's other private agents that reference the same `file_id`. The private agent retains a stale `file_id` reference that no longer resolves. A shared-agent editor can destroy files that the owner uses across multiple agents. The owner's private agents — which the attacker has no access to — break silently with stale `file_id` references. This is a cross-agent integrity violation: editing access to one agent should not affect another. Version 0.8.4 contains a patch.",
-    "summaryJa": "LibreChatのバージョン0.8.3以前には、共有エージェントの編集者が`DELETE /api/files`エンドポイントを介してファイルを削除できる脆弱性があります。この操作はファイルがオーナーによって複数のエージェントで再利用されている場合でもグローバルに適用され、結果としてオーナーの他のプライベートエージェントが参照するファイルIDを無効化し、機能不全に陥らせる可能性があります。これにより、クロスエージェント間の整合性が侵害されます。",
-    "category": "ai-service",
-    "cvssScore": 8.1,
-    "severity": "HIGH",
-    "publishedAt": "2026-06-02T23:16:38.260Z",
-    "lastModifiedAt": "2026-07-21T19:10:00.107Z",
-    "fetchedAt": "2026-07-21T22:43:05.183Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-25879",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-25879",
-    "descriptionEn": "Langroid is a framework for building large-language-model-powered applications. Prior to version 0.63.0, SQLChatAgent executes SQL produced by an LLM, which is influenceable by prompt injection. When configured with a database role that has privileges enabling code execution or filesystem access (e.g., PostgreSQL pg_execute_server_program, MySQL FILE, MSSQL xp_cmdshell), an attacker who can shape the agent's input — including indirectly via data returned to the LLM — can coerce execution of dialect-specific primitives such as `COPY ... FROM PROGRAM`, achieving RCE on the database host. Fixed in v0.63.0 by defaulting SQLChatAgent to a SELECT-only sqlglot-parsed statement allowlist with a dialect-aware dangerous-pattern blocklist; allow_dangerous_operations=True restores the previous unrestricted behavior for trusted deployments.",
-    "summaryJa": "LangroidフレームワークのSQLChatAgentにおいて、プロンプトインジェクションによりLLMが生成するSQLが影響を受ける脆弱性が存在します。データベースがコード実行やファイルシステムアクセス権限を持つ設定の場合、攻撃者はエージェントの入力を操作することで、データベースホスト上でリモートコード実行（RCE）を達成する可能性があります。この脆弱性はバージョン0.63.0で修正され、デフォルトでSELECTのみを許可する安全な運用が採用されました。",
-    "category": "prompt-injection",
-    "cvssScore": 9.8,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-06-01T23:16:21.930Z",
-    "lastModifiedAt": "2026-07-21T19:10:00.107Z",
-    "fetchedAt": "2026-07-21T22:43:05.183Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-65589",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65589",
-    "descriptionEn": "n8n versions before 1.123.64 fail to properly mask custom HTTP header credentials in LLM sub-node execution data, writing plaintext API keys and secrets to workflow execution records. Authenticated users with access to execution data can read exposed header values and credentials that persist in the database and can be exported.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-07-22T12:18:18.857Z",
-    "lastModifiedAt": "2026-07-22T16:27:18.220Z",
-    "fetchedAt": "2026-07-22T22:51:11.267Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-44192",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44192",
-    "descriptionEn": "A flaw was found in the Ansible Lightspeed Model Context Protocol (MCP) server. This vulnerability, known as path traversal, allows an attacker to manipulate an AI agent through indirect prompt injection. By doing so, the attacker can cause the server to write files to unauthorized locations on the user's system. This can result in the exposure of sensitive host information and enable the attacker to execute malicious commands, potentially leading to a full system compromise.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 6.6,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-07-22T12:18:00.063Z",
-    "lastModifiedAt": "2026-07-22T16:23:35.893Z",
-    "fetchedAt": "2026-07-22T22:51:11.267Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-63261",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63261",
-    "descriptionEn": "Uncontrolled Resource Consumption (CWE-400) in Kibana can lead to denial of service via Excessive Allocation (CAPEC-130). A low-privileged authenticated user can send a specially crafted request to a Kibana machine learning feature, causing the server to exhaust available memory and become unavailable to all users.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 6.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-07-21T23:18:02.817Z",
-    "lastModifiedAt": "2026-07-22T20:37:38.603Z",
-    "fetchedAt": "2026-07-22T22:51:11.267Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-63145",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63145",
-    "descriptionEn": "Incorrect Authorization (CWE-863) in Kibana can lead to integrity compromise of Machine Learning audit and notification records via Accessing Functionality Not Properly Constrained by ACLs (CAPEC-1).\n\nA vulnerability exists in Kibana's Machine Learning functionality where a Machine Learning management endpoint performs an insufficient authorization check. The endpoint validates only a coarse privilege level but does not verify that the requesting user has access to the specific Machine Learning job or notification resources provided in the request. As a result, a low-privileged user with Machine Learning access in any Kibana space can manipulate Machine Learning audit and notification records for arbitrary jobs—including jobs in other spaces or belonging to other users—by leveraging Kibana's internally elevated credentials to write to restricted Machine Learning system indices that the user cannot access directly.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 4.3,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-07-21T23:18:02.460Z",
-    "lastModifiedAt": "2026-07-22T20:37:38.603Z",
-    "fetchedAt": "2026-07-22T22:51:11.267Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-57495",
@@ -125,8 +112,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-07-20T22:17:17.107Z",
-    "lastModifiedAt": "2026-07-22T14:17:22.687Z",
-    "fetchedAt": "2026-07-22T22:51:11.267Z",
+    "lastModifiedAt": "2026-07-23T15:54:18.643Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -138,8 +125,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-20T20:16:46.170Z",
-    "lastModifiedAt": "2026-07-21T17:17:12.783Z",
-    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "lastModifiedAt": "2026-07-23T15:24:59.880Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1165,8 +1152,8 @@
     "cvssScore": 7.8,
     "severity": "HIGH",
     "publishedAt": "2026-06-10T00:16:53.827Z",
-    "lastModifiedAt": "2026-06-11T12:16:31.507Z",
-    "fetchedAt": "2026-06-11T13:41:08.759Z",
+    "lastModifiedAt": "2026-07-23T09:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1178,8 +1165,8 @@
     "cvssScore": 7.8,
     "severity": "HIGH",
     "publishedAt": "2026-06-10T00:16:53.557Z",
-    "lastModifiedAt": "2026-06-10T20:19:06.020Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-23T09:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1191,8 +1178,8 @@
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-06-09T16:16:43.450Z",
-    "lastModifiedAt": "2026-07-14T22:17:11.507Z",
-    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "lastModifiedAt": "2026-07-23T08:10:00.137Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1204,8 +1191,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:42.600Z",
-    "lastModifiedAt": "2026-06-09T14:57:08.360Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1217,8 +1204,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:42.443Z",
-    "lastModifiedAt": "2026-06-15T13:56:30.973Z",
-    "fetchedAt": "2026-06-15T23:28:21.775Z",
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1230,8 +1217,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:42.277Z",
-    "lastModifiedAt": "2026-06-15T13:58:37.763Z",
-    "fetchedAt": "2026-06-15T23:28:21.775Z",
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1243,8 +1230,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:42.097Z",
-    "lastModifiedAt": "2026-06-15T14:02:35.157Z",
-    "fetchedAt": "2026-06-15T23:28:21.775Z",
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1256,8 +1243,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:41.950Z",
-    "lastModifiedAt": "2026-06-15T14:04:20.547Z",
-    "fetchedAt": "2026-06-15T23:28:21.775Z",
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1269,22 +1256,22 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:41.810Z",
-    "lastModifiedAt": "2026-06-12T17:47:36.123Z",
-    "fetchedAt": "2026-06-15T23:28:21.775Z",
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-46444",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46444",
-    "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, all CRUD endpoints for OpenAI Assistants Vector Store have no authentication middleware and the route path /api/v1/openai-assistants-vector-store is not in WHITELIST_URLS. However, it is also not protected by the main auth middleware when accessed via API key 窶・the route requires API key auth (not whitelisted), but no permission checks exist on any operation. This issue has been patched in version 3.1.2.",
-    "summaryJa": "FlowiseのOpenAI Assistants Vector StoreにおけるCRUDエンドポイントに認証ミドルウェアが欠如しており、APIキーでアクセスした場合でも権限チェックが行われない脆弱性がありました。これにより、未認証のユーザーがベクターストアのデータに対して作成、読み取り、更新、削除の操作を可能にする恐れがありました。この問題はバージョン3.1.2で修正されています。",
-    "category": "ai-service",
+    "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, all CRUD endpoints for OpenAI Assistants Vector Store have no authentication middleware and the route path /api/v1/openai-assistants-vector-store is not in WHITELIST_URLS. However, it is also not protected by the main auth middleware when accessed via API key — the route requires API key auth (not whitelisted), but no permission checks exist on any operation. This issue has been patched in version 3.1.2.",
+    "summaryJa": null,
+    "category": null,
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:41.660Z",
-    "lastModifiedAt": "2026-06-11T04:08:59.193Z",
-    "fetchedAt": "2026-06-11T13:41:08.759Z",
-    "llmStatus": "ok"
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-46443",
@@ -1295,22 +1282,22 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-06-08T16:16:41.493Z",
-    "lastModifiedAt": "2026-06-11T04:08:36.827Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-46442",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46442",
-    "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, POST /api/v1/node-custom-function lacks route-level authorization, allowing any authenticated user or API key to submit arbitrary JavaScript to the Custom JS Function node. When E2B_APIKEY is not configured 窶・the common deployment case 窶・Flowise executes this code inside a NodeVM sandbox. This sandbox can be escaped, allowing an attacker to reach the host process object and execute system commands via child_process. The result is authenticated remote code execution on the Flowise server host. This issue has been patched in version 3.1.2.",
-    "summaryJa": "Flowiseのバージョン3.1.2より前において、`POST /api/v1/node-custom-function`ルートの認可制御の欠如により、認証されたユーザーまたはAPIキーが任意のJavaScriptコードをCustom JS Functionノードに送信可能でした。これにより、E2B_APIKEYが未設定の一般的なデプロイケースでは、NodeVMサンドボックスからの脱出を経てホストプロセスにアクセスし、システムコマンドを実行可能となり、Flowiseサーバーホスト上での認証済みリモートコード実行（RCE）につながります。この脆弱性はバージョン3.1.2でパッチが適用されています。",
-    "category": "other",
+    "descriptionEn": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.1.2, POST /api/v1/node-custom-function lacks route-level authorization, allowing any authenticated user or API key to submit arbitrary JavaScript to the Custom JS Function node. When E2B_APIKEY is not configured — the common deployment case — Flowise executes this code inside a NodeVM sandbox. This sandbox can be escaped, allowing an attacker to reach the host process object and execute system commands via child_process. The result is authenticated remote code execution on the Flowise server host. This issue has been patched in version 3.1.2.",
+    "summaryJa": null,
+    "category": null,
     "cvssScore": 9.9,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-08T16:16:41.347Z",
-    "lastModifiedAt": "2026-06-11T04:07:08.640Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
-    "llmStatus": "ok"
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-46441",
@@ -1321,8 +1308,8 @@
     "cvssScore": 9.6,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-08T16:16:41.190Z",
-    "lastModifiedAt": "2026-06-11T04:06:52.607Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1334,8 +1321,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-08T16:16:41.043Z",
-    "lastModifiedAt": "2026-06-11T04:06:33.593Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1347,8 +1334,8 @@
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-06-08T16:16:39.820Z",
-    "lastModifiedAt": "2026-06-11T03:58:49.717Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1360,8 +1347,8 @@
     "cvssScore": 5,
     "severity": "MEDIUM",
     "publishedAt": "2026-06-08T16:16:39.677Z",
-    "lastModifiedAt": "2026-06-11T03:56:29.467Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1373,8 +1360,8 @@
     "cvssScore": 9.6,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-08T16:16:39.503Z",
-    "lastModifiedAt": "2026-06-11T03:53:34.103Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1386,8 +1373,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-06-05T02:17:11.180Z",
-    "lastModifiedAt": "2026-06-05T18:17:04.343Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-23T07:10:00.113Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1401,6 +1388,19 @@
     "publishedAt": "2026-06-03T18:16:23.377Z",
     "lastModifiedAt": "2026-07-22T20:10:00.127Z",
     "fetchedAt": "2026-07-22T22:51:11.267Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-44654",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44654",
+    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. In versions up to and including 0.8.3, a shared-agent editor can delete file records through `DELETE /api/files` that the owner has reused across multiple agents. The deletion removes the file globally — not just from the shared agent — breaking the owner's other private agents that reference the same `file_id`. The private agent retains a stale `file_id` reference that no longer resolves. A shared-agent editor can destroy files that the owner uses across multiple agents. The owner's private agents — which the attacker has no access to — break silently with stale `file_id` references. This is a cross-agent integrity violation: editing access to one agent should not affect another. Version 0.8.4 contains a patch.",
+    "summaryJa": "LibreChatのバージョン0.8.3以前には、共有エージェントの編集者が`DELETE /api/files`エンドポイントを介してファイルを削除できる脆弱性があります。この操作はファイルがオーナーによって複数のエージェントで再利用されている場合でもグローバルに適用され、結果としてオーナーの他のプライベートエージェントが参照するファイルIDを無効化し、機能不全に陥らせる可能性があります。これにより、クロスエージェント間の整合性が侵害されます。",
+    "category": "ai-service",
+    "cvssScore": 8.1,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-02T23:16:38.260Z",
+    "lastModifiedAt": "2026-07-21T19:10:00.107Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -1453,6 +1453,19 @@
     "publishedAt": "2026-06-02T17:16:32.073Z",
     "lastModifiedAt": "2026-07-22T19:10:00.120Z",
     "fetchedAt": "2026-07-22T22:51:11.267Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-25879",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-25879",
+    "descriptionEn": "Langroid is a framework for building large-language-model-powered applications. Prior to version 0.63.0, SQLChatAgent executes SQL produced by an LLM, which is influenceable by prompt injection. When configured with a database role that has privileges enabling code execution or filesystem access (e.g., PostgreSQL pg_execute_server_program, MySQL FILE, MSSQL xp_cmdshell), an attacker who can shape the agent's input — including indirectly via data returned to the LLM — can coerce execution of dialect-specific primitives such as `COPY ... FROM PROGRAM`, achieving RCE on the database host. Fixed in v0.63.0 by defaulting SQLChatAgent to a SELECT-only sqlglot-parsed statement allowlist with a dialect-aware dangerous-pattern blocklist; allow_dangerous_operations=True restores the previous unrestricted behavior for trusted deployments.",
+    "summaryJa": "LangroidフレームワークのSQLChatAgentにおいて、プロンプトインジェクションによりLLMが生成するSQLが影響を受ける脆弱性が存在します。データベースがコード実行やファイルシステムアクセス権限を持つ設定の場合、攻撃者はエージェントの入力を操作することで、データベースホスト上でリモートコード実行（RCE）を達成する可能性があります。この脆弱性はバージョン0.63.0で修正され、デフォルトでSELECTのみを許可する安全な運用が採用されました。",
+    "category": "prompt-injection",
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-06-01T23:16:21.930Z",
+    "lastModifiedAt": "2026-07-21T19:10:00.107Z",
+    "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
   },
   {
@@ -1620,8 +1633,8 @@
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-05-26T21:16:39.003Z",
-    "lastModifiedAt": "2026-05-29T19:48:48.150Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-23T11:10:00.120Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1633,8 +1646,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-05-26T21:16:37.620Z",
-    "lastModifiedAt": "2026-07-15T02:21:50.537Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-07-23T11:10:00.120Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
   },
   {
@@ -1659,9 +1672,22 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-05-25T07:16:16.377Z",
-    "lastModifiedAt": "2026-06-01T14:22:15.893Z",
-    "fetchedAt": "2026-06-11T10:23:57.291Z",
+    "lastModifiedAt": "2026-07-23T17:10:00.123Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
     "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-28444",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-28444",
+    "descriptionEn": "Typebot is a chatbot builder tool. In versions 3.15.2 and prior, the getResultLogs API endpoint authorizes the caller against the provided typebotId but fetches logs solely by resultId without verifying that the result belongs to the authorized typebot, leading to IDOR. An authenticated attacker can supply their own typebotId alongside any victim's resultId to read execution logs from other workspaces, leaking sensitive data including HTTP response bodies, AI model outputs, and webhook payloads. Every other result-scoped endpoint in the same router properly validates that the resultId belongs to the authorized typebotId. This confirms the missing check is an oversight, not a design choice. This issue has been fixed in version 3.15.2.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-05-22T17:16:45.970Z",
+    "lastModifiedAt": "2026-07-23T16:10:00.137Z",
+    "fetchedAt": "2026-07-23T22:44:45.727Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-44484",
