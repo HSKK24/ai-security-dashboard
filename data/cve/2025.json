@@ -1,5 +1,18 @@
 [
   {
+    "id": "CVE-2025-51859",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-51859",
+    "descriptionEn": "Stored Cross-Site Scripting (XSS) vulnerability in Chaindesk thru 2025-05-26 in its agent chat component. An attacker can achieve arbitrary client-side script execution by crafting an AI agent whose system prompt instructs the underlying Large Language Model (LLM) to embed malicious script payloads (e.g., SVG-based XSS) into its chat responses. When a user interacts with such a malicious agent or accesses a direct link to a conversation containing an XSS payload, the script executes in the user's browser. Successful exploitation can lead to the theft of sensitive information, such as JWT session tokens, potentially resulting in account hijacking.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2025-07-22T15:15:36.623Z",
+    "lastModifiedAt": "2026-06-17T09:35:51.590Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "failed"
+  },
+  {
     "id": "CVE-2025-51867",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-51867",
     "descriptionEn": "Insecure Direct Object Reference (IDOR) vulnerability in Deepfiction AI (deepfiction.ai) thru June 3, 2025, allowing attackers to chat with the LLM using other users' credits via sensitive information gained by the /browse/stories endpoint.",
@@ -2832,18 +2845,5 @@
     "lastModifiedAt": "2026-06-17T09:35:51.743Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2025-51859",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-51859",
-    "descriptionEn": "Stored Cross-Site Scripting (XSS) vulnerability in Chaindesk thru 2025-05-26 in its agent chat component. An attacker can achieve arbitrary client-side script execution by crafting an AI agent whose system prompt instructs the underlying Large Language Model (LLM) to embed malicious script payloads (e.g., SVG-based XSS) into its chat responses. When a user interacts with such a malicious agent or accesses a direct link to a conversation containing an XSS payload, the script executes in the user's browser. Successful exploitation can lead to the theft of sensitive information, such as JWT session tokens, potentially resulting in account hijacking.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 6.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2025-07-22T15:15:36.623Z",
-    "lastModifiedAt": "2026-06-17T09:35:51.590Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "failed"
   }
 ]
