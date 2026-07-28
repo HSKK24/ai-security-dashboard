@@ -1,29 +1,16 @@
 [
   {
-    "id": "CVE-2026-30310",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-30310",
-    "descriptionEn": "In its design for automatic terminal command execution, Sixth offers two options: Execute safe commands and Execute all commands. The description for the former states that commands determined by the model to be safe will be automatically executed, whereas if the model judges a command to be potentially destructive, it still requires user approval. However, this design is highly susceptible to prompt injection attacks. An attacker can employ a generic template to wrap any malicious command and mislead the model into misclassifying it as a 'safe' command, thereby bypassing the user approval requirement and resulting in arbitrary command execution.",
-    "summaryJa": "Sixthの自動ターミナルコマンド実行機能において、「安全なコマンドの実行」モードがプロンプトインジェクション攻撃に対して脆弱です。攻撃者はプロンプトインジェクションを用いることで、悪意のあるコマンドをモデルに安全と誤認させ、ユーザー承認を迂回して任意のコマンドを自動実行させることが可能です。",
-    "category": "prompt-injection",
-    "cvssScore": 9.8,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-03-31T14:16:11.390Z",
-    "lastModifiedAt": "2026-07-25T10:10:00.167Z",
-    "fetchedAt": "2026-07-27T22:48:21.613Z",
-    "llmStatus": "ok"
-  },
-  {
     "id": "CVE-2026-17534",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-17534",
     "descriptionEn": "Kimi Code (@moonshot-ai/kimi-code) before 0.27.0 implements FetchURL SSRF hardening as a static hostname and IP-literal denylist in assertSafeFetchTarget, without resolving DNS or re-validating hosts after HTTP redirects. An attacker who can influence a FetchURL call (for example via prompt injection) can supply a crafted public hostname that resolves to loopback or another internal address, or a public URL that redirects to such a target, and thereby reach internal network services that the denylist was intended to block. FetchURL is included in the default auto-approve tool set, so the call does not require interactive user confirmation in manual mode.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Kimi Codeのv0.27.0より前のバージョンには、`FetchURL`機能におけるServer-Side Request Forgery (SSRF) の脆弱性が存在します。静的な拒否リストと、DNS解決やHTTPリダイレクト後のホスト再検証の欠如により、攻撃者はプロンプトインジェクションなどを介して細工されたURLを渡し、内部ネットワークサービスにアクセスできる可能性があります。この機能はデフォルトで自動承認されるため、手動モードでもユーザー確認なしに悪用される恐れがあります。",
+    "category": "ai-library",
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-27T10:16:37.747Z",
     "lastModifiedAt": "2026-07-27T20:37:16.927Z",
-    "fetchedAt": "2026-07-27T22:48:21.613Z",
-    "llmStatus": "pending"
+    "fetchedAt": "2026-07-28T22:49:01.930Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-66004",
@@ -61,7 +48,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2026-07-22T12:18:18.857Z",
     "lastModifiedAt": "2026-07-27T19:09:14.453Z",
-    "fetchedAt": "2026-07-27T22:48:21.613Z",
+    "fetchedAt": "2026-07-28T22:49:01.930Z",
     "llmStatus": "ok"
   },
   {
@@ -2129,6 +2116,19 @@
     "publishedAt": "2026-03-31T22:16:20.167Z",
     "lastModifiedAt": "2026-07-24T21:10:00.143Z",
     "fetchedAt": "2026-07-26T22:47:19.908Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-30310",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-30310",
+    "descriptionEn": "In its design for automatic terminal command execution, Sixth offers two options: Execute safe commands and Execute all commands. The description for the former states that commands determined by the model to be safe will be automatically executed, whereas if the model judges a command to be potentially destructive, it still requires user approval. However, this design is highly susceptible to prompt injection attacks. An attacker can employ a generic template to wrap any malicious command and mislead the model into misclassifying it as a 'safe' command, thereby bypassing the user approval requirement and resulting in arbitrary command execution.",
+    "summaryJa": "Sixthの自動ターミナルコマンド実行機能において、「安全なコマンドの実行」モードがプロンプトインジェクション攻撃に対して脆弱です。攻撃者はプロンプトインジェクションを用いることで、悪意のあるコマンドをモデルに安全と誤認させ、ユーザー承認を迂回して任意のコマンドを自動実行させることが可能です。",
+    "category": "prompt-injection",
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-03-31T14:16:11.390Z",
+    "lastModifiedAt": "2026-07-25T10:10:00.167Z",
+    "fetchedAt": "2026-07-27T22:48:21.613Z",
     "llmStatus": "ok"
   },
   {
