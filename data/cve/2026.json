@@ -1,5 +1,44 @@
 [
   {
+    "id": "CVE-2026-65975",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65975",
+    "descriptionEn": "Pydantic AI is a Python agent framework for building applications and workflows with Generative AI. In versions 1.88.0 up to but not including 1.107.1 and 2.0.0b1 up to but not including 2.5.0, the UI adapters (AG-UI via Agent.to_ag_ui()/AGUIAdapter, and Vercel AI via VercelAIAdapter) use sanitize_messages to strip unresolved (\"dangling\") client-submitted tool calls from untrusted message history before it reaches the agent, a defense-in-depth default that prevents the agent from executing tool calls the model never emitted. However, the strip anchored to a message index computed before sanitization ran, so when a trailing client message sanitized to empty and was dropped (for example a client system message under the default manage_system_prompt='server'), a preceding assistant response carrying an unresolved tool call became the new tail and was dispatched without inspection. As a result, a remote client could cause a registered, non-approval server tool to run with client-supplied arguments rather than arguments the model produced. The impact is bounded by what the affected tools do and is most significant for applications that gate tool execution in a model-request hook (before_model_request / after_model_request), since a forged call skips the model turn and bypasses that guardrail; approval-gated tools (requires_approval=True) are not auto-executed by this path. This issue has been fixed in versions 1.107.1 and 2.5.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-29T21:17:47.723Z",
+    "lastModifiedAt": "2026-07-29T21:17:47.723Z",
+    "fetchedAt": "2026-07-29T22:45:29.623Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54249",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54249",
+    "descriptionEn": "Pydantic AI is a Python agent framework for building Generative AI applications. In versions 1.65.0 through 1.105.0, and 2.0.0b1 through 2.0.0b5, a client that submits message history to a Pydantic AI UI adapter (such as the Vercel AI adapter) can reference arbitrary files in the application's model-provider or cloud-storage account. While file URL parts are validated against a scheme allowlist, UploadedFile references — which point to a file by provider file ID or cloud-storage URI (e.g. s3://…, gs://…) — were forwarded without validation. Because the provider resolves an UploadedFile using the server-side identity (IAM role, service account, or provider API key) rather than the client's, an attacker can craft message history to make the server read objects from its own account or other tenants, given a referenceable identifier. Exploitation requires a valid file identifier, which is not always unguessable depending on how the application names objects. This issue has been fixed in versions 1.106.0 and 2.0.0b6.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.8,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-29T21:17:47.323Z",
+    "lastModifiedAt": "2026-07-29T21:17:47.323Z",
+    "fetchedAt": "2026-07-29T22:45:29.623Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-46678",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46678",
+    "descriptionEn": "Pydantic AI is a Python agent framework for building Generative AI applications. In versions 1.56.0 through 1.98.0, when an application opts a URL into force_download='allow-local' (disabling the default block on private/internal IPs), the cloud-metadata blocklist could be bypassed by encoding the metadata IP in an IPv6 transition form (IPv4-mapped IPv6, 6to4, or NAT64), exposing cloud IAM short-term credentials on dual-stack or translated networks. This is an incomplete fix of GHSA-2jrp-274c-jhv3 / CVE-2026-25580, whose remediation did not hold for IPv6-encoded forms of the metadata IPs. An application is affected only if it explicitly opts a FileUrl (ImageUrl, AudioUrl, VideoUrl, DocumentUrl) into force_download='allow-local' on a URL influenced by untrusted input; it is not affected when using bundled integrations to ingest user input (Agent.to_web / clai web, VercelAIAdapter, AGUIAdapter / Agent.to_ag_ui), since they do not propagate force_download from external data, nor when downloading only from developer-controlled URLs. This issue has been fixed in version 1.99.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.8,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-07-29T21:17:47.040Z",
+    "lastModifiedAt": "2026-07-29T21:17:47.040Z",
+    "fetchedAt": "2026-07-29T22:45:29.623Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-17534",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-17534",
     "descriptionEn": "Kimi Code (@moonshot-ai/kimi-code) before 0.27.0 implements FetchURL SSRF hardening as a static hostname and IP-literal denylist in assertSafeFetchTarget, without resolving DNS or re-validating hosts after HTTP redirects. An attacker who can influence a FetchURL call (for example via prompt injection) can supply a crafted public hostname that resolves to loopback or another internal address, or a public URL that redirects to such a target, and thereby reach internal network services that the denylist was intended to block. FetchURL is included in the default auto-approve tool set, so the call does not require interactive user confirmation in manual mode.",
