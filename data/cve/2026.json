@@ -1,5 +1,57 @@
 [
   {
+    "id": "CVE-2026-61536",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61536",
+    "descriptionEn": "Banks generates meaningful LLM prompts using a simple template language. In versions prior to 2.4.3, banks parses Tool JSON objects from the rendered body of {% completion %} blocks and later resolves their import_path field through importlib.import_module(...) + getattr(...) to obtain the callable that handles a tool call. There is no allowlist or sanitization on import_path, so any importable Python attribute (e.g. os.system, subprocess.getoutput) can be selected. When the LLM emits a tool_calls entry whose function.name matches the attacker-supplied tool name, the resolved callable is invoked with kwargs decoded from tool_call.function.arguments, yielding arbitrary code execution in the banks-hosting process. This is distinct from GHSA-gphh-9q3h-jgpp / CVE-2026-44209. That advisory was fixed in 2.4.2 by switching src/banks/env.py from Environment to SandboxedEnvironment. The fix does not touch src/banks/extensions/completion.py, and the unsafe import + getattr chain still executes on 2.4.2. The malicious Tool JSON is plain text in the rendered template body — it requires no Jinja attribute access, so the sandbox is irrelevant. This issue has been fixed in version 2.4.3.",
+    "summaryJa": "Banksライブラリにおいて、バージョン2.4.3より前のバージョンに任意のコード実行の脆弱性が存在します。これは、LLMプロンプトの`{% completion %}`ブロックから解析されるTool JSONオブジェクトの`import_path`フィールドが適切にサニタイズされず、危険なPython属性を動的にインポート・実行できてしまうためです。攻撃者は、この仕組みを悪用して悪意のあるツールを定義し、LLMがそのツールを呼び出した際に、Banksホスティングプロセス上で任意のコードを実行することが可能となります。",
+    "category": "ai-library",
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-30T19:18:34.553Z",
+    "lastModifiedAt": "2026-07-30T19:26:51.190Z",
+    "fetchedAt": "2026-07-30T22:54:23.751Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-62663",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-62663",
+    "descriptionEn": "Banks generates meaningful LLM prompts using a simple template language. In versions prior to 2.4.4, all four media filters (image, audio, video, document) in banks accept untrusted user input as file paths via Path(value) and pass them directly to open(file_path, \"rb\") without any path sanitization, canonicalization, or directory restriction. An attacker who controls template variables passed to a banks Prompt can use path traversal (../) to read arbitrary files accessible to the Python process—including .env files, SSH keys, cloud credentials, source code, /etc/passwd, and /etc/shadow—with the content returned base64-encoded in the rendered prompt output, making exfiltration trivial. This is particularly dangerous for applications that use banks to process user-provided template variables before sending prompts to an LLM. This issue has been fixed in version 2.4.4.",
+    "summaryJa": "Banksのバージョン2.4.4未満において、LLMプロンプト生成ライブラリのメディアフィルターが、ユーザー提供のファイルパスを適切にサニタイズせずに処理していました。これにより、攻撃者はパストラバーサル（../）を用いて、Pythonプロセスがアクセス可能な任意のファイルを読み取り、その内容をBase64エンコードされたプロンプト出力として外部に流出させることが可能でした。この脆弱性は、ユーザー入力を含むテンプレートをLLMに送信するアプリケーションに特に深刻な影響を与えます。",
+    "category": "ai-library",
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-30T17:16:33.900Z",
+    "lastModifiedAt": "2026-07-30T19:26:51.190Z",
+    "fetchedAt": "2026-07-30T22:54:23.751Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-18394",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-18394",
+    "descriptionEn": "Incorrect authorization in the http_request tool in Strands Agents Tools before 0.8.2 might allow remote attackers to obtain credentials configured via HTTP_REQUEST_TOKEN_CONFIG by influencing the LLM to route requests through actor-controlled proxy infrastructure.\n\n\n\nTo remediate this issue, users should upgrade to version 0.8.2.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.4,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-31T20:16:49.780Z",
+    "lastModifiedAt": "2026-07-31T20:16:49.780Z",
+    "fetchedAt": "2026-07-31T22:48:37.158Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-17351",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-17351",
+    "descriptionEn": "The fix for CVE-2026-12045 in pgAdmin 4 9.16 required the LLM-supplied query passed to the AI Assistant's execute_sql_query tool to parse, via sqlparse, as exactly one non-transaction-control statement before running it inside a BEGIN TRANSACTION READ ONLY wrapper. sqlparse's string-literal lexing can disagree with PostgreSQL's own parser: under standard_conforming_strings = on (PostgreSQL's default since 9.1), a backslash immediately before a quote is an ordinary character to PostgreSQL, but sqlparse treats it as escaping the quote. A payload such as SELECT '\\';COMMIT;CREATE TABLE pwn(x int);SELECT 1 --' therefore parses as a single SELECT to sqlparse's validator, while PostgreSQL executes it as four statements: the smuggled COMMIT ends the wrapping read-only transaction, and the trailing ROLLBACK becomes a no-op. This reintroduces the same write/RCE bypass CVE-2026-12045 was meant to close, reachable via the same indirect prompt-injection delivery (an attacker plants the payload in any object the AI Assistant may read; the LLM emits it as a tool call).\n\nAn initial candidate fix ran the query with psycopg's execute(..., prepare=True), intending to force PostgreSQL's own Parse step (extended query protocol) to reject multi-statement text regardless of sqlparse's classification. This candidate fix does not work as submitted: psycopg3's PrepareManager silently ignores the prepare argument whenever the connection's prepare_threshold is None, which is pgAdmin's default for every server connection (the per-server \"Prepare threshold\" field is blank unless an administrator explicitly sets it) -- psycopg3 falls back to the simple query protocol, the same multi-statement-capable path the bypass exploits, so the candidate fix closes nothing on any real-world default configuration.\n\nThe corrected fix sets conn.prepare_threshold = 0 directly on the dedicated, single-use read-only connection the AI Assistant tool opens, structurally forcing the extended query protocol independent of any server-level configuration. Verified against a live PostgreSQL 18 instance: the payload executes successfully under the prepare_threshold=None (default) behavior, and is rejected with \"cannot insert multiple commands into a prepared statement\" once prepare_threshold=0 is set on that connection.\n\nThis issue affects pgAdmin 4: from 9.13 before 9.17.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-07-31T16:16:59.807Z",
+    "lastModifiedAt": "2026-07-31T18:17:11.800Z",
+    "fetchedAt": "2026-07-31T22:48:37.158Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-65975",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-65975",
     "descriptionEn": "Pydantic AI is a Python agent framework for building applications and workflows with Generative AI. In versions 1.88.0 up to but not including 1.107.1 and 2.0.0b1 up to but not including 2.5.0, the UI adapters (AG-UI via Agent.to_ag_ui()/AGUIAdapter, and Vercel AI via VercelAIAdapter) use sanitize_messages to strip unresolved (\"dangling\") client-submitted tool calls from untrusted message history before it reaches the agent, a defense-in-depth default that prevents the agent from executing tool calls the model never emitted. However, the strip anchored to a message index computed before sanitization ran, so when a trailing client message sanitized to empty and was dropped (for example a client system message under the default manage_system_prompt='server'), a preceding assistant response carrying an unresolved tool call became the new tail and was dispatched without inspection. As a result, a remote client could cause a registered, non-approval server tool to run with client-supplied arguments rather than arguments the model produced. The impact is bounded by what the affected tools do and is most significant for applications that gate tool execution in a model-request hook (before_model_request / after_model_request), since a forged call skips the model turn and bypasses that guardrail; approval-gated tools (requires_approval=True) are not auto-executed by this path. This issue has been fixed in versions 1.107.1 and 2.5.0.",
@@ -39,32 +91,6 @@
     "llmStatus": "ok"
   },
   {
-    "id": "CVE-2026-61536",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61536",
-    "descriptionEn": "Banks generates meaningful LLM prompts using a simple template language. In versions prior to 2.4.3, banks parses Tool JSON objects from the rendered body of {% completion %} blocks and later resolves their import_path field through importlib.import_module(...) + getattr(...) to obtain the callable that handles a tool call. There is no allowlist or sanitization on import_path, so any importable Python attribute (e.g. os.system, subprocess.getoutput) can be selected. When the LLM emits a tool_calls entry whose function.name matches the attacker-supplied tool name, the resolved callable is invoked with kwargs decoded from tool_call.function.arguments, yielding arbitrary code execution in the banks-hosting process. This is distinct from GHSA-gphh-9q3h-jgpp / CVE-2026-44209. That advisory was fixed in 2.4.2 by switching src/banks/env.py from Environment to SandboxedEnvironment. The fix does not touch src/banks/extensions/completion.py, and the unsafe import + getattr chain still executes on 2.4.2. The malicious Tool JSON is plain text in the rendered template body — it requires no Jinja attribute access, so the sandbox is irrelevant. This issue has been fixed in version 2.4.3.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.5,
-    "severity": "HIGH",
-    "publishedAt": "2026-07-30T19:18:34.553Z",
-    "lastModifiedAt": "2026-07-30T19:26:51.190Z",
-    "fetchedAt": "2026-07-30T22:54:23.751Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-62663",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-62663",
-    "descriptionEn": "Banks generates meaningful LLM prompts using a simple template language. In versions prior to 2.4.4, all four media filters (image, audio, video, document) in banks accept untrusted user input as file paths via Path(value) and pass them directly to open(file_path, \"rb\") without any path sanitization, canonicalization, or directory restriction. An attacker who controls template variables passed to a banks Prompt can use path traversal (../) to read arbitrary files accessible to the Python process—including .env files, SSH keys, cloud credentials, source code, /etc/passwd, and /etc/shadow—with the content returned base64-encoded in the rendered prompt output, making exfiltration trivial. This is particularly dangerous for applications that use banks to process user-provided template variables before sending prompts to an LLM. This issue has been fixed in version 2.4.4.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.5,
-    "severity": "HIGH",
-    "publishedAt": "2026-07-30T17:16:33.900Z",
-    "lastModifiedAt": "2026-07-30T19:26:51.190Z",
-    "fetchedAt": "2026-07-30T22:54:23.751Z",
-    "llmStatus": "pending"
-  },
-  {
     "id": "CVE-2026-17534",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-17534",
     "descriptionEn": "Kimi Code (@moonshot-ai/kimi-code) before 0.27.0 implements FetchURL SSRF hardening as a static hostname and IP-literal denylist in assertSafeFetchTarget, without resolving DNS or re-validating hosts after HTTP redirects. An attacker who can influence a FetchURL call (for example via prompt injection) can supply a crafted public hostname that resolves to loopback or another internal address, or a public URL that redirects to such a target, and thereby reach internal network services that the denylist was intended to block. FetchURL is included in the default auto-approve tool set, so the call does not require interactive user confirmation in manual mode.",
@@ -87,7 +113,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2026-07-24T15:19:07.050Z",
     "lastModifiedAt": "2026-07-30T19:56:33.480Z",
-    "fetchedAt": "2026-07-30T22:54:23.751Z",
+    "fetchedAt": "2026-07-31T22:48:37.158Z",
     "llmStatus": "ok"
   },
   {
