@@ -1,5 +1,31 @@
 [
   {
+    "id": "CVE-2026-18394",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-18394",
+    "descriptionEn": "Incorrect authorization in the http_request tool in Strands Agents Tools before 0.8.2 might allow remote attackers to obtain credentials configured via HTTP_REQUEST_TOKEN_CONFIG by influencing the LLM to route requests through actor-controlled proxy infrastructure.\n\n\n\nTo remediate this issue, users should upgrade to version 0.8.2.",
+    "summaryJa": "Strands Agents Toolsのhttp_requestツール（バージョン0.8.2未満）には、不適切な認可の脆弱性が存在します。この脆弱性により、LLMが攻撃者制御のプロキシインフラを経由するように誘導されると、HTTP_REQUEST_TOKEN_CONFIGに設定された認証情報が漏洩する可能性があります。この問題は、バージョン0.8.2へアップグレードすることで解消されます。",
+    "category": "ai-library",
+    "cvssScore": 7.4,
+    "severity": "HIGH",
+    "publishedAt": "2026-07-31T20:16:49.780Z",
+    "lastModifiedAt": "2026-07-31T20:16:49.780Z",
+    "fetchedAt": "2026-08-01T22:42:26.489Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-17351",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-17351",
+    "descriptionEn": "The fix for CVE-2026-12045 in pgAdmin 4 9.16 required the LLM-supplied query passed to the AI Assistant's execute_sql_query tool to parse, via sqlparse, as exactly one non-transaction-control statement before running it inside a BEGIN TRANSACTION READ ONLY wrapper. sqlparse's string-literal lexing can disagree with PostgreSQL's own parser: under standard_conforming_strings = on (PostgreSQL's default since 9.1), a backslash immediately before a quote is an ordinary character to PostgreSQL, but sqlparse treats it as escaping the quote. A payload such as SELECT '\\';COMMIT;CREATE TABLE pwn(x int);SELECT 1 --' therefore parses as a single SELECT to sqlparse's validator, while PostgreSQL executes it as four statements: the smuggled COMMIT ends the wrapping read-only transaction, and the trailing ROLLBACK becomes a no-op. This reintroduces the same write/RCE bypass CVE-2026-12045 was meant to close, reachable via the same indirect prompt-injection delivery (an attacker plants the payload in any object the AI Assistant may read; the LLM emits it as a tool call).\n\nAn initial candidate fix ran the query with psycopg's execute(..., prepare=True), intending to force PostgreSQL's own Parse step (extended query protocol) to reject multi-statement text regardless of sqlparse's classification. This candidate fix does not work as submitted: psycopg3's PrepareManager silently ignores the prepare argument whenever the connection's prepare_threshold is None, which is pgAdmin's default for every server connection (the per-server \"Prepare threshold\" field is blank unless an administrator explicitly sets it) -- psycopg3 falls back to the simple query protocol, the same multi-statement-capable path the bypass exploits, so the candidate fix closes nothing on any real-world default configuration.\n\nThe corrected fix sets conn.prepare_threshold = 0 directly on the dedicated, single-use read-only connection the AI Assistant tool opens, structurally forcing the extended query protocol independent of any server-level configuration. Verified against a live PostgreSQL 18 instance: the payload executes successfully under the prepare_threshold=None (default) behavior, and is rejected with \"cannot insert multiple commands into a prepared statement\" once prepare_threshold=0 is set on that connection.\n\nThis issue affects pgAdmin 4: from 9.13 before 9.17.",
+    "summaryJa": "pgAdmin 4のAIアシスタントにおいて、SQLクエリ実行ツールのsqlparseとPostgreSQLのパーサー間の文字列リテラル解釈の不一致により、以前のCVE-2026-12045の修正が迂回される脆弱性が再発しました。この問題は、間接的なプロンプトインジェクションを通じて悪用され、読み取り専用トランザクションを無効化し、任意の書き込み操作やリモートコード実行を可能にします。修正は、専用接続のprepare_thresholdを0に設定し、複数コマンドの実行を強制的に拒否するものです。",
+    "category": "prompt-injection",
+    "cvssScore": 9,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-07-31T16:16:59.807Z",
+    "lastModifiedAt": "2026-08-01T05:16:55.670Z",
+    "fetchedAt": "2026-08-01T22:42:26.489Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2026-61536",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61536",
     "descriptionEn": "Banks generates meaningful LLM prompts using a simple template language. In versions prior to 2.4.3, banks parses Tool JSON objects from the rendered body of {% completion %} blocks and later resolves their import_path field through importlib.import_module(...) + getattr(...) to obtain the callable that handles a tool call. There is no allowlist or sanitization on import_path, so any importable Python attribute (e.g. os.system, subprocess.getoutput) can be selected. When the LLM emits a tool_calls entry whose function.name matches the attacker-supplied tool name, the resolved callable is invoked with kwargs decoded from tool_call.function.arguments, yielding arbitrary code execution in the banks-hosting process. This is distinct from GHSA-gphh-9q3h-jgpp / CVE-2026-44209. That advisory was fixed in 2.4.2 by switching src/banks/env.py from Environment to SandboxedEnvironment. The fix does not touch src/banks/extensions/completion.py, and the unsafe import + getattr chain still executes on 2.4.2. The malicious Tool JSON is plain text in the rendered template body — it requires no Jinja attribute access, so the sandbox is irrelevant. This issue has been fixed in version 2.4.3.",
@@ -8,8 +34,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-07-30T19:18:34.553Z",
-    "lastModifiedAt": "2026-07-30T19:26:51.190Z",
-    "fetchedAt": "2026-07-30T22:54:23.751Z",
+    "lastModifiedAt": "2026-07-31T23:17:25.930Z",
+    "fetchedAt": "2026-08-01T22:42:26.489Z",
     "llmStatus": "ok"
   },
   {
@@ -24,32 +50,6 @@
     "lastModifiedAt": "2026-07-30T19:26:51.190Z",
     "fetchedAt": "2026-07-30T22:54:23.751Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-18394",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-18394",
-    "descriptionEn": "Incorrect authorization in the http_request tool in Strands Agents Tools before 0.8.2 might allow remote attackers to obtain credentials configured via HTTP_REQUEST_TOKEN_CONFIG by influencing the LLM to route requests through actor-controlled proxy infrastructure.\n\n\n\nTo remediate this issue, users should upgrade to version 0.8.2.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.4,
-    "severity": "HIGH",
-    "publishedAt": "2026-07-31T20:16:49.780Z",
-    "lastModifiedAt": "2026-07-31T20:16:49.780Z",
-    "fetchedAt": "2026-07-31T22:48:37.158Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-17351",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-17351",
-    "descriptionEn": "The fix for CVE-2026-12045 in pgAdmin 4 9.16 required the LLM-supplied query passed to the AI Assistant's execute_sql_query tool to parse, via sqlparse, as exactly one non-transaction-control statement before running it inside a BEGIN TRANSACTION READ ONLY wrapper. sqlparse's string-literal lexing can disagree with PostgreSQL's own parser: under standard_conforming_strings = on (PostgreSQL's default since 9.1), a backslash immediately before a quote is an ordinary character to PostgreSQL, but sqlparse treats it as escaping the quote. A payload such as SELECT '\\';COMMIT;CREATE TABLE pwn(x int);SELECT 1 --' therefore parses as a single SELECT to sqlparse's validator, while PostgreSQL executes it as four statements: the smuggled COMMIT ends the wrapping read-only transaction, and the trailing ROLLBACK becomes a no-op. This reintroduces the same write/RCE bypass CVE-2026-12045 was meant to close, reachable via the same indirect prompt-injection delivery (an attacker plants the payload in any object the AI Assistant may read; the LLM emits it as a tool call).\n\nAn initial candidate fix ran the query with psycopg's execute(..., prepare=True), intending to force PostgreSQL's own Parse step (extended query protocol) to reject multi-statement text regardless of sqlparse's classification. This candidate fix does not work as submitted: psycopg3's PrepareManager silently ignores the prepare argument whenever the connection's prepare_threshold is None, which is pgAdmin's default for every server connection (the per-server \"Prepare threshold\" field is blank unless an administrator explicitly sets it) -- psycopg3 falls back to the simple query protocol, the same multi-statement-capable path the bypass exploits, so the candidate fix closes nothing on any real-world default configuration.\n\nThe corrected fix sets conn.prepare_threshold = 0 directly on the dedicated, single-use read-only connection the AI Assistant tool opens, structurally forcing the extended query protocol independent of any server-level configuration. Verified against a live PostgreSQL 18 instance: the payload executes successfully under the prepare_threshold=None (default) behavior, and is rejected with \"cannot insert multiple commands into a prepared statement\" once prepare_threshold=0 is set on that connection.\n\nThis issue affects pgAdmin 4: from 9.13 before 9.17.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 9,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-07-31T16:16:59.807Z",
-    "lastModifiedAt": "2026-07-31T18:17:11.800Z",
-    "fetchedAt": "2026-07-31T22:48:37.158Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-65975",
@@ -113,7 +113,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2026-07-24T15:19:07.050Z",
     "lastModifiedAt": "2026-07-30T19:56:33.480Z",
-    "fetchedAt": "2026-07-31T22:48:37.158Z",
+    "fetchedAt": "2026-08-01T22:42:26.489Z",
     "llmStatus": "ok"
   },
   {
