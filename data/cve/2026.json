@@ -1,5 +1,44 @@
 [
   {
+    "id": "CVE-2026-18733",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-18733",
+    "descriptionEn": "A prompt injection vulnerability in the shell tool in Amazon Strands Agents Tools before 0.8.0 might allow remote actors to execute arbitrary operating system commands on the agent's host via a crafted prompt that sets the non_interactive parameter to true, bypassing the human consent gate.\n\n\n\nTo remediate this issue, users should upgrade to version 0.8.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-03T21:16:37.963Z",
+    "lastModifiedAt": "2026-08-03T21:16:37.963Z",
+    "fetchedAt": "2026-08-03T22:49:30.510Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-67598",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-67598",
+    "descriptionEn": "Emlog Pro through 2.6.23 contains a disabled TLS certificate validation vulnerability in include/service/ai.php that allows network-adjacent attackers to intercept outbound HTTPS requests to configured LLM providers by presenting arbitrary TLS certificates, as CURLOPT_SSL_VERIFYPEER and CURLOPT_SSL_VERIFYHOST are unconditionally disabled across sendStream(), sendImageRequest(), send(), and fetchSearchHtml() with no option to re-enable verification. Attackers can perform man-in-the-middle interception to extract Authorization Bearer API keys from every AI request and inject crafted AI responses that may be acted upon by the tool-call execution pipeline, including the query_database and update_config tool handlers.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.4,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-03T20:17:27.960Z",
+    "lastModifiedAt": "2026-08-03T20:17:27.960Z",
+    "fetchedAt": "2026-08-03T22:49:30.510Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-18655",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-18655",
+    "descriptionEn": "Improper restriction of intended endpoints in the RabbitMQ broker connection tools of the Amazon MQ MCP Server (awslabs.amazon-mq-mcp-server) before 2.0.24 may allow a remote unauthenticated actor (via prompt injection) to obtain Amazon MQ for RabbitMQ broker credentials or OAuth access tokens sent to a crafted endpoint controlled through a broker hostname introduced in the MCP client context.\n\n\n\nTo remediate this issue, users should upgrade to version 2.0.24.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-03T20:17:17.557Z",
+    "lastModifiedAt": "2026-08-03T20:17:17.557Z",
+    "fetchedAt": "2026-08-03T22:49:30.510Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-18394",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-18394",
     "descriptionEn": "Incorrect authorization in the http_request tool in Strands Agents Tools before 0.8.2 might allow remote attackers to obtain credentials configured via HTTP_REQUEST_TOKEN_CONFIG by influencing the LLM to route requests through actor-controlled proxy infrastructure.\n\n\n\nTo remediate this issue, users should upgrade to version 0.8.2.",
@@ -22,7 +61,7 @@
     "severity": "CRITICAL",
     "publishedAt": "2026-07-31T16:16:59.807Z",
     "lastModifiedAt": "2026-08-01T05:16:55.670Z",
-    "fetchedAt": "2026-08-02T22:43:10.348Z",
+    "fetchedAt": "2026-08-03T22:49:30.510Z",
     "llmStatus": "ok"
   },
   {
@@ -164,8 +203,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-21T23:18:02.817Z",
-    "lastModifiedAt": "2026-07-22T20:37:38.603Z",
-    "fetchedAt": "2026-07-23T22:44:45.727Z",
+    "lastModifiedAt": "2026-08-03T16:38:28.820Z",
+    "fetchedAt": "2026-08-03T22:49:30.510Z",
     "llmStatus": "ok"
   },
   {
@@ -177,8 +216,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-21T23:18:02.460Z",
-    "lastModifiedAt": "2026-07-22T20:37:38.603Z",
-    "fetchedAt": "2026-07-23T22:44:45.727Z",
+    "lastModifiedAt": "2026-08-03T17:49:02.370Z",
+    "fetchedAt": "2026-08-03T22:49:30.510Z",
     "llmStatus": "ok"
   },
   {
