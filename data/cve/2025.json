@@ -3,53 +3,53 @@
     "id": "CVE-2024-9107",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-9107",
     "descriptionEn": "A stored cross-site scripting (XSS) vulnerability exists in the gaizhenbiao/chuanhuchatgpt repository, affecting version git 20b2e02. The vulnerability arises from improper sanitization of HTML tags in chat history uploads. Specifically, the sanitization logic fails to handle HTML tags within code blocks correctly, allowing an attacker to inject malicious scripts. This can lead to the execution of arbitrary JavaScript code in the context of the user's browser, potentially leading to identity theft or other malicious actions.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "gaizhenbiao/chuanhuchatgptリポジトリのバージョンgit 20b2e02に、保存型クロスサイトスクリプティング（XSS）の脆弱性が存在します。この脆弱性は、チャット履歴アップロード時のHTMLタグの不適切なサニタイズ、特にコードブロック内のHTMLタグ処理の不備に起因します。これにより、攻撃者は悪意のあるスクリプトを注入し、ユーザーのブラウザで任意のJavaScriptコードを実行させることが可能となります。",
+    "category": "other",
     "cvssScore": 5.4,
     "severity": "MEDIUM",
     "publishedAt": "2025-03-20T10:15:47.230Z",
     "lastModifiedAt": "2026-06-17T08:23:58.107Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2024-8613",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-8613",
     "descriptionEn": "A vulnerability in gaizhenbiao/chuanhuchatgpt version 20240802 allows attackers to access, copy, and delete other users' chat histories. This issue arises due to improper handling of session data and lack of access control mechanisms, enabling attackers to view and manipulate chat histories of other users.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "gaizhenbiao/chuanhuchatgptのバージョン20240802に、セッションデータの不適切な処理とアクセス制御の欠如に起因する脆弱性が存在します。これにより、攻撃者は他のユーザーのチャット履歴に不正にアクセスし、閲覧、コピー、削除といった操作を行うことが可能になります。",
+    "category": "ai-library",
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2025-03-20T10:15:43.473Z",
     "lastModifiedAt": "2026-06-17T08:22:58.867Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2024-8400",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-8400",
     "descriptionEn": "A stored cross-site scripting (XSS) vulnerability exists in the latest version of gaizhenbiao/chuanhuchatgpt. The vulnerability allows an attacker to upload a malicious HTML file containing JavaScript code, which is then executed when the file is accessed. This can lead to the execution of arbitrary JavaScript in the context of the user's browser.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "gaizhenbiao/chuanhuchatgptの最新バージョンに保存型クロスサイトスクリプティング（XSS）の脆弱性が存在します。攻撃者は悪意のあるHTMLファイルをアップロードでき、そのファイルがアクセスされると含まれるJavaScriptコードが実行されます。これにより、ユーザーのブラウザ上で任意のJavaScriptが実行される可能性があります。",
+    "category": "other",
     "cvssScore": 5.4,
     "severity": "MEDIUM",
     "publishedAt": "2025-03-20T10:15:42.110Z",
     "lastModifiedAt": "2026-06-17T08:22:30.673Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2024-7764",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-7764",
     "descriptionEn": "Vanna-ai v0.6.2 is vulnerable to SQL Injection due to insufficient protection against injecting additional SQL commands from user requests. The vulnerability occurs when the `generate_sql` function calls `extract_sql` with the LLM response. An attacker can include a semi-colon between a search data field and their own command, causing the `extract_sql` function to remove all LLM generated SQL and execute the attacker's command if it passes the `is_sql_valid` function. This allows the execution of user-defined SQL beyond the expected boundaries, notably the trained schema.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Vanna-ai v0.6.2にはSQLインジェクションの脆弱性が存在します。`generate_sql`関数がLLMの応答を`extract_sql`関数に渡す際、攻撃者がセミコロンを挿入することで、本来意図しないSQLコマンドが実行される可能性があります。これにより、訓練されたスキーマの範囲を超えてユーザー定義のSQL文が実行されてしまう恐れがあります。",
+    "category": "ai-library",
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2025-03-20T10:15:36.717Z",
     "lastModifiedAt": "2026-06-17T08:20:52.620Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2024-12911",
