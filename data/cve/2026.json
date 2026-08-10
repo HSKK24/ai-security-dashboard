@@ -1,5 +1,44 @@
 [
   {
+    "id": "CVE-2026-72917",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72917",
+    "descriptionEn": "AnythingLLM is an application that turns pieces of content into context that any LLM can use as references during chatting. From 1.0.0 to 1.15.0, AnythingLLM's unauthenticated account-recovery flow in server/utils/PasswordRecovery/index.js uses recoverAccount() to deduplicate the raw recoveryCodes values before trimming them, so one valid code submitted twice with different surrounding whitespace can satisfy the two-code check. Each normalized value can also match the same stored hash instead of consuming a distinct hash. An attacker who knows the target username and one recovery code can call POST /api/system/recover-account in multi-user mode, receive a password-reset token, and use POST /api/system/reset-password to take over the account, including an administrator account.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-10T22:17:10.660Z",
+    "lastModifiedAt": "2026-08-10T22:17:10.660Z",
+    "fetchedAt": "2026-08-10T22:24:20.776Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-72904",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72904",
+    "descriptionEn": "Firecrawl turns entire websites into LLM-ready markdown or structured data. Prior to 2.11.32, a critical arbitrary file read vulnerability exists in Firecrawl's extraction functionality due to unsafe schema dereferencing of user-supplied JSON schemas in apps/api/src/lib/extract/helpers/dereference-schema.ts. The affected code invokes the json-schema-ref-parser dependency with default resolver settings, allowing external and local file references to be resolved during schema processing. An authenticated attacker can supply a malicious schema containing a $ref within default, const, or enum fields that are not traversed by AJV validation. By triggering a dereference error, file contents from the extract worker filesystem may be included in persisted error messages returned through the extraction API, enabling arbitrary file reads and SSRF against internal or external HTTP endpoints. This issue is fixed in version 2.11.32.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-08-10T21:17:25.117Z",
+    "lastModifiedAt": "2026-08-10T21:17:25.117Z",
+    "fetchedAt": "2026-08-10T22:24:20.776Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-12570",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-12570",
+    "descriptionEn": "A vulnerability in keras-team/keras versions <= 3.15.0 allows for a denial of service (DoS) attack when loading malicious .keras model files via the keras.models.load_model() function. The H5IOStore.__getitem__ method in keras/src/saving/saving_lib.py does not validate the shape or size of datasets, leading to unbounded memory allocation. A specially crafted .keras file can exploit this flaw to trigger an out-of-memory (OOM) condition, causing the process to be terminated (exit code 137). This issue bypasses the fix for CVE-2026-0897, which only addressed a similar vulnerability in KerasFileEditor. The attack vector includes poisoned models from public repositories or malicious model registries, posing a risk to machine learning pipelines that process untrusted models.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-10T07:16:44.370Z",
+    "lastModifiedAt": "2026-08-10T18:17:39.187Z",
+    "fetchedAt": "2026-08-10T22:24:20.776Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-61808",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61808",
     "descriptionEn": "LightRAG provides simple and fast retrieval-augmented generation. Through version 1.5.4, the LightRAG API server binds to all network interfaces with authentication disabled by default, allowing an unauthenticated network attacker to read indexed document content, upload or delete documents, modify the knowledge graph, cancel pipelines, clear caches, and consume LLM resources. This issue is mitigated in version 1.5.5rc1.",
@@ -8,8 +47,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-07T20:16:52.007Z",
-    "lastModifiedAt": "2026-08-07T20:16:52.007Z",
-    "fetchedAt": "2026-08-08T22:15:41.329Z",
+    "lastModifiedAt": "2026-08-10T13:19:52.770Z",
+    "fetchedAt": "2026-08-10T22:24:20.776Z",
     "llmStatus": "ok"
   },
   {
@@ -22,7 +61,7 @@
     "severity": "HIGH",
     "publishedAt": "2026-08-07T17:17:03.003Z",
     "lastModifiedAt": "2026-08-07T22:16:57.883Z",
-    "fetchedAt": "2026-08-09T22:17:23.335Z",
+    "fetchedAt": "2026-08-10T22:24:20.776Z",
     "llmStatus": "ok"
   },
   {
