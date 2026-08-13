@@ -1,5 +1,148 @@
 [
   {
+    "id": "CVE-2026-73299",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73299",
+    "descriptionEn": "Prompty is a markdown file format (.prompty) for LLM prompts. Prior to 0.1.5 and 2.0.0-beta.5, the TypeScript Nunjucks renderer evaluated untrusted .prompty template bodies with unrestricted JavaScript member access. An attacker-controlled template could traverse constructor and prototype properties to execute JavaScript in the host Node.js process. This issue is fixed in versions 0.1.5 and 2.0.0-beta.5.",
+    "summaryJa": "PromptyのTypeScript Nunjucksレンダラーに、バージョン0.1.5および2.0.0-beta.5以前で脆弱性が存在しました。信頼されていない.promptyテンプレートボディがJavaScriptのメンバーアクセスを制限なく評価するため、攻撃者が制御するテンプレートを通じてホストのNode.jsプロセスで任意のJavaScriptコードが実行される可能性があります。この問題は、バージョン0.1.5および2.0.0-beta.5で修正されています。",
+    "category": "ai-library",
+    "cvssScore": 10,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-08-12T18:18:15.197Z",
+    "lastModifiedAt": "2026-08-12T20:17:53.920Z",
+    "fetchedAt": "2026-08-12T22:27:46.920Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-72675",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72675",
+    "descriptionEn": "Missing Authorization (CWE-862) in Kibana can lead to cross-space information disclosure and unauthorized data modification via Privilege Abuse (CAPEC-122). Kibana Machine Learning carries out its Elasticsearch operations with elevated internal permissions and relies on a per-request space filter to keep the machine learning data of one space separated from another. Part of the Machine Learning functionality did not apply that filter, so operations issued from one space were carried out against the machine learning data of every space in the deployment.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.1,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-13T20:17:28.137Z",
+    "lastModifiedAt": "2026-08-13T21:18:12.067Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-72671",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72671",
+    "descriptionEn": "A Kibana Machine Learning capability that removes a saved object from the current space accepts machine learning trained models as a target, but it verifies only the privileges that apply to anomaly detection jobs and data frame analytics jobs. A user whose role grants create anomaly detection jobs and data frame analytics jobs without the trained model privilege can therefore remove a trained model from a space. The model itself is not deleted and remains available in its other spaces, and the change can be reversed by a suitably privileged user.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 4.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-13T20:17:27.653Z",
+    "lastModifiedAt": "2026-08-13T21:18:11.500Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-72642",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72642",
+    "descriptionEn": "The native inference process that Elasticsearch uses to evaluate uploaded machine learning models accepts a model operation that computes a memory address from an offset supplied inside the model, without validating that the offset stays within the bounds of the underlying storage. A user with the privileges required to upload and deploy a trained model can craft a model that reads and writes memory outside the intended allocation. The result is heap corruption that crashes the inference process, and, with sufficient control over the heap layout, could allow arbitrary code execution in the context of that process.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-13T20:17:24.673Z",
+    "lastModifiedAt": "2026-08-13T20:17:24.673Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-73559",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73559",
+    "descriptionEn": "vLLM is an inference and serving engine for large language models. From 0.19.0 until 0.26.0, the /v1/completions CompletionRequest.prompt field in vllm/entrypoints/openai/completion/protocol.py accepts an unbounded list[str] or list[list[int]], prompt_to_seq() in vllm/renderers/inputs/preprocess.py and OnlineRenderer.preprocess_completion() in vllm/renderers/online_renderer.py expand every element, and vllm/entrypoints/openai/completion/serving.py creates one engine generator and response slot per prompt, allowing an authenticated API client to exhaust CPU, memory, async scheduling capacity, engine request slots, and response buffering with one request. This issue is fixed in version 0.26.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-13T16:19:05.863Z",
+    "lastModifiedAt": "2026-08-13T16:19:05.863Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-73558",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73558",
+    "descriptionEn": "vLLM is an inference and serving engine for large language models. Prior to 0.27.0, an integer overflow in blockIdx.x * 2 * d in activation_kernels.cu can cause act_and_mul_kernel to consume another batched user's input, allowing a request processed in the same inference batch to receive a partial or complete copy of another user's inference result. This issue is fixed in version 0.27.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-13T15:20:18.220Z",
+    "lastModifiedAt": "2026-08-13T16:19:05.760Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-73557",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73557",
+    "descriptionEn": "vLLM is an inference and serving engine for large language models. From 0.20.2rc0 until 0.26.0, safe_load_prompt_embeds in vllm/renderers/embed_utils.py uses torch.sparse.check_sparse_tensor_invariants, whose process-global save, enable, and restore state can be raced by concurrent prompt_embeds parts submitted to POST /v1/chat/completions through AsyncMultiModalItemTracker.resolve_items, asyncio.gather, and the default executor, allowing an invalid sparse tensor to reach tensor.to_dense despite the CVE-2025-62164 guard when enable_prompt_embeds is enabled. This issue is fixed in version 0.26.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-08-13T15:20:18.080Z",
+    "lastModifiedAt": "2026-08-13T18:18:18.360Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-73556",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73556",
+    "descriptionEn": "vLLM is an inference and serving engine for large language models. Prior to 0.26.0, the structured_outputs.regex parameter in vllm/v1/structured_output/backend_lm_format_enforcer.py is passed to lmformatenforcer.RegexParser without compile_regex_with_timeout or validation in validate_structured_output_request_lm_format_enforcer, allowing an unauthenticated /v1/completions request against the lm-format-enforcer backend to consume a CPU core and stall the structured-output engine path with a catastrophic regular expression. This issue is fixed in version 0.26.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-13T15:20:17.927Z",
+    "lastModifiedAt": "2026-08-13T15:20:17.927Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-73555",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73555",
+    "descriptionEn": "vLLM is an inference and serving engine for large language models. Prior to 0.26.0, the validation_exception_handler in vllm/entrypoints/openai/server_utils.py converts FastAPI RequestValidationError objects with str(exc), and sanitize_message in vllm/entrypoints/utils.py does not remove traceback-style file paths, allowing unauthenticated malformed JSON requests to /v1/chat/completions, /v1/completions, /tokenize, and /detokenize to disclose the OS username, home and virtual-environment paths, Python version, internal package structure, line numbers, and endpoint handler names. This issue is fixed in version 0.26.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-13T15:20:17.773Z",
+    "lastModifiedAt": "2026-08-13T15:20:17.773Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-21832",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-21832",
+    "descriptionEn": "HCL AION is affected by a vulnerability where indirect prompt injection can lead to HTML injection in rendered output. Injected markup may be displayed to users, potentially resulting in unintended behavior or security impact under certain conditions.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 4.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-13T14:16:55.723Z",
+    "lastModifiedAt": "2026-08-13T16:18:00.043Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-73487",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73487",
+    "descriptionEn": "Flowise before 3.1.3 contains a regex-based Python code validator bypass in CSV and Airtable Agent nodes that allows unauthenticated attackers to inject malicious code via prompt injection. Attackers can exploit unblocked pandas functions like pd.read_json() to exfiltrate datasets, perform SSRF against internal services, or achieve code execution through the unauthenticated prediction API.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-08-13T12:17:24.083Z",
+    "lastModifiedAt": "2026-08-13T12:17:24.083Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-73034",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73034",
     "descriptionEn": "DB-GPT v0.8.1 contains an unauthenticated path traversal vulnerability that allows remote attackers to write arbitrary files to any location on the server by injecting directory traversal sequences into the user_id HTTP header of the Python file-upload endpoint. Attackers can send a crafted multipart upload request with a traversal-poisoned user_id header to escape the intended upload directory and write attacker-controlled content to locations such as Python startup hooks, cron directories, or agent scripts, resulting in remote code execution.",
@@ -8,8 +151,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-11T20:18:46.470Z",
-    "lastModifiedAt": "2026-08-11T20:18:46.470Z",
-    "fetchedAt": "2026-08-12T22:27:46.920Z",
+    "lastModifiedAt": "2026-08-13T15:20:04.580Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
     "llmStatus": "ok"
   },
   {
@@ -86,8 +229,8 @@
     "cvssScore": 7.6,
     "severity": "HIGH",
     "publishedAt": "2026-08-11T16:17:32.320Z",
-    "lastModifiedAt": "2026-08-11T16:17:32.320Z",
-    "fetchedAt": "2026-08-11T22:29:27.126Z",
+    "lastModifiedAt": "2026-08-12T23:17:21.147Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
     "llmStatus": "ok"
   },
   {
@@ -99,8 +242,8 @@
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-08-11T15:17:38.350Z",
-    "lastModifiedAt": "2026-08-11T15:17:38.350Z",
-    "fetchedAt": "2026-08-11T22:29:27.126Z",
+    "lastModifiedAt": "2026-08-13T15:20:04.153Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
     "llmStatus": "ok"
   },
   {
@@ -117,19 +260,6 @@
     "llmStatus": "ok"
   },
   {
-    "id": "CVE-2026-73299",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73299",
-    "descriptionEn": "Prompty is a markdown file format (.prompty) for LLM prompts. Prior to 0.1.5 and 2.0.0-beta.5, the TypeScript Nunjucks renderer evaluated untrusted .prompty template bodies with unrestricted JavaScript member access. An attacker-controlled template could traverse constructor and prototype properties to execute JavaScript in the host Node.js process. This issue is fixed in versions 0.1.5 and 2.0.0-beta.5.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 10,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-08-12T18:18:15.197Z",
-    "lastModifiedAt": "2026-08-12T20:17:53.920Z",
-    "fetchedAt": "2026-08-12T22:27:46.920Z",
-    "llmStatus": "pending"
-  },
-  {
     "id": "CVE-2026-72917",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72917",
     "descriptionEn": "AnythingLLM is an application that turns pieces of content into context that any LLM can use as references during chatting. From 1.0.0 to 1.15.0, AnythingLLM's unauthenticated account-recovery flow in server/utils/PasswordRecovery/index.js uses recoverAccount() to deduplicate the raw recoveryCodes values before trimming them, so one valid code submitted twice with different surrounding whitespace can satisfy the two-code check. Each normalized value can also match the same stored hash instead of consuming a distinct hash. An attacker who knows the target username and one recovery code can call POST /api/system/recover-account in multi-user mode, receive a password-reset token, and use POST /api/system/reset-password to take over the account, including an administrator account.",
@@ -138,8 +268,8 @@
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-10T22:17:10.660Z",
-    "lastModifiedAt": "2026-08-10T22:17:10.660Z",
-    "fetchedAt": "2026-08-11T22:29:27.126Z",
+    "lastModifiedAt": "2026-08-12T23:17:23.107Z",
+    "fetchedAt": "2026-08-13T22:28:57.738Z",
     "llmStatus": "ok"
   },
   {
