@@ -1,5 +1,18 @@
 [
   {
+    "id": "CVE-2026-73678",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73678",
+    "descriptionEn": "MindsDB Minds Platform version 26.1.0 and earlier contains an unauthenticated remote code execution vulnerability that allows unauthenticated attackers to execute arbitrary OS commands by submitting crafted prompts to the unprotected POST /api/v1/responses/ endpoint, which reaches the Anton agent's scratchpad tool that calls exec() on attacker-influenced Python source without sandboxing. Attackers can first configure their own LLM API key through the unauthenticated PUT /api/v1/settings/ endpoint, then POST a prompt directing the agent to invoke the scratchpad tool with arbitrary Python code, achieving full OS command execution as the user running the desktop application and enabling access to SSH keys, stored credentials, and environment secrets.",
+    "summaryJa": "MindsDB Minds Platform 26.1.0以前のバージョンには、認証なしのリモートコード実行の脆弱性が存在します。攻撃者は、保護されていないAPIエンドポイントを通じて自身のLLM APIキーを設定し、その後、任意のPythonコードを実行するよう指示するプロンプトを送信することで、Antonエージェントのscratchpadツールを悪用します。これにより、サンドボックスなしでOSコマンドが実行され、システムの完全な制御やSSHキー、認証情報へのアクセスが可能となります。",
+    "category": "ai-service",
+    "cvssScore": 10,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-08-14T19:18:01.457Z",
+    "lastModifiedAt": "2026-08-14T19:18:01.457Z",
+    "fetchedAt": "2026-08-14T22:10:36.823Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2026-72675",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72675",
     "descriptionEn": "Missing Authorization (CWE-862) in Kibana can lead to cross-space information disclosure and unauthorized data modification via Privilege Abuse (CAPEC-122). Kibana Machine Learning carries out its Elasticsearch operations with elevated internal permissions and relies on a per-request space filter to keep the machine learning data of one space separated from another. Part of the Machine Learning functionality did not apply that filter, so operations issued from one space were carried out against the machine learning data of every space in the deployment.",
@@ -125,22 +138,9 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-13T12:17:24.083Z",
-    "lastModifiedAt": "2026-08-13T12:17:24.083Z",
-    "fetchedAt": "2026-08-13T22:28:57.738Z",
+    "lastModifiedAt": "2026-08-14T23:16:33.250Z",
+    "fetchedAt": "2026-08-15T22:08:33.686Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-73678",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-73678",
-    "descriptionEn": "MindsDB Minds Platform version 26.1.0 and earlier contains an unauthenticated remote code execution vulnerability that allows unauthenticated attackers to execute arbitrary OS commands by submitting crafted prompts to the unprotected POST /api/v1/responses/ endpoint, which reaches the Anton agent's scratchpad tool that calls exec() on attacker-influenced Python source without sandboxing. Attackers can first configure their own LLM API key through the unauthenticated PUT /api/v1/settings/ endpoint, then POST a prompt directing the agent to invoke the scratchpad tool with arbitrary Python code, achieving full OS command execution as the user running the desktop application and enabling access to SSH keys, stored credentials, and environment secrets.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 10,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-08-14T19:18:01.457Z",
-    "lastModifiedAt": "2026-08-14T19:18:01.457Z",
-    "fetchedAt": "2026-08-14T22:10:36.823Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-73299",
@@ -269,7 +269,7 @@
     "severity": null,
     "publishedAt": "2026-08-11T13:19:07.490Z",
     "lastModifiedAt": "2026-08-14T20:16:56.810Z",
-    "fetchedAt": "2026-08-14T22:10:36.823Z",
+    "fetchedAt": "2026-08-15T22:08:33.686Z",
     "llmStatus": "ok"
   },
   {
