@@ -1,18 +1,8 @@
 {
-  "lastRunAt": "2026-08-15T22:10:26.456Z",
+  "lastRunAt": "2026-08-16T22:10:11.276Z",
   "totalCount": 1021,
   "latestModifiedCursor": "2026-08-14T23:16:33.250Z",
   "carryover": [
-    "CVE-2024-48145",
-    "CVE-2024-48144",
-    "CVE-2024-48142",
-    "CVE-2024-48141",
-    "CVE-2024-48140",
-    "CVE-2024-48139",
-    "CVE-2024-48919",
-    "CVE-2024-49361",
-    "CVE-2024-9977",
-    "CVE-2024-47833",
     "CVE-2024-7714",
     "CVE-2024-7713",
     "CVE-2024-4099",
@@ -502,10 +492,10 @@
     "2011"
   ],
   "lastRunStats": {
-    "nvdFetched": 1118,
-    "keywordMatched": 2,
-    "llmEnriched": 2,
+    "nvdFetched": 1380,
+    "keywordMatched": 1,
+    "llmEnriched": 1,
     "nvdFetchFailed": false
   },
-  "lastSuccessfulNvdFetchAt": "2026-08-15T22:10:26.456Z"
+  "lastSuccessfulNvdFetchAt": "2026-08-16T22:10:11.276Z"
 }
