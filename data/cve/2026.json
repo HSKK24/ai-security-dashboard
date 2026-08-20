@@ -1,5 +1,96 @@
 [
   {
+    "id": "CVE-2026-64868",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-64868",
+    "descriptionEn": "New API is a large language mode (LLM) gateway and artificial intelligence (AI) asset management system. Prior to 1.0.0-rc.11, POST /api/stripe/webhook, POST /api/creem/webhook, and POST /api/waffo/webhook read and log full request bodies before signature validation in router/api-router.go and the payment controllers, allowing an unauthenticated attacker to cause memory pressure, container restarts, or disk exhaustion without forging a successful payment. This issue is fixed in version 1.0.0-rc.11.",
+    "summaryJa": "New APIのLLMゲートウェイおよびAI資産管理システムにおいて、バージョン1.0.0-rc.11より前の複数APIエンドポイントで、署名検証前にリクエストボディ全体を読み込みログに記録する脆弱性がありました。これにより、認証されていない攻撃者は有効な支払いを偽造することなく、大量のリクエストを送信することでメモリ圧迫、コンテナ再起動、またはディスク枯渇を引き起こす可能性がありました。この問題はバージョン1.0.0-rc.11で修正されています。",
+    "category": "ai-service",
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-17T16:17:22.713Z",
+    "lastModifiedAt": "2026-08-17T17:16:40.073Z",
+    "fetchedAt": "2026-08-17T22:11:27.770Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2025-27621",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-27621",
+    "descriptionEn": "UpTrain is an open-source platform to evaluate and improve generative AI applications. In version 0.7.1 and prior, the UpTrain backend creates a new default user with a static username, where the username is also used as the default API key. The UpTrain backend also has an open CORS policy. Using these two primitives, any website can make a authenticated cross-origin request to the UpTrain instance by providing the default API key in the header `uptrain-access-token`. This issue may allow arbitrary websites to perform privileged operations on the UpTrain instance, as if they were the default logged in user. As of time of publication, no known patches are available.",
+    "summaryJa": "UpTrainのバージョン0.7.1以前のバックエンドには脆弱性があり、静的なデフォルトユーザー名がAPIキーとしても使用され、かつCORSポリシーがオープンでした。このため、任意のウェブサイトがデフォルトAPIキーを用いて認証済みクロスオリジンリクエストを実行し、特権操作を行う可能性があります。",
+    "category": "ai-library",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-08-17T16:16:46.290Z",
+    "lastModifiedAt": "2026-08-17T16:16:46.290Z",
+    "fetchedAt": "2026-08-17T22:11:27.770Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-71492",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71492",
+    "descriptionEn": "Banks generates meaningful LLM prompts using a simple template language. Prior to version 2.4.5, DirectoryPromptRegistry.set() in src/banks/registries/directory.py interpolates attacker-controlled Prompt.name and Prompt.version values into a Path without canonicalization or containment validation. Relative traversal such as ../victim/foo and an absolute Prompt.name can escape or discard the configured registry root, while overwrite=True permits replacement of existing target files. The poisoned name is persisted in index.json and reconstructed by _load(), allowing the out-of-root path to survive later registry loads. An application that forwards request data into these fields can therefore write Prompt.raw bytes to attacker-chosen paths writable by the application process. This issue is fixed in version 2.4.5.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-08-20T17:19:40.930Z",
+    "lastModifiedAt": "2026-08-20T17:19:40.930Z",
+    "fetchedAt": "2026-08-20T22:14:20.271Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-76832",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76832",
+    "descriptionEn": "Agno's PythonTools in libs/agno/agno/tools/python.py contains a path traversal vulnerability that allows attackers to read, write, or execute arbitrary files by supplying parent-directory traversal sequences in the file_name argument passed to read_file, save_to_file, or run_python_file tool actions. Attackers can inject traversal sequences such as '../../../../../../etc/passwd' through direct tool invocation or via prompt injection embedded in agent-processed content to escape the intended base_dir boundary and achieve arbitrary file read, arbitrary file write, or arbitrary Python code execution within the process user's authority.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-19T22:17:27.960Z",
+    "lastModifiedAt": "2026-08-20T16:18:20.903Z",
+    "fetchedAt": "2026-08-20T22:14:20.271Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-76395",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76395",
+    "descriptionEn": "In Splunk AI Toolkit versions below 6.0.0, a user who holds the \"power\" Splunk role could execute arbitrary code on the Splunk server by loading a model file containing crafted sparse matrix data. The deserialization of untrusted data is possible because a model codec in Splunk AI Toolkit deserializes sparse matrix data without guarding against embedded pickle content. For more information see Troubleshoot the Splunk Machine Learning Toolkit (https://help.splunk.com/en/splunk-cloud-platform/apply-machine-learning/machine-learning-toolkit-user-guide/5.5.0/troubleshooting-mltk/troubleshoot-the-splunk-machine-learning-toolkit) in the Splunk documentation.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-19T22:17:26.023Z",
+    "lastModifiedAt": "2026-08-20T13:01:40.103Z",
+    "fetchedAt": "2026-08-20T22:14:20.271Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-76394",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76394",
+    "descriptionEn": "In Splunk AI Toolkit versions below 6.0.0, a low-privileged user who does not hold the \"admin\" or \"power\" Splunk roles could start, stop, and configure containers, and read or modify connection and configuration data through the Representational State Transfer (REST) API. The missing authorization is possible because multiple REST API handlers in Splunk AI Toolkit do not enforce authorization checks. For more information see Troubleshoot the Splunk Machine Learning Toolkit (https://help.splunk.com/en/splunk-cloud-platform/apply-machine-learning/machine-learning-toolkit-user-guide/5.5.0/troubleshooting-mltk/troubleshoot-the-splunk-machine-learning-toolkit) in the Splunk documentation.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.3,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-19T22:17:25.870Z",
+    "lastModifiedAt": "2026-08-20T13:01:40.103Z",
+    "fetchedAt": "2026-08-20T22:14:20.271Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-76393",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76393",
+    "descriptionEn": "In Splunk AI Toolkit versions below 6.0.0, a user who can upload models could overwrite a model being uploaded by another user by sending a concurrent upload request for the same model name, causing the resulting model lookup entry to reference attacker-controlled content. The race condition is possible because Splunk AI Toolkit does not verify that the uploaded content belongs to the request that creates the model lookup entry. For more information see Troubleshoot the Splunk Machine Learning Toolkit (https://help.splunk.com/en/splunk-cloud-platform/apply-machine-learning/machine-learning-toolkit-user-guide/5.5.0/troubleshooting-mltk/troubleshoot-the-splunk-machine-learning-toolkit) in the Splunk documentation.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-19T22:17:25.737Z",
+    "lastModifiedAt": "2026-08-20T13:01:40.103Z",
+    "fetchedAt": "2026-08-20T22:14:20.271Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-60758",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-60758",
     "descriptionEn": "Vulnerability in the Siebel Artificial Intelligence product of Oracle Siebel CRM (component: AI).  Supported versions that are affected are 25.12-26.6. Easily exploitable vulnerability allows low privileged attacker with network access via HTTP to compromise Siebel Artificial Intelligence.  While the vulnerability is in Siebel Artificial Intelligence, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in  unauthorized access to critical data or complete access to all Siebel Artificial Intelligence accessible data as well as  unauthorized update, insert or delete access to some of Siebel Artificial Intelligence accessible data. CVSS 3.1 Base Score 8.5 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:L/A:N).",
@@ -8,8 +99,8 @@
     "cvssScore": 8.5,
     "severity": "HIGH",
     "publishedAt": "2026-08-18T21:16:42.273Z",
-    "lastModifiedAt": "2026-08-18T21:16:42.273Z",
-    "fetchedAt": "2026-08-19T22:12:08.995Z",
+    "lastModifiedAt": "2026-08-20T17:18:46.783Z",
+    "fetchedAt": "2026-08-20T22:14:20.271Z",
     "llmStatus": "ok"
   },
   {
@@ -125,22 +216,9 @@
     "cvssScore": 9.3,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-17T22:17:23.580Z",
-    "lastModifiedAt": "2026-08-19T19:23:24.757Z",
-    "fetchedAt": "2026-08-19T22:12:08.995Z",
+    "lastModifiedAt": "2026-08-20T19:16:57.867Z",
+    "fetchedAt": "2026-08-20T22:14:20.271Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2025-27621",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-27621",
-    "descriptionEn": "UpTrain is an open-source platform to evaluate and improve generative AI applications. In version 0.7.1 and prior, the UpTrain backend creates a new default user with a static username, where the username is also used as the default API key. The UpTrain backend also has an open CORS policy. Using these two primitives, any website can make a authenticated cross-origin request to the UpTrain instance by providing the default API key in the header `uptrain-access-token`. This issue may allow arbitrary websites to perform privileged operations on the UpTrain instance, as if they were the default logged in user. As of time of publication, no known patches are available.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-08-17T16:16:46.290Z",
-    "lastModifiedAt": "2026-08-17T16:16:46.290Z",
-    "fetchedAt": "2026-08-17T22:11:27.770Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-73560",
@@ -180,19 +258,6 @@
     "lastModifiedAt": "2026-08-17T19:16:35.383Z",
     "fetchedAt": "2026-08-17T22:11:27.770Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-64868",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-64868",
-    "descriptionEn": "New API is a large language mode (LLM) gateway and artificial intelligence (AI) asset management system. Prior to 1.0.0-rc.11, POST /api/stripe/webhook, POST /api/creem/webhook, and POST /api/waffo/webhook read and log full request bodies before signature validation in router/api-router.go and the payment controllers, allowing an unauthenticated attacker to cause memory pressure, container restarts, or disk exhaustion without forging a successful payment. This issue is fixed in version 1.0.0-rc.11.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.5,
-    "severity": "HIGH",
-    "publishedAt": "2026-08-17T16:17:22.713Z",
-    "lastModifiedAt": "2026-08-17T17:16:40.073Z",
-    "fetchedAt": "2026-08-17T22:11:27.770Z",
-    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-64866",
@@ -2192,8 +2257,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-22T23:16:30.200Z",
-    "lastModifiedAt": "2026-07-15T02:21:16.163Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-08-20T13:18:23.880Z",
+    "fetchedAt": "2026-08-20T22:14:20.271Z",
     "llmStatus": "ok"
   },
   {
@@ -3102,8 +3167,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-04-06T16:16:36.610Z",
-    "lastModifiedAt": "2026-07-15T02:20:34.773Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-08-20T13:18:04.090Z",
+    "fetchedAt": "2026-08-20T22:14:20.271Z",
     "llmStatus": "ok"
   },
   {
@@ -3115,8 +3180,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-04-06T16:16:36.463Z",
-    "lastModifiedAt": "2026-07-15T02:20:34.527Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-08-20T13:18:02.170Z",
+    "fetchedAt": "2026-08-20T22:14:20.271Z",
     "llmStatus": "ok"
   },
   {
