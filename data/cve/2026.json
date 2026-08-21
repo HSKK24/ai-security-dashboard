@@ -1,93 +1,119 @@
 [
   {
-    "id": "CVE-2026-64868",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-64868",
-    "descriptionEn": "New API is a large language mode (LLM) gateway and artificial intelligence (AI) asset management system. Prior to 1.0.0-rc.11, POST /api/stripe/webhook, POST /api/creem/webhook, and POST /api/waffo/webhook read and log full request bodies before signature validation in router/api-router.go and the payment controllers, allowing an unauthenticated attacker to cause memory pressure, container restarts, or disk exhaustion without forging a successful payment. This issue is fixed in version 1.0.0-rc.11.",
-    "summaryJa": "New APIのLLMゲートウェイおよびAI資産管理システムにおいて、バージョン1.0.0-rc.11より前の複数APIエンドポイントで、署名検証前にリクエストボディ全体を読み込みログに記録する脆弱性がありました。これにより、認証されていない攻撃者は有効な支払いを偽造することなく、大量のリクエストを送信することでメモリ圧迫、コンテナ再起動、またはディスク枯渇を引き起こす可能性がありました。この問題はバージョン1.0.0-rc.11で修正されています。",
-    "category": "ai-service",
-    "cvssScore": 7.5,
-    "severity": "HIGH",
-    "publishedAt": "2026-08-17T16:17:22.713Z",
-    "lastModifiedAt": "2026-08-17T17:16:40.073Z",
-    "fetchedAt": "2026-08-17T22:11:27.770Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2025-27621",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-27621",
-    "descriptionEn": "UpTrain is an open-source platform to evaluate and improve generative AI applications. In version 0.7.1 and prior, the UpTrain backend creates a new default user with a static username, where the username is also used as the default API key. The UpTrain backend also has an open CORS policy. Using these two primitives, any website can make a authenticated cross-origin request to the UpTrain instance by providing the default API key in the header `uptrain-access-token`. This issue may allow arbitrary websites to perform privileged operations on the UpTrain instance, as if they were the default logged in user. As of time of publication, no known patches are available.",
-    "summaryJa": "UpTrainのバージョン0.7.1以前のバックエンドには脆弱性があり、静的なデフォルトユーザー名がAPIキーとしても使用され、かつCORSポリシーがオープンでした。このため、任意のウェブサイトがデフォルトAPIキーを用いて認証済みクロスオリジンリクエストを実行し、特権操作を行う可能性があります。",
-    "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-08-17T16:16:46.290Z",
-    "lastModifiedAt": "2026-08-17T16:16:46.290Z",
-    "fetchedAt": "2026-08-17T22:11:27.770Z",
-    "llmStatus": "ok"
-  },
-  {
     "id": "CVE-2026-71492",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71492",
     "descriptionEn": "Banks generates meaningful LLM prompts using a simple template language. Prior to version 2.4.5, DirectoryPromptRegistry.set() in src/banks/registries/directory.py interpolates attacker-controlled Prompt.name and Prompt.version values into a Path without canonicalization or containment validation. Relative traversal such as ../victim/foo and an absolute Prompt.name can escape or discard the configured registry root, while overwrite=True permits replacement of existing target files. The poisoned name is persisted in index.json and reconstructed by _load(), allowing the out-of-root path to survive later registry loads. An application that forwards request data into these fields can therefore write Prompt.raw bytes to attacker-chosen paths writable by the application process. This issue is fixed in version 2.4.5.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Banksのバージョン2.4.5より前のバージョンにおいて、`DirectoryPromptRegistry.set()` メソッドにパス・トラバーサルの脆弱性が存在します。攻撃者が制御するプロンプト名とバージョンが適切な検証なしにファイルパスに挿入されるため、レジストリールート外の任意のパスにファイルを作成または上書きできる可能性があります。これにより、アプリケーションプロセスが書き込み可能な任意のファイルに、プロンプトの生データを書き込むことが可能となります。",
+    "category": "ai-library",
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-20T17:19:40.930Z",
     "lastModifiedAt": "2026-08-20T17:19:40.930Z",
     "fetchedAt": "2026-08-20T22:14:20.271Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-76832",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76832",
     "descriptionEn": "Agno's PythonTools in libs/agno/agno/tools/python.py contains a path traversal vulnerability that allows attackers to read, write, or execute arbitrary files by supplying parent-directory traversal sequences in the file_name argument passed to read_file, save_to_file, or run_python_file tool actions. Attackers can inject traversal sequences such as '../../../../../../etc/passwd' through direct tool invocation or via prompt injection embedded in agent-processed content to escape the intended base_dir boundary and achieve arbitrary file read, arbitrary file write, or arbitrary Python code execution within the process user's authority.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Agno's PythonToolsの`libs/agno/agno/tools/python.py`にパス・トラバーサルの脆弱性が存在します。攻撃者は`read_file`、`save_to_file`、`run_python_file`アクションの`file_name`引数に`../../`などのトラバーサルシーケンスを注入することで、ベースディレクトリの境界を回避し、任意のファイルを読み書きしたり、任意のPythonコードを実行したりできます。この攻撃は直接的なツール呼び出しまたはプロンプトインジェクションを介して実行可能です。",
+    "category": "ai-library",
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-19T22:17:27.960Z",
     "lastModifiedAt": "2026-08-20T16:18:20.903Z",
     "fetchedAt": "2026-08-20T22:14:20.271Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-76395",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76395",
     "descriptionEn": "In Splunk AI Toolkit versions below 6.0.0, a user who holds the \"power\" Splunk role could execute arbitrary code on the Splunk server by loading a model file containing crafted sparse matrix data. The deserialization of untrusted data is possible because a model codec in Splunk AI Toolkit deserializes sparse matrix data without guarding against embedded pickle content. For more information see Troubleshoot the Splunk Machine Learning Toolkit (https://help.splunk.com/en/splunk-cloud-platform/apply-machine-learning/machine-learning-toolkit-user-guide/5.5.0/troubleshooting-mltk/troubleshoot-the-splunk-machine-learning-toolkit) in the Splunk documentation.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Splunk AI Toolkitのバージョン6.0.0未満において、「power」Splunkロールを持つユーザーは、細工された疎行列データを含むモデルファイルを読み込むことで、Splunkサーバー上で任意のコードを実行できる脆弱性があります。これは、AI Toolkitのモデルコーデックが埋め込まれたpickleコンテンツに対する保護なしに疎行列データをデシリアライズするため、信頼できないデータのデシリアライズが可能になることに起因します。",
+    "category": "ai-library",
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-19T22:17:26.023Z",
-    "lastModifiedAt": "2026-08-20T13:01:40.103Z",
-    "fetchedAt": "2026-08-20T22:14:20.271Z",
-    "llmStatus": "pending"
+    "lastModifiedAt": "2026-08-21T18:55:15.193Z",
+    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-76394",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76394",
     "descriptionEn": "In Splunk AI Toolkit versions below 6.0.0, a low-privileged user who does not hold the \"admin\" or \"power\" Splunk roles could start, stop, and configure containers, and read or modify connection and configuration data through the Representational State Transfer (REST) API. The missing authorization is possible because multiple REST API handlers in Splunk AI Toolkit do not enforce authorization checks. For more information see Troubleshoot the Splunk Machine Learning Toolkit (https://help.splunk.com/en/splunk-cloud-platform/apply-machine-learning/machine-learning-toolkit-user-guide/5.5.0/troubleshooting-mltk/troubleshoot-the-splunk-machine-learning-toolkit) in the Splunk documentation.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Splunk AI Toolkitのバージョン6.0.0未満において、複数のREST APIハンドラーに認証チェックが欠如しているため、低権限ユーザーがREST API経由でコンテナの操作や設定データの読み書きを行える脆弱性が存在します。これにより、\"admin\"または\"power\"ロールを持たないユーザーでも、コンテナの起動・停止・設定、および接続・設定データの閲覧・変更が可能となります。",
+    "category": "ai-service",
     "cvssScore": 8.3,
     "severity": "HIGH",
     "publishedAt": "2026-08-19T22:17:25.870Z",
-    "lastModifiedAt": "2026-08-20T13:01:40.103Z",
-    "fetchedAt": "2026-08-20T22:14:20.271Z",
-    "llmStatus": "pending"
+    "lastModifiedAt": "2026-08-21T18:54:50.327Z",
+    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-76393",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76393",
     "descriptionEn": "In Splunk AI Toolkit versions below 6.0.0, a user who can upload models could overwrite a model being uploaded by another user by sending a concurrent upload request for the same model name, causing the resulting model lookup entry to reference attacker-controlled content. The race condition is possible because Splunk AI Toolkit does not verify that the uploaded content belongs to the request that creates the model lookup entry. For more information see Troubleshoot the Splunk Machine Learning Toolkit (https://help.splunk.com/en/splunk-cloud-platform/apply-machine-learning/machine-learning-toolkit-user-guide/5.5.0/troubleshooting-mltk/troubleshoot-the-splunk-machine-learning-toolkit) in the Splunk documentation.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Splunk AI Toolkitのバージョン6.0.0未満には、モデルアップロード時の競合状態の脆弱性が存在します。この脆弱性により、複数のユーザーが同じモデル名で同時にアップロードする際、悪意のあるユーザーが別のユーザーのアップロードを上書きし、モデル参照エントリを攻撃者が制御するコンテンツに誘導できます。これは、アップロードされたコンテンツがモデル参照エントリを作成したリクエストに属しているかの検証が不足しているためです。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-19T22:17:25.737Z",
-    "lastModifiedAt": "2026-08-20T13:01:40.103Z",
-    "fetchedAt": "2026-08-20T22:14:20.271Z",
+    "lastModifiedAt": "2026-08-21T18:54:46.903Z",
+    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-54457",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54457",
+    "descriptionEn": "TensorZero is an open-source LLMOps platform that unifies an LLM gateway, observability, evaluation, optimization, and experimentation. Prior to 2026.6.0, the TensorZero Gateway /internal/object_storage endpoint accepts a caller-supplied JSON storage_path parameter that dynamically overrides the [object_storage] configuration. Selecting the filesystem storage type allows arbitrary files on the gateway filesystem to be read, including credential files. Selecting the s3_compatible storage type causes outbound object-storage requests to attacker-chosen internal or cloud-metadata endpoints. Exploitation requires access to the gateway, which can be authenticated or unauthenticated depending on deployment configuration. This issue is fixed in version 2026.6.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.7,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-21T21:17:00.267Z",
+    "lastModifiedAt": "2026-08-21T21:17:00.267Z",
+    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-53656",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53656",
+    "descriptionEn": "FiftyOne is an open-source platform for refining high-quality datasets and visual AI models. Prior to 1.17.0, the FiftyOne App/API server in fiftyone/server/app.py and the /media route in fiftyone/server/routes/media.py unconditionally return Access-Control-Allow-Origin: *. Because the embedded server is local and unauthenticated, a malicious website visited by the user can read cross-origin responses. The /media endpoint accepts a filesystem path, allowing a drive-by page to read files accessible to the server process and exfiltrate them without additional clicks. The allowed_origins configuration and FIFTYONE_ALLOWED_ORIGINS environment variable now make cross-origin access explicit, while the default policy is same-origin. This issue is fixed in version 1.17.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-21T21:17:00.113Z",
+    "lastModifiedAt": "2026-08-21T21:17:00.113Z",
+    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-77776",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-77776",
+    "descriptionEn": "Headroom's LLM proxy derives the memory owner from the x-headroom-user-id request header. The header is read directly at several points in headroom/proxy/handlers/openai.py, including the chat completion and websocket paths, and nothing binds the value to the caller. A client can therefore name another user's identifier and read or write that user's stored LLM memory. The fix introduces a single resolve_memory_identity seam in headroom/proxy/identity.py that honors the header only for loopback or allowlisted callers and otherwise binds the identity to the proxy-token fingerprint or the operating system user. The pip console script binds 127.0.0.1 by default, but the reference docker-compose.yml ships --host 0.0.0.0 with published ports and no required HEADROOM_PROXY_TOKEN, which the server itself warns about at startup, so a deployment following the shipped compose exposes the affected data-plane routes to the network without authentication.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.1,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-08-21T12:16:36.967Z",
+    "lastModifiedAt": "2026-08-21T12:16:36.967Z",
+    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-77775",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-77775",
+    "descriptionEn": "Headroom's LLM proxy lets a client choose the upstream destination with the x-headroom-base-url request header. _resolve_openai_upstream_base in headroom/proxy/handlers/openai.py accepts the header value, requires only that it parse with an http or https scheme and a hostname, and returns it for use as the upstream base; _select_passthrough_base_url in headroom/providers/proxy_routes.py reads the same header for the passthrough routes. No check rejects loopback, link-local, or RFC 1918 destinations, and because the component is a proxy the upstream response is returned to the caller, so the request reaches internal services and cloud metadata addresses and their responses are disclosed. The Authorization header accompanying the request is forwarded unchanged to the caller-designated host. The pip console script binds 127.0.0.1 by default, but the reference docker-compose.yml ships --host 0.0.0.0 with published ports and no required HEADROOM_PROXY_TOKEN, which the server itself warns about at startup, so a deployment following the shipped compose exposes the affected data-plane routes to the network without authentication.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.6,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-21T12:16:36.813Z",
+    "lastModifiedAt": "2026-08-21T12:16:36.813Z",
+    "fetchedAt": "2026-08-21T22:11:03.357Z",
     "llmStatus": "pending"
   },
   {
@@ -99,8 +125,8 @@
     "cvssScore": 8.5,
     "severity": "HIGH",
     "publishedAt": "2026-08-18T21:16:42.273Z",
-    "lastModifiedAt": "2026-08-20T17:18:46.783Z",
-    "fetchedAt": "2026-08-20T22:14:20.271Z",
+    "lastModifiedAt": "2026-08-21T04:18:05.727Z",
+    "fetchedAt": "2026-08-21T22:11:03.357Z",
     "llmStatus": "ok"
   },
   {
@@ -260,6 +286,19 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2026-64868",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-64868",
+    "descriptionEn": "New API is a large language mode (LLM) gateway and artificial intelligence (AI) asset management system. Prior to 1.0.0-rc.11, POST /api/stripe/webhook, POST /api/creem/webhook, and POST /api/waffo/webhook read and log full request bodies before signature validation in router/api-router.go and the payment controllers, allowing an unauthenticated attacker to cause memory pressure, container restarts, or disk exhaustion without forging a successful payment. This issue is fixed in version 1.0.0-rc.11.",
+    "summaryJa": "New APIのLLMゲートウェイおよびAI資産管理システムにおいて、バージョン1.0.0-rc.11より前の複数APIエンドポイントで、署名検証前にリクエストボディ全体を読み込みログに記録する脆弱性がありました。これにより、認証されていない攻撃者は有効な支払いを偽造することなく、大量のリクエストを送信することでメモリ圧迫、コンテナ再起動、またはディスク枯渇を引き起こす可能性がありました。この問題はバージョン1.0.0-rc.11で修正されています。",
+    "category": "ai-service",
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-17T16:17:22.713Z",
+    "lastModifiedAt": "2026-08-17T17:16:40.073Z",
+    "fetchedAt": "2026-08-17T22:11:27.770Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2026-64866",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-64866",
     "descriptionEn": "New API is a large language mode (LLM) gateway and artificial intelligence (AI) asset management system. From 0.9.1.3 until 1.0.0-rc.7, AdminResetPasskey in controller/passkey.go lacks the canManageTargetRole authorization check for DELETE /api/user/:id/reset_passkey, allowing a lower-privileged administrator to remove a passkey from a same-level or higher-privileged account, including a root account. This issue is fixed in version 1.0.0-rc.7.",
@@ -335,6 +374,19 @@
     "publishedAt": "2026-08-17T16:16:46.447Z",
     "lastModifiedAt": "2026-08-18T15:16:47.550Z",
     "fetchedAt": "2026-08-18T22:09:52.758Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2025-27621",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-27621",
+    "descriptionEn": "UpTrain is an open-source platform to evaluate and improve generative AI applications. In version 0.7.1 and prior, the UpTrain backend creates a new default user with a static username, where the username is also used as the default API key. The UpTrain backend also has an open CORS policy. Using these two primitives, any website can make a authenticated cross-origin request to the UpTrain instance by providing the default API key in the header `uptrain-access-token`. This issue may allow arbitrary websites to perform privileged operations on the UpTrain instance, as if they were the default logged in user. As of time of publication, no known patches are available.",
+    "summaryJa": "UpTrainのバージョン0.7.1以前のバックエンドには脆弱性があり、静的なデフォルトユーザー名がAPIキーとしても使用され、かつCORSポリシーがオープンでした。このため、任意のウェブサイトがデフォルトAPIキーを用いて認証済みクロスオリジンリクエストを実行し、特権操作を行う可能性があります。",
+    "category": "ai-library",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-08-17T16:16:46.290Z",
+    "lastModifiedAt": "2026-08-17T16:16:46.290Z",
+    "fetchedAt": "2026-08-17T22:11:27.770Z",
     "llmStatus": "ok"
   },
   {
@@ -2257,8 +2309,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-22T23:16:30.200Z",
-    "lastModifiedAt": "2026-08-20T13:18:23.880Z",
-    "fetchedAt": "2026-08-20T22:14:20.271Z",
+    "lastModifiedAt": "2026-08-21T13:17:49.550Z",
+    "fetchedAt": "2026-08-21T22:11:03.357Z",
     "llmStatus": "ok"
   },
   {
@@ -3167,8 +3219,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-04-06T16:16:36.610Z",
-    "lastModifiedAt": "2026-08-20T13:18:04.090Z",
-    "fetchedAt": "2026-08-20T22:14:20.271Z",
+    "lastModifiedAt": "2026-08-21T13:17:31.733Z",
+    "fetchedAt": "2026-08-21T22:11:03.357Z",
     "llmStatus": "ok"
   },
   {
@@ -3180,8 +3232,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-04-06T16:16:36.463Z",
-    "lastModifiedAt": "2026-08-20T13:18:02.170Z",
-    "fetchedAt": "2026-08-20T22:14:20.271Z",
+    "lastModifiedAt": "2026-08-21T13:17:31.353Z",
+    "fetchedAt": "2026-08-21T22:11:03.357Z",
     "llmStatus": "ok"
   },
   {
