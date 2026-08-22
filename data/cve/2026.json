@@ -1,5 +1,70 @@
 [
   {
+    "id": "CVE-2026-54457",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54457",
+    "descriptionEn": "TensorZero is an open-source LLMOps platform that unifies an LLM gateway, observability, evaluation, optimization, and experimentation. Prior to 2026.6.0, the TensorZero Gateway /internal/object_storage endpoint accepts a caller-supplied JSON storage_path parameter that dynamically overrides the [object_storage] configuration. Selecting the filesystem storage type allows arbitrary files on the gateway filesystem to be read, including credential files. Selecting the s3_compatible storage type causes outbound object-storage requests to attacker-chosen internal or cloud-metadata endpoints. Exploitation requires access to the gateway, which can be authenticated or unauthenticated depending on deployment configuration. This issue is fixed in version 2026.6.0.",
+    "summaryJa": "TensorZeroのLLMOpsプラットフォームのGatewayコンポーネントにおいて、バージョン2026.6.0より前のバージョンには、`/internal/object_storage`エンドポイントに脆弱性が存在します。`storage_path`パラメータが`[object_storage]`設定を動的に上書きできるため、ファイルシステムストレージタイプを選択することでゲートウェイ上の任意のファイル（認証情報ファイルを含む）が読み取られる恐れがあります。また、S3互換ストレージタイプを選択すると、攻撃者が指定した内部またはクラウドメタデータエンドポイントへのオブジェクトストレージリクエストが発生する可能性があります。",
+    "category": "ai-service",
+    "cvssScore": 7.7,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-21T21:17:00.267Z",
+    "lastModifiedAt": "2026-08-21T21:17:00.267Z",
+    "fetchedAt": "2026-08-22T22:09:19.435Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-53656",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53656",
+    "descriptionEn": "FiftyOne is an open-source platform for refining high-quality datasets and visual AI models. Prior to 1.17.0, the FiftyOne App/API server in fiftyone/server/app.py and the /media route in fiftyone/server/routes/media.py unconditionally return Access-Control-Allow-Origin: *. Because the embedded server is local and unauthenticated, a malicious website visited by the user can read cross-origin responses. The /media endpoint accepts a filesystem path, allowing a drive-by page to read files accessible to the server process and exfiltrate them without additional clicks. The allowed_origins configuration and FIFTYONE_ALLOWED_ORIGINS environment variable now make cross-origin access explicit, while the default policy is same-origin. This issue is fixed in version 1.17.0.",
+    "summaryJa": "FiftyOneのバージョン1.17.0より前のFiftyOne App/APIサーバーには、CORS設定の脆弱性がありました。デフォルトでAccess-Control-Allow-Origin: *が設定されていたため、ローカルで認証されていないサーバーが、悪意のあるウェブサイトからクロスオリジンリクエストを受け入れる可能性がありました。特に/mediaエンドポイントを悪用されると、サーバープロセスがアクセス可能なファイルを読み取り、データ流出させるドライブバイ攻撃のリスクがありました。この問題はバージョン1.17.0で修正され、クロスオリジンアクセスには明示的な設定が必要となりました。",
+    "category": "ai-library",
+    "cvssScore": 6.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-21T21:17:00.113Z",
+    "lastModifiedAt": "2026-08-21T22:16:40.100Z",
+    "fetchedAt": "2026-08-22T22:09:19.435Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-77776",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-77776",
+    "descriptionEn": "Headroom's LLM proxy derives the memory owner from the x-headroom-user-id request header. The header is read directly at several points in headroom/proxy/handlers/openai.py, including the chat completion and websocket paths, and nothing binds the value to the caller. A client can therefore name another user's identifier and read or write that user's stored LLM memory. The fix introduces a single resolve_memory_identity seam in headroom/proxy/identity.py that honors the header only for loopback or allowlisted callers and otherwise binds the identity to the proxy-token fingerprint or the operating system user. The pip console script binds 127.0.0.1 by default, but the reference docker-compose.yml ships --host 0.0.0.0 with published ports and no required HEADROOM_PROXY_TOKEN, which the server itself warns about at startup, so a deployment following the shipped compose exposes the affected data-plane routes to the network without authentication.",
+    "summaryJa": "HeadroomのLLMプロキシは、x-headroom-user-idリクエストヘッダーを用いてLLMメモリのオーナーを特定しますが、この値が呼び出し元に適切にバインドされていませんでした。結果として、攻撃者は任意のユーザーIDを指定することで、他ユーザーのLLMメモリを読み書きできる可能性があります。特に、公式のDocker Compose設定では認証なしでデータプレーンルートが公開されるため、この脆弱性が悪用されるリスクがありました。",
+    "category": "ai-service",
+    "cvssScore": 9.1,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-08-21T12:16:36.967Z",
+    "lastModifiedAt": "2026-08-21T22:16:46.183Z",
+    "fetchedAt": "2026-08-22T22:09:19.435Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-77775",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-77775",
+    "descriptionEn": "Headroom's LLM proxy lets a client choose the upstream destination with the x-headroom-base-url request header. _resolve_openai_upstream_base in headroom/proxy/handlers/openai.py accepts the header value, requires only that it parse with an http or https scheme and a hostname, and returns it for use as the upstream base; _select_passthrough_base_url in headroom/providers/proxy_routes.py reads the same header for the passthrough routes. No check rejects loopback, link-local, or RFC 1918 destinations, and because the component is a proxy the upstream response is returned to the caller, so the request reaches internal services and cloud metadata addresses and their responses are disclosed. The Authorization header accompanying the request is forwarded unchanged to the caller-designated host. The pip console script binds 127.0.0.1 by default, but the reference docker-compose.yml ships --host 0.0.0.0 with published ports and no required HEADROOM_PROXY_TOKEN, which the server itself warns about at startup, so a deployment following the shipped compose exposes the affected data-plane routes to the network without authentication.",
+    "summaryJa": "HeadroomのLLMプロキシにおいて、クライアントが`x-headroom-base-url`ヘッダーでアップストリームの宛先を選択できる機能に、ループバック、リンクローカル、RFC 1918アドレスへのアクセス制限がありません。これにより、内部サービスやクラウドメタデータアドレスへのリクエストが可能となり、その応答が呼び出し元に開示される可能性があります。特定のDocker Compose設定を用いると、認証なしでこの脆弱なルートがネットワークに公開される恐れがあります。",
+    "category": "ai-service",
+    "cvssScore": 8.6,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-21T12:16:36.813Z",
+    "lastModifiedAt": "2026-08-21T12:16:36.813Z",
+    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-74630",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-74630",
+    "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\nipv6: prevent in6_dev_get() from resurrecting inet6_dev\n\nin6_dev_get() reads dev->ip6_ptr under RCU and then unconditionally\nincrements its refcount. Device teardown can clear the pointer and drop\nthe last reference between these operations. The increment then\nresurrects an object whose RCU free has already been queued, so callers\ncan use it after it is freed.\n\nUse refcount_inc_not_zero() and return NULL when the object has already\nreached zero. RCU keeps the memory accessible through the attempted\nreference acquisition, and a successful increment pins the object for\nthe caller.\n\nAn independent run on the exact unpatched 6f5156d7a31a (v7.2-rc3)\nkernel reproduced the invalid reference acquisition as UID 1000:\n\n  refcount_t: addition on 0; use-after-free.\n  ip6_mc_source+0xef4/0x17e0\n\nIt was followed by the corresponding reference underflow in\nip6_mc_source(). The supplied trace from the same unpatched revision\nadditionally shows the access after the RCU read-side section ends:\n\n  BUG: KASAN: slab-use-after-free in mutex_lock+0x76/0xe0\n  Write of size 8 at addr ffff888015b50240 by task poc/1219\n\nBug found and triaged by OpenAI Security Research and\nvalidated by Trail of Bits.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-08-22T16:16:35.943Z",
+    "lastModifiedAt": "2026-08-22T16:16:35.943Z",
+    "fetchedAt": "2026-08-22T22:09:19.435Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-71492",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-71492",
     "descriptionEn": "Banks generates meaningful LLM prompts using a simple template language. Prior to version 2.4.5, DirectoryPromptRegistry.set() in src/banks/registries/directory.py interpolates attacker-controlled Prompt.name and Prompt.version values into a Path without canonicalization or containment validation. Relative traversal such as ../victim/foo and an absolute Prompt.name can escape or discard the configured registry root, while overwrite=True permits replacement of existing target files. The poisoned name is persisted in index.json and reconstructed by _load(), allowing the out-of-root path to survive later registry loads. An application that forwards request data into these fields can therefore write Prompt.raw bytes to attacker-chosen paths writable by the application process. This issue is fixed in version 2.4.5.",
@@ -35,7 +100,7 @@
     "severity": "HIGH",
     "publishedAt": "2026-08-19T22:17:26.023Z",
     "lastModifiedAt": "2026-08-21T18:55:15.193Z",
-    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "fetchedAt": "2026-08-22T22:09:19.435Z",
     "llmStatus": "ok"
   },
   {
@@ -63,58 +128,6 @@
     "lastModifiedAt": "2026-08-21T18:54:46.903Z",
     "fetchedAt": "2026-08-21T22:11:03.357Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-54457",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54457",
-    "descriptionEn": "TensorZero is an open-source LLMOps platform that unifies an LLM gateway, observability, evaluation, optimization, and experimentation. Prior to 2026.6.0, the TensorZero Gateway /internal/object_storage endpoint accepts a caller-supplied JSON storage_path parameter that dynamically overrides the [object_storage] configuration. Selecting the filesystem storage type allows arbitrary files on the gateway filesystem to be read, including credential files. Selecting the s3_compatible storage type causes outbound object-storage requests to attacker-chosen internal or cloud-metadata endpoints. Exploitation requires access to the gateway, which can be authenticated or unauthenticated depending on deployment configuration. This issue is fixed in version 2026.6.0.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.7,
-    "severity": "HIGH",
-    "publishedAt": "2026-08-21T21:17:00.267Z",
-    "lastModifiedAt": "2026-08-21T21:17:00.267Z",
-    "fetchedAt": "2026-08-21T22:11:03.357Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-53656",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53656",
-    "descriptionEn": "FiftyOne is an open-source platform for refining high-quality datasets and visual AI models. Prior to 1.17.0, the FiftyOne App/API server in fiftyone/server/app.py and the /media route in fiftyone/server/routes/media.py unconditionally return Access-Control-Allow-Origin: *. Because the embedded server is local and unauthenticated, a malicious website visited by the user can read cross-origin responses. The /media endpoint accepts a filesystem path, allowing a drive-by page to read files accessible to the server process and exfiltrate them without additional clicks. The allowed_origins configuration and FIFTYONE_ALLOWED_ORIGINS environment variable now make cross-origin access explicit, while the default policy is same-origin. This issue is fixed in version 1.17.0.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 6.3,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-08-21T21:17:00.113Z",
-    "lastModifiedAt": "2026-08-21T21:17:00.113Z",
-    "fetchedAt": "2026-08-21T22:11:03.357Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-77776",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-77776",
-    "descriptionEn": "Headroom's LLM proxy derives the memory owner from the x-headroom-user-id request header. The header is read directly at several points in headroom/proxy/handlers/openai.py, including the chat completion and websocket paths, and nothing binds the value to the caller. A client can therefore name another user's identifier and read or write that user's stored LLM memory. The fix introduces a single resolve_memory_identity seam in headroom/proxy/identity.py that honors the header only for loopback or allowlisted callers and otherwise binds the identity to the proxy-token fingerprint or the operating system user. The pip console script binds 127.0.0.1 by default, but the reference docker-compose.yml ships --host 0.0.0.0 with published ports and no required HEADROOM_PROXY_TOKEN, which the server itself warns about at startup, so a deployment following the shipped compose exposes the affected data-plane routes to the network without authentication.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 9.1,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-08-21T12:16:36.967Z",
-    "lastModifiedAt": "2026-08-21T12:16:36.967Z",
-    "fetchedAt": "2026-08-21T22:11:03.357Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-77775",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-77775",
-    "descriptionEn": "Headroom's LLM proxy lets a client choose the upstream destination with the x-headroom-base-url request header. _resolve_openai_upstream_base in headroom/proxy/handlers/openai.py accepts the header value, requires only that it parse with an http or https scheme and a hostname, and returns it for use as the upstream base; _select_passthrough_base_url in headroom/providers/proxy_routes.py reads the same header for the passthrough routes. No check rejects loopback, link-local, or RFC 1918 destinations, and because the component is a proxy the upstream response is returned to the caller, so the request reaches internal services and cloud metadata addresses and their responses are disclosed. The Authorization header accompanying the request is forwarded unchanged to the caller-designated host. The pip console script binds 127.0.0.1 by default, but the reference docker-compose.yml ships --host 0.0.0.0 with published ports and no required HEADROOM_PROXY_TOKEN, which the server itself warns about at startup, so a deployment following the shipped compose exposes the affected data-plane routes to the network without authentication.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.6,
-    "severity": "HIGH",
-    "publishedAt": "2026-08-21T12:16:36.813Z",
-    "lastModifiedAt": "2026-08-21T12:16:36.813Z",
-    "fetchedAt": "2026-08-21T22:11:03.357Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-60758",
