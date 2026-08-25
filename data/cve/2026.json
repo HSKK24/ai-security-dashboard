@@ -3,13 +3,78 @@
     "id": "CVE-2026-76072",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76072",
     "descriptionEn": "The Continue CLI applies an incomplete denylist as its only barrier to destructive shell commands when running unattended. In headless mode and auto mode the default policy in extensions/cli/src/permissions/defaultPolicies.ts grants the Bash tool the allow permission, and permissionChecker.ts hard-blocks a command only when the terminal-security evaluator returns a disabled verdict, so isCriticalCommand in packages/terminal-security/src/evaluateTerminalCommandSecurity.ts is the sole control. Its dangerous-path test matches only /, /*, ~, ~/*, /usr, /etc, /bin and /sbin and their prefixes, so a recursive forced removal of /home, /root, /var, /opt or /srv is not disabled. The command line is parsed with shell-quote, which reduces $HOME to an empty token, so rm -rf $HOME also fails the dangerous-path test while the shell re-expands the variable when the command is spawned. find with -delete is rated high risk rather than disabled, and shred, wipefs, truncate and pkexec are not handled. Because the agent autonomously reads content it does not control, including fetched web pages, repository files and issue text, an indirect prompt injection in that content can cause an unattended run to destroy the invoking user's data.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Continue CLIは、ヘッドレスモードおよび自動モードにおいて、シェルコマンド実行時のセキュリティ検証機構が不完全です。危険なパスの検出範囲が限定的であるため、/homeなどの重要なディレクトリに対する破壊的なコマンドや、シェル変数を含むコマンドが無効化されません。この脆弱性により、エージェントが制御できないコンテンツから間接的なプロンプトインジェクションを受けると、ユーザーデータが破壊される可能性があります。",
+    "category": "prompt-injection",
     "cvssScore": 7.4,
     "severity": "HIGH",
     "publishedAt": "2026-08-24T18:17:21.233Z",
     "lastModifiedAt": "2026-08-24T19:16:58.897Z",
-    "fetchedAt": "2026-08-24T22:13:12.551Z",
+    "fetchedAt": "2026-08-25T22:13:36.612Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-80104",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-80104",
+    "descriptionEn": "DB-GPT builds the destination path for an uploaded skill from the multipart filename without constraining it to the upload directory. skill_upload in packages/dbgpt-app/src/dbgpt_app/openapi/api_v1/agentic_data_api.py takes file.filename as given and writes the request body to upload_dir / filename. A path composed with that operator discards the left operand when the right one is absolute and follows parent references otherwise, so a filename such as ../../../tmp/x or /tmp/x resolves outside the intended directory; nothing canonicalises the result, checks that it remains under the upload root, or prevents a .py suffix. The route's only dependency is get_user_from_headers in dbgpt_serve/utils/auth.py, which returns a request carrying the admin role whether or not a user_id header is supplied, so the endpoint is reachable without credentials. A remote attacker holding no account can therefore write attacker-controlled bytes to any path the server process can write, place a new Python module inside the application package or replace one the application already imports, and obtain code execution in the server process when that module is next imported.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-08-25T21:18:24.163Z",
+    "lastModifiedAt": "2026-08-25T21:18:24.163Z",
+    "fetchedAt": "2026-08-25T22:13:36.612Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-78379",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-78379",
+    "descriptionEn": "Improper neutralization of input used for LLM prompting in the python_repl tool in Amazon Strands Agents Tools before 0.8.5 might allow remote actors to execute arbitrary Python code on the agent's host by bypassing the human consent gate, via a crafted prompt that forwards non_interactive_mode as a keyword argument through the batch tool. To remediate this issue, users should upgrade to version 0.8.5 or later.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.1,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-25T19:16:54.467Z",
+    "lastModifiedAt": "2026-08-25T20:17:07.817Z",
+    "fetchedAt": "2026-08-25T22:13:36.612Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-55585",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55585",
+    "descriptionEn": "QWED is open-source AI verification infrastructure for deterministic verification of LLM outputs, tool calls, code, schemas, and agent state before production execution. Prior to 5.1.2, the qwed package passes caller-controlled math expressions directly to SymPy parse_expr() without restricted global_dict and local_dict namespaces, allowing Python eval() to resolve builtins and execute arbitrary Python code in the API server process. In src/qwed_new/api/main.py, POST /verify/math is protected by get_current_tenant but accepts any valid tenant API key, reads the expression field, applies only a cosmetic re.sub(r'(\\d)(()', r'\\1*\\2', expression) normalization, and passes the result to parse_expr(). In src/qwed_new/core/batch.py, POST /verify/batch sends math items through batch_service.create_job(), stores item.query verbatim, and _verify_item() passes VerificationType.MATH input to parse_expr() without sanitization. The default-enabled POST /auth/signup endpoint allows anyone to create a standard tenant account, POST /auth/api-keys issues an x-api-key, and either vulnerable path can then be used to read or write files, modify data, execute operating system commands, terminate the service, and compromise other tenants in a shared deployment. This issue is fixed in version 5.1.2.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-25T17:17:32.903Z",
+    "lastModifiedAt": "2026-08-25T17:17:32.903Z",
+    "fetchedAt": "2026-08-25T22:13:36.612Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-55557",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55557",
+    "descriptionEn": "browse-mcp is a Playwright-based headless-browser MCP server for MCP-capable agents. Prior to 0.8.2, browser_download writes a fetched response body to join(save_dir, filename) without validating the caller-controlled save_dir, while browser_save_state and browser_load_state honor a caller-controlled path unchanged. A malicious MCP client, or an autonomous agent steered by indirect prompt injection on a visited page, can choose an arbitrary save_dir or state path and a URL whose response body becomes attacker-controlled file contents, allowing writes to any path the process can reach, including ~/.bashrc, autostart entries, or cron files, and potentially leading to host code execution. The force_fetch fallback also uses a raw fetch() that bypasses the BROWSE_MCP_ALLOWED_ORIGINS origin fence. This issue is fixed in version 0.8.2.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-08-25T17:17:32.357Z",
+    "lastModifiedAt": "2026-08-25T19:16:49.923Z",
+    "fetchedAt": "2026-08-25T22:13:36.612Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-55580",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55580",
+    "descriptionEn": "mcp-shell is an MCP server for running shell commands securely, auditably, and on demand. Prior to 0.6.0, config.go initializes Security.Enabled to false, and when MCP_SHELL_SEC_CONFIG_FILE is unset, main.go starts the documented bare-binary deployment without a security policy. SecurityValidator.validateCommand in security.go then short-circuits and allows every command supplied to the shell_exec MCP tool, so an LLM connected over stdio can execute unrestricted OS commands as the mcp-shell process user. The README from-source installation and MCP client configuration omit MCP_SHELL_SEC_CONFIG_FILE, making the insecure state the documented default. This issue is fixed in version 0.6.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-08-25T16:16:55.317Z",
+    "lastModifiedAt": "2026-08-25T17:17:32.743Z",
+    "fetchedAt": "2026-08-25T22:13:36.612Z",
     "llmStatus": "pending"
   },
   {
@@ -18,11 +83,11 @@
     "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\nipv6: prevent in6_dev_get() from resurrecting inet6_dev\n\nin6_dev_get() reads dev->ip6_ptr under RCU and then unconditionally\nincrements its refcount. Device teardown can clear the pointer and drop\nthe last reference between these operations. The increment then\nresurrects an object whose RCU free has already been queued, so callers\ncan use it after it is freed.\n\nUse refcount_inc_not_zero() and return NULL when the object has already\nreached zero. RCU keeps the memory accessible through the attempted\nreference acquisition, and a successful increment pins the object for\nthe caller.\n\nAn independent run on the exact unpatched 6f5156d7a31a (v7.2-rc3)\nkernel reproduced the invalid reference acquisition as UID 1000:\n\n  refcount_t: addition on 0; use-after-free.\n  ip6_mc_source+0xef4/0x17e0\n\nIt was followed by the corresponding reference underflow in\nip6_mc_source(). The supplied trace from the same unpatched revision\nadditionally shows the access after the RCU read-side section ends:\n\n  BUG: KASAN: slab-use-after-free in mutex_lock+0x76/0xe0\n  Write of size 8 at addr ffff888015b50240 by task poc/1219\n\nBug found and triaged by OpenAI Security Research and\nvalidated by Trail of Bits.",
     "summaryJa": "LinuxカーネルのIPv6実装において、`in6_dev_get()`関数がRCUフリーがキューに入れられたオブジェクトの参照カウンタを不適切にインクリメントすることで、解放済みメモリの使用（use-after-free）が発生する脆弱性が存在しました。デバイスのティアダウン中にポインタがクリアされ参照がドロップされた後も、オブジェクトが「復活」し不正なアクセスにつながる可能性がありました。この問題は、`refcount_inc_not_zero()`の使用により解決されました。",
     "category": "other",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 7.8,
+    "severity": "HIGH",
     "publishedAt": "2026-08-22T16:16:35.943Z",
-    "lastModifiedAt": "2026-08-22T16:16:35.943Z",
-    "fetchedAt": "2026-08-24T22:13:12.551Z",
+    "lastModifiedAt": "2026-08-25T06:18:41.893Z",
+    "fetchedAt": "2026-08-25T22:13:36.612Z",
     "llmStatus": "ok"
   },
   {
@@ -34,8 +99,8 @@
     "cvssScore": 7.7,
     "severity": "HIGH",
     "publishedAt": "2026-08-21T21:17:00.267Z",
-    "lastModifiedAt": "2026-08-21T21:17:00.267Z",
-    "fetchedAt": "2026-08-22T22:09:19.435Z",
+    "lastModifiedAt": "2026-08-25T14:16:52.080Z",
+    "fetchedAt": "2026-08-25T22:13:36.612Z",
     "llmStatus": "ok"
   },
   {
@@ -2335,8 +2400,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-22T23:16:30.200Z",
-    "lastModifiedAt": "2026-08-21T13:17:49.550Z",
-    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "lastModifiedAt": "2026-08-25T13:18:55.087Z",
+    "fetchedAt": "2026-08-25T22:13:36.612Z",
     "llmStatus": "ok"
   },
   {
@@ -3245,8 +3310,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-04-06T16:16:36.610Z",
-    "lastModifiedAt": "2026-08-21T13:17:31.733Z",
-    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "lastModifiedAt": "2026-08-25T13:18:39.567Z",
+    "fetchedAt": "2026-08-25T22:13:36.612Z",
     "llmStatus": "ok"
   },
   {
@@ -3258,8 +3323,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-04-06T16:16:36.463Z",
-    "lastModifiedAt": "2026-08-21T13:17:31.353Z",
-    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "lastModifiedAt": "2026-08-25T13:18:39.240Z",
+    "fetchedAt": "2026-08-25T22:13:36.612Z",
     "llmStatus": "ok"
   },
   {
@@ -3375,8 +3440,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-03-31T03:15:58.947Z",
-    "lastModifiedAt": "2026-07-15T02:20:30.143Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-08-25T13:18:38.963Z",
+    "fetchedAt": "2026-08-25T22:13:36.612Z",
     "llmStatus": "ok"
   },
   {
