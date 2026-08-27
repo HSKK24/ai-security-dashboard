@@ -1,5 +1,70 @@
 [
   {
+    "id": "CVE-2026-80104",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-80104",
+    "descriptionEn": "DB-GPT builds the destination path for an uploaded skill from the multipart filename without constraining it to the upload directory. skill_upload in packages/dbgpt-app/src/dbgpt_app/openapi/api_v1/agentic_data_api.py takes file.filename as given and writes the request body to upload_dir / filename. A path composed with that operator discards the left operand when the right one is absolute and follows parent references otherwise, so a filename such as ../../../tmp/x or /tmp/x resolves outside the intended directory; nothing canonicalises the result, checks that it remains under the upload root, or prevents a .py suffix. The route's only dependency is get_user_from_headers in dbgpt_serve/utils/auth.py, which returns a request carrying the admin role whether or not a user_id header is supplied, so the endpoint is reachable without credentials. A remote attacker holding no account can therefore write attacker-controlled bytes to any path the server process can write, place a new Python module inside the application package or replace one the application already imports, and obtain code execution in the server process when that module is next imported.",
+    "summaryJa": "DB-GPTの`skill_upload`機能には、アップロードされたスキルの保存先パスを適切に制限しないパストラバーサルの脆弱性が存在します。認証なしでアクセス可能なこのエンドポイントを悪用することで、リモートの攻撃者はサーバーのファイルシステム上の任意の場所にファイルを書き込み、悪意のあるPythonモジュールを配置できます。これにより、サーバープロセスでのリモートコード実行が可能になります。",
+    "category": "ai-service",
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-08-25T21:18:24.163Z",
+    "lastModifiedAt": "2026-08-25T21:18:24.163Z",
+    "fetchedAt": "2026-08-27T02:20:46.726Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-78379",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-78379",
+    "descriptionEn": "Improper neutralization of input used for LLM prompting in the python_repl tool in Amazon Strands Agents Tools before 0.8.5 might allow remote actors to execute arbitrary Python code on the agent's host by bypassing the human consent gate, via a crafted prompt that forwards non_interactive_mode as a keyword argument through the batch tool. To remediate this issue, users should upgrade to version 0.8.5 or later.",
+    "summaryJa": "Amazon Strands Agents Toolsのpython_replツール（v0.8.5未満）において、LLMプロンプト入力の不適切な無害化の脆弱性が存在します。細工されたプロンプトを介してhuman consent gateをバイパスすることで、リモートアクターがエージェントのホスト上で任意のPythonコードを実行する可能性があります。この問題はバージョン0.8.5以降で修正されています。",
+    "category": "prompt-injection",
+    "cvssScore": 8.1,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-25T19:16:54.467Z",
+    "lastModifiedAt": "2026-08-26T16:45:12.020Z",
+    "fetchedAt": "2026-08-27T02:20:46.726Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-55585",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55585",
+    "descriptionEn": "QWED is open-source AI verification infrastructure for deterministic verification of LLM outputs, tool calls, code, schemas, and agent state before production execution. Prior to 5.1.2, the qwed package passes caller-controlled math expressions directly to SymPy parse_expr() without restricted global_dict and local_dict namespaces, allowing Python eval() to resolve builtins and execute arbitrary Python code in the API server process. In src/qwed_new/api/main.py, POST /verify/math is protected by get_current_tenant but accepts any valid tenant API key, reads the expression field, applies only a cosmetic re.sub(r'(\\d)(()', r'\\1*\\2', expression) normalization, and passes the result to parse_expr(). In src/qwed_new/core/batch.py, POST /verify/batch sends math items through batch_service.create_job(), stores item.query verbatim, and _verify_item() passes VerificationType.MATH input to parse_expr() without sanitization. The default-enabled POST /auth/signup endpoint allows anyone to create a standard tenant account, POST /auth/api-keys issues an x-api-key, and either vulnerable path can then be used to read or write files, modify data, execute operating system commands, terminate the service, and compromise other tenants in a shared deployment. This issue is fixed in version 5.1.2.",
+    "summaryJa": "QWEDのオープンソースAI検証インフラにおいて、バージョン5.1.2より前の`qwed`パッケージに任意のPythonコード実行の脆弱性が存在します。ユーザーが制御する数式がSymPyの`parse_expr()`関数に不適切に渡され、SymPyが`eval()`を介して組み込み関数を解決することで、APIサーバープロセス上で任意のコード実行が可能となります。この脆弱性により、ファイル操作、OSコマンド実行、他テナントへの侵害などが発生する可能性があります。",
+    "category": "ai-service",
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-25T17:17:32.903Z",
+    "lastModifiedAt": "2026-08-25T17:17:32.903Z",
+    "fetchedAt": "2026-08-27T02:20:46.726Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-55557",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55557",
+    "descriptionEn": "browse-mcp is a Playwright-based headless-browser MCP server for MCP-capable agents. Prior to 0.8.2, browser_download writes a fetched response body to join(save_dir, filename) without validating the caller-controlled save_dir, while browser_save_state and browser_load_state honor a caller-controlled path unchanged. A malicious MCP client, or an autonomous agent steered by indirect prompt injection on a visited page, can choose an arbitrary save_dir or state path and a URL whose response body becomes attacker-controlled file contents, allowing writes to any path the process can reach, including ~/.bashrc, autostart entries, or cron files, and potentially leading to host code execution. The force_fetch fallback also uses a raw fetch() that bypasses the BROWSE_MCP_ALLOWED_ORIGINS origin fence. This issue is fixed in version 0.8.2.",
+    "summaryJa": "browse-mcpのバージョン0.8.2より前において、`browser_download`関数が呼び出し元が制御する保存ディレクトリを検証せず、また`browser_save_state`および`browser_load_state`がユーザー指定パスをそのまま使用していました。これにより、悪意のあるMCPクライアントやプロンプトインジェクションにより操作されたエージェントが、プロセスがアクセス可能な任意のパスにファイルを書き込むことが可能となり、ホスト上での任意のコード実行につながる可能性があります。",
+    "category": "ai-library",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-08-25T17:17:32.357Z",
+    "lastModifiedAt": "2026-08-25T19:16:49.923Z",
+    "fetchedAt": "2026-08-27T02:20:46.726Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-55580",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55580",
+    "descriptionEn": "mcp-shell is an MCP server for running shell commands securely, auditably, and on demand. Prior to 0.6.0, config.go initializes Security.Enabled to false, and when MCP_SHELL_SEC_CONFIG_FILE is unset, main.go starts the documented bare-binary deployment without a security policy. SecurityValidator.validateCommand in security.go then short-circuits and allows every command supplied to the shell_exec MCP tool, so an LLM connected over stdio can execute unrestricted OS commands as the mcp-shell process user. The README from-source installation and MCP client configuration omit MCP_SHELL_SEC_CONFIG_FILE, making the insecure state the documented default. This issue is fixed in version 0.6.0.",
+    "summaryJa": "mcp-shellのバージョン0.6.0より前において、デフォルト設定でセキュリティが無効化され、特定の設定ファイルが未設定の場合、セキュリティポリシーなしで起動する脆弱性が存在しました。これにより、mcp-shellに接続されたLLMなどが、mcp-shellプロセスユーザーとしてOSコマンドを無制限に実行できる可能性があります。この問題はバージョン0.6.0で修正されました。",
+    "category": "other",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-08-25T16:16:55.317Z",
+    "lastModifiedAt": "2026-08-25T17:17:32.743Z",
+    "fetchedAt": "2026-08-27T02:20:46.726Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2026-76072",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76072",
     "descriptionEn": "The Continue CLI applies an incomplete denylist as its only barrier to destructive shell commands when running unattended. In headless mode and auto mode the default policy in extensions/cli/src/permissions/defaultPolicies.ts grants the Bash tool the allow permission, and permissionChecker.ts hard-blocks a command only when the terminal-security evaluator returns a disabled verdict, so isCriticalCommand in packages/terminal-security/src/evaluateTerminalCommandSecurity.ts is the sole control. Its dangerous-path test matches only /, /*, ~, ~/*, /usr, /etc, /bin and /sbin and their prefixes, so a recursive forced removal of /home, /root, /var, /opt or /srv is not disabled. The command line is parsed with shell-quote, which reduces $HOME to an empty token, so rm -rf $HOME also fails the dangerous-path test while the shell re-expands the variable when the command is spawned. find with -delete is rated high risk rather than disabled, and shred, wipefs, truncate and pkexec are not handled. Because the agent autonomously reads content it does not control, including fetched web pages, repository files and issue text, an indirect prompt injection in that content can cause an unattended run to destroy the invoking user's data.",
@@ -11,71 +76,6 @@
     "lastModifiedAt": "2026-08-24T19:16:58.897Z",
     "fetchedAt": "2026-08-25T22:13:36.612Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-80104",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-80104",
-    "descriptionEn": "DB-GPT builds the destination path for an uploaded skill from the multipart filename without constraining it to the upload directory. skill_upload in packages/dbgpt-app/src/dbgpt_app/openapi/api_v1/agentic_data_api.py takes file.filename as given and writes the request body to upload_dir / filename. A path composed with that operator discards the left operand when the right one is absolute and follows parent references otherwise, so a filename such as ../../../tmp/x or /tmp/x resolves outside the intended directory; nothing canonicalises the result, checks that it remains under the upload root, or prevents a .py suffix. The route's only dependency is get_user_from_headers in dbgpt_serve/utils/auth.py, which returns a request carrying the admin role whether or not a user_id header is supplied, so the endpoint is reachable without credentials. A remote attacker holding no account can therefore write attacker-controlled bytes to any path the server process can write, place a new Python module inside the application package or replace one the application already imports, and obtain code execution in the server process when that module is next imported.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 9.8,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-08-25T21:18:24.163Z",
-    "lastModifiedAt": "2026-08-25T21:18:24.163Z",
-    "fetchedAt": "2026-08-25T22:13:36.612Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-78379",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-78379",
-    "descriptionEn": "Improper neutralization of input used for LLM prompting in the python_repl tool in Amazon Strands Agents Tools before 0.8.5 might allow remote actors to execute arbitrary Python code on the agent's host by bypassing the human consent gate, via a crafted prompt that forwards non_interactive_mode as a keyword argument through the batch tool. To remediate this issue, users should upgrade to version 0.8.5 or later.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.1,
-    "severity": "HIGH",
-    "publishedAt": "2026-08-25T19:16:54.467Z",
-    "lastModifiedAt": "2026-08-25T20:17:07.817Z",
-    "fetchedAt": "2026-08-25T22:13:36.612Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-55585",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55585",
-    "descriptionEn": "QWED is open-source AI verification infrastructure for deterministic verification of LLM outputs, tool calls, code, schemas, and agent state before production execution. Prior to 5.1.2, the qwed package passes caller-controlled math expressions directly to SymPy parse_expr() without restricted global_dict and local_dict namespaces, allowing Python eval() to resolve builtins and execute arbitrary Python code in the API server process. In src/qwed_new/api/main.py, POST /verify/math is protected by get_current_tenant but accepts any valid tenant API key, reads the expression field, applies only a cosmetic re.sub(r'(\\d)(()', r'\\1*\\2', expression) normalization, and passes the result to parse_expr(). In src/qwed_new/core/batch.py, POST /verify/batch sends math items through batch_service.create_job(), stores item.query verbatim, and _verify_item() passes VerificationType.MATH input to parse_expr() without sanitization. The default-enabled POST /auth/signup endpoint allows anyone to create a standard tenant account, POST /auth/api-keys issues an x-api-key, and either vulnerable path can then be used to read or write files, modify data, execute operating system commands, terminate the service, and compromise other tenants in a shared deployment. This issue is fixed in version 5.1.2.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.8,
-    "severity": "HIGH",
-    "publishedAt": "2026-08-25T17:17:32.903Z",
-    "lastModifiedAt": "2026-08-25T17:17:32.903Z",
-    "fetchedAt": "2026-08-25T22:13:36.612Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-55557",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55557",
-    "descriptionEn": "browse-mcp is a Playwright-based headless-browser MCP server for MCP-capable agents. Prior to 0.8.2, browser_download writes a fetched response body to join(save_dir, filename) without validating the caller-controlled save_dir, while browser_save_state and browser_load_state honor a caller-controlled path unchanged. A malicious MCP client, or an autonomous agent steered by indirect prompt injection on a visited page, can choose an arbitrary save_dir or state path and a URL whose response body becomes attacker-controlled file contents, allowing writes to any path the process can reach, including ~/.bashrc, autostart entries, or cron files, and potentially leading to host code execution. The force_fetch fallback also uses a raw fetch() that bypasses the BROWSE_MCP_ALLOWED_ORIGINS origin fence. This issue is fixed in version 0.8.2.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-08-25T17:17:32.357Z",
-    "lastModifiedAt": "2026-08-25T19:16:49.923Z",
-    "fetchedAt": "2026-08-25T22:13:36.612Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-55580",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55580",
-    "descriptionEn": "mcp-shell is an MCP server for running shell commands securely, auditably, and on demand. Prior to 0.6.0, config.go initializes Security.Enabled to false, and when MCP_SHELL_SEC_CONFIG_FILE is unset, main.go starts the documented bare-binary deployment without a security policy. SecurityValidator.validateCommand in security.go then short-circuits and allows every command supplied to the shell_exec MCP tool, so an LLM connected over stdio can execute unrestricted OS commands as the mcp-shell process user. The README from-source installation and MCP client configuration omit MCP_SHELL_SEC_CONFIG_FILE, making the insecure state the documented default. This issue is fixed in version 0.6.0.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-08-25T16:16:55.317Z",
-    "lastModifiedAt": "2026-08-25T17:17:32.743Z",
-    "fetchedAt": "2026-08-25T22:13:36.612Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-74630",
@@ -100,7 +100,7 @@
     "severity": "HIGH",
     "publishedAt": "2026-08-21T21:17:00.267Z",
     "lastModifiedAt": "2026-08-25T14:16:52.080Z",
-    "fetchedAt": "2026-08-25T22:13:36.612Z",
+    "fetchedAt": "2026-08-27T02:20:46.726Z",
     "llmStatus": "ok"
   },
   {
@@ -177,8 +177,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-19T22:17:26.023Z",
-    "lastModifiedAt": "2026-08-21T18:55:15.193Z",
-    "fetchedAt": "2026-08-22T22:09:19.435Z",
+    "lastModifiedAt": "2026-08-26T20:18:01.200Z",
+    "fetchedAt": "2026-08-27T02:20:46.726Z",
     "llmStatus": "ok"
   },
   {
@@ -190,8 +190,8 @@
     "cvssScore": 8.3,
     "severity": "HIGH",
     "publishedAt": "2026-08-19T22:17:25.870Z",
-    "lastModifiedAt": "2026-08-21T18:54:50.327Z",
-    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "lastModifiedAt": "2026-08-26T20:18:01.067Z",
+    "fetchedAt": "2026-08-27T02:20:46.726Z",
     "llmStatus": "ok"
   },
   {
@@ -203,8 +203,8 @@
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-19T22:17:25.737Z",
-    "lastModifiedAt": "2026-08-21T18:54:46.903Z",
-    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "lastModifiedAt": "2026-08-26T20:18:00.927Z",
+    "fetchedAt": "2026-08-27T02:20:46.726Z",
     "llmStatus": "ok"
   },
   {
@@ -749,8 +749,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-11T13:19:07.490Z",
-    "lastModifiedAt": "2026-08-14T20:16:56.810Z",
-    "fetchedAt": "2026-08-15T22:08:33.686Z",
+    "lastModifiedAt": "2026-08-26T17:02:33.433Z",
+    "fetchedAt": "2026-08-27T02:20:46.726Z",
     "llmStatus": "ok"
   },
   {
