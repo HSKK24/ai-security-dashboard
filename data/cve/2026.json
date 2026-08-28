@@ -1,5 +1,31 @@
 [
   {
+    "id": "CVE-2026-68929",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68929",
+    "descriptionEn": "FastGPT is an open-source LLM platform for building AI applications on a knowledge base. In versions prior to 4.15.2, the WeChat (iLink) share-channel endpoints authorize requests using only the public shareId, with no authenticated identity or team-ownership check. As a result, an unauthenticated attacker who knows a victim team's shareId can take that team's WeChat bot offline or hijack the channel to their own bot: the logout endpoint is gated only by an existence check yet wipes the outLink's stored WeChat token, and the QR-code status endpoint performs no authorization at all and writes attacker-supplied bot credentials into the outLink identified by shareId. By generating a QR for a victim shareId, scanning it with their own WeChat, and calling the status endpoint, an attacker binds the victim team's app to the attacker's bot, exposing the app's private responses, displacing the legitimate binding, and consuming the victim's resources. The shareId is exposed in every shared chat URL, iframe, and embed, so it is not a secret. This issue is fixed in version 4.15.2.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-08-28T00:18:08.337Z",
+    "lastModifiedAt": "2026-08-28T00:18:08.337Z",
+    "fetchedAt": "2026-08-28T05:51:26.050Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-37003",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-37003",
+    "descriptionEn": "Agno up to and including 2.5.8 is vulnerable to Remote Code Execution (RCE) via prompt injection. The PythonTools and ShellTools components pass unsanitized, LLM-generated arguments directly to execution sinks including exec(), runpy.run_path(), and subprocess.run(). An unauthenticated attacker can exploit this by embedding malicious instructions in content processed by the agent (such as web pages or documents), allowing for arbitrary code and OS command execution on the host server.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-08-27T20:17:41.107Z",
+    "lastModifiedAt": "2026-08-27T20:17:41.107Z",
+    "fetchedAt": "2026-08-28T05:51:26.050Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-80104",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-80104",
     "descriptionEn": "DB-GPT builds the destination path for an uploaded skill from the multipart filename without constraining it to the upload directory. skill_upload in packages/dbgpt-app/src/dbgpt_app/openapi/api_v1/agentic_data_api.py takes file.filename as given and writes the request body to upload_dir / filename. A path composed with that operator discards the left operand when the right one is absolute and follows parent references otherwise, so a filename such as ../../../tmp/x or /tmp/x resolves outside the intended directory; nothing canonicalises the result, checks that it remains under the upload root, or prevents a .py suffix. The route's only dependency is get_user_from_headers in dbgpt_serve/utils/auth.py, which returns a request carrying the admin role whether or not a user_id header is supplied, so the endpoint is reachable without credentials. A remote attacker holding no account can therefore write attacker-controlled bytes to any path the server process can write, place a new Python module inside the application package or replace one the application already imports, and obtain code execution in the server process when that module is next imported.",
@@ -178,7 +204,7 @@
     "severity": "HIGH",
     "publishedAt": "2026-08-19T22:17:26.023Z",
     "lastModifiedAt": "2026-08-26T20:18:01.200Z",
-    "fetchedAt": "2026-08-27T02:20:46.726Z",
+    "fetchedAt": "2026-08-28T05:51:26.050Z",
     "llmStatus": "ok"
   },
   {
@@ -2049,8 +2075,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-08T20:16:48.430Z",
-    "lastModifiedAt": "2026-08-11T19:17:20.227Z",
-    "fetchedAt": "2026-08-11T22:29:27.126Z",
+    "lastModifiedAt": "2026-08-27T17:17:11.293Z",
+    "fetchedAt": "2026-08-28T05:51:26.050Z",
     "llmStatus": "ok"
   },
   {
