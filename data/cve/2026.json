@@ -3,26 +3,52 @@
     "id": "CVE-2026-68929",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68929",
     "descriptionEn": "FastGPT is an open-source LLM platform for building AI applications on a knowledge base. In versions prior to 4.15.2, the WeChat (iLink) share-channel endpoints authorize requests using only the public shareId, with no authenticated identity or team-ownership check. As a result, an unauthenticated attacker who knows a victim team's shareId can take that team's WeChat bot offline or hijack the channel to their own bot: the logout endpoint is gated only by an existence check yet wipes the outLink's stored WeChat token, and the QR-code status endpoint performs no authorization at all and writes attacker-supplied bot credentials into the outLink identified by shareId. By generating a QR for a victim shareId, scanning it with their own WeChat, and calling the status endpoint, an attacker binds the victim team's app to the attacker's bot, exposing the app's private responses, displacing the legitimate binding, and consuming the victim's resources. The shareId is exposed in every shared chat URL, iframe, and embed, so it is not a secret. This issue is fixed in version 4.15.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "FastGPTのバージョン4.15.2より前において、WeChat (iLink) の共有チャネルエンドポイントは、公開されているshareIdのみでリクエストを認証しており、認証済みIDやチーム所有権の確認が欠如していました。この脆弱性により、攻撃者はshareIdを知ることで、被害チームのWeChatボットをオフラインにしたり、チャネルを自身のボットにハイジャックしたりすることが可能でした。その結果、アプリのプライベートな応答が漏洩し、正規のサービスが妨害され、被害者のリソースが消費される恐れがあります。本脆弱性はバージョン4.15.2で修正済みです。",
+    "category": "ai-service",
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-28T00:18:08.337Z",
-    "lastModifiedAt": "2026-08-28T00:18:08.337Z",
-    "fetchedAt": "2026-08-28T05:51:26.050Z",
-    "llmStatus": "pending"
+    "lastModifiedAt": "2026-08-28T20:19:38.003Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-37003",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-37003",
     "descriptionEn": "Agno up to and including 2.5.8 is vulnerable to Remote Code Execution (RCE) via prompt injection. The PythonTools and ShellTools components pass unsanitized, LLM-generated arguments directly to execution sinks including exec(), runpy.run_path(), and subprocess.run(). An unauthenticated attacker can exploit this by embedding malicious instructions in content processed by the agent (such as web pages or documents), allowing for arbitrary code and OS command execution on the host server.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Agno 2.5.8以前のバージョンは、プロンプトインジェクションを介したリモートコード実行（RCE）の脆弱性があります。PythonToolsおよびShellToolsコンポーネントが、LLMによって生成された引数をサニタイズせずにexec()やsubprocess.run()などの実行関数に直接渡してしまうためです。これにより、認証されていない攻撃者は、エージェントが処理するコンテンツに悪意のある命令を埋め込むことで、ホストサーバー上で任意のコード実行やOSコマンド実行を可能にします。",
+    "category": "prompt-injection",
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-27T20:17:41.107Z",
     "lastModifiedAt": "2026-08-27T20:17:41.107Z",
-    "fetchedAt": "2026-08-28T05:51:26.050Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-54745",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54745",
+    "descriptionEn": "Kubeflow Pipelines enables users to build and deploy portable, scalable machine learning workflows. Prior to 2.17.0, the Kubeflow Pipelines frontend exposes an unauthenticated server-side request forgery vulnerability through the /_proxy/ route in frontend/server/proxy-middleware.ts. The _routePathWithReferer() function accepts an arbitrary attacker-controlled HTTP or HTTPS target and passes its origin to createProxyMiddleware without a host allowlist or filtering for loopback, link-local, RFC1918, or cluster-local addresses. The route remains outside the authorization middleware when ENABLE_AUTHZ=true and is reachable through /apis/v1beta1/_proxy/, /apis/v2beta1/_proxy/, /pipeline/apis/v1beta1/_proxy/, and /pipeline/apis/v2beta1/_proxy/, including through a crafted Referer header. Requests can forward attacker-controlled methods, headers such as Authorization, Cookie, and X-Forwarded-For, and POST bodies to reachable internal services, while returning the upstream response to the unauthenticated client. This can expose cloud metadata credentials, Kubernetes or service APIs, and other cluster-internal endpoints to unauthorized read or modification. This issue is fixed in version 2.17.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 10,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-08-28T20:18:17.240Z",
+    "lastModifiedAt": "2026-08-28T20:18:17.240Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-82233",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-82233",
+    "descriptionEn": "SiYuan before v3.8.1 contains a path traversal vulnerability in the asset.upload MCP tool that accepts arbitrary absolute file paths without workspace boundary validation. Attackers can induce the AI Agent to upload sensitive files such as SSH keys or credentials from outside the workspace into the asset directory through prompt injection.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.7,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-28T12:16:32.953Z",
+    "lastModifiedAt": "2026-08-28T18:45:46.953Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
     "llmStatus": "pending"
   },
   {
@@ -34,8 +60,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-25T21:18:24.163Z",
-    "lastModifiedAt": "2026-08-25T21:18:24.163Z",
-    "fetchedAt": "2026-08-27T02:20:46.726Z",
+    "lastModifiedAt": "2026-08-28T23:17:12.590Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
     "llmStatus": "ok"
   },
   {
@@ -60,8 +86,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-25T17:17:32.903Z",
-    "lastModifiedAt": "2026-08-25T17:17:32.903Z",
-    "fetchedAt": "2026-08-27T02:20:46.726Z",
+    "lastModifiedAt": "2026-08-28T23:17:06.987Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
     "llmStatus": "ok"
   },
   {
@@ -528,8 +554,8 @@
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2026-08-13T20:17:28.137Z",
-    "lastModifiedAt": "2026-08-13T21:18:12.067Z",
-    "fetchedAt": "2026-08-14T22:10:36.823Z",
+    "lastModifiedAt": "2026-08-28T15:32:26.217Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
     "llmStatus": "ok"
   },
   {
@@ -541,8 +567,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-13T20:17:27.653Z",
-    "lastModifiedAt": "2026-08-13T21:18:11.500Z",
-    "fetchedAt": "2026-08-14T22:10:36.823Z",
+    "lastModifiedAt": "2026-08-28T15:32:26.217Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
     "llmStatus": "ok"
   },
   {
@@ -554,8 +580,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-13T20:17:24.673Z",
-    "lastModifiedAt": "2026-08-14T05:17:00.043Z",
-    "fetchedAt": "2026-08-14T22:10:36.823Z",
+    "lastModifiedAt": "2026-08-28T15:32:26.217Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
     "llmStatus": "ok"
   },
   {
@@ -632,8 +658,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-13T14:16:55.723Z",
-    "lastModifiedAt": "2026-08-13T16:18:00.043Z",
-    "fetchedAt": "2026-08-14T22:10:36.823Z",
+    "lastModifiedAt": "2026-08-28T16:08:09.497Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
     "llmStatus": "ok"
   },
   {
@@ -772,11 +798,11 @@
     "descriptionEn": "n8n versions before 2.32.1 fail to enforce the Allowed HTTP Request Domains allowlist in multiple AI and LLM nodes when user-supplied base or endpoint URLs are configured. Low-privileged workflow editors with use-only access to shared credentials can redirect requests to attacker-controlled hosts and exfiltrate credential secrets for reuse against underlying services.",
     "summaryJa": "n8nのバージョン2.32.1より前のAIおよびLLMノードにおいて、ユーザー指定のベースURLまたはエンドポイントURLが設定されている場合、HTTPリクエストドメインの許可リストが適切に適用されません。これにより、共有資格情報への利用のみのアクセス権を持つ権限の低いワークフロー編集者が、リクエストを攻撃者制御のホストにリダイレクトし、基盤となるサービスで使用される資格情報シークレットを漏洩させる可能性があります。",
     "category": "other",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
     "publishedAt": "2026-08-11T13:19:07.490Z",
-    "lastModifiedAt": "2026-08-26T17:02:33.433Z",
-    "fetchedAt": "2026-08-27T02:20:46.726Z",
+    "lastModifiedAt": "2026-08-28T18:32:54.270Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
     "llmStatus": "ok"
   },
   {
@@ -1997,8 +2023,8 @@
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-07-08T20:16:57.683Z",
-    "lastModifiedAt": "2026-07-13T13:32:04.470Z",
-    "fetchedAt": "2026-07-13T22:42:29.936Z",
+    "lastModifiedAt": "2026-08-28T20:19:01.897Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
     "llmStatus": "ok"
   },
   {
@@ -2076,7 +2102,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2026-07-08T20:16:48.430Z",
     "lastModifiedAt": "2026-08-27T17:17:11.293Z",
-    "fetchedAt": "2026-08-28T05:51:26.050Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
     "llmStatus": "ok"
   },
   {
@@ -2348,8 +2374,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-24T18:17:17.467Z",
-    "lastModifiedAt": "2026-07-15T02:21:49.103Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-08-28T16:18:02.220Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
     "llmStatus": "ok"
   },
   {
@@ -2361,8 +2387,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-24T18:17:17.337Z",
-    "lastModifiedAt": "2026-07-15T02:21:48.933Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-08-28T16:18:02.010Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
     "llmStatus": "ok"
   },
   {
