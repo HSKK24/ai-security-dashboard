@@ -3,66 +3,66 @@
     "id": "CVE-2023-51527",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-51527",
     "descriptionEn": "Exposure of Sensitive Information to an Unauthorized Actor vulnerability in Senol Sahin AI Power: Complete AI Pack – Powered by GPT-4.This issue affects AI Power: Complete AI Pack – Powered by GPT-4: from n/a through 1.8.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "「Senol Sahin AI Power: Complete AI Pack – Powered by GPT-4」のバージョン1.8.2以前において、認証されていないアクターへ機密情報が漏洩する脆弱性が存在します。この問題により、システムの機密データが不正にアクセスされる可能性があります。",
+    "category": "ai-library",
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2023-12-29T15:15:10.303Z",
     "lastModifiedAt": "2026-06-17T06:41:08.510Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2023-51449",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-51449",
     "descriptionEn": "Gradio is an open-source Python package that allows you to quickly build a demo or web application for your machine learning model, API, or any arbitary Python function. Versions of `gradio` prior to 4.11.0 contained a vulnerability in the `/file` route which made them susceptible to file traversal attacks in which an attacker could access arbitrary files on a machine running a Gradio app with a public URL (e.g. if the demo was created with `share=True`, or on Hugging Face Spaces) if they knew the path of files to look for. This issue has been patched in version 4.11.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Gradioのバージョン4.11.0未満には、`/file`ルートにファイルトラバーサル脆弱性が存在します。この脆弱性により、`share=True`設定やHugging Face Spacesなどで公開されているGradioアプリに対し、攻撃者がファイルパスを知っていれば任意のファイルにアクセスできる可能性がありました。本脆弱性はバージョン4.11.0で修正されています。",
+    "category": "ai-library",
     "cvssScore": 5.6,
     "severity": "MEDIUM",
     "publishedAt": "2023-12-22T21:15:09.000Z",
     "lastModifiedAt": "2026-06-17T06:40:58.963Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2023-50731",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-50731",
     "descriptionEn": "MindsDB is a SQL Server for artificial intelligence. Prior to version 23.11.4.1, the `put` method in `mindsdb/mindsdb/api/http/namespaces/file.py` does not validate the user-controlled name value, which is used in a temporary file name, which is afterwards opened for writing on lines 122-125, which leads to path injection. Later in the method, the temporary directory is deleted on line 151, but since we can write outside of the directory using the path injection vulnerability, the potentially dangerous file is not deleted. Arbitrary file contents can be written due to `f.write(chunk)` on line 125. Mindsdb does check later on line 149 in the `save_file` method in `file-controller.py` which calls the `_handle_source` method in `file_handler.py` if a file is of one of the types `csv`, `json`, `parquet`, `xls`, or `xlsx`. However, since the check happens after the file has already been written, the files will still exist (and will not be removed due to the path injection described earlier), just the `_handle_source` method will return an error. The same user-controlled source source is used also in another path injection sink on line 138. This leads to another path injection, which allows an attacker to delete any `zip` or `tar.gz` files on the server.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "MindsDBのバージョン23.11.4.1以前において、ファイルAPIの`put`メソッドが一時ファイル名のユーザー入力を適切に検証しないため、パスインジェクションの脆弱性が存在します。この脆弱性により、攻撃者は任意のファイルを意図しないディレクトリに作成し、任意のコンテンツを書き込み、またその後のファイル削除プロセスを回避できます。さらに、別のパスインジェクションにより、サーバー上の任意の`zip`または`tar.gz`ファイルを削除される危険性があります。",
+    "category": "ai-service",
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2023-12-22T21:15:08.150Z",
     "lastModifiedAt": "2026-06-17T06:39:52.580Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2023-35625",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-35625",
     "descriptionEn": "Azure Machine Learning Compute Instance for SDK Users Information Disclosure Vulnerability",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Azure Machine Learning Compute InstanceのSDKユーザー向け機能に情報漏洩の脆弱性が存在します。この脆弱性により、SDKを利用するユーザーの機密情報が不正に開示される可能性があります。",
+    "category": "ai-service",
     "cvssScore": 4.7,
     "severity": "MEDIUM",
     "publishedAt": "2023-12-12T18:15:17.620Z",
     "lastModifiedAt": "2026-06-17T06:04:53.187Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2023-49796",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-49796",
     "descriptionEn": "MindsDB connects artificial intelligence models to real time data. Versions prior to 23.11.4.1 contain a limited file write vulnerability in `file.py` Users should use MindsDB's `staging` branch or v23.11.4.1, which contain a fix for the issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "MindsDBのv23.11.4.1より前のバージョンには、`file.py`に限定的なファイル書き込みの脆弱性が存在します。これにより、意図しないファイルの書き込みが行われる可能性があります。この問題は、v23.11.4.1または`staging`ブランチで修正されています。",
+    "category": "ai-library",
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2023-12-11T21:15:07.460Z",
     "lastModifiedAt": "2026-06-17T06:36:28.990Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2023-49795",

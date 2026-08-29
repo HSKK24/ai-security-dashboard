@@ -1,5 +1,31 @@
 [
   {
+    "id": "CVE-2026-54745",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54745",
+    "descriptionEn": "Kubeflow Pipelines enables users to build and deploy portable, scalable machine learning workflows. Prior to 2.17.0, the Kubeflow Pipelines frontend exposes an unauthenticated server-side request forgery vulnerability through the /_proxy/ route in frontend/server/proxy-middleware.ts. The _routePathWithReferer() function accepts an arbitrary attacker-controlled HTTP or HTTPS target and passes its origin to createProxyMiddleware without a host allowlist or filtering for loopback, link-local, RFC1918, or cluster-local addresses. The route remains outside the authorization middleware when ENABLE_AUTHZ=true and is reachable through /apis/v1beta1/_proxy/, /apis/v2beta1/_proxy/, /pipeline/apis/v1beta1/_proxy/, and /pipeline/apis/v2beta1/_proxy/, including through a crafted Referer header. Requests can forward attacker-controlled methods, headers such as Authorization, Cookie, and X-Forwarded-For, and POST bodies to reachable internal services, while returning the upstream response to the unauthenticated client. This can expose cloud metadata credentials, Kubernetes or service APIs, and other cluster-internal endpoints to unauthorized read or modification. This issue is fixed in version 2.17.0.",
+    "summaryJa": "Kubeflow Pipelinesのフロントエンドにおいて、バージョン2.17.0より前に、認証されていないサーバサイドリクエストフォージェリ（SSRF）の脆弱性が存在します。これは、`/_proxy/`ルートが、内部ネットワークアドレスに対する入力検証なしに、任意のHTTP/HTTPSターゲットへのプロキシを許可するためです。攻撃者は、クラウドメタデータの認証情報やKubernetes APIなど、クラスター内部のエンドポイントにアクセスしたり、変更したりする可能性があります。この脆弱性は、バージョン2.17.0で修正されています。",
+    "category": "ai-library",
+    "cvssScore": 10,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-08-28T20:18:17.240Z",
+    "lastModifiedAt": "2026-08-28T20:18:17.240Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-82233",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-82233",
+    "descriptionEn": "SiYuan before v3.8.1 contains a path traversal vulnerability in the asset.upload MCP tool that accepts arbitrary absolute file paths without workspace boundary validation. Attackers can induce the AI Agent to upload sensitive files such as SSH keys or credentials from outside the workspace into the asset directory through prompt injection.",
+    "summaryJa": "SiYuan v3.8.1より前のバージョンには、`asset.upload` MCPツールにパス・トラバーサル脆弱性が存在します。ワークスペース境界の検証なしに任意の絶対ファイルパスを受け入れるため、攻撃者はプロンプトインジェクションによりAIエージェントを誘導し、ワークスペース外の機密ファイルをアップロードさせることが可能です。",
+    "category": "prompt-injection",
+    "cvssScore": 5.7,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-28T12:16:32.953Z",
+    "lastModifiedAt": "2026-08-28T18:45:46.953Z",
+    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2026-68929",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68929",
     "descriptionEn": "FastGPT is an open-source LLM platform for building AI applications on a knowledge base. In versions prior to 4.15.2, the WeChat (iLink) share-channel endpoints authorize requests using only the public shareId, with no authenticated identity or team-ownership check. As a result, an unauthenticated attacker who knows a victim team's shareId can take that team's WeChat bot offline or hijack the channel to their own bot: the logout endpoint is gated only by an existence check yet wipes the outLink's stored WeChat token, and the QR-code status endpoint performs no authorization at all and writes attacker-supplied bot credentials into the outLink identified by shareId. By generating a QR for a victim shareId, scanning it with their own WeChat, and calling the status endpoint, an attacker binds the victim team's app to the attacker's bot, exposing the app's private responses, displacing the legitimate binding, and consuming the victim's resources. The shareId is exposed in every shared chat URL, iframe, and embed, so it is not a secret. This issue is fixed in version 4.15.2.",
@@ -26,32 +52,6 @@
     "llmStatus": "ok"
   },
   {
-    "id": "CVE-2026-54745",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54745",
-    "descriptionEn": "Kubeflow Pipelines enables users to build and deploy portable, scalable machine learning workflows. Prior to 2.17.0, the Kubeflow Pipelines frontend exposes an unauthenticated server-side request forgery vulnerability through the /_proxy/ route in frontend/server/proxy-middleware.ts. The _routePathWithReferer() function accepts an arbitrary attacker-controlled HTTP or HTTPS target and passes its origin to createProxyMiddleware without a host allowlist or filtering for loopback, link-local, RFC1918, or cluster-local addresses. The route remains outside the authorization middleware when ENABLE_AUTHZ=true and is reachable through /apis/v1beta1/_proxy/, /apis/v2beta1/_proxy/, /pipeline/apis/v1beta1/_proxy/, and /pipeline/apis/v2beta1/_proxy/, including through a crafted Referer header. Requests can forward attacker-controlled methods, headers such as Authorization, Cookie, and X-Forwarded-For, and POST bodies to reachable internal services, while returning the upstream response to the unauthenticated client. This can expose cloud metadata credentials, Kubernetes or service APIs, and other cluster-internal endpoints to unauthorized read or modification. This issue is fixed in version 2.17.0.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 10,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-08-28T20:18:17.240Z",
-    "lastModifiedAt": "2026-08-28T20:18:17.240Z",
-    "fetchedAt": "2026-08-29T03:24:23.524Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-82233",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-82233",
-    "descriptionEn": "SiYuan before v3.8.1 contains a path traversal vulnerability in the asset.upload MCP tool that accepts arbitrary absolute file paths without workspace boundary validation. Attackers can induce the AI Agent to upload sensitive files such as SSH keys or credentials from outside the workspace into the asset directory through prompt injection.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.7,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-08-28T12:16:32.953Z",
-    "lastModifiedAt": "2026-08-28T18:45:46.953Z",
-    "fetchedAt": "2026-08-29T03:24:23.524Z",
-    "llmStatus": "pending"
-  },
-  {
     "id": "CVE-2026-80104",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-80104",
     "descriptionEn": "DB-GPT builds the destination path for an uploaded skill from the multipart filename without constraining it to the upload directory. skill_upload in packages/dbgpt-app/src/dbgpt_app/openapi/api_v1/agentic_data_api.py takes file.filename as given and writes the request body to upload_dir / filename. A path composed with that operator discards the left operand when the right one is absolute and follows parent references otherwise, so a filename such as ../../../tmp/x or /tmp/x resolves outside the intended directory; nothing canonicalises the result, checks that it remains under the upload root, or prevents a .py suffix. The route's only dependency is get_user_from_headers in dbgpt_serve/utils/auth.py, which returns a request carrying the admin role whether or not a user_id header is supplied, so the endpoint is reachable without credentials. A remote attacker holding no account can therefore write attacker-controlled bytes to any path the server process can write, place a new Python module inside the application package or replace one the application already imports, and obtain code execution in the server process when that module is next imported.",
@@ -61,7 +61,7 @@
     "severity": "CRITICAL",
     "publishedAt": "2026-08-25T21:18:24.163Z",
     "lastModifiedAt": "2026-08-28T23:17:12.590Z",
-    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "fetchedAt": "2026-08-29T23:40:13.277Z",
     "llmStatus": "ok"
   },
   {
