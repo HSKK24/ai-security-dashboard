@@ -1,44 +1,5 @@
 [
   {
-    "id": "CVE-2024-23730",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-23730",
-    "descriptionEn": "The OpenAPI and ChatGPT plugin loaders in LlamaHub (aka llama-hub) before 0.0.67 allow attackers to execute arbitrary code because safe_load is not used for YAML.",
-    "summaryJa": "LlamaHub (llama-hub) のOpenAPIおよびChatGPTプラグインローダーのバージョン0.0.67未満に、任意のコード実行の脆弱性が存在します。この脆弱性は、YAMLファイルを処理する際に`safe_load`が使用されていないことに起因します。結果として、攻撃者は細工されたYAMLファイルを通じて任意のコードを実行できる可能性があります。",
-    "category": "ai-library",
-    "cvssScore": 9.8,
-    "severity": "CRITICAL",
-    "publishedAt": "2024-01-21T17:15:44.373Z",
-    "lastModifiedAt": "2026-06-17T07:13:28.320Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2024-22422",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-22422",
-    "descriptionEn": "AnythingLLM is an application that turns any document, resource, or piece of content into context that any LLM can use as references during chatting. In versions prior to commit `08d33cfd8` an unauthenticated API route (file export) can allow attacker to crash the server resulting in a denial of service attack. The “data-export” endpoint is used to export files using the filename parameter as user input. The endpoint takes the user input, filters it to avoid directory traversal attacks, fetches the file from the server, and afterwards deletes it. An attacker can trick the input filter mechanism to point to the current directory, and while attempting to delete it the server will crash as there is no error-handling wrapper around it. Moreover, the endpoint is public and does not require any form of authentication, resulting in an unauthenticated Denial of Service issue, which crashes the instance using a single HTTP packet. This issue has been addressed in commit `08d33cfd8`. Users are advised to upgrade. There are no known workarounds for this vulnerability.",
-    "summaryJa": "AnythingLLMの`08d33cfd8`コミット以前のバージョンにおいて、認証不要なファイルエクスポートAPI (`/api/system/data-export`) にサービス拒否（DoS）の脆弱性が存在します。攻撃者は、細工した`filename`パラメータで入力フィルタを迂回し、アプリケーションに現在のディレクトリを削除させようとすることで、エラー処理の不備によりサーバーをクラッシュさせることが可能です。これにより、単一のHTTPリクエストでアプリケーションインスタンスが停止する可能性があります。",
-    "category": "ai-service",
-    "cvssScore": 7.5,
-    "severity": "HIGH",
-    "publishedAt": "2024-01-19T01:15:09.123Z",
-    "lastModifiedAt": "2026-06-17T07:11:22.890Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2023-7215",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-7215",
-    "descriptionEn": "A vulnerability, which was classified as problematic, has been found in Chanzhaoyu chatgpt-web 2.11.1. This issue affects some unknown processing. The manipulation of the argument Description with the input <image src onerror=prompt(document.domain)> leads to cross site scripting. The attack may be initiated remotely. The exploit has been disclosed to the public and may be used. The associated identifier of this vulnerability is VDB-249779.",
-    "summaryJa": "Chanzhaoyu chatgpt-web 2.11.1において、クロスサイトスクリプティング（XSS）の脆弱性が確認されました。Description引数に「<image src onerror=prompt(document.domain)>」のような特定の入力を操作することで、リモートの攻撃者が任意のスクリプトを実行する可能性があります。この脆弱性の悪用コードはすでに公開されています。",
-    "category": "other",
-    "cvssScore": 3.5,
-    "severity": "LOW",
-    "publishedAt": "2024-01-08T02:15:14.027Z",
-    "lastModifiedAt": "2026-06-17T06:52:20.027Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "ok"
-  },
-  {
     "id": "CVE-2024-56800",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-56800",
     "descriptionEn": "Firecrawl is a web scraper that allows users to extract the content of a webpage for a large language model. Versions prior to 1.1.1 contain a server-side request forgery (SSRF) vulnerability. The scraping engine could be exploited by crafting a malicious site that redirects to a local IP address. This allowed exfiltration of local network resources through the API. The cloud service was patched on December 27th, 2024, and the maintainers have checked that no user data was exposed by this vulnerability. Scraping engines used in the open sourced version of Firecrawl were patched on December 29th, 2024, except for the playwright services which the maintainers have determined to be un-patchable. All users of open-source software (OSS) Firecrawl should upgrade to v1.1.1. As a workaround, OSS Firecrawl users should supply the playwright services with a secure proxy. A proxy can be specified through the `PROXY_SERVER` env in the environment variables. Please refer to the documentation for instructions. Ensure that the proxy server one is using is setup to block all traffic going to link-local IP addresses.",
@@ -1452,6 +1413,45 @@
     "severity": "MEDIUM",
     "publishedAt": "2024-02-05T22:16:04.210Z",
     "lastModifiedAt": "2026-06-17T06:54:03.833Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2024-23730",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-23730",
+    "descriptionEn": "The OpenAPI and ChatGPT plugin loaders in LlamaHub (aka llama-hub) before 0.0.67 allow attackers to execute arbitrary code because safe_load is not used for YAML.",
+    "summaryJa": "LlamaHub (llama-hub) のOpenAPIおよびChatGPTプラグインローダーのバージョン0.0.67未満に、任意のコード実行の脆弱性が存在します。この脆弱性は、YAMLファイルを処理する際に`safe_load`が使用されていないことに起因します。結果として、攻撃者は細工されたYAMLファイルを通じて任意のコードを実行できる可能性があります。",
+    "category": "ai-library",
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2024-01-21T17:15:44.373Z",
+    "lastModifiedAt": "2026-06-17T07:13:28.320Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2024-22422",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-22422",
+    "descriptionEn": "AnythingLLM is an application that turns any document, resource, or piece of content into context that any LLM can use as references during chatting. In versions prior to commit `08d33cfd8` an unauthenticated API route (file export) can allow attacker to crash the server resulting in a denial of service attack. The “data-export” endpoint is used to export files using the filename parameter as user input. The endpoint takes the user input, filters it to avoid directory traversal attacks, fetches the file from the server, and afterwards deletes it. An attacker can trick the input filter mechanism to point to the current directory, and while attempting to delete it the server will crash as there is no error-handling wrapper around it. Moreover, the endpoint is public and does not require any form of authentication, resulting in an unauthenticated Denial of Service issue, which crashes the instance using a single HTTP packet. This issue has been addressed in commit `08d33cfd8`. Users are advised to upgrade. There are no known workarounds for this vulnerability.",
+    "summaryJa": "AnythingLLMの`08d33cfd8`コミット以前のバージョンにおいて、認証不要なファイルエクスポートAPI (`/api/system/data-export`) にサービス拒否（DoS）の脆弱性が存在します。攻撃者は、細工した`filename`パラメータで入力フィルタを迂回し、アプリケーションに現在のディレクトリを削除させようとすることで、エラー処理の不備によりサーバーをクラッシュさせることが可能です。これにより、単一のHTTPリクエストでアプリケーションインスタンスが停止する可能性があります。",
+    "category": "ai-service",
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2024-01-19T01:15:09.123Z",
+    "lastModifiedAt": "2026-06-17T07:11:22.890Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2023-7215",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-7215",
+    "descriptionEn": "A vulnerability, which was classified as problematic, has been found in Chanzhaoyu chatgpt-web 2.11.1. This issue affects some unknown processing. The manipulation of the argument Description with the input <image src onerror=prompt(document.domain)> leads to cross site scripting. The attack may be initiated remotely. The exploit has been disclosed to the public and may be used. The associated identifier of this vulnerability is VDB-249779.",
+    "summaryJa": "Chanzhaoyu chatgpt-web 2.11.1において、クロスサイトスクリプティング（XSS）の脆弱性が確認されました。Description引数に「<image src onerror=prompt(document.domain)>」のような特定の入力を操作することで、リモートの攻撃者が任意のスクリプトを実行する可能性があります。この脆弱性の悪用コードはすでに公開されています。",
+    "category": "other",
+    "cvssScore": 3.5,
+    "severity": "LOW",
+    "publishedAt": "2024-01-08T02:15:14.027Z",
+    "lastModifiedAt": "2026-06-17T06:52:20.027Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
     "llmStatus": "ok"
   }
