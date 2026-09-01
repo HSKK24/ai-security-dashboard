@@ -3,27 +3,27 @@
     "id": "CVE-2022-41910",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-41910",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. The function MakeGrapplerFunctionItem takes arguments that determine the sizes of inputs and outputs. If the inputs given are greater than or equal to the sizes of the outputs, an out-of-bounds memory read or a crash is triggered. We have patched the issue in GitHub commit a65411a1d69edfb16b25907ffb8f73556ce36bb7. The fix will be included in TensorFlow 2.11.0. We will also cherrypick this commit on TensorFlow 2.8.4, 2.9.3, and 2.10.1.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`MakeGrapplerFunctionItem`関数において、入力サイズが出力サイズ以上の場合にメモリ境界外読み取りまたはクラッシュを引き起こす脆弱性が発見されました。この問題は、GitHubコミットa65411a1d69edfb16b25907ffb8f73556ce36bb7でパッチが適用され、TensorFlow 2.11.0および2.8.4、2.9.3、2.10.1で修正が提供されます。",
+    "category": "ai-library",
     "cvssScore": 4.8,
     "severity": "MEDIUM",
     "publishedAt": "2022-12-06T22:15:10.587Z",
     "lastModifiedAt": "2026-06-17T05:04:02.730Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-41893",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-41893",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. If `tf.raw_ops.TensorListResize` is given a nonscalar value for input `size`, it results `CHECK` fail which can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 888e34b49009a4e734c27ab0c43b0b5102682c56. The fix will be included in TensorFlow 2.11. We will also cherrypick this commit on TensorFlow 2.10.1, 2.9.3, and TensorFlow 2.8.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.TensorListResize`関数は、`size`入力に非スカラー値が与えられた場合に`CHECK`に失敗し、サービス拒否（DoS）攻撃を引き起こす可能性があります。この脆弱性は、特定のGitHubコミットで修正され、TensorFlow 2.11およびそれ以前のサポート対象バージョン（2.10.1、2.9.3、2.8.4）に適用されます。",
+    "category": "ai-library",
     "cvssScore": 4.8,
     "severity": "MEDIUM",
     "publishedAt": "2022-11-18T22:15:17.070Z",
     "lastModifiedAt": "2026-06-17T05:04:00.610Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-41891",
