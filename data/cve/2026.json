@@ -1,5 +1,96 @@
 [
   {
+    "id": "CVE-2026-82834",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-82834",
+    "descriptionEn": "A security flaw has been discovered in Doccano Open Source Annotation Tools for Machine Learning Practitioners and Auto Labeling Pipeline Module to Annotate a Document Automatically up to 1.8.5. This affects the function LabelList of the file /v1/projects/1/category-types of the component Bulk-Delete Endpoint. Performing a manipulation results in improper access controls. Remote exploitation of the attack is possible. The exploit has been released to the public and may be used for attacks. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "summaryJa": "Doccano Open Source Annotation Toolsのバージョン1.8.5までのAuto Labeling Pipeline Moduleに不適切なアクセス制御の脆弱性が発見されました。この脆弱性は、Bulk-Delete Endpointの/v1/projects/1/category-typesにあるLabelList関数に存在し、操作によってリモートからアクセス制御が回避される可能性があります。本脆弱性に関するエクスプロイトコードはすでに公開されており、ベンダーからの応答はありません。",
+    "category": "other",
+    "cvssScore": 5.4,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-31T20:17:15.510Z",
+    "lastModifiedAt": "2026-08-31T20:56:08.800Z",
+    "fetchedAt": "2026-09-01T23:37:53.457Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-82833",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-82833",
+    "descriptionEn": "A vulnerability was identified in Doccano Open Source Annotation Tools for Machine Learning Practitioners and Auto Labeling Pipeline Module to Annotate a Document Automatically up to 1.8.5. Affected by this issue is the function ExampleDetail of the file /v1/projects/1/examples/ of the component Project Example Detail Endpoint. Such manipulation leads to improper access controls. The attack may be launched remotely. The exploit is publicly available and might be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "summaryJa": "Doccano Open Source Annotation Tools for Machine Learning PractitionersおよびAuto Labeling Pipeline Moduleのバージョン1.8.5以前に、不適切なアクセス制御の脆弱性が存在します。この脆弱性は、Project Example Detail Endpointの`/v1/projects/1/examples/`ファイル内の`ExampleDetail`関数に起因し、リモートの攻撃者が不正にアクセスする可能性があります。この脆弱性を悪用するエクスプロイトは既に公開されています。",
+    "category": "other",
+    "cvssScore": 6.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-08-31T20:17:15.337Z",
+    "lastModifiedAt": "2026-09-01T14:17:46.213Z",
+    "fetchedAt": "2026-09-01T23:37:53.457Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-79745",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-79745",
+    "descriptionEn": "MCPHub is a unified hub for centrally managing and dynamically orchestrating multiple MCP servers/APIs into separate endpoints with flexible routing strategies. Prior to version 1.0.32, the built-in prompt and resource controllers perform no role checking. The mutating POST/PUT /api/prompts* and POST/PUT /api/resources* routes are attached to the authenticated router with no admin gate, and the handlers never read req.user. The DAO singletons they write are consulted first — ahead of any connected MCP server — for every session in handleGetPromptRequest / handleReadResourceRequest. A non-admin can therefore create, overwrite, and shadow global prompt templates and resources that all other users are served. The scored impact is the unauthorized integrity violation (creation/tampering/shadowing of globally-served records); stored prompt injection into other users' LLM sessions is a downstream consequence of that tampering. This issue has been patched in version 1.0.32.",
+    "summaryJa": "MCPHubのバージョン1.0.32未満において、内蔵のプロンプトおよびリソースコントローラに役割チェックの不備が存在します。これにより、非管理ユーザーがグローバルなプロンプトテンプレートやリソースを不正に作成、上書き、またはシャドウイングできます。この脆弱性は、他のユーザーのLLMセッションへの保存型プロンプトインジェクションを引き起こす可能性があります。",
+    "category": "prompt-injection",
+    "cvssScore": 7.1,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-31T18:17:19.910Z",
+    "lastModifiedAt": "2026-08-31T18:17:19.910Z",
+    "fetchedAt": "2026-09-01T00:51:13.289Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-82217",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-82217",
+    "descriptionEn": "In Eclipse Theia versions 1.73.0 up to but not including 1.75.0, the AI \"Agent Mode\" file-change tools (writeFileContent, suggestFileContent, and the replacement and state helpers) resolved a model-supplied file path without a workspace-containment check. A crafted relative path such as ../.bashrc, an absolute path, or a ~-expanded path could therefore write or delete files outside the workspace with the privileges of the Theia backend OS user. Because the path argument is influenced by model output, it can be steered through indirect prompt injection, and in Agent Mode writes are applied without a confirmation dialog. Writing to a host-executed file such as a shell startup file or ~/.ssh/authorized_keys can escalate to code execution on the backend.",
+    "summaryJa": "Eclipse Theia 1.73.0から1.75.0未満のバージョンにおいて、AI「Agent Mode」のファイル変更ツール（writeFileContentなど）がワークスペース境界チェックを欠いていた。これにより、モデルから供給されるファイルパス（間接的なプロンプトインジェクションで操作可能）を使って、ワークスペース外のファイルをバックエンドOSユーザーの権限で書き込みまたは削除できる。結果として、バックエンドでのコード実行にエスカレートする可能性がある。",
+    "category": "prompt-injection",
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-08-31T14:17:26.610Z",
+    "lastModifiedAt": "2026-09-01T21:11:35.983Z",
+    "fetchedAt": "2026-09-01T23:37:53.457Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-46517",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46517",
+    "descriptionEn": "LMDeploy is a toolkit for compressing, deploying, and serving large language models. In versions 0.12.3 and prior, hardcoded \"trust_remote_code=True\" enables HF supply-chain RCE without user opt-in. Version 0.13.0 patches the issue.",
+    "summaryJa": "LMDeployのバージョン0.12.3以前において、設定値「trust_remote_code=True」がハードコードされている脆弱性が存在します。これにより、ユーザーの明示的な同意なしにHugging Faceのサプライチェーンを介したリモートコード実行（RCE）が可能となる恐れがあります。この問題はバージョン0.13.0で修正されました。",
+    "category": "ai-library",
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-10T00:16:53.827Z",
+    "lastModifiedAt": "2026-08-31T15:17:17.260Z",
+    "fetchedAt": "2026-09-01T00:51:13.289Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-72654",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72654",
+    "descriptionEn": "Execution with Unnecessary Privileges (CWE-250) in the Kibana machine learning feature can lead to information disclosure via Privilege Abuse (CAPEC-122). An operation available to users holding only read access to the machine learning feature was performed with an internal service identity rather than the identity of the requesting user. Such a user could therefore receive data from Elasticsearch indices they are not authorized to read. No Elasticsearch cluster or index privileges are required.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-09-01T20:17:17.093Z",
+    "lastModifiedAt": "2026-09-01T21:15:37.123Z",
+    "fetchedAt": "2026-09-01T23:37:53.457Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-72649",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72649",
+    "descriptionEn": "Deserialization of Untrusted Data (CWE-502) in the Elasticsearch machine learning component can lead to remote code execution via Object Injection (CAPEC-586). A specially crafted trained model artifact could cause attacker-controlled logic to execute with a materially broader system-call surface than intended. Exploitation requires an authenticated user with sufficient privileges to create and deploy trained models.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-09-01T20:17:16.853Z",
+    "lastModifiedAt": "2026-09-01T21:15:37.123Z",
+    "fetchedAt": "2026-09-01T23:37:53.457Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-82640",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-82640",
     "descriptionEn": "browser-use web-ui versions 2.0.0 through 3.0.0 write configured LLM API keys to disk in cleartext without encryption or access restrictions. Attackers with read access to the temporary settings directory can recover provider API keys from predictably-named JSON files.",
@@ -11,58 +102,6 @@
     "lastModifiedAt": "2026-08-31T19:17:22.033Z",
     "fetchedAt": "2026-09-01T00:51:13.289Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-82834",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-82834",
-    "descriptionEn": "A security flaw has been discovered in Doccano Open Source Annotation Tools for Machine Learning Practitioners and Auto Labeling Pipeline Module to Annotate a Document Automatically up to 1.8.5. This affects the function LabelList of the file /v1/projects/1/category-types of the component Bulk-Delete Endpoint. Performing a manipulation results in improper access controls. Remote exploitation of the attack is possible. The exploit has been released to the public and may be used for attacks. The vendor was contacted early about this disclosure but did not respond in any way.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.4,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-08-31T20:17:15.510Z",
-    "lastModifiedAt": "2026-08-31T20:56:08.800Z",
-    "fetchedAt": "2026-09-01T00:51:13.289Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-82833",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-82833",
-    "descriptionEn": "A vulnerability was identified in Doccano Open Source Annotation Tools for Machine Learning Practitioners and Auto Labeling Pipeline Module to Annotate a Document Automatically up to 1.8.5. Affected by this issue is the function ExampleDetail of the file /v1/projects/1/examples/ of the component Project Example Detail Endpoint. Such manipulation leads to improper access controls. The attack may be launched remotely. The exploit is publicly available and might be used. The vendor was contacted early about this disclosure but did not respond in any way.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 6.3,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-08-31T20:17:15.337Z",
-    "lastModifiedAt": "2026-08-31T20:56:08.800Z",
-    "fetchedAt": "2026-09-01T00:51:13.289Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-79745",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-79745",
-    "descriptionEn": "MCPHub is a unified hub for centrally managing and dynamically orchestrating multiple MCP servers/APIs into separate endpoints with flexible routing strategies. Prior to version 1.0.32, the built-in prompt and resource controllers perform no role checking. The mutating POST/PUT /api/prompts* and POST/PUT /api/resources* routes are attached to the authenticated router with no admin gate, and the handlers never read req.user. The DAO singletons they write are consulted first — ahead of any connected MCP server — for every session in handleGetPromptRequest / handleReadResourceRequest. A non-admin can therefore create, overwrite, and shadow global prompt templates and resources that all other users are served. The scored impact is the unauthorized integrity violation (creation/tampering/shadowing of globally-served records); stored prompt injection into other users' LLM sessions is a downstream consequence of that tampering. This issue has been patched in version 1.0.32.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.1,
-    "severity": "HIGH",
-    "publishedAt": "2026-08-31T18:17:19.910Z",
-    "lastModifiedAt": "2026-08-31T18:17:19.910Z",
-    "fetchedAt": "2026-09-01T00:51:13.289Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-82217",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-82217",
-    "descriptionEn": "In Eclipse Theia versions 1.73.0 up to but not including 1.75.0, the AI \"Agent Mode\" file-change tools (writeFileContent, suggestFileContent, and the replacement and state helpers) resolved a model-supplied file path without a workspace-containment check. A crafted relative path such as ../.bashrc, an absolute path, or a ~-expanded path could therefore write or delete files outside the workspace with the privileges of the Theia backend OS user. Because the path argument is influenced by model output, it can be steered through indirect prompt injection, and in Agent Mode writes are applied without a confirmation dialog. Writing to a host-executed file such as a shell startup file or ~/.ssh/authorized_keys can escalate to code execution on the backend.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.8,
-    "severity": "HIGH",
-    "publishedAt": "2026-08-31T14:17:26.610Z",
-    "lastModifiedAt": "2026-08-31T14:17:26.610Z",
-    "fetchedAt": "2026-09-01T00:51:13.289Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-54745",
@@ -109,11 +148,11 @@
     "descriptionEn": "Agno up to and including 2.5.8 is vulnerable to Remote Code Execution (RCE) via prompt injection. The PythonTools and ShellTools components pass unsanitized, LLM-generated arguments directly to execution sinks including exec(), runpy.run_path(), and subprocess.run(). An unauthenticated attacker can exploit this by embedding malicious instructions in content processed by the agent (such as web pages or documents), allowing for arbitrary code and OS command execution on the host server.",
     "summaryJa": "Agno 2.5.8以前のバージョンは、プロンプトインジェクションを介したリモートコード実行（RCE）の脆弱性があります。PythonToolsおよびShellToolsコンポーネントが、LLMによって生成された引数をサニタイズせずにexec()やsubprocess.run()などの実行関数に直接渡してしまうためです。これにより、認証されていない攻撃者は、エージェントが処理するコンテンツに悪意のある命令を埋め込むことで、ホストサーバー上で任意のコード実行やOSコマンド実行を可能にします。",
     "category": "prompt-injection",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
     "publishedAt": "2026-08-27T20:17:41.107Z",
-    "lastModifiedAt": "2026-08-27T20:17:41.107Z",
-    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "lastModifiedAt": "2026-09-01T20:17:13.767Z",
+    "fetchedAt": "2026-09-01T23:37:53.457Z",
     "llmStatus": "ok"
   },
   {
@@ -645,8 +684,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-13T20:17:24.673Z",
-    "lastModifiedAt": "2026-08-28T15:32:26.217Z",
-    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "lastModifiedAt": "2026-09-01T14:15:50.140Z",
+    "fetchedAt": "2026-09-01T23:37:53.457Z",
     "llmStatus": "ok"
   },
   {
@@ -737,7 +776,7 @@
     "severity": null,
     "publishedAt": "2026-08-13T12:17:24.083Z",
     "lastModifiedAt": "2026-08-31T20:25:28.573Z",
-    "fetchedAt": "2026-09-01T00:51:13.289Z",
+    "fetchedAt": "2026-09-01T23:37:53.457Z",
     "llmStatus": "ok"
   },
   {
@@ -2504,8 +2543,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-22T23:16:30.490Z",
-    "lastModifiedAt": "2026-08-19T12:18:27.417Z",
-    "fetchedAt": "2026-08-19T22:12:08.995Z",
+    "lastModifiedAt": "2026-09-01T13:19:37.290Z",
+    "fetchedAt": "2026-09-01T23:37:53.457Z",
     "llmStatus": "ok"
   },
   {
@@ -2517,8 +2556,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-22T23:16:30.200Z",
-    "lastModifiedAt": "2026-08-25T13:18:55.087Z",
-    "fetchedAt": "2026-08-25T22:13:36.612Z",
+    "lastModifiedAt": "2026-09-01T13:19:22.450Z",
+    "fetchedAt": "2026-09-01T23:37:53.457Z",
     "llmStatus": "ok"
   },
   {
@@ -2585,19 +2624,6 @@
     "lastModifiedAt": "2026-07-21T12:17:17.557Z",
     "fetchedAt": "2026-07-21T22:43:05.183Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-46517",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46517",
-    "descriptionEn": "LMDeploy is a toolkit for compressing, deploying, and serving large language models. In versions 0.12.3 and prior, hardcoded \"trust_remote_code=True\" enables HF supply-chain RCE without user opt-in. Version 0.13.0 patches the issue.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.8,
-    "severity": "HIGH",
-    "publishedAt": "2026-06-10T00:16:53.827Z",
-    "lastModifiedAt": "2026-08-31T15:17:17.260Z",
-    "fetchedAt": "2026-09-01T00:51:13.289Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-46432",
