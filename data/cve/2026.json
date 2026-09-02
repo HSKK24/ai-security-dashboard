@@ -1,5 +1,96 @@
 [
   {
+    "id": "CVE-2026-72654",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72654",
+    "descriptionEn": "Execution with Unnecessary Privileges (CWE-250) in the Kibana machine learning feature can lead to information disclosure via Privilege Abuse (CAPEC-122). An operation available to users holding only read access to the machine learning feature was performed with an internal service identity rather than the identity of the requesting user. Such a user could therefore receive data from Elasticsearch indices they are not authorized to read. No Elasticsearch cluster or index privileges are required.",
+    "summaryJa": "Kibanaの機械学習機能において、不必要な特権での実行（CWE-250）により情報漏洩の脆弱性が存在します。読み取りアクセス権限のみを持つユーザーが、内部サービスIDを使用して操作を実行することで、本来アクセス権のないElasticsearchインデックスから情報を取得することが可能でした。この脆弱性により、ユーザーは権限のないデータを閲覧できる可能性があります。",
+    "category": "other",
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-09-01T20:17:17.093Z",
+    "lastModifiedAt": "2026-09-02T18:49:59.647Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-72649",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72649",
+    "descriptionEn": "Deserialization of Untrusted Data (CWE-502) in the Elasticsearch machine learning component can lead to remote code execution via Object Injection (CAPEC-586). A specially crafted trained model artifact could cause attacker-controlled logic to execute with a materially broader system-call surface than intended. Exploitation requires an authenticated user with sufficient privileges to create and deploy trained models.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-09-01T20:17:16.853Z",
+    "lastModifiedAt": "2026-09-02T18:49:54.593Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
+    "llmStatus": "failed"
+  },
+  {
+    "id": "CVE-2026-84452",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-84452",
+    "descriptionEn": "Windows ML CLI is a command line tool for building portable, performant, and high-quality AI models for Windows ML. Prior to 0.4.0, the src/winml/modelkit/serve/cli_api.py component exposes WinML CLI commands through a localhost HTTP API without authentication and configures the allow_origins setting as a wildcard in both src/winml/modelkit/serve/cli_api.py and src/winml/modelkit/serve/app.py. A malicious website loaded by a user can send cross-origin requests to /v1/cli/build or /v1/cli/config and set the trust_remote_code parameter to true, which is converted to the --trust-remote-code command-line flag without validation. This reaches AutoConfig.from_pretrained with trust_remote_code=True in src/winml/modelkit/loader/_autoconfig.py and imports Python code from an attacker-controlled model repository, resulting in arbitrary code execution as the server user. This issue is fixed in version 0.4.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-09-02T20:17:41.350Z",
+    "lastModifiedAt": "2026-09-02T20:17:41.350Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-84377",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-84377",
+    "descriptionEn": "LiteLLM is a proxy server (AI Gateway) to call LLM APIs in OpenAI (or native) format. Prior to versions 1.88.6 and 1.96.2, any authenticated LiteLLM proxy user could redirect an outbound provider call to a destination the user controls and cause the proxy to send its configured provider credentials to that destination. Request validation in litellm/proxy/auth/auth_utils.py, litellm/proxy/common_request_processing.py, litellm/proxy/health_endpoints/_health_endpoints.py, litellm/proxy/image_endpoints/endpoints.py, and litellm/proxy/litellm_pre_call_utils.py used incomplete checks that did not cover every sensitive parameter or inspect equivalent values across nested request fields, path values, and bracket-notation form data. Routing and credential parameters including api_base, base_url, model_list, fallbacks, and litellm_credential_name could therefore be applied without clearing the operator's stored key, exposing upstream provider credentials and other configured secrets and permitting server-side requests to internal services reachable by the proxy. This issue is fixed in versions 1.88.6 and 1.96.2.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-09-02T18:21:28.997Z",
+    "lastModifiedAt": "2026-09-02T18:21:28.997Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-82404",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-82404",
+    "descriptionEn": "TOON is a compact, human-readable serialization of JSON data for LLM prompts. Prior to 2.3.1, decoding attacker-controlled TOON with a __proto__, constructor, or prototype key wrote through the object prototype chain instead of creating an own property, polluting Object.prototype for the runtime. In packages/toon/src/decode/expand.ts, the expandPaths: 'safe' path and insertPathSafe function made dotted keys such as a.__proto__.x the strongest vector, while plain nested objects, tabular rows, quoted keys, and streaming decode were also affected. The encoder also dropped own __proto__ properties and could invoke an inherited setter during normalization. Services that decode untrusted TOON could experience denial of service or, when a suitable downstream gadget is present, remote code execution. This issue is fixed in version 2.3.1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.3,
+    "severity": "HIGH",
+    "publishedAt": "2026-09-02T17:18:00.223Z",
+    "lastModifiedAt": "2026-09-02T19:18:06.453Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-82293",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-82293",
+    "descriptionEn": "Incorrect Authorization (CWE-863) in the Kibana machine learning feature can lead to unauthorized resource consumption via Exploiting Incorrectly Configured Access Control Security Levels (CAPEC-180). An authenticated user could invoke machine learning functionality beyond their authorization scope, consuming cluster resources they should not be able to reach.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 4.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-09-02T15:17:43.157Z",
+    "lastModifiedAt": "2026-09-02T16:17:26.123Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-78598",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-78598",
+    "descriptionEn": "Incorrect Authorization (CWE-863) in the Kibana machine learning feature can lead to information disclosure via Exploiting Incorrectly Configured Access Control Security Levels (CAPEC-180). An authenticated user holding machine learning job management privileges within a single Kibana space could cause a job's saved object to become accessible across all spaces in the Kibana instance, without holding access rights to those additional spaces.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.4,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-09-02T15:17:40.863Z",
+    "lastModifiedAt": "2026-09-02T19:23:13.660Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-82834",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-82834",
     "descriptionEn": "A security flaw has been discovered in Doccano Open Source Annotation Tools for Machine Learning Practitioners and Auto Labeling Pipeline Module to Annotate a Document Automatically up to 1.8.5. This affects the function LabelList of the file /v1/projects/1/category-types of the component Bulk-Delete Endpoint. Performing a manipulation results in improper access controls. Remote exploitation of the attack is possible. The exploit has been released to the public and may be used for attacks. The vendor was contacted early about this disclosure but did not respond in any way.",
@@ -8,8 +99,8 @@
     "cvssScore": 5.4,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-31T20:17:15.510Z",
-    "lastModifiedAt": "2026-08-31T20:56:08.800Z",
-    "fetchedAt": "2026-09-01T23:37:53.457Z",
+    "lastModifiedAt": "2026-09-02T15:17:43.633Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
     "llmStatus": "ok"
   },
   {
@@ -34,8 +125,8 @@
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2026-08-31T18:17:19.910Z",
-    "lastModifiedAt": "2026-08-31T18:17:19.910Z",
-    "fetchedAt": "2026-09-01T00:51:13.289Z",
+    "lastModifiedAt": "2026-09-02T15:17:41.970Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
     "llmStatus": "ok"
   },
   {
@@ -48,47 +139,8 @@
     "severity": "HIGH",
     "publishedAt": "2026-08-31T14:17:26.610Z",
     "lastModifiedAt": "2026-09-01T21:11:35.983Z",
-    "fetchedAt": "2026-09-01T23:37:53.457Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-46517",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46517",
-    "descriptionEn": "LMDeploy is a toolkit for compressing, deploying, and serving large language models. In versions 0.12.3 and prior, hardcoded \"trust_remote_code=True\" enables HF supply-chain RCE without user opt-in. Version 0.13.0 patches the issue.",
-    "summaryJa": "LMDeployのバージョン0.12.3以前において、設定値「trust_remote_code=True」がハードコードされている脆弱性が存在します。これにより、ユーザーの明示的な同意なしにHugging Faceのサプライチェーンを介したリモートコード実行（RCE）が可能となる恐れがあります。この問題はバージョン0.13.0で修正されました。",
-    "category": "ai-library",
-    "cvssScore": 7.8,
-    "severity": "HIGH",
-    "publishedAt": "2026-06-10T00:16:53.827Z",
-    "lastModifiedAt": "2026-08-31T15:17:17.260Z",
-    "fetchedAt": "2026-09-01T00:51:13.289Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-72654",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72654",
-    "descriptionEn": "Execution with Unnecessary Privileges (CWE-250) in the Kibana machine learning feature can lead to information disclosure via Privilege Abuse (CAPEC-122). An operation available to users holding only read access to the machine learning feature was performed with an internal service identity rather than the identity of the requesting user. Such a user could therefore receive data from Elasticsearch indices they are not authorized to read. No Elasticsearch cluster or index privileges are required.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 6.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-09-01T20:17:17.093Z",
-    "lastModifiedAt": "2026-09-01T21:15:37.123Z",
-    "fetchedAt": "2026-09-01T23:37:53.457Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-72649",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72649",
-    "descriptionEn": "Deserialization of Untrusted Data (CWE-502) in the Elasticsearch machine learning component can lead to remote code execution via Object Injection (CAPEC-586). A specially crafted trained model artifact could cause attacker-controlled logic to execute with a materially broader system-call surface than intended. Exploitation requires an authenticated user with sufficient privileges to create and deploy trained models.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.8,
-    "severity": "HIGH",
-    "publishedAt": "2026-09-01T20:17:16.853Z",
-    "lastModifiedAt": "2026-09-01T21:15:37.123Z",
-    "fetchedAt": "2026-09-01T23:37:53.457Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-82640",
@@ -658,8 +710,8 @@
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2026-08-13T20:17:28.137Z",
-    "lastModifiedAt": "2026-08-28T15:32:26.217Z",
-    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "lastModifiedAt": "2026-09-02T14:09:33.427Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
     "llmStatus": "ok"
   },
   {
@@ -2127,8 +2179,8 @@
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-07-08T20:16:57.683Z",
-    "lastModifiedAt": "2026-08-28T20:19:01.897Z",
-    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "lastModifiedAt": "2026-09-02T20:16:18.523Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
     "llmStatus": "ok"
   },
   {
@@ -2556,8 +2608,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-22T23:16:30.200Z",
-    "lastModifiedAt": "2026-09-01T13:19:22.450Z",
-    "fetchedAt": "2026-09-01T23:37:53.457Z",
+    "lastModifiedAt": "2026-09-02T13:17:45.843Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
     "llmStatus": "ok"
   },
   {
@@ -2623,6 +2675,19 @@
     "publishedAt": "2026-06-11T14:16:26.557Z",
     "lastModifiedAt": "2026-07-21T12:17:17.557Z",
     "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-46517",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46517",
+    "descriptionEn": "LMDeploy is a toolkit for compressing, deploying, and serving large language models. In versions 0.12.3 and prior, hardcoded \"trust_remote_code=True\" enables HF supply-chain RCE without user opt-in. Version 0.13.0 patches the issue.",
+    "summaryJa": "LMDeployのバージョン0.12.3以前において、設定値「trust_remote_code=True」がハードコードされている脆弱性が存在します。これにより、ユーザーの明示的な同意なしにHugging Faceのサプライチェーンを介したリモートコード実行（RCE）が可能となる恐れがあります。この問題はバージョン0.13.0で修正されました。",
+    "category": "ai-library",
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-10T00:16:53.827Z",
+    "lastModifiedAt": "2026-08-31T15:17:17.260Z",
+    "fetchedAt": "2026-09-01T00:51:13.289Z",
     "llmStatus": "ok"
   },
   {

@@ -1,57 +1,5 @@
 [
   {
-    "id": "CVE-2023-32786",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-32786",
-    "descriptionEn": "In Langchain through 0.0.155, prompt injection allows an attacker to force the service to retrieve data from an arbitrary URL, essentially providing SSRF and potentially injecting content into downstream tasks.",
-    "summaryJa": "Langchainのバージョン0.0.155以前において、プロンプトインジェクションの脆弱性が存在します。これにより、攻撃者はサービスに任意のURLからデータを取得させることが可能となり、結果としてSSRF攻撃や後続タスクへの不正なコンテンツ挿入が行われる可能性があります。",
-    "category": "prompt-injection",
-    "cvssScore": 7.5,
-    "severity": "HIGH",
-    "publishedAt": "2023-10-20T22:15:10.553Z",
-    "lastModifiedAt": "2026-06-17T05:59:34.503Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2023-39373",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-39373",
-    "descriptionEn": "\n A Hyundai model (2017) - CWE-294: Authentication Bypass by Capture-replay.\n\n\n",
-    "summaryJa": "2017年型Hyundai車において、キャプチャ・リプレイ攻撃によって認証がバイパスされる脆弱性が存在します。これにより、攻撃者は正当な認証プロセスを回避し、システムにアクセスする可能性があります。",
-    "category": "other",
-    "cvssScore": 7.4,
-    "severity": "HIGH",
-    "publishedAt": "2023-09-03T15:15:14.283Z",
-    "lastModifiedAt": "2026-06-17T06:12:10.213Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2023-37275",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-37275",
-    "descriptionEn": "Auto-GPT is an experimental open-source application showcasing the capabilities of the GPT-4 language model. The Auto-GPT command line UI makes heavy use of color-coded print statements to signify different types of system messages to the user, including messages that are crucial for the user to review and control which commands should be executed. Before v0.4.3, it was possible for a malicious external resource (such as a website browsed by Auto-GPT) to cause misleading messages to be printed to the console by getting the LLM to regurgitate JSON encoded ANSI escape sequences (`\\u001b[`). These escape sequences were JSON decoded and printed to the console as part of the model's \"thinking process\". The issue has been patched in release version 0.4.3.\n",
-    "summaryJa": "Auto-GPTにおいて、悪意のある外部リソースからLLMがJSONエンコードされたANSIエスケープシーケンスを再表示することで、コンソールUIに誤解を招くメッセージが表示される脆弱性がありました。これにより、ユーザーは実行されるべきコマンドなどの重要なシステムメッセージを誤認する可能性があり、バージョン0.4.3で修正されています。",
-    "category": "other",
-    "cvssScore": 3.1,
-    "severity": "LOW",
-    "publishedAt": "2023-07-13T23:15:10.890Z",
-    "lastModifiedAt": "2026-06-17T06:07:52.117Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2023-37273",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-37273",
-    "descriptionEn": "Auto-GPT is an experimental open-source application showcasing the capabilities of the GPT-4 language model. Running Auto-GPT version prior to 0.4.3 by cloning the git repo and executing `docker compose run auto-gpt` in the repo root uses a different docker-compose.yml file from the one suggested in the official docker set up instructions. The docker-compose.yml file located in the repo root mounts itself into the docker container without write protection. This means that if malicious custom python code is executed via the `execute_python_file` and `execute_python_code` commands, it can overwrite the docker-compose.yml file and abuse it to gain control of the host system the next time Auto-GPT is started. The issue has been patched in version 0.4.3.",
-    "summaryJa": "Auto-GPTのバージョン0.4.3より前のバージョンでは、`docker compose run auto-gpt`コマンドで起動する際、リポジトリルートの`docker-compose.yml`が書き込み保護なしでコンテナにマウントされる脆弱性が存在します。悪意のあるPythonコードが`execute_python_file`や`execute_python_code`を介して実行されると、この`docker-compose.yml`を上書きし、次回の起動時にホストシステムを制御される可能性があります。本脆弱性はバージョン0.4.3で修正済みです。",
-    "category": "ai-library",
-    "cvssScore": 8.1,
-    "severity": "HIGH",
-    "publishedAt": "2023-07-13T23:15:10.747Z",
-    "lastModifiedAt": "2026-06-17T06:07:51.867Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
-    "llmStatus": "ok"
-  },
-  {
     "id": "CVE-2023-51527",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-51527",
     "descriptionEn": "Exposure of Sensitive Information to an Unauthorized Actor vulnerability in Senol Sahin AI Power: Complete AI Pack – Powered by GPT-4.This issue affects AI Power: Complete AI Pack – Powered by GPT-4: from n/a through 1.8.2.",
@@ -143,6 +91,19 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2023-32786",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-32786",
+    "descriptionEn": "In Langchain through 0.0.155, prompt injection allows an attacker to force the service to retrieve data from an arbitrary URL, essentially providing SSRF and potentially injecting content into downstream tasks.",
+    "summaryJa": "Langchainのバージョン0.0.155以前において、プロンプトインジェクションの脆弱性が存在します。これにより、攻撃者はサービスに任意のURLからデータを取得させることが可能となり、結果としてSSRF攻撃や後続タスクへの不正なコンテンツ挿入が行われる可能性があります。",
+    "category": "prompt-injection",
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2023-10-20T22:15:10.553Z",
+    "lastModifiedAt": "2026-06-17T05:59:34.503Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2023-45063",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-45063",
     "descriptionEn": "Cross-Site Request Forgery (CSRF) vulnerability in ReCorp AI Content Writing Assistant (Content Writer, GPT 3 & 4, ChatGPT, Image Generator) All in One plugin <= 1.1.5 versions.",
@@ -156,6 +117,32 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2023-39373",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-39373",
+    "descriptionEn": "\n A Hyundai model (2017) - CWE-294: Authentication Bypass by Capture-replay.\n\n\n",
+    "summaryJa": "2017年型Hyundai車において、キャプチャ・リプレイ攻撃によって認証がバイパスされる脆弱性が存在します。これにより、攻撃者は正当な認証プロセスを回避し、システムにアクセスする可能性があります。",
+    "category": "other",
+    "cvssScore": 7.4,
+    "severity": "HIGH",
+    "publishedAt": "2023-09-03T15:15:14.283Z",
+    "lastModifiedAt": "2026-06-17T06:12:10.213Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2023-37275",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-37275",
+    "descriptionEn": "Auto-GPT is an experimental open-source application showcasing the capabilities of the GPT-4 language model. The Auto-GPT command line UI makes heavy use of color-coded print statements to signify different types of system messages to the user, including messages that are crucial for the user to review and control which commands should be executed. Before v0.4.3, it was possible for a malicious external resource (such as a website browsed by Auto-GPT) to cause misleading messages to be printed to the console by getting the LLM to regurgitate JSON encoded ANSI escape sequences (`\\u001b[`). These escape sequences were JSON decoded and printed to the console as part of the model's \"thinking process\". The issue has been patched in release version 0.4.3.\n",
+    "summaryJa": "Auto-GPTにおいて、悪意のある外部リソースからLLMがJSONエンコードされたANSIエスケープシーケンスを再表示することで、コンソールUIに誤解を招くメッセージが表示される脆弱性がありました。これにより、ユーザーは実行されるべきコマンドなどの重要なシステムメッセージを誤認する可能性があり、バージョン0.4.3で修正されています。",
+    "category": "other",
+    "cvssScore": 3.1,
+    "severity": "LOW",
+    "publishedAt": "2023-07-13T23:15:10.890Z",
+    "lastModifiedAt": "2026-06-17T06:07:52.117Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2023-37274",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-37274",
     "descriptionEn": "Auto-GPT is an experimental open-source application showcasing the capabilities of the GPT-4 language model. When Auto-GPT is executed directly on the host system via the provided run.sh or run.bat files, custom Python code execution is sandboxed using a temporary dedicated docker container which should not have access to any files outside of the Auto-GPT workspace directory.\nBefore v0.4.3, the `execute_python_code` command (introduced in v0.4.1) does not sanitize the `basename` arg before writing LLM-supplied code to a file with an LLM-supplied name. This allows for a path traversal attack that can overwrite any .py file outside the workspace directory by specifying a `basename` such as `../../../main.py`. This can further be abused to achieve arbitrary code execution on the host running Auto-GPT by e.g. overwriting autogpt/main.py which will be executed outside of the docker environment meant to sandbox custom python code execution the next time Auto-GPT is started. The issue has been patched in version 0.4.3. As a workaround, the risk introduced by this vulnerability can be remediated by running Auto-GPT in a virtual machine, or another environment in which damage to files or corruption of the program is not a critical problem.",
@@ -165,6 +152,19 @@
     "severity": "HIGH",
     "publishedAt": "2023-07-13T23:15:10.820Z",
     "lastModifiedAt": "2026-06-17T06:07:51.993Z",
+    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2023-37273",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-37273",
+    "descriptionEn": "Auto-GPT is an experimental open-source application showcasing the capabilities of the GPT-4 language model. Running Auto-GPT version prior to 0.4.3 by cloning the git repo and executing `docker compose run auto-gpt` in the repo root uses a different docker-compose.yml file from the one suggested in the official docker set up instructions. The docker-compose.yml file located in the repo root mounts itself into the docker container without write protection. This means that if malicious custom python code is executed via the `execute_python_file` and `execute_python_code` commands, it can overwrite the docker-compose.yml file and abuse it to gain control of the host system the next time Auto-GPT is started. The issue has been patched in version 0.4.3.",
+    "summaryJa": "Auto-GPTのバージョン0.4.3より前のバージョンでは、`docker compose run auto-gpt`コマンドで起動する際、リポジトリルートの`docker-compose.yml`が書き込み保護なしでコンテナにマウントされる脆弱性が存在します。悪意のあるPythonコードが`execute_python_file`や`execute_python_code`を介して実行されると、この`docker-compose.yml`を上書きし、次回の起動時にホストシステムを制御される可能性があります。本脆弱性はバージョン0.4.3で修正済みです。",
+    "category": "ai-library",
+    "cvssScore": 8.1,
+    "severity": "HIGH",
+    "publishedAt": "2023-07-13T23:15:10.747Z",
+    "lastModifiedAt": "2026-06-17T06:07:51.867Z",
     "fetchedAt": "2026-07-02T22:54:55.710Z",
     "llmStatus": "ok"
   },
