@@ -1,5 +1,70 @@
 [
   {
+    "id": "CVE-2026-72649",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72649",
+    "descriptionEn": "Deserialization of Untrusted Data (CWE-502) in the Elasticsearch machine learning component can lead to remote code execution via Object Injection (CAPEC-586). A specially crafted trained model artifact could cause attacker-controlled logic to execute with a materially broader system-call surface than intended. Exploitation requires an authenticated user with sufficient privileges to create and deploy trained models.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-09-01T20:17:16.853Z",
+    "lastModifiedAt": "2026-09-02T18:49:54.593Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
+    "llmStatus": "failed"
+  },
+  {
+    "id": "CVE-2026-19645",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19645",
+    "descriptionEn": "IBM MQ Agent CD: v1.0.0, v1.0.1, v2.0.0, v2.0.1 An authenticated user with a valid session cookie can submit arbitrarily large or computationallyexpensive requests that cause the LLM agent workers to be held for extended periods — rangingfrom tens of seconds to over ten minutes per request. When multiple such requests are sentconcurrently, the agent worker pool becomes exhausted, causing all other IBM MQ Console users toexperience degraded performance or complete unavailability of the AI Agent feature.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-09-04T16:17:24.923Z",
+    "lastModifiedAt": "2026-09-04T16:17:24.923Z",
+    "fetchedAt": "2026-09-04T23:30:02.894Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-85694",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-85694",
+    "descriptionEn": "LaVague 0.2.35 contains a remote code execution vulnerability in PythonFromMarkdownExtractor.extract_as_object that evaluates untrusted language model output derived from web page content. Attackers can inject malicious Python code through web pages using indirect prompt injection to execute arbitrary code on the operator's host without review.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.1,
+    "severity": "HIGH",
+    "publishedAt": "2026-09-04T15:17:47.540Z",
+    "lastModifiedAt": "2026-09-04T15:17:47.540Z",
+    "fetchedAt": "2026-09-04T23:30:02.894Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-85675",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-85675",
+    "descriptionEn": "OWL's DocumentProcessingToolkit contains a server-side request forgery vulnerability in the extract_document_content tool that fetches caller-supplied URLs with no scheme, host, or IP filtering. Attackers can inject malicious URLs through prompt injection to make the server fetch internal resources, with responses returned to the agent context.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2026-09-04T15:17:45.763Z",
+    "lastModifiedAt": "2026-09-04T18:18:06.540Z",
+    "fetchedAt": "2026-09-04T23:30:02.894Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-85674",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-85674",
+    "descriptionEn": "aider (aider-chat) automatically loads a .aider.conf.yml configuration file from the root of the git repository it is launched in. A crafted repository can set test-cmd (executed at startup) or lint-cmd (executed on the first file edit), which aider runs through a shell (subprocess with shell=True) without any user confirmation, LLM interaction, or API key. Consequently, a user who clones and runs aider inside an attacker-supplied repository achieves arbitrary command execution on their machine. The behavior is long-standing and was confirmed on 0.86.3.dev (current main).",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-09-04T15:17:45.597Z",
+    "lastModifiedAt": "2026-09-04T15:17:45.597Z",
+    "fetchedAt": "2026-09-04T23:30:02.894Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-84452",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-84452",
     "descriptionEn": "Windows ML CLI is a command line tool for building portable, performant, and high-quality AI models for Windows ML. Prior to 0.4.0, the src/winml/modelkit/serve/cli_api.py component exposes WinML CLI commands through a localhost HTTP API without authentication and configures the allow_origins setting as a wildcard in both src/winml/modelkit/serve/cli_api.py and src/winml/modelkit/serve/app.py. A malicious website loaded by a user can send cross-origin requests to /v1/cli/build or /v1/cli/config and set the trust_remote_code parameter to true, which is converted to the --trust-remote-code command-line flag without validation. This reaches AutoConfig.from_pretrained with trust_remote_code=True in src/winml/modelkit/loader/_autoconfig.py and imports Python code from an attacker-controlled model repository, resulting in arbitrary code execution as the server user. This issue is fixed in version 0.4.0.",
@@ -76,19 +141,6 @@
     "lastModifiedAt": "2026-09-02T18:49:59.647Z",
     "fetchedAt": "2026-09-02T23:39:36.682Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-72649",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72649",
-    "descriptionEn": "Deserialization of Untrusted Data (CWE-502) in the Elasticsearch machine learning component can lead to remote code execution via Object Injection (CAPEC-586). A specially crafted trained model artifact could cause attacker-controlled logic to execute with a materially broader system-call surface than intended. Exploitation requires an authenticated user with sufficient privileges to create and deploy trained models.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.8,
-    "severity": "HIGH",
-    "publishedAt": "2026-09-01T20:17:16.853Z",
-    "lastModifiedAt": "2026-09-02T18:49:54.593Z",
-    "fetchedAt": "2026-09-02T23:39:36.682Z",
-    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-82834",
@@ -424,8 +476,8 @@
     "cvssScore": 8.5,
     "severity": "HIGH",
     "publishedAt": "2026-08-18T21:16:42.273Z",
-    "lastModifiedAt": "2026-08-21T04:18:05.727Z",
-    "fetchedAt": "2026-08-21T22:11:03.357Z",
+    "lastModifiedAt": "2026-09-04T13:17:48.183Z",
+    "fetchedAt": "2026-09-04T23:30:02.894Z",
     "llmStatus": "ok"
   },
   {
@@ -723,8 +775,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-13T20:17:27.653Z",
-    "lastModifiedAt": "2026-08-28T15:32:26.217Z",
-    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "lastModifiedAt": "2026-09-04T20:19:37.500Z",
+    "fetchedAt": "2026-09-04T23:30:02.894Z",
     "llmStatus": "ok"
   },
   {
@@ -828,7 +880,7 @@
     "severity": "CRITICAL",
     "publishedAt": "2026-08-13T12:17:24.083Z",
     "lastModifiedAt": "2026-09-03T18:42:20.690Z",
-    "fetchedAt": "2026-09-03T23:37:45.525Z",
+    "fetchedAt": "2026-09-04T23:30:02.894Z",
     "llmStatus": "ok"
   },
   {
@@ -1032,11 +1084,11 @@
     "descriptionEn": "A vulnerability in `nltk.downloader` in nltk/nltk versions <= 3.9.4 allows for cross-package resource and model poisoning. The downloader extracts package archives into shared namespaces such as `corpora/` and `taggers/` instead of package-isolated roots, and validates package integrity only after the archive has been written and extracted. This design flaw enables one package to overwrite another package's trusted resources within the same namespace, making the changes immediately active through ordinary NLTK APIs. This issue persists across fresh interpreter restarts and can affect downstream workflows, including machine learning pipelines and reproducibility-sensitive environments.",
     "summaryJa": "nltk/nltkバージョン3.9.4以前の`nltk.downloader`には、クロスパッケージリソースおよびモデルポイズニングの脆弱性が存在します。ダウンローダーがパッケージアーカイブを共有名前空間に展開し、アーカイブ書き込み・展開後に整合性検証を行うため、悪意のあるパッケージが他のパッケージの信頼されたリソースを上書きし、NLTK APIを通じて即座に有効化される可能性があります。この問題は、機械学習パイプラインや再現性を重視する環境に影響を及ぼし、永続化します。",
     "category": "ai-library",
-    "cvssScore": 5.3,
+    "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-07T07:16:26.377Z",
-    "lastModifiedAt": "2026-08-31T19:35:51.890Z",
-    "fetchedAt": "2026-09-01T00:51:13.289Z",
+    "lastModifiedAt": "2026-09-04T14:40:11.537Z",
+    "fetchedAt": "2026-09-04T23:30:02.894Z",
     "llmStatus": "ok"
   },
   {
@@ -2608,8 +2660,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-22T23:16:30.200Z",
-    "lastModifiedAt": "2026-09-03T13:05:39.050Z",
-    "fetchedAt": "2026-09-03T23:37:45.525Z",
+    "lastModifiedAt": "2026-09-04T13:19:41.473Z",
+    "fetchedAt": "2026-09-04T23:30:02.894Z",
     "llmStatus": "ok"
   },
   {

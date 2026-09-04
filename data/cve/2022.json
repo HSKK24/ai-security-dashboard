@@ -1,107 +1,42 @@
 [
   {
-    "id": "CVE-2022-41883",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-41883",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. When ops that have specified input sizes receive a differing number of inputs, the executor will crash. We have patched the issue in GitHub commit f5381e0e10b5a61344109c1b7c174c68110f7629. The fix will be included in TensorFlow 2.11. We will also cherrypick this commit on TensorFlow 2.10.1, 2.9.3, and TensorFlow 2.8.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowにおいて、指定された入力サイズを持つオペレーションが異なる数の入力を受け取ると、エグゼキュータがクラッシュする脆弱性が存在します。この問題はサービス拒否につながる可能性があり、GitHubコミットf5381e0e10b5a61344109c1b7c174c68110f7629で修正され、TensorFlow 2.11以降およびサポート対象の旧バージョンにバックポートされます。",
-    "category": "ai-library",
-    "cvssScore": 6.8,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-11-18T21:15:10.923Z",
-    "lastModifiedAt": "2026-06-17T05:03:59.447Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-36022",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36022",
-    "descriptionEn": "Deeplearning4J is a suite of tools for deploying and training deep learning models using the JVM. Packages org.deeplearning4j:dl4j-examples and org.deeplearning4j:platform-tests through version 1.0.0-M2.1 may use some unclaimed S3 buckets in tests in examples. This is likely affect people who use some older NLP examples that reference an old S3 bucket. The problem has been patched. Users should upgrade to snapshots as Deeplearning4J plan to publish a release with the fix at a later date. As a workaround, download a word2vec google news vector from a new source using git lfs from here.",
-    "summaryJa": "Deeplearning4Jのdl4j-examplesおよびplatform-testsパッケージ（バージョン1.0.0-M2.1まで）において、テストで未請求のS3バケットが使用される脆弱性が発見されました。これにより、古いNLPの例を使用するユーザーが影響を受ける可能性があります。本問題は修正済みであり、ユーザーはスナップショットへのアップグレード、または別のソースからのword2vecモデルダウンロードによる回避策が推奨されています。",
-    "category": "ai-library",
-    "cvssScore": 5.3,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-11-10T18:15:10.577Z",
-    "lastModifiedAt": "2026-06-17T04:52:45.597Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-36027",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36027",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. When converting transposed convolutions using per-channel weight quantization the converter segfaults and crashes the Python process. We have patched the issue in GitHub commit aa0b852a4588cea4d36b74feb05d93055540b450. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowにおいて、パーチャネル重み量子化を用いた転置畳み込みを変換する際に、コンバータがセグメンテーション違反を起こし、Pythonプロセスがクラッシュする脆弱性があります。この問題は、TensorFlow 2.10.0およびそれ以降のバージョンで修正され、2.9.1、2.8.1、2.7.2にもバックポートされる予定です。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:11.430Z",
-    "lastModifiedAt": "2026-06-17T04:52:46.213Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-36017",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36017",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `Requantize` is given `input_min`, `input_max`, `requested_output_min`, `requested_output_max` tensors of a nonzero rank, it results in a segfault that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 785d67a78a1d533759fcd2f5e8d6ef778de849e0. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`Requantize`操作において、`input_min`、`input_max`、`requested_output_min`、`requested_output_max`のいずれかのテンソルが非ゼロランクで与えられた場合、セグメンテーションフォールトが発生します。これにより、サービス拒否（DoS）攻撃を引き起こす可能性があります。この脆弱性はGitHubコミット785d67a78a1d533759fcd2f5e8d6ef778de849e0で修正され、TensorFlow 2.10.0およびそれ以降のバージョン、またはサポートされている以前のバージョンへのバックポートで対応されます。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:11.367Z",
-    "lastModifiedAt": "2026-06-17T04:52:44.973Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-36016",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36016",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `tensorflow::full_type::SubstituteFromAttrs` receives a `FullTypeDef& t` that is not exactly three args, it triggers a `CHECK`-fail instead of returning a status. We have patched the issue in GitHub commit 6104f0d4091c260ce9352f9155f7e9b725eab012. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`tensorflow::full_type::SubstituteFromAttrs`関数において、入力された`FullTypeDef& t`が正確に3つの引数を持たない場合に、ステータスを返さずに`CHECK`-failを引き起こし、アプリケーションがクラッシュする脆弱性があります。この問題は、GitHubコミット6104f0dで修正されており、TensorFlow 2.10.0、2.9.1、2.8.1、2.7.2で対応される予定です。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:11.307Z",
-    "lastModifiedAt": "2026-06-17T04:52:44.843Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
     "id": "CVE-2022-36015",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36015",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. When `RangeSize` receives values that do not fit into an `int64_t`, it crashes. We have patched the issue in GitHub commit 37e64539cd29fcfb814c4451152a60f5d107b0f0. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`RangeSize`関数に整数オーバーフローの脆弱性があります。`int64_t`型に収まらない値が入力されると、システムがクラッシュする可能性があります。この問題は、GitHubコミット37e64539cd29fcfb814c4451152a60f5d107b0f0で修正され、TensorFlow 2.10.0以降およびサポート対象の過去バージョンに適用されます。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T23:15:11.243Z",
     "lastModifiedAt": "2026-06-17T04:52:44.717Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-36014",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36014",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. When `mlir::tfg::TFOp::nameAttr` receives null type list attributes, it crashes. We have patched the issue in GitHub commits 3a754740d5414e362512ee981eefba41561a63a6 and a0f0b9a21c9270930457095092f558fbad4c03e5. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`mlir::tfg::TFOp::nameAttr`関数において、null型のリスト属性を受け取るとシステムがクラッシュする脆弱性が存在します。この問題は、TensorFlow 2.10.0で修正される予定であり、バージョン2.9.1、2.8.1、2.7.2にもバックポートされます。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T23:15:11.187Z",
     "lastModifiedAt": "2026-06-17T04:52:44.583Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-36013",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36013",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. When `mlir::tfg::GraphDefImporter::ConvertNodeDef` tries to convert NodeDefs without an op name, it crashes. We have patched the issue in GitHub commit a0f0b9a21c9270930457095092f558fbad4c03e5. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`mlir::tfg::GraphDefImporter::ConvertNodeDef`関数において、op名のないNodeDefsを変換しようとするとクラッシュする脆弱性が存在します。この問題は、GitHubコミットa0f0b9a21c9270930457095092f558fbad4c03e3で修正されました。修正はTensorFlow 2.10.0、2.9.1、2.8.1、および2.7.2に含まれる予定です。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T23:15:11.127Z",
     "lastModifiedAt": "2026-06-17T04:52:44.457Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-36012",
@@ -114,7 +49,7 @@
     "publishedAt": "2022-09-16T23:15:11.070Z",
     "lastModifiedAt": "2026-06-17T04:52:44.327Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-36011",
@@ -127,33 +62,33 @@
     "publishedAt": "2022-09-16T23:15:11.010Z",
     "lastModifiedAt": "2026-06-17T04:52:44.200Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-36005",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36005",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. When `tf.quantization.fake_quant_with_min_max_vars_gradient` receives input `min` or `max` that is nonscalar, it gives a `CHECK` fail that can trigger a denial of service attack. We have patched the issue in GitHub commit f3cf67ac5705f4f04721d15e485e192bb319feed. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.quantization.fake_quant_with_min_max_vars_gradient`関数において、非スカラーの`min`または`max`入力を受け取ると`CHECK`失敗が発生し、サービス拒否（DoS）攻撃につながる可能性があります。この脆弱性は、TensorFlow 2.10.0、2.9.1、2.8.1、2.7.2で修正される予定です。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T23:15:10.937Z",
     "lastModifiedAt": "2026-06-17T04:52:43.377Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-36004",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36004",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. When `tf.random.gamma` receives large input shape and rates, it gives a `CHECK` fail that can trigger a denial of service attack. We have patched the issue in GitHub commit 552bfced6ce4809db5f3ca305f60ff80dd40c5a3. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.random.gamma`関数において、大きな入力形状とレートが入力されると`CHECK`失敗が発生し、サービス拒否（Denial of Service）攻撃につながる可能性があります。この脆弱性は、TensorFlow 2.10.0およびサポート対象の旧バージョン（2.9.1、2.8.1、2.7.2）で修正される予定です。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T23:15:10.880Z",
     "lastModifiedAt": "2026-06-17T04:52:43.250Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-36003",
@@ -166,20 +101,20 @@
     "publishedAt": "2022-09-16T23:15:10.823Z",
     "lastModifiedAt": "2026-06-17T04:52:43.123Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-36002",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36002",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. When `Unbatch` receives a nonscalar input `id`, it gives a `CHECK` fail that can trigger a denial of service attack. We have patched the issue in GitHub commit 4419d10d576adefa36b0e0a9425d2569f7c0189f. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`Unbatch`操作において、非スカラーの`id`が入力として与えられた場合に`CHECK`に失敗し、サービス拒否攻撃につながる脆弱性が存在します。この問題は、特定のGitHubコミットによって修正され、TensorFlowのバージョン2.10.0、2.9.1、2.8.1、および2.7.2で対処される予定です。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T23:15:10.763Z",
     "lastModifiedAt": "2026-06-17T04:52:43.000Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-36001",
@@ -2193,6 +2128,71 @@
     "severity": "MEDIUM",
     "publishedAt": "2022-11-18T22:15:10.007Z",
     "lastModifiedAt": "2026-06-17T05:03:58.633Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-41883",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-41883",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. When ops that have specified input sizes receive a differing number of inputs, the executor will crash. We have patched the issue in GitHub commit f5381e0e10b5a61344109c1b7c174c68110f7629. The fix will be included in TensorFlow 2.11. We will also cherrypick this commit on TensorFlow 2.10.1, 2.9.3, and TensorFlow 2.8.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowにおいて、指定された入力サイズを持つオペレーションが異なる数の入力を受け取ると、エグゼキュータがクラッシュする脆弱性が存在します。この問題はサービス拒否につながる可能性があり、GitHubコミットf5381e0e10b5a61344109c1b7c174c68110f7629で修正され、TensorFlow 2.11以降およびサポート対象の旧バージョンにバックポートされます。",
+    "category": "ai-library",
+    "cvssScore": 6.8,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-11-18T21:15:10.923Z",
+    "lastModifiedAt": "2026-06-17T05:03:59.447Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-36022",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36022",
+    "descriptionEn": "Deeplearning4J is a suite of tools for deploying and training deep learning models using the JVM. Packages org.deeplearning4j:dl4j-examples and org.deeplearning4j:platform-tests through version 1.0.0-M2.1 may use some unclaimed S3 buckets in tests in examples. This is likely affect people who use some older NLP examples that reference an old S3 bucket. The problem has been patched. Users should upgrade to snapshots as Deeplearning4J plan to publish a release with the fix at a later date. As a workaround, download a word2vec google news vector from a new source using git lfs from here.",
+    "summaryJa": "Deeplearning4Jのdl4j-examplesおよびplatform-testsパッケージ（バージョン1.0.0-M2.1まで）において、テストで未請求のS3バケットが使用される脆弱性が発見されました。これにより、古いNLPの例を使用するユーザーが影響を受ける可能性があります。本問題は修正済みであり、ユーザーはスナップショットへのアップグレード、または別のソースからのword2vecモデルダウンロードによる回避策が推奨されています。",
+    "category": "ai-library",
+    "cvssScore": 5.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-11-10T18:15:10.577Z",
+    "lastModifiedAt": "2026-06-17T04:52:45.597Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-36027",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36027",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. When converting transposed convolutions using per-channel weight quantization the converter segfaults and crashes the Python process. We have patched the issue in GitHub commit aa0b852a4588cea4d36b74feb05d93055540b450. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowにおいて、パーチャネル重み量子化を用いた転置畳み込みを変換する際に、コンバータがセグメンテーション違反を起こし、Pythonプロセスがクラッシュする脆弱性があります。この問題は、TensorFlow 2.10.0およびそれ以降のバージョンで修正され、2.9.1、2.8.1、2.7.2にもバックポートされる予定です。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T23:15:11.430Z",
+    "lastModifiedAt": "2026-06-17T04:52:46.213Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-36017",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36017",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `Requantize` is given `input_min`, `input_max`, `requested_output_min`, `requested_output_max` tensors of a nonzero rank, it results in a segfault that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 785d67a78a1d533759fcd2f5e8d6ef778de849e0. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`Requantize`操作において、`input_min`、`input_max`、`requested_output_min`、`requested_output_max`のいずれかのテンソルが非ゼロランクで与えられた場合、セグメンテーションフォールトが発生します。これにより、サービス拒否（DoS）攻撃を引き起こす可能性があります。この脆弱性はGitHubコミット785d67a78a1d533759fcd2f5e8d6ef778de849e0で修正され、TensorFlow 2.10.0およびそれ以降のバージョン、またはサポートされている以前のバージョンへのバックポートで対応されます。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T23:15:11.367Z",
+    "lastModifiedAt": "2026-06-17T04:52:44.973Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-36016",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36016",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `tensorflow::full_type::SubstituteFromAttrs` receives a `FullTypeDef& t` that is not exactly three args, it triggers a `CHECK`-fail instead of returning a status. We have patched the issue in GitHub commit 6104f0d4091c260ce9352f9155f7e9b725eab012. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`tensorflow::full_type::SubstituteFromAttrs`関数において、入力された`FullTypeDef& t`が正確に3つの引数を持たない場合に、ステータスを返さずに`CHECK`-failを引き起こし、アプリケーションがクラッシュする脆弱性があります。この問題は、GitHubコミット6104f0dで修正されており、TensorFlow 2.10.0、2.9.1、2.8.1、2.7.2で対応される予定です。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T23:15:11.307Z",
+    "lastModifiedAt": "2026-06-17T04:52:44.843Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
   }
