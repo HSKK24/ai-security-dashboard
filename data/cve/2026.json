@@ -1,68 +1,55 @@
 [
   {
-    "id": "CVE-2026-72649",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72649",
-    "descriptionEn": "Deserialization of Untrusted Data (CWE-502) in the Elasticsearch machine learning component can lead to remote code execution via Object Injection (CAPEC-586). A specially crafted trained model artifact could cause attacker-controlled logic to execute with a materially broader system-call surface than intended. Exploitation requires an authenticated user with sufficient privileges to create and deploy trained models.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.8,
-    "severity": "HIGH",
-    "publishedAt": "2026-09-01T20:17:16.853Z",
-    "lastModifiedAt": "2026-09-02T18:49:54.593Z",
-    "fetchedAt": "2026-09-02T23:39:36.682Z",
-    "llmStatus": "failed"
-  },
-  {
     "id": "CVE-2026-19645",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19645",
     "descriptionEn": "IBM MQ Agent CD: v1.0.0, v1.0.1, v2.0.0, v2.0.1 An authenticated user with a valid session cookie can submit arbitrarily large or computationallyexpensive requests that cause the LLM agent workers to be held for extended periods — rangingfrom tens of seconds to over ten minutes per request. When multiple such requests are sentconcurrently, the agent worker pool becomes exhausted, causing all other IBM MQ Console users toexperience degraded performance or complete unavailability of the AI Agent feature.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "IBM MQ Agent CDの複数のバージョンにおいて、認証済みユーザーがセッションクッキーを利用し、計算コストの高いリクエストを送信することで、LLMエージェントワーカーを長時間占有できる脆弱性が存在します。これにより、ワーカープールが枯渇し、他のIBM MQ ConsoleユーザーがAI Agent機能のパフォーマンス低下や利用不可を経験する可能性があります。",
+    "category": "ai-service",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-09-04T16:17:24.923Z",
     "lastModifiedAt": "2026-09-04T16:17:24.923Z",
     "fetchedAt": "2026-09-04T23:30:02.894Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-85694",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-85694",
     "descriptionEn": "LaVague 0.2.35 contains a remote code execution vulnerability in PythonFromMarkdownExtractor.extract_as_object that evaluates untrusted language model output derived from web page content. Attackers can inject malicious Python code through web pages using indirect prompt injection to execute arbitrary code on the operator's host without review.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LaVague 0.2.35の`PythonFromMarkdownExtractor.extract_as_object`にリモートコード実行の脆弱性が存在します。ウェブページコンテンツから生成された信頼できない言語モデルの出力が評価されるため、攻撃者は間接プロンプトインジェクションを通じて悪意のあるPythonコードをウェブページに挿入できます。これにより、オペレーターのホスト上で任意のコードが未審査で実行される可能性があります。",
+    "category": "prompt-injection",
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-09-04T15:17:47.540Z",
     "lastModifiedAt": "2026-09-04T15:17:47.540Z",
     "fetchedAt": "2026-09-04T23:30:02.894Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-85675",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-85675",
     "descriptionEn": "OWL's DocumentProcessingToolkit contains a server-side request forgery vulnerability in the extract_document_content tool that fetches caller-supplied URLs with no scheme, host, or IP filtering. Attackers can inject malicious URLs through prompt injection to make the server fetch internal resources, with responses returned to the agent context.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "OWLのDocumentProcessingToolkitのextract_document_contentツールには、サーバサイドリクエストフォージェリ（SSRF）の脆弱性が存在します。これは、URLのスキーム、ホスト、IPアドレスのフィルタリングなしに、呼び出し元が提供したURLをフェッチすることに起因します。攻撃者はプロンプトインジェクションを悪用して悪意のあるURLを注入し、サーバーに内部リソースをフェッチさせ、その応答をエージェントコンテキスト経由で取得する可能性があります。",
+    "category": "prompt-injection",
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-09-04T15:17:45.763Z",
     "lastModifiedAt": "2026-09-04T18:18:06.540Z",
     "fetchedAt": "2026-09-04T23:30:02.894Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-85674",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-85674",
     "descriptionEn": "aider (aider-chat) automatically loads a .aider.conf.yml configuration file from the root of the git repository it is launched in. A crafted repository can set test-cmd (executed at startup) or lint-cmd (executed on the first file edit), which aider runs through a shell (subprocess with shell=True) without any user confirmation, LLM interaction, or API key. Consequently, a user who clones and runs aider inside an attacker-supplied repository achieves arbitrary command execution on their machine. The behavior is long-standing and was confirmed on 0.86.3.dev (current main).",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "aiderは、起動時にGitリポジトリのルートにある`.aider.conf.yml`を自動的にロードし、設定された`test-cmd`や`lint-cmd`をユーザーの確認なしにシェル経由で実行します。これにより、攻撃者が作成したリポジトリをクローンしてaiderを実行すると、ユーザーの環境で任意のコマンドが実行される可能性があります。この脆弱性はバージョン0.86.3.devで確認されています。",
+    "category": "ai-library",
     "cvssScore": 7.8,
     "severity": "HIGH",
     "publishedAt": "2026-09-04T15:17:45.597Z",
     "lastModifiedAt": "2026-09-04T15:17:45.597Z",
     "fetchedAt": "2026-09-04T23:30:02.894Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-84452",
@@ -141,6 +128,19 @@
     "lastModifiedAt": "2026-09-02T18:49:59.647Z",
     "fetchedAt": "2026-09-02T23:39:36.682Z",
     "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-72649",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72649",
+    "descriptionEn": "Deserialization of Untrusted Data (CWE-502) in the Elasticsearch machine learning component can lead to remote code execution via Object Injection (CAPEC-586). A specially crafted trained model artifact could cause attacker-controlled logic to execute with a materially broader system-call surface than intended. Exploitation requires an authenticated user with sufficient privileges to create and deploy trained models.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-09-01T20:17:16.853Z",
+    "lastModifiedAt": "2026-09-02T18:49:54.593Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-82834",
@@ -776,7 +776,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2026-08-13T20:17:27.653Z",
     "lastModifiedAt": "2026-09-04T20:19:37.500Z",
-    "fetchedAt": "2026-09-04T23:30:02.894Z",
+    "fetchedAt": "2026-09-05T23:25:41.818Z",
     "llmStatus": "ok"
   },
   {
