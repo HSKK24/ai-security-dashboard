@@ -1,5 +1,18 @@
 [
   {
+    "id": "CVE-2026-72649",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72649",
+    "descriptionEn": "Deserialization of Untrusted Data (CWE-502) in the Elasticsearch machine learning component can lead to remote code execution via Object Injection (CAPEC-586). A specially crafted trained model artifact could cause attacker-controlled logic to execute with a materially broader system-call surface than intended. Exploitation requires an authenticated user with sufficient privileges to create and deploy trained models.",
+    "summaryJa": "Elasticsearchの機械学習コンポーネントに、信頼できないデータのデシリアライゼーションの脆弱性が存在します。この脆弱性はオブジェクトインジェクションを介したリモートコード実行につながり、特別に細工された学習済みモデルのアーティファクトによって、攻撃者が意図しない広範なシステムコールを実行する可能性があります。悪用には、学習済みモデルの作成およびデプロイ権限を持つ認証済みユーザーが必要です。",
+    "category": "model-vuln",
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-09-01T20:17:16.853Z",
+    "lastModifiedAt": "2026-09-02T18:49:54.593Z",
+    "fetchedAt": "2026-09-02T23:39:36.682Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2026-19645",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19645",
     "descriptionEn": "IBM MQ Agent CD: v1.0.0, v1.0.1, v2.0.0, v2.0.1 An authenticated user with a valid session cookie can submit arbitrarily large or computationallyexpensive requests that cause the LLM agent workers to be held for extended periods — rangingfrom tens of seconds to over ten minutes per request. When multiple such requests are sentconcurrently, the agent worker pool becomes exhausted, causing all other IBM MQ Console users toexperience degraded performance or complete unavailability of the AI Agent feature.",
@@ -128,19 +141,6 @@
     "lastModifiedAt": "2026-09-02T18:49:59.647Z",
     "fetchedAt": "2026-09-02T23:39:36.682Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-72649",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72649",
-    "descriptionEn": "Deserialization of Untrusted Data (CWE-502) in the Elasticsearch machine learning component can lead to remote code execution via Object Injection (CAPEC-586). A specially crafted trained model artifact could cause attacker-controlled logic to execute with a materially broader system-call surface than intended. Exploitation requires an authenticated user with sufficient privileges to create and deploy trained models.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.8,
-    "severity": "HIGH",
-    "publishedAt": "2026-09-01T20:17:16.853Z",
-    "lastModifiedAt": "2026-09-02T18:49:54.593Z",
-    "fetchedAt": "2026-09-02T23:39:36.682Z",
-    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-82834",
@@ -776,7 +776,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2026-08-13T20:17:27.653Z",
     "lastModifiedAt": "2026-09-04T20:19:37.500Z",
-    "fetchedAt": "2026-09-05T23:25:41.818Z",
+    "fetchedAt": "2026-09-06T23:18:50.266Z",
     "llmStatus": "ok"
   },
   {

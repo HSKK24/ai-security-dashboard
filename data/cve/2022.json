@@ -1,94 +1,55 @@
 [
   {
-    "id": "CVE-2022-36001",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36001",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `DrawBoundingBoxes` receives an input `boxes` that is not of dtype `float`, it gives a `CHECK` fail that can trigger a denial of service attack. We have patched the issue in GitHub commit da0d65cdc1270038e72157ba35bf74b85d9bda11. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`DrawBoundingBoxes`関数において、`boxes`入力が`float`型でない場合に内部チェックが失敗し、サービス拒否（DoS）攻撃を引き起こす可能性があります。この問題は、GitHubコミットda0d65cdc1270038e72157ba35bf74b85d9bda11で修正され、TensorFlow 2.10.0以降のバージョンおよび、2.9.1、2.8.1、2.7.2にバックポートされます。",
+    "id": "CVE-2022-36012",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36012",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `mlir::tfg::ConvertGenericFunctionToFunctionDef` is given empty function attributes, it crashes. We have patched the issue in GitHub commit ad069af92392efee1418c48ff561fd3070a03d7b. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`mlir::tfg::ConvertGenericFunctionToFunctionDef`関数において、空の関数属性が渡された際にシステムがクラッシュする脆弱性が存在します。この問題はTensorFlow 2.10.0で修正され、TensorFlow 2.9.1、2.8.1、2.7.2にもバックポートされる予定です。",
     "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:10.707Z",
-    "lastModifiedAt": "2026-06-17T04:52:42.877Z",
+    "publishedAt": "2022-09-16T23:15:11.070Z",
+    "lastModifiedAt": "2026-06-17T04:52:44.327Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
   },
   {
-    "id": "CVE-2022-36000",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36000",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `mlir::tfg::ConvertGenericFunctionToFunctionDef` is given empty function attributes, it gives a null dereference. We have patched the issue in GitHub commit aed36912609fc07229b4d0a7b44f3f48efc00fd0. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`mlir::tfg::ConvertGenericFunctionToFunctionDef`関数が空の関数属性を受け取ると、ヌルポインタ逆参照が発生する脆弱性があります。この問題は、TensorFlow 2.10.0で修正され、TensorFlow 2.9.1、2.8.1、2.7.2にもバックポートされる予定です。既知の回避策は存在しません。",
+    "id": "CVE-2022-36011",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36011",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `mlir::tfg::ConvertGenericFunctionToFunctionDef` is given empty function attributes, it gives a null dereference. We have patched the issue in GitHub commit 1cf45b831eeb0cab8655c9c7c5d06ec6f45fc41b. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`mlir::tfg::ConvertGenericFunctionToFunctionDef`関数において、空の関数属性が与えられた際にNULLポインタ参照が発生する脆弱性が発見された。この脆弱性により、サービスがクラッシュする可能性がある。修正はTensorFlow 2.10.0で適用され、TensorFlow 2.9.1、2.8.1、2.7.2にもバックポートされる予定である。",
     "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:10.647Z",
-    "lastModifiedAt": "2026-06-17T04:52:42.750Z",
+    "publishedAt": "2022-09-16T23:15:11.010Z",
+    "lastModifiedAt": "2026-06-17T04:52:44.200Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
   },
   {
-    "id": "CVE-2022-35999",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35999",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `Conv2DBackpropInput` receives empty `out_backprop` inputs (e.g. `[3, 1, 0, 1]`), the current CPU/GPU kernels `CHECK` fail (one with dnnl, the other with cudnn). This can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 27a65a43cf763897fecfa5cdb5cc653fc5dd0346. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:10.587Z",
-    "lastModifiedAt": "2026-06-17T04:52:42.627Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
-  },
-  {
-    "id": "CVE-2022-35998",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35998",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `EmptyTensorList` receives an input `element_shape` with more than one dimension, it gives a `CHECK` fail that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit c8ba76d48567aed347508e0552a257641931024d. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`EmptyTensorList`関数において、`element_shape`入力が多次元である場合に`CHECK`エラーが発生し、サービス拒否（DoS）攻撃を引き起こす可能性があります。この問題は、GitHubコミットc8ba76d48567aed347508e0552a257641931024dで修正され、TensorFlow 2.10.0以降および2.9.1、2.8.1、2.7.2にバックポートされます。",
+    "id": "CVE-2022-36003",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36003",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `RandomPoissonV2` receives large input shape and rates, it gives a `CHECK` fail that can trigger a denial of service attack. We have patched the issue in GitHub commit 552bfced6ce4809db5f3ca305f60ff80dd40c5a3. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`RandomPoissonV2`操作において、大きな入力形状とレートが与えられた際に`CHECK`エラーが発生し、サービス拒否（DoS）攻撃につながる脆弱性が発見されました。この問題はGitHubコミット552bfced6ce4809db5f3ca305f60ff80dd40c5a3で修正されており、TensorFlow 2.10.0、2.9.1、2.8.1、2.7.2で適用されます。既知の回避策はありません。",
     "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:10.527Z",
-    "lastModifiedAt": "2026-06-17T04:52:42.503Z",
+    "publishedAt": "2022-09-16T23:15:10.823Z",
+    "lastModifiedAt": "2026-06-17T04:52:43.123Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-35997",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35997",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `tf.sparse.cross` receives an input `separator` that is not a scalar, it gives a `CHECK` fail that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 83dcb4dbfa094e33db084e97c4d0531a559e0ebf. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`tf.sparse.cross`関数において、`separator`引数にスカラ値ではない入力が与えられると`CHECK`エラーが発生し、サービス運用妨害（DoS）攻撃を引き起こす可能性があります。この脆弱性は、GitHubコミット83dcb4dbfa094e33db084e97c4d0531a559e0ebfで修正され、TensorFlow 2.10.0およびサポート対象の旧バージョンにバックポートされる予定です。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:10.467Z",
-    "lastModifiedAt": "2026-06-17T04:52:42.383Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-35996",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35996",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `Conv2D` is given empty `input` and the `filter` and `padding` sizes are valid, the output is all-zeros. This causes division-by-zero floating point exceptions that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 611d80db29dd7b0cfb755772c69d60ae5bca05f9. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:10.407Z",
-    "lastModifiedAt": "2026-06-17T04:52:42.243Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-35995",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35995",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. When `AudioSummaryV2` receives an input `sample_rate` with more than one element, it gives a `CHECK` fails that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit bf6b45244992e2ee543c258e519489659c99fb7f. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`AudioSummaryV2`において、`sample_rate`に複数の要素を持つ入力を与えると`CHECK`エラーが発生し、サービス拒否攻撃につながる脆弱性が存在します。この問題は、GitHubコミットbf6b45244992e2ee543c258e519489659c99fb7fで修正され、TensorFlow 2.10.0およびサポートされている旧バージョンに適用されます。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T23:15:10.347Z",
     "lastModifiedAt": "2026-06-17T04:52:42.093Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-35994",
@@ -101,20 +62,20 @@
     "publishedAt": "2022-09-16T23:15:10.290Z",
     "lastModifiedAt": "2026-06-17T04:52:41.897Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-35993",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35993",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. When `SetSize` receives an input `set_shape` that is not a 1D tensor, it gives a `CHECK` fails that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit cf70b79d2662c0d3c6af74583641e345fc939467. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`SetSize`関数において、入力`set_shape`が1次元テンソルでない場合に`CHECK`エラーが発生し、サービス拒否（DoS）攻撃を引き起こす可能性があります。この問題はGitHubコミットcf70b79d2662c0d3c6af74583641e345fc939467で修正され、TensorFlow 2.10.0および2.9.1、2.8.1、2.7.2にバックポートされます。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T23:15:10.227Z",
     "lastModifiedAt": "2026-06-17T04:52:41.767Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-35992",
@@ -127,7 +88,7 @@
     "publishedAt": "2022-09-16T23:15:10.167Z",
     "lastModifiedAt": "2026-06-17T04:52:41.637Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-35991",
@@ -140,7 +101,7 @@
     "publishedAt": "2022-09-16T23:15:10.100Z",
     "lastModifiedAt": "2026-06-17T04:52:41.510Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-36026",
@@ -153,7 +114,7 @@
     "publishedAt": "2022-09-16T22:15:11.953Z",
     "lastModifiedAt": "2026-06-17T04:52:46.087Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-36019",
@@ -2119,32 +2080,6 @@
     "llmStatus": "ok"
   },
   {
-    "id": "CVE-2022-36012",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36012",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `mlir::tfg::ConvertGenericFunctionToFunctionDef` is given empty function attributes, it crashes. We have patched the issue in GitHub commit ad069af92392efee1418c48ff561fd3070a03d7b. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:11.070Z",
-    "lastModifiedAt": "2026-06-17T04:52:44.327Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
-  },
-  {
-    "id": "CVE-2022-36011",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36011",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `mlir::tfg::ConvertGenericFunctionToFunctionDef` is given empty function attributes, it gives a null dereference. We have patched the issue in GitHub commit 1cf45b831eeb0cab8655c9c7c5d06ec6f45fc41b. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:11.010Z",
-    "lastModifiedAt": "2026-06-17T04:52:44.200Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
-  },
-  {
     "id": "CVE-2022-36005",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36005",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. When `tf.quantization.fake_quant_with_min_max_vars_gradient` receives input `min` or `max` that is nonscalar, it gives a `CHECK` fail that can trigger a denial of service attack. We have patched the issue in GitHub commit f3cf67ac5705f4f04721d15e485e192bb319feed. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
@@ -2171,19 +2106,6 @@
     "llmStatus": "ok"
   },
   {
-    "id": "CVE-2022-36003",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36003",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `RandomPoissonV2` receives large input shape and rates, it gives a `CHECK` fail that can trigger a denial of service attack. We have patched the issue in GitHub commit 552bfced6ce4809db5f3ca305f60ff80dd40c5a3. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:10.823Z",
-    "lastModifiedAt": "2026-06-17T04:52:43.123Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
-  },
-  {
     "id": "CVE-2022-36002",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36002",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. When `Unbatch` receives a nonscalar input `id`, it gives a `CHECK` fail that can trigger a denial of service attack. We have patched the issue in GitHub commit 4419d10d576adefa36b0e0a9425d2569f7c0189f. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
@@ -2195,5 +2117,83 @@
     "lastModifiedAt": "2026-06-17T04:52:43.000Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-36001",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36001",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `DrawBoundingBoxes` receives an input `boxes` that is not of dtype `float`, it gives a `CHECK` fail that can trigger a denial of service attack. We have patched the issue in GitHub commit da0d65cdc1270038e72157ba35bf74b85d9bda11. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`DrawBoundingBoxes`関数において、`boxes`入力が`float`型でない場合に内部チェックが失敗し、サービス拒否（DoS）攻撃を引き起こす可能性があります。この問題は、GitHubコミットda0d65cdc1270038e72157ba35bf74b85d9bda11で修正され、TensorFlow 2.10.0以降のバージョンおよび、2.9.1、2.8.1、2.7.2にバックポートされます。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T23:15:10.707Z",
+    "lastModifiedAt": "2026-06-17T04:52:42.877Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-36000",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36000",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `mlir::tfg::ConvertGenericFunctionToFunctionDef` is given empty function attributes, it gives a null dereference. We have patched the issue in GitHub commit aed36912609fc07229b4d0a7b44f3f48efc00fd0. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`mlir::tfg::ConvertGenericFunctionToFunctionDef`関数が空の関数属性を受け取ると、ヌルポインタ逆参照が発生する脆弱性があります。この問題は、TensorFlow 2.10.0で修正され、TensorFlow 2.9.1、2.8.1、2.7.2にもバックポートされる予定です。既知の回避策は存在しません。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T23:15:10.647Z",
+    "lastModifiedAt": "2026-06-17T04:52:42.750Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-35999",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35999",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `Conv2DBackpropInput` receives empty `out_backprop` inputs (e.g. `[3, 1, 0, 1]`), the current CPU/GPU kernels `CHECK` fail (one with dnnl, the other with cudnn). This can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 27a65a43cf763897fecfa5cdb5cc653fc5dd0346. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T23:15:10.587Z",
+    "lastModifiedAt": "2026-06-17T04:52:42.627Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "failed"
+  },
+  {
+    "id": "CVE-2022-35998",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35998",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `EmptyTensorList` receives an input `element_shape` with more than one dimension, it gives a `CHECK` fail that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit c8ba76d48567aed347508e0552a257641931024d. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`EmptyTensorList`関数において、`element_shape`入力が多次元である場合に`CHECK`エラーが発生し、サービス拒否（DoS）攻撃を引き起こす可能性があります。この問題は、GitHubコミットc8ba76d48567aed347508e0552a257641931024dで修正され、TensorFlow 2.10.0以降および2.9.1、2.8.1、2.7.2にバックポートされます。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T23:15:10.527Z",
+    "lastModifiedAt": "2026-06-17T04:52:42.503Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-35997",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35997",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `tf.sparse.cross` receives an input `separator` that is not a scalar, it gives a `CHECK` fail that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 83dcb4dbfa094e33db084e97c4d0531a559e0ebf. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`tf.sparse.cross`関数において、`separator`引数にスカラ値ではない入力が与えられると`CHECK`エラーが発生し、サービス運用妨害（DoS）攻撃を引き起こす可能性があります。この脆弱性は、GitHubコミット83dcb4dbfa094e33db084e97c4d0531a559e0ebfで修正され、TensorFlow 2.10.0およびサポート対象の旧バージョンにバックポートされる予定です。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T23:15:10.467Z",
+    "lastModifiedAt": "2026-06-17T04:52:42.383Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-35996",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35996",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `Conv2D` is given empty `input` and the `filter` and `padding` sizes are valid, the output is all-zeros. This causes division-by-zero floating point exceptions that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 611d80db29dd7b0cfb755772c69d60ae5bca05f9. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T23:15:10.407Z",
+    "lastModifiedAt": "2026-06-17T04:52:42.243Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "failed"
   }
 ]
