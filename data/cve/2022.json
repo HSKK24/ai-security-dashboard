@@ -1,135 +1,5 @@
 [
   {
-    "id": "CVE-2022-35994",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35994",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `CollectiveGather` receives an scalar input `input`, it gives a `CHECK` fails that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit c1f491817dec39a26be3c574e86a88c30f3c4770. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`CollectiveGather`操作にサービス拒否（DoS）につながる脆弱性が存在します。この脆弱性は、`CollectiveGather`がスカラー入力を受け取ると`CHECK`アサーションに失敗することで発生します。この問題はTensorFlow 2.10.0で修正されており、以前のサポート対象バージョンにもバックポートされる予定です。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:10.290Z",
-    "lastModifiedAt": "2026-06-17T04:52:41.897Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-35992",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35992",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `TensorListFromTensor` receives an `element_shape` of a rank greater than one, it gives a `CHECK` fail that can trigger a denial of service attack. We have patched the issue in GitHub commit 3db59a042a38f4338aa207922fa2f476e000a6ee. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`TensorListFromTensor`操作において、`element_shape`のランクが1より大きい場合に`CHECK`エラーが発生し、サービス拒否攻撃につながる脆弱性が存在します。この問題は、GitHubコミット3db59a042a38f4338aa207922fa2f476e000a6eeで修正されており、TensorFlow 2.10.0およびそれ以前のサポート対象バージョンで提供されます。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:10.167Z",
-    "lastModifiedAt": "2026-06-17T04:52:41.637Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-35991",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35991",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `TensorListScatter` and `TensorListScatterV2` receive an `element_shape` of a rank greater than one, they give a `CHECK` fail that can trigger a denial of service attack. We have patched the issue in GitHub commit bb03fdf4aae944ab2e4b35c7daa051068a8b7f61. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`TensorListScatter`および`TensorListScatterV2`関数において、`element_shape`のランクが1より大きい場合、`CHECK`失敗が発生し、サービス拒否攻撃につながる可能性があります。この脆弱性は、TensorFlow 2.10.0、2.9.1、2.8.1、2.7.2で修正される予定です。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T23:15:10.100Z",
-    "lastModifiedAt": "2026-06-17T04:52:41.510Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-36026",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36026",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `QuantizeAndDequantizeV3` is given a nonscalar `num_bits` input tensor, it results in a `CHECK` fail that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit f3f9cb38ecfe5a8a703f2c4a8fead434ef291713. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`QuantizeAndDequantizeV3`関数において、`num_bits`入力テンソルが非スカラーである場合、`CHECK`エラーが発生し、サービス拒否（DoS）攻撃を引き起こす可能性があります。この脆弱性は、GitHubコミットf3f9cb38ecfe5a8a703f2c4a8fead434ef291713で修正され、TensorFlow 2.10.0およびサポート対象の以前のバージョンにパッチが適用されます。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T22:15:11.953Z",
-    "lastModifiedAt": "2026-06-17T04:52:46.087Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-35984",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35984",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. `ParameterizedTruncatedNormal` assumes `shape` is of type `int32`. A valid `shape` of type `int64` results in a mismatched type `CHECK` fail that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 72180be03447a10810edca700cbc9af690dfeb51. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`ParameterizedTruncatedNormal`関数において、`shape`引数が`int64`型の場合に`int32`型を想定しているため、型不一致による`CHECK`エラーが発生します。これによりサービス拒否攻撃が引き起こされる可能性があります。この問題はTensorFlow 2.10.0およびそれ以前のサポート対象バージョンで修正されました。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T22:15:11.367Z",
-    "lastModifiedAt": "2026-06-17T04:52:40.550Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-35983",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35983",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `Save` or `SaveSlices` is run over tensors of an unsupported `dtype`, it results in a `CHECK` fail that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 5dd7b86b84a864b834c6fa3d7f9f51c87efa99d4. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`Save`または`SaveSlices`関数において、サポート対象外の`dtype`を持つテンソルを処理するとCHECK failが発生し、サービス拒否（DoS）攻撃につながる可能性があります。この脆弱性は、GitHubコミット5dd7b86bで修正され、TensorFlow 2.10.0以降およびバックポート版で対処されます。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T22:15:11.303Z",
-    "lastModifiedAt": "2026-06-17T04:52:39.150Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-35982",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35982",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `SparseBincount` is given inputs for `indices`, `values`, and `dense_shape` that do not make a valid sparse tensor, it results in a segfault that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 40adbe4dd15b582b0210dfbf40c243a62f5119fa. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`SparseBincount`関数において、`indices`、`values`、`dense_shape`に無効な入力が与えられた場合にセグメンテーションフォールトが発生し、サービス拒否（DoS）攻撃を引き起こす可能性があります。この問題は、TensorFlow 2.10.0および2.9.1、2.8.1、2.7.2のパッチリリースで修正される予定です。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T22:15:11.243Z",
-    "lastModifiedAt": "2026-06-17T04:52:39.010Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-35981",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35981",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. `FractionalMaxPoolGrad` validates its inputs with `CHECK` failures instead of with returning errors. If it gets incorrectly sized inputs, the `CHECK` failure can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 8741e57d163a079db05a7107a7609af70931def4. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`FractionalMaxPoolGrad`関数において、不適切なサイズの入力が与えられた際に`CHECK`エラーが発生し、サービス拒否（DoS）攻撃につながる脆弱性が発見されました。この問題はGitHubコミット8741e57d163a079db05a7107a7609af70931def4で修正され、TensorFlow 2.10.0、2.9.1、2.8.1、2.7.2で対応されます。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T22:15:11.183Z",
-    "lastModifiedAt": "2026-06-17T04:52:38.887Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-35979",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35979",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `QuantizedRelu` or `QuantizedRelu6` are given nonscalar inputs for `min_features` or `max_features`, it results in a segfault that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 49b3824d83af706df0ad07e4e677d88659756d89. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowにおいて、`QuantizedRelu`または`QuantizedRelu6`演算に非スカラーの`min_features`または`max_features`が入力されると、セグメンテーションフォールトが発生し、サービス拒否（DoS）攻撃を引き起こす可能性があります。この脆弱性はTensorFlow 2.10.0以降、および2.9.1、2.8.1、2.7.2で修正されています。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T22:15:11.117Z",
-    "lastModifiedAt": "2026-06-17T04:52:38.627Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2022-35974",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35974",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `QuantizeDownAndShrinkRange` is given nonscalar inputs for `input_min` or `input_max`, it results in a segfault that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 73ad1815ebcfeb7c051f9c2f7ab5024380ca8613. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": "TensorFlowの`QuantizeDownAndShrinkRange`関数において、`input_min`または`input_max`に非スカラー入力が与えられた場合、セグメンテーションフォールトが発生し、サービス拒否（DoS）攻撃に繋がる可能性があります。この脆弱性は、TensorFlow 2.10.0および、バックポートとして2.9.1、2.8.1、2.7.2で修正されます。",
-    "category": "ai-library",
-    "cvssScore": 5.9,
-    "severity": "MEDIUM",
-    "publishedAt": "2022-09-16T21:15:09.550Z",
-    "lastModifiedAt": "2026-06-17T04:52:38.030Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
     "id": "CVE-2022-35973",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35973",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. If `QuantizedMatMul` is given nonscalar input for: `min_a`, `max_a`, `min_b`, or `max_b` It gives a segfault that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit aca766ac7693bf29ed0df55ad6bfcc78f35e7f48. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
@@ -140,46 +10,46 @@
     "publishedAt": "2022-09-16T21:15:09.490Z",
     "lastModifiedAt": "2026-06-17T04:52:37.907Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-35972",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35972",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. If `QuantizedBiasAdd` is given `min_input`, `max_input`, `min_bias`, `max_bias` tensors of a nonzero rank, it results in a segfault that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 785d67a78a1d533759fcd2f5e8d6ef778de849e0. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`QuantizedBiasAdd`関数において、`min_input`、`max_input`、`min_bias`、`max_bias`テンソルに非ゼロランクの値が与えられると、セグメンテーションフォールトが発生し、サービス拒否攻撃につながる可能性があります。この問題はTensorFlow 2.10.0で修正されており、2.9.1、2.8.1、2.7.2にもバックポートされる予定です。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T21:15:09.427Z",
     "lastModifiedAt": "2026-06-17T04:52:37.780Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-35971",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35971",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. If `FakeQuantWithMinMaxVars` is given `min` or `max` tensors of a nonzero rank, it results in a `CHECK` fail that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 785d67a78a1d533759fcd2f5e8d6ef778de849e0. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`FakeQuantWithMinMaxVars`関数に脆弱性があり、`min`または`max`テンソルに非ゼロのランクが与えられると`CHECK`失敗が発生し、サービス運用妨害（DoS）につながる可能性があります。この問題は、GitHubコミット785d67a78a1d533759fcd2f5e8d6ef778de849e0で修正され、TensorFlow 2.10.0、2.9.1、2.8.1、2.7.2で対処されます。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T21:15:09.360Z",
     "lastModifiedAt": "2026-06-17T04:52:37.653Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-35970",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35970",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. If `QuantizedInstanceNorm` is given `x_min` or `x_max` tensors of a nonzero rank, it results in a segfault that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 785d67a78a1d533759fcd2f5e8d6ef778de849e0. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`QuantizedInstanceNorm`演算において、`x_min`または`x_max`テンソルにゼロ以外のランクが指定された場合、セグメンテーションフォールトが発生し、サービス拒否攻撃につながる可能性があります。この問題は、TensorFlow 2.10.0およびそれ以前のサポート対象バージョン（2.9.1、2.8.1、2.7.2）で修正されます。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T21:15:09.293Z",
     "lastModifiedAt": "2026-06-17T04:52:37.530Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-35969",
@@ -192,7 +62,7 @@
     "publishedAt": "2022-09-16T21:15:09.227Z",
     "lastModifiedAt": "2026-06-17T04:52:37.403Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-35968",
@@ -205,7 +75,7 @@
     "publishedAt": "2022-09-16T21:15:09.163Z",
     "lastModifiedAt": "2026-06-17T04:52:37.280Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-35967",
@@ -218,7 +88,7 @@
     "publishedAt": "2022-09-16T21:15:09.097Z",
     "lastModifiedAt": "2026-06-17T04:52:37.150Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-35966",
@@ -231,33 +101,33 @@
     "publishedAt": "2022-09-16T21:15:09.033Z",
     "lastModifiedAt": "2026-06-17T04:52:37.023Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2022-35965",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35965",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. If `LowerBound` or `UpperBound` is given an empty`sorted_inputs` input, it results in a `nullptr` dereference, leading to a segfault that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit bce3717eaef4f769019fd18e990464ca4a2efeea. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`LowerBound`または`UpperBound`関数において、空の`sorted_inputs`が入力されると、nullポインタ逆参照が発生し、セグメンテーションフォールトを引き起こす可能性があります。これによりサービス拒否（DoS）攻撃が誘発される恐れがあります。この問題は、TensorFlow 2.10.0およびそれ以降のバージョン、ならびに2.9.1、2.8.1、2.7.2のパッチバージョンで修正されます。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T21:15:08.967Z",
     "lastModifiedAt": "2026-06-17T04:52:36.897Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-35964",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35964",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. The implementation of `BlockLSTMGradV2` does not fully validate its inputs. This results in a a segfault that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 2a458fc4866505be27c62f81474ecb2b870498fa. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`BlockLSTMGradV2`の実装に不完全な入力検証の脆弱性が存在します。この脆弱性によりセグメンテーションフォールトが発生し、サービス拒否攻撃につながる可能性があります。本件はTensorFlow 2.10.0で修正され、サポート対象の旧バージョンにもバックポートされます。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T21:15:08.890Z",
     "lastModifiedAt": "2026-06-17T04:52:36.770Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2022-35963",
@@ -2080,6 +1950,19 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2022-35994",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35994",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `CollectiveGather` receives an scalar input `input`, it gives a `CHECK` fails that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit c1f491817dec39a26be3c574e86a88c30f3c4770. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`CollectiveGather`操作にサービス拒否（DoS）につながる脆弱性が存在します。この脆弱性は、`CollectiveGather`がスカラー入力を受け取ると`CHECK`アサーションに失敗することで発生します。この問題はTensorFlow 2.10.0で修正されており、以前のサポート対象バージョンにもバックポートされる予定です。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T23:15:10.290Z",
+    "lastModifiedAt": "2026-06-17T04:52:41.897Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2022-35993",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35993",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. When `SetSize` receives an input `set_shape` that is not a 1D tensor, it gives a `CHECK` fails that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit cf70b79d2662c0d3c6af74583641e345fc939467. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
@@ -2089,6 +1972,45 @@
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T23:15:10.227Z",
     "lastModifiedAt": "2026-06-17T04:52:41.767Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-35992",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35992",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `TensorListFromTensor` receives an `element_shape` of a rank greater than one, it gives a `CHECK` fail that can trigger a denial of service attack. We have patched the issue in GitHub commit 3db59a042a38f4338aa207922fa2f476e000a6ee. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`TensorListFromTensor`操作において、`element_shape`のランクが1より大きい場合に`CHECK`エラーが発生し、サービス拒否攻撃につながる脆弱性が存在します。この問題は、GitHubコミット3db59a042a38f4338aa207922fa2f476e000a6eeで修正されており、TensorFlow 2.10.0およびそれ以前のサポート対象バージョンで提供されます。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T23:15:10.167Z",
+    "lastModifiedAt": "2026-06-17T04:52:41.637Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-35991",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35991",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. When `TensorListScatter` and `TensorListScatterV2` receive an `element_shape` of a rank greater than one, they give a `CHECK` fail that can trigger a denial of service attack. We have patched the issue in GitHub commit bb03fdf4aae944ab2e4b35c7daa051068a8b7f61. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`TensorListScatter`および`TensorListScatterV2`関数において、`element_shape`のランクが1より大きい場合、`CHECK`失敗が発生し、サービス拒否攻撃につながる可能性があります。この脆弱性は、TensorFlow 2.10.0、2.9.1、2.8.1、2.7.2で修正される予定です。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T23:15:10.100Z",
+    "lastModifiedAt": "2026-06-17T04:52:41.510Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-36026",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-36026",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `QuantizeAndDequantizeV3` is given a nonscalar `num_bits` input tensor, it results in a `CHECK` fail that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit f3f9cb38ecfe5a8a703f2c4a8fead434ef291713. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`QuantizeAndDequantizeV3`関数において、`num_bits`入力テンソルが非スカラーである場合、`CHECK`エラーが発生し、サービス拒否（DoS）攻撃を引き起こす可能性があります。この脆弱性は、GitHubコミットf3f9cb38ecfe5a8a703f2c4a8fead434ef291713で修正され、TensorFlow 2.10.0およびサポート対象の以前のバージョンにパッチが適用されます。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T22:15:11.953Z",
+    "lastModifiedAt": "2026-06-17T04:52:46.087Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
   },
@@ -2193,6 +2115,84 @@
     "severity": "MEDIUM",
     "publishedAt": "2022-09-16T22:15:11.427Z",
     "lastModifiedAt": "2026-06-17T04:52:40.740Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-35984",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35984",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. `ParameterizedTruncatedNormal` assumes `shape` is of type `int32`. A valid `shape` of type `int64` results in a mismatched type `CHECK` fail that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 72180be03447a10810edca700cbc9af690dfeb51. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`ParameterizedTruncatedNormal`関数において、`shape`引数が`int64`型の場合に`int32`型を想定しているため、型不一致による`CHECK`エラーが発生します。これによりサービス拒否攻撃が引き起こされる可能性があります。この問題はTensorFlow 2.10.0およびそれ以前のサポート対象バージョンで修正されました。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T22:15:11.367Z",
+    "lastModifiedAt": "2026-06-17T04:52:40.550Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-35983",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35983",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `Save` or `SaveSlices` is run over tensors of an unsupported `dtype`, it results in a `CHECK` fail that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 5dd7b86b84a864b834c6fa3d7f9f51c87efa99d4. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`Save`または`SaveSlices`関数において、サポート対象外の`dtype`を持つテンソルを処理するとCHECK failが発生し、サービス拒否（DoS）攻撃につながる可能性があります。この脆弱性は、GitHubコミット5dd7b86bで修正され、TensorFlow 2.10.0以降およびバックポート版で対処されます。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T22:15:11.303Z",
+    "lastModifiedAt": "2026-06-17T04:52:39.150Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-35982",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35982",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `SparseBincount` is given inputs for `indices`, `values`, and `dense_shape` that do not make a valid sparse tensor, it results in a segfault that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 40adbe4dd15b582b0210dfbf40c243a62f5119fa. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`SparseBincount`関数において、`indices`、`values`、`dense_shape`に無効な入力が与えられた場合にセグメンテーションフォールトが発生し、サービス拒否（DoS）攻撃を引き起こす可能性があります。この問題は、TensorFlow 2.10.0および2.9.1、2.8.1、2.7.2のパッチリリースで修正される予定です。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T22:15:11.243Z",
+    "lastModifiedAt": "2026-06-17T04:52:39.010Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-35981",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35981",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. `FractionalMaxPoolGrad` validates its inputs with `CHECK` failures instead of with returning errors. If it gets incorrectly sized inputs, the `CHECK` failure can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 8741e57d163a079db05a7107a7609af70931def4. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`FractionalMaxPoolGrad`関数において、不適切なサイズの入力が与えられた際に`CHECK`エラーが発生し、サービス拒否（DoS）攻撃につながる脆弱性が発見されました。この問題はGitHubコミット8741e57d163a079db05a7107a7609af70931def4で修正され、TensorFlow 2.10.0、2.9.1、2.8.1、2.7.2で対応されます。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T22:15:11.183Z",
+    "lastModifiedAt": "2026-06-17T04:52:38.887Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-35979",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35979",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `QuantizedRelu` or `QuantizedRelu6` are given nonscalar inputs for `min_features` or `max_features`, it results in a segfault that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 49b3824d83af706df0ad07e4e677d88659756d89. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowにおいて、`QuantizedRelu`または`QuantizedRelu6`演算に非スカラーの`min_features`または`max_features`が入力されると、セグメンテーションフォールトが発生し、サービス拒否（DoS）攻撃を引き起こす可能性があります。この脆弱性はTensorFlow 2.10.0以降、および2.9.1、2.8.1、2.7.2で修正されています。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T22:15:11.117Z",
+    "lastModifiedAt": "2026-06-17T04:52:38.627Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2022-35974",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-35974",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. If `QuantizeDownAndShrinkRange` is given nonscalar inputs for `input_min` or `input_max`, it results in a segfault that can be used to trigger a denial of service attack. We have patched the issue in GitHub commit 73ad1815ebcfeb7c051f9c2f7ab5024380ca8613. The fix will be included in TensorFlow 2.10.0. We will also cherrypick this commit on TensorFlow 2.9.1, TensorFlow 2.8.1, and TensorFlow 2.7.2, as these are also affected and still in supported range. There are no known workarounds for this issue.",
+    "summaryJa": "TensorFlowの`QuantizeDownAndShrinkRange`関数において、`input_min`または`input_max`に非スカラー入力が与えられた場合、セグメンテーションフォールトが発生し、サービス拒否（DoS）攻撃に繋がる可能性があります。この脆弱性は、TensorFlow 2.10.0および、バックポートとして2.9.1、2.8.1、2.7.2で修正されます。",
+    "category": "ai-library",
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2022-09-16T21:15:09.550Z",
+    "lastModifiedAt": "2026-06-17T04:52:38.030Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
   }
