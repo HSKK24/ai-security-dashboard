@@ -1,5 +1,18 @@
 [
   {
+    "id": "CVE-2026-88055",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-88055",
+    "descriptionEn": "AnythingLLM is an application that turns pieces of content into context that any LLM can use as references during chatting. In 1.16.1 and earlier, the manager role can store meta_page_title or meta_page_favicon through /api/admin/system-preferences, and MetaGenerator inserts those values into production homepage HTML without escaping attribute values or text content. The values pass unchanged through server/models/systemSettings.js and reach MetaGenerator.generate() in server/index.js. #assembleMeta() in server/utils/boot/MetaGenerator.js concatenates the stored values into HTML. When an administrator visits the homepage /, injected JavaScript can read the administrator JWT and use it to create API keys, access or modify workspace and chat data, delete users, and perform other administrator actions. server/endpoints/admin.js accepts the manager-controlled settings before server/models/systemSettings.js returns them unchanged. No fixed version is available as of this review.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-09-10T18:18:14.743Z",
+    "lastModifiedAt": "2026-09-10T19:54:25.810Z",
+    "fetchedAt": "2026-09-10T23:30:15.266Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-19645",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-19645",
     "descriptionEn": "IBM MQ Agent CD: v1.0.0, v1.0.1, v2.0.0, v2.0.1 An authenticated user with a valid session cookie can submit arbitrarily large or computationallyexpensive requests that cause the LLM agent workers to be held for extended periods — rangingfrom tens of seconds to over ten minutes per request. When multiple such requests are sentconcurrently, the agent worker pool becomes exhausted, causing all other IBM MQ Console users toexperience degraded performance or complete unavailability of the AI Agent feature.",
@@ -8,8 +21,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-09-04T16:17:24.923Z",
-    "lastModifiedAt": "2026-09-08T14:17:08.940Z",
-    "fetchedAt": "2026-09-08T23:43:51.982Z",
+    "lastModifiedAt": "2026-09-10T21:17:26.623Z",
+    "fetchedAt": "2026-09-10T23:30:15.266Z",
     "llmStatus": "ok"
   },
   {
@@ -21,8 +34,8 @@
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-09-04T15:17:47.540Z",
-    "lastModifiedAt": "2026-09-08T18:21:13.400Z",
-    "fetchedAt": "2026-09-08T23:43:51.982Z",
+    "lastModifiedAt": "2026-09-10T15:53:23.707Z",
+    "fetchedAt": "2026-09-10T23:30:15.266Z",
     "llmStatus": "ok"
   },
   {
@@ -47,8 +60,8 @@
     "cvssScore": 7.8,
     "severity": "HIGH",
     "publishedAt": "2026-09-04T15:17:45.597Z",
-    "lastModifiedAt": "2026-09-04T15:17:45.597Z",
-    "fetchedAt": "2026-09-04T23:30:02.894Z",
+    "lastModifiedAt": "2026-09-10T16:18:00.780Z",
+    "fetchedAt": "2026-09-10T23:30:15.266Z",
     "llmStatus": "ok"
   },
   {
@@ -203,8 +216,8 @@
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-30T14:17:03.890Z",
-    "lastModifiedAt": "2026-08-31T19:17:22.033Z",
-    "fetchedAt": "2026-09-01T00:51:13.289Z",
+    "lastModifiedAt": "2026-09-10T15:53:23.707Z",
+    "fetchedAt": "2026-09-10T23:30:15.266Z",
     "llmStatus": "ok"
   },
   {
@@ -620,7 +633,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2026-08-17T20:16:45.927Z",
     "lastModifiedAt": "2026-09-09T21:11:25.743Z",
-    "fetchedAt": "2026-09-09T23:37:03.740Z",
+    "fetchedAt": "2026-09-10T23:30:15.266Z",
     "llmStatus": "ok"
   },
   {
@@ -1113,8 +1126,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-06T00:16:53.733Z",
-    "lastModifiedAt": "2026-08-06T22:18:21.897Z",
-    "fetchedAt": "2026-08-07T22:22:57.129Z",
+    "lastModifiedAt": "2026-09-10T20:37:00.427Z",
+    "fetchedAt": "2026-09-10T23:30:15.266Z",
     "llmStatus": "ok"
   },
   {
