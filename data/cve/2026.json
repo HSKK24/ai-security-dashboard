@@ -1,5 +1,122 @@
 [
   {
+    "id": "CVE-2026-68791",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68791",
+    "descriptionEn": "Incorrect authorization in Azure Machine Learning allows an unauthorized attacker to disclose information over a network.",
+    "summaryJa": "Azure Machine Learningにおいて認証不備の脆弱性が存在します。これにより、権限のない攻撃者がネットワーク経由で情報を開示できるようになります。",
+    "category": "ai-service",
+    "cvssScore": 8.6,
+    "severity": "HIGH",
+    "publishedAt": "2026-09-17T23:18:08.290Z",
+    "lastModifiedAt": "2026-09-18T15:17:10.130Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-53557",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53557",
+    "descriptionEn": "SQLBot is an intelligent Text-to-SQL system based on large language models and RAG. Prior to 1.9.0, an authenticated user can supply a crafted sheet[\"tableName\"] value in the Excel datasource configuration submitted through POST /api/v1/datasource/, and SQLBot stores that value without safe identifier handling. When the same datasource is later removed through DELETE /api/v1/datasource/{id}, the stored value is interpolated into datasource cleanup SQL and executed by PostgreSQL. This second-order SQL injection can invoke PostgreSQL COPY TO PROGRAM and execute arbitrary operating-system commands with the privileges of the postgres process inside the SQLBot container. This issue is fixed in version 1.9.0.",
+    "summaryJa": "SQLBot 1.9.0未満のバージョンにおいて、認証されたユーザーがExcelデータソースの設定時に細工された`tableName`値を指定すると、第2級SQLインジェクションの脆弱性が存在します。この脆弱性により、データソース削除時に保存された値が悪用され、PostgreSQLの`COPY TO PROGRAM`を通じてSQLBotコンテナ内で任意のOSコマンドがpostgresプロセスの権限で実行される可能性があります。本脆弱性はバージョン1.9.0で修正されました。",
+    "category": "ai-service",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-09-17T22:17:00.243Z",
+    "lastModifiedAt": "2026-09-17T22:17:00.243Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-53556",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53556",
+    "descriptionEn": "SQLBot is an intelligent Text-to-SQL system based on large language models and RAG. Prior to 1.9.0, the POST /api/v1/datasource/previewData endpoint in backend/apps/datasource/crud/datasource.py incorporates the client-controlled table_name value into generated SQL without safe identifier handling. An authenticated user can configure a datasource for SQLBot's internal PostgreSQL service and submit a crafted table_name that remains a SELECT operation under the read-only policy while invoking pg_read_file(), pg_read_binary_file(), or pg_ls_dir(). In the default tested trusted loopback authentication configuration, the internal connection accepts invalid credentials and executes with PostgreSQL superuser privileges, allowing filesystem content such as /etc/hosts and /etc/passwd to be returned in the previewData API response and potentially exposing configuration, credentials, authentication secrets, and source code. This issue is fixed in version 1.9.0.",
+    "summaryJa": "SQLBotのText-to-SQLシステムにおいて、バージョン1.9.0より前の`/api/v1/datasource/previewData`エンドポイントにSQLインジェクション脆弱性がありました。認証された攻撃者は、`table_name`パラメータを悪用して内部PostgreSQLサービス上で`pg_read_file()`などの関数を呼び出すことができました。これにより、ファイルシステム上の機密情報（例: /etc/hosts, /etc/passwd）を読み取り、設定情報や認証情報などが漏洩する可能性がありました。",
+    "category": "other",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-09-17T22:17:00.073Z",
+    "lastModifiedAt": "2026-09-18T20:17:16.497Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-53555",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53555",
+    "descriptionEn": "SQLBot is an intelligent Text-to-SQL system based on large language models and RAG. Prior to 1.9.0, an authenticated uploader can submit an image/svg+xml assistant UI logo through PATCH /api/v1/system/assistant/ui, and SQLBot stores the SVG without sanitizing or validating embedded active content. SQLBot later serves the file inline from the same application origin through GET /api/v1/system/assistant/picture/{filename}. When another user loads that generated resource, JavaScript embedded in the SVG executes in the SQLBot web application context, resulting in stored cross-site scripting with access to data and actions available to the victim's session. This issue is fixed in version 1.9.0.",
+    "summaryJa": "SQLBotのバージョン1.9.0より前において、認証されたアップローダーがSVG形式のロゴをアップロードする際、埋め込まれたアクティブコンテンツがサニタイズされずに保存される脆弱性がありました。これにより、悪意のあるSVGファイルがWebアプリケーションのコンテキストでインラインで提供されると、他のユーザーがそのリソースを読み込んだ際にJavaScriptが実行され、保存型クロスサイトスクリプティング（XSS）が発生します。攻撃者は被害者のセッションデータやアクションにアクセス可能となります。",
+    "category": "other",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-09-17T22:16:59.917Z",
+    "lastModifiedAt": "2026-09-18T14:17:18.190Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-53554",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53554",
+    "descriptionEn": "SQLBot is an intelligent Text-to-SQL system based on large language models and RAG. Prior to 1.9.0, the POST /api/v1/datasource/parseExcel endpoint in backend/apps/datasource/api/datasource.py uses attacker-controlled multipart filename data when selecting where uploaded content is stored, writes the content before spreadsheet parsing and validation finish, and can transform a double-extension filename into a Python source file. An attacker able to submit a crafted multipart upload can use these behaviors to place attacker-controlled content in /opt/sqlbot/app/alembic/versions/ even when a spreadsheet parsing failure after the file write causes the endpoint to return an error. The planted file remains on disk, and subsequent SQLBot startup or migration processing causes Alembic to import the module and execute its module-level statements in the SQLBot application runtime. This issue is fixed in version 1.9.0.",
+    "summaryJa": "SQLBotのバージョン1.9.0より前において、POST /api/v1/datasource/parseExcelエンドポイントにファイルアップロード処理の脆弱性が存在します。攻撃者は細工したマルチパートファイル名を利用し、スプレッドシートの検証前に任意のコンテンツを特定のシステムパスに書き込むことが可能です。これにより、SQLBotの起動時またはマイグレーション処理時にAlembicが埋め込まれたPythonモジュールをインポート・実行し、結果として任意のコード実行に至る可能性があります。",
+    "category": "other",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-09-17T22:16:59.770Z",
+    "lastModifiedAt": "2026-09-18T14:17:18.067Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-52483",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-52483",
+    "descriptionEn": "The ping diagnostics and other similar functions of the MitraStar GPT-2741GNAC-N2-SV router with firmware BR_g8.10_1.11(WVK.0)b46 allow authenticated users execute arbitrary OS command via concatenated params on a crafted POST request for the endpoint /cgi-bin/device-management-utilities-internet.cgi.",
+    "summaryJa": "MitraStar GPT-2741GNAC-N2-SVルーター（ファームウェアBR_g8.10_1.11(WVK.0)b46）において、認証されたユーザーが任意のOSコマンドを実行できる脆弱性が存在します。これは、/cgi-bin/device-management-utilities-internet.cgiエンドポイントへのPOSTリクエストで、ping診断などの機能のパラメータが適切に処理されず連結されてしまうことに起因します。",
+    "category": "other",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-09-17T21:17:14.870Z",
+    "lastModifiedAt": "2026-09-17T21:17:14.870Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-59163",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-59163",
+    "descriptionEn": "Mnemosyne is a memory layer for artificial intelligence agents. Prior to v3.10.1, the auth check in mnemosyne/core/sync_server.py parsed the JWT's header and payload using base64 decoding, then passed the token to a jwt library call with options that effectively disabled signature verification. The server accepted any well-formed token regardless of the signature, including tokens with alg: none and tokens signed with the wrong key. The fix in v3.10.1 replaces the broken decode with a from-scratch HS256 verifier using only the Python standard library. For users who cannot upgrade immediately, restrict network access to the sync server endpoint to trusted clients only. Firewall, reverse proxy with mTLS, or localhost bind with SSH tunnel are all viable. The vulnerability is not exploitable against an unreachable endpoint.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.1,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-09-18T18:17:07.807Z",
+    "lastModifiedAt": "2026-09-18T18:17:07.807Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-33625",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-33625",
+    "descriptionEn": "LMDeploy is a toolkit for compressing, deploying, and serving large language models. Versions 012.1 through 0.12.2 contain a code injection vulnerability in `lmdeploy/pytorch/config.py` line 620 that allows an attacker to execute arbitrary Python code by publishing a malicious HuggingFace model with a crafted `quantization_config.quant_dtype` value. When a user loads the model with lmdeploy, the `quant_dtype` is passed to `eval(f'torch.{quant_dtype}')` without any validation. Version 0.12.3 contains a patch.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-09-18T18:17:06.640Z",
+    "lastModifiedAt": "2026-09-18T18:17:06.640Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2025-66455",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-66455",
+    "descriptionEn": "LMDeploy is a toolkit for compressing, deploying, and serving large language models. Starting in version 0.9.2 and prior to version 0.16.0, LMDeploy's PyTorch DistServe/PD-disaggregation control plane used `recv_pyobj()` to deserialize messages received through a ZeroMQ PULL socket. PyZMQ implements `recv_pyobj()` using Python pickle deserialization, which can execute arbitrary code while reconstructing an object. The peer address used by the receiver was supplied through the `POST /distserve/p2p_connect` HTTP endpoint. An attacker who could reach an affected DistServe API server could cause the server to connect to an attacker-controlled ZeroMQ endpoint and deserialize a crafted pickle payload. API-key authentication is not enabled unless the operator explicitly configures it. As a result, affected DistServe deployments without API keys allowed unauthenticated remote code execution with the privileges of the LMDeploy serving process. This issue affects the PyTorch backend when PD-disaggregation/DistServe is enabled. Ordinary deployments that do not use the affected disaggregated-serving path do not expose this data flow. The fix was released in LMDeploy 0.16.0. Users who cannot upgrade immediately should prevent untrusted clients from reaching `/distserve/*` endpoints, restrict the DistServe HTTP and ZeroMQ control planes to trusted cluster networks, configure API-key authentication, and block arbitrary outbound ZeroMQ connections from serving nodes. These measures reduce exposure but do not make pickle deserialization safe.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-09-18T18:17:04.420Z",
+    "lastModifiedAt": "2026-09-18T20:17:00.043Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-59823",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-59823",
     "descriptionEn": "LiteLLM is a proxy server (AI Gateway) to call LLM APIs in OpenAI (or native) format. Prior to 1.83.9, an authenticated LiteLLM Proxy caller with a valid virtual key can place api_base inside the user_config request body to bypass is_request_body_safe, which blocks top-level api_base and base_url but previously did not inspect or reject user_config. Because user_config constructs the outbound router, the nested destination redirects a server-side request to an internal or external host selected by the caller and can expose endpoints the caller cannot otherwise access. This issue is fixed in version 1.83.9.",
@@ -34,8 +151,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-09-16T17:17:24.603Z",
-    "lastModifiedAt": "2026-09-16T17:17:24.603Z",
-    "fetchedAt": "2026-09-16T23:56:38.912Z",
+    "lastModifiedAt": "2026-09-18T18:17:07.480Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -47,87 +164,9 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-09-16T16:17:03.010Z",
-    "lastModifiedAt": "2026-09-16T16:17:03.010Z",
-    "fetchedAt": "2026-09-16T23:56:38.912Z",
+    "lastModifiedAt": "2026-09-18T18:17:04.180Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-68791",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68791",
-    "descriptionEn": "Incorrect authorization in Azure Machine Learning allows an unauthorized attacker to disclose information over a network.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.6,
-    "severity": "HIGH",
-    "publishedAt": "2026-09-17T23:18:08.290Z",
-    "lastModifiedAt": "2026-09-17T23:18:08.290Z",
-    "fetchedAt": "2026-09-17T23:46:37.240Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-53557",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53557",
-    "descriptionEn": "SQLBot is an intelligent Text-to-SQL system based on large language models and RAG. Prior to 1.9.0, an authenticated user can supply a crafted sheet[\"tableName\"] value in the Excel datasource configuration submitted through POST /api/v1/datasource/, and SQLBot stores that value without safe identifier handling. When the same datasource is later removed through DELETE /api/v1/datasource/{id}, the stored value is interpolated into datasource cleanup SQL and executed by PostgreSQL. This second-order SQL injection can invoke PostgreSQL COPY TO PROGRAM and execute arbitrary operating-system commands with the privileges of the postgres process inside the SQLBot container. This issue is fixed in version 1.9.0.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-09-17T22:17:00.243Z",
-    "lastModifiedAt": "2026-09-17T22:17:00.243Z",
-    "fetchedAt": "2026-09-17T23:46:37.240Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-53556",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53556",
-    "descriptionEn": "SQLBot is an intelligent Text-to-SQL system based on large language models and RAG. Prior to 1.9.0, the POST /api/v1/datasource/previewData endpoint in backend/apps/datasource/crud/datasource.py incorporates the client-controlled table_name value into generated SQL without safe identifier handling. An authenticated user can configure a datasource for SQLBot's internal PostgreSQL service and submit a crafted table_name that remains a SELECT operation under the read-only policy while invoking pg_read_file(), pg_read_binary_file(), or pg_ls_dir(). In the default tested trusted loopback authentication configuration, the internal connection accepts invalid credentials and executes with PostgreSQL superuser privileges, allowing filesystem content such as /etc/hosts and /etc/passwd to be returned in the previewData API response and potentially exposing configuration, credentials, authentication secrets, and source code. This issue is fixed in version 1.9.0.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-09-17T22:17:00.073Z",
-    "lastModifiedAt": "2026-09-17T22:17:00.073Z",
-    "fetchedAt": "2026-09-17T23:46:37.240Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-53555",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53555",
-    "descriptionEn": "SQLBot is an intelligent Text-to-SQL system based on large language models and RAG. Prior to 1.9.0, an authenticated uploader can submit an image/svg+xml assistant UI logo through PATCH /api/v1/system/assistant/ui, and SQLBot stores the SVG without sanitizing or validating embedded active content. SQLBot later serves the file inline from the same application origin through GET /api/v1/system/assistant/picture/{filename}. When another user loads that generated resource, JavaScript embedded in the SVG executes in the SQLBot web application context, resulting in stored cross-site scripting with access to data and actions available to the victim's session. This issue is fixed in version 1.9.0.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-09-17T22:16:59.917Z",
-    "lastModifiedAt": "2026-09-17T22:16:59.917Z",
-    "fetchedAt": "2026-09-17T23:46:37.240Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-53554",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53554",
-    "descriptionEn": "SQLBot is an intelligent Text-to-SQL system based on large language models and RAG. Prior to 1.9.0, the POST /api/v1/datasource/parseExcel endpoint in backend/apps/datasource/api/datasource.py uses attacker-controlled multipart filename data when selecting where uploaded content is stored, writes the content before spreadsheet parsing and validation finish, and can transform a double-extension filename into a Python source file. An attacker able to submit a crafted multipart upload can use these behaviors to place attacker-controlled content in /opt/sqlbot/app/alembic/versions/ even when a spreadsheet parsing failure after the file write causes the endpoint to return an error. The planted file remains on disk, and subsequent SQLBot startup or migration processing causes Alembic to import the module and execute its module-level statements in the SQLBot application runtime. This issue is fixed in version 1.9.0.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-09-17T22:16:59.770Z",
-    "lastModifiedAt": "2026-09-17T22:16:59.770Z",
-    "fetchedAt": "2026-09-17T23:46:37.240Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-52483",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-52483",
-    "descriptionEn": "The ping diagnostics and other similar functions of the MitraStar GPT-2741GNAC-N2-SV router with firmware BR_g8.10_1.11(WVK.0)b46 allow authenticated users execute arbitrary OS command via concatenated params on a crafted POST request for the endpoint /cgi-bin/device-management-utilities-internet.cgi.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-09-17T21:17:14.870Z",
-    "lastModifiedAt": "2026-09-17T21:17:14.870Z",
-    "fetchedAt": "2026-09-17T23:46:37.240Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-83071",
@@ -139,7 +178,7 @@
     "severity": "HIGH",
     "publishedAt": "2026-09-15T20:18:16.000Z",
     "lastModifiedAt": "2026-09-17T16:17:54.680Z",
-    "fetchedAt": "2026-09-17T23:46:37.240Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -684,8 +723,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-20T17:19:40.930Z",
-    "lastModifiedAt": "2026-08-20T17:19:40.930Z",
-    "fetchedAt": "2026-08-20T22:14:20.271Z",
+    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -827,8 +866,8 @@
     "cvssScore": 3.3,
     "severity": "LOW",
     "publishedAt": "2026-08-18T15:16:56.463Z",
-    "lastModifiedAt": "2026-08-18T19:16:59.787Z",
-    "fetchedAt": "2026-08-19T22:12:08.995Z",
+    "lastModifiedAt": "2026-09-18T20:05:53.723Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -840,8 +879,8 @@
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2026-08-17T22:17:26.380Z",
-    "lastModifiedAt": "2026-08-18T14:18:02.237Z",
-    "fetchedAt": "2026-08-18T22:09:52.758Z",
+    "lastModifiedAt": "2026-09-18T20:05:53.723Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -853,8 +892,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-17T22:17:26.243Z",
-    "lastModifiedAt": "2026-08-18T19:17:02.453Z",
-    "fetchedAt": "2026-08-19T22:12:08.995Z",
+    "lastModifiedAt": "2026-09-18T20:05:53.723Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -879,8 +918,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-17T21:16:48.960Z",
-    "lastModifiedAt": "2026-08-18T16:18:17.300Z",
-    "fetchedAt": "2026-08-19T22:12:08.995Z",
+    "lastModifiedAt": "2026-09-18T20:05:53.723Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -905,8 +944,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-17T16:17:44.307Z",
-    "lastModifiedAt": "2026-08-17T19:16:35.383Z",
-    "fetchedAt": "2026-08-17T22:11:27.770Z",
+    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -918,8 +957,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-08-17T16:17:22.713Z",
-    "lastModifiedAt": "2026-08-17T17:16:40.073Z",
-    "fetchedAt": "2026-08-17T22:11:27.770Z",
+    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -931,8 +970,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-17T16:17:22.570Z",
-    "lastModifiedAt": "2026-08-17T22:17:23.727Z",
-    "fetchedAt": "2026-08-18T22:09:52.758Z",
+    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -944,8 +983,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-17T16:17:22.427Z",
-    "lastModifiedAt": "2026-08-18T15:16:56.777Z",
-    "fetchedAt": "2026-08-18T22:09:52.758Z",
+    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -957,8 +996,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-17T16:17:22.280Z",
-    "lastModifiedAt": "2026-08-17T19:16:33.823Z",
-    "fetchedAt": "2026-08-17T22:11:27.770Z",
+    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -970,8 +1009,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-17T16:16:46.710Z",
-    "lastModifiedAt": "2026-08-17T20:16:38.983Z",
-    "fetchedAt": "2026-08-18T22:09:52.758Z",
+    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -983,8 +1022,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-17T16:16:46.580Z",
-    "lastModifiedAt": "2026-08-17T22:16:57.317Z",
-    "fetchedAt": "2026-08-18T22:09:52.758Z",
+    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -996,8 +1035,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-17T16:16:46.447Z",
-    "lastModifiedAt": "2026-08-18T15:16:47.550Z",
-    "fetchedAt": "2026-08-18T22:09:52.758Z",
+    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -1009,8 +1048,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-17T16:16:46.290Z",
-    "lastModifiedAt": "2026-08-17T16:16:46.290Z",
-    "fetchedAt": "2026-08-17T22:11:27.770Z",
+    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -1295,8 +1334,8 @@
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-10T22:17:10.660Z",
-    "lastModifiedAt": "2026-08-12T23:17:23.107Z",
-    "fetchedAt": "2026-08-13T22:28:57.738Z",
+    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
@@ -1308,8 +1347,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-10T21:17:25.117Z",
-    "lastModifiedAt": "2026-08-11T15:17:37.830Z",
-    "fetchedAt": "2026-08-11T22:29:27.126Z",
+    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
+    "fetchedAt": "2026-09-18T23:42:41.316Z",
     "llmStatus": "ok"
   },
   {
