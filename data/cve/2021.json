@@ -3,14 +3,14 @@
     "id": "CVE-2021-43831",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-43831",
     "descriptionEn": "Gradio is an open source framework for building interactive machine learning models and demos. In versions prior to 2.5.0 there is a vulnerability that affects anyone who creates and publicly shares Gradio interfaces. File paths are not restricted and users who receive a Gradio link can access any files on the host computer if they know the file names or file paths. This is limited only by the host operating system. Paths are opened in read only mode. The problem has been patched in gradio 2.5.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Gradioのバージョン2.5.0より前には、ファイルパスが適切に制限されない脆弱性が存在します。この脆弱性により、Gradioインターフェースのリンクを受け取ったユーザーは、ファイル名やパスを知っていれば、ホストコンピューター上の任意のファイルに読み取り専用でアクセスできる可能性があります。この問題はGradio 2.5.0で修正されています。",
+    "category": "ai-library",
     "cvssScore": 7.7,
     "severity": "HIGH",
     "publishedAt": "2021-12-15T20:15:08.620Z",
     "lastModifiedAt": "2026-06-17T04:11:31.833Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-43775",
