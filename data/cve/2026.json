@@ -1,5 +1,18 @@
 [
   {
+    "id": "CVE-2026-55563",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55563",
+    "descriptionEn": "Feast is the open source feature store for AI and machine learning. Prior to 0.65.0, .github/workflows/pr_integration_tests.yml uses pull_request_target with the synchronize event and preserves ok-to-test, approved, or lgtm labels across newly pushed commits, allowing a fork contributor to obtain approval for a benign revision and then run changed code from refs/pull/${{ github.event.pull_request.number }}/merge through privileged make targets. The job exposes GCP, AWS, and Snowflake credentials to that code, enabling runner code execution, credential disclosure, and possible access to downstream cloud resources. An external label-removal integration could mitigate the condition, but no repository workflow provided that protection. This issue is fixed in version 0.65.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-09-21T16:17:09.390Z",
+    "lastModifiedAt": "2026-09-21T18:17:08.923Z",
+    "fetchedAt": "2026-09-22T00:20:09.646Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-59163",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-59163",
     "descriptionEn": "Mnemosyne is a memory layer for artificial intelligence agents. Prior to v3.10.1, the auth check in mnemosyne/core/sync_server.py parsed the JWT's header and payload using base64 decoding, then passed the token to a jwt library call with options that effectively disabled signature verification. The server accepted any well-formed token regardless of the signature, including tokens with alg: none and tokens signed with the wrong key. The fix in v3.10.1 replaces the broken decode with a from-scratch HS256 verifier using only the Python standard library. For users who cannot upgrade immediately, restrict network access to the sync server endpoint to trusted clients only. Firewall, reverse proxy with mTLS, or localhost bind with SSH tunnel are all viable. The vulnerability is not exploitable against an unreachable endpoint.",
@@ -217,7 +230,7 @@
     "severity": "HIGH",
     "publishedAt": "2026-09-15T16:17:44.867Z",
     "lastModifiedAt": "2026-09-20T01:16:33.733Z",
-    "fetchedAt": "2026-09-20T23:39:32.963Z",
+    "fetchedAt": "2026-09-22T00:20:09.646Z",
     "llmStatus": "ok"
   },
   {
