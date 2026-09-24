@@ -1,5 +1,31 @@
 [
   {
+    "id": "CVE-2026-84301",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-84301",
+    "descriptionEn": "FastGPT is an open-source LLM platform for building AI applications on a knowledge base. Prior to 4.15.2, the safe Axios request interceptor in packages/service/common/api/axios.ts validates a hostname with isInternalAddress() before a later HTTP connection performs an independent DNS lookup, creating a DNS rebinding window, allowing an attacker-controlled hostname to resolve publicly during the check and to a loopback, private, link-local, or metadata address during connection. An authenticated attacker who can supply a URL to a safe-Axios-backed HTTP tool, workflow HTTP node, external file fetch, or other server-side integration can use this time-of-check/time-of-use gap to reach services that direct private-address inputs would block. The same independent re-resolution occurs after manual redirect hops because each redirect target is checked before a separate connection lookup. This issue is fixed in version 4.15.2.",
+    "summaryJa": "FastGPTのバージョン4.15.2より前の`packages/service/common/api/axios.ts`内のセーフAxiosリクエストインターセプターにDNSリバインディングの脆弱性があります。`isInternalAddress()`によるホスト名検証と、後のHTTP接続による独立したDNSルックアップとの間に、時刻検査と使用のギャップ（TOCTOU）が生じます。これにより、認証された攻撃者は、検証時には公開アドレスに、接続時には内部アドレスに解決されるホスト名を悪用し、通常はブロックされる内部サービスへアクセスできる可能性があります。",
+    "category": "ai-service",
+    "cvssScore": 6.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-09-22T17:17:26.860Z",
+    "lastModifiedAt": "2026-09-22T17:17:26.987Z",
+    "fetchedAt": "2026-09-22T23:54:03.331Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-56681",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56681",
+    "descriptionEn": "9Router is an AI router & token saver. Prior to 0.5.6, 9Router deployments that allow requests to reach Next.js without the sanitizing custom-server.js wrapper trust the client-supplied X-9r-Real-Ip header in src/dashboardGuard.js when isLocalRequest decides whether canAccessPublicLlmApi may skip API-key validation for /api/v1/* routes. A remote unauthenticated attacker can set X-9r-Real-Ip to 127.0.0.1 and be classified as a local client, including on the verified GET /api/v1/models route. This permits unauthorized use of the instance owner's configured LLM providers, consumption of paid credits, and enumeration of configured providers and models. This issue is fixed in version 0.5.6.",
+    "summaryJa": "9Routerの0.5.6より前のバージョンにおいて、Next.jsへのリクエストが特定のサニタイジングラッパーなしで処理される場合、クライアント提供のX-9r-Real-Ipヘッダーが信頼される脆弱性があります。これにより、認証されていないリモート攻撃者がX-9r-Real-Ipを127.0.0.1に設定することでローカルクライアントとして偽装し、APIキー検証を回避してLLMプロバイダーを不正に利用したり、設定情報を列挙したりすることが可能になります。この問題はバージョン0.5.6で修正されています。",
+    "category": "other",
+    "cvssScore": 7.3,
+    "severity": "HIGH",
+    "publishedAt": "2026-09-22T16:17:48.350Z",
+    "lastModifiedAt": "2026-09-22T16:17:48.497Z",
+    "fetchedAt": "2026-09-22T23:54:03.331Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2026-55563",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55563",
     "descriptionEn": "Feast is the open source feature store for AI and machine learning. Prior to 0.65.0, .github/workflows/pr_integration_tests.yml uses pull_request_target with the synchronize event and preserves ok-to-test, approved, or lgtm labels across newly pushed commits, allowing a fork contributor to obtain approval for a benign revision and then run changed code from refs/pull/${{ github.event.pull_request.number }}/merge through privileged make targets. The job exposes GCP, AWS, and Snowflake credentials to that code, enabling runner code execution, credential disclosure, and possible access to downstream cloud resources. An external label-removal integration could mitigate the condition, but no repository workflow provided that protection. This issue is fixed in version 0.65.0.",
@@ -11,32 +37,6 @@
     "lastModifiedAt": "2026-09-21T18:17:08.923Z",
     "fetchedAt": "2026-09-22T23:54:03.331Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-84301",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-84301",
-    "descriptionEn": "FastGPT is an open-source LLM platform for building AI applications on a knowledge base. Prior to 4.15.2, the safe Axios request interceptor in packages/service/common/api/axios.ts validates a hostname with isInternalAddress() before a later HTTP connection performs an independent DNS lookup, creating a DNS rebinding window, allowing an attacker-controlled hostname to resolve publicly during the check and to a loopback, private, link-local, or metadata address during connection. An authenticated attacker who can supply a URL to a safe-Axios-backed HTTP tool, workflow HTTP node, external file fetch, or other server-side integration can use this time-of-check/time-of-use gap to reach services that direct private-address inputs would block. The same independent re-resolution occurs after manual redirect hops because each redirect target is checked before a separate connection lookup. This issue is fixed in version 4.15.2.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 6.3,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-09-22T17:17:26.860Z",
-    "lastModifiedAt": "2026-09-22T17:17:26.987Z",
-    "fetchedAt": "2026-09-22T23:54:03.331Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-56681",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56681",
-    "descriptionEn": "9Router is an AI router & token saver. Prior to 0.5.6, 9Router deployments that allow requests to reach Next.js without the sanitizing custom-server.js wrapper trust the client-supplied X-9r-Real-Ip header in src/dashboardGuard.js when isLocalRequest decides whether canAccessPublicLlmApi may skip API-key validation for /api/v1/* routes. A remote unauthenticated attacker can set X-9r-Real-Ip to 127.0.0.1 and be classified as a local client, including on the verified GET /api/v1/models route. This permits unauthorized use of the instance owner's configured LLM providers, consumption of paid credits, and enumeration of configured providers and models. This issue is fixed in version 0.5.6.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.3,
-    "severity": "HIGH",
-    "publishedAt": "2026-09-22T16:17:48.350Z",
-    "lastModifiedAt": "2026-09-22T16:17:48.497Z",
-    "fetchedAt": "2026-09-22T23:54:03.331Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-59163",
@@ -73,8 +73,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-09-18T18:17:04.420Z",
-    "lastModifiedAt": "2026-09-18T20:17:00.043Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-09-23T18:12:04.247Z",
+    "fetchedAt": "2026-09-24T00:05:17.504Z",
     "llmStatus": "ok"
   },
   {
@@ -99,8 +99,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-09-17T22:17:00.243Z",
-    "lastModifiedAt": "2026-09-22T02:16:30.770Z",
-    "fetchedAt": "2026-09-22T23:54:03.331Z",
+    "lastModifiedAt": "2026-09-23T17:17:49.530Z",
+    "fetchedAt": "2026-09-24T00:05:17.504Z",
     "llmStatus": "ok"
   },
   {
@@ -112,8 +112,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-09-17T22:17:00.073Z",
-    "lastModifiedAt": "2026-09-18T20:17:16.497Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-09-23T17:17:49.503Z",
+    "fetchedAt": "2026-09-24T00:05:17.504Z",
     "llmStatus": "ok"
   },
   {
@@ -125,8 +125,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-09-17T22:16:59.917Z",
-    "lastModifiedAt": "2026-09-18T14:17:18.190Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-09-23T17:17:49.950Z",
+    "fetchedAt": "2026-09-24T00:05:17.504Z",
     "llmStatus": "ok"
   },
   {
@@ -138,8 +138,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-09-17T22:16:59.770Z",
-    "lastModifiedAt": "2026-09-18T14:17:18.067Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-09-23T17:17:49.923Z",
+    "fetchedAt": "2026-09-24T00:05:17.504Z",
     "llmStatus": "ok"
   },
   {
@@ -152,7 +152,7 @@
     "severity": "HIGH",
     "publishedAt": "2026-09-17T21:17:14.870Z",
     "lastModifiedAt": "2026-09-22T20:00:03.713Z",
-    "fetchedAt": "2026-09-22T23:54:03.331Z",
+    "fetchedAt": "2026-09-24T00:05:17.504Z",
     "llmStatus": "ok"
   },
   {
@@ -230,7 +230,7 @@
     "severity": "HIGH",
     "publishedAt": "2026-09-15T18:17:22.010Z",
     "lastModifiedAt": "2026-09-22T20:00:03.713Z",
-    "fetchedAt": "2026-09-22T23:54:03.331Z",
+    "fetchedAt": "2026-09-24T00:05:17.504Z",
     "llmStatus": "ok"
   },
   {
@@ -307,8 +307,8 @@
     "cvssScore": 8.6,
     "severity": "HIGH",
     "publishedAt": "2026-09-14T13:19:32.430Z",
-    "lastModifiedAt": "2026-09-14T14:17:20.117Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-09-23T17:17:44.563Z",
+    "fetchedAt": "2026-09-24T00:05:17.504Z",
     "llmStatus": "ok"
   },
   {
@@ -619,8 +619,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-25T21:18:24.163Z",
-    "lastModifiedAt": "2026-08-28T23:17:12.590Z",
-    "fetchedAt": "2026-09-01T00:51:13.289Z",
+    "lastModifiedAt": "2026-09-23T17:17:45.463Z",
+    "fetchedAt": "2026-09-24T00:05:17.504Z",
     "llmStatus": "ok"
   },
   {
@@ -1256,8 +1256,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-11T20:18:46.470Z",
-    "lastModifiedAt": "2026-08-13T15:20:04.580Z",
-    "fetchedAt": "2026-08-14T22:10:36.823Z",
+    "lastModifiedAt": "2026-09-23T17:17:42.280Z",
+    "fetchedAt": "2026-09-24T00:05:17.504Z",
     "llmStatus": "ok"
   },
   {
