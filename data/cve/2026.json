@@ -1,5 +1,31 @@
 [
   {
+    "id": "CVE-2026-61742",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61742",
+    "descriptionEn": "DBHub is a database MCP server for Postgres, MySQL, SQL Server, Oracle, MariaDB, SQLite. Versions prior to 0.22.5 expose an unauthenticated HTTP MCP endpoint when started with the documented HTTP transport mode, for example `--transport http --port 8080`. The HTTP server attempts to protect browser-origin access by checking whether the `Origin` hostname equals the `Host` hostname, then reflecting the validated `Origin` into `Access-Control-Allow-Origin`. This does not stop DNS rebinding. After an attacker-controlled hostname rebinds to a victim-accessible DBHub HTTP server, both `Origin` and `Host` can contain the attacker-controlled hostname, so DBHub accepts the request and dispatches MCP tool calls. As a result, a malicious website can deterministically invoke DBHub MCP tools from the victim's browser without prompt injection or model involvement. With the default demo configuration this can read and write the demo SQLite database; with a real configured database, the same primitive can read, enumerate, and potentially write database contents depending on DBHub's configured tool permissions and database credentials. Version 0.22.5 fixes the issue.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-09-24T18:17:16.173Z",
+    "lastModifiedAt": "2026-09-24T18:17:16.173Z",
+    "fetchedAt": "2026-09-25T00:06:49.664Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-61732",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61732",
+    "descriptionEn": "Decepticon is an autonomous hacking agent for red teams. Versions prior to 1.1.17 wrap web crawl results — the output of agent reconnaissance against target services — into LLM messages without neutralizing ChatML special-token literals. Under the BYOK (Bring Your Own Key) deployment model, users configure their own LLM credentials to any OpenAI-compatible endpoint. Most open-source and self-deployed model providers (vLLM, SGLang, Ollama, LM Studio, text-generation-webui, etc.) do not filter special-token literals from user content in their default configurations. Those literals are parsed into structural role-boundary token IDs, meaning an attacker string planted in a target web page forges a new operator turn the model treats as authoritative, bypassing Decepticon's agent guardrails and resulting in arbitrary command execution inside the Kali Linux sandbox. Version 1.1.17 patches the issue.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 10,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-09-24T18:17:15.860Z",
+    "lastModifiedAt": "2026-09-24T19:17:14.910Z",
+    "fetchedAt": "2026-09-25T00:06:49.664Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-84301",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-84301",
     "descriptionEn": "FastGPT is an open-source LLM platform for building AI applications on a knowledge base. Prior to 4.15.2, the safe Axios request interceptor in packages/service/common/api/axios.ts validates a hostname with isInternalAddress() before a later HTTP connection performs an independent DNS lookup, creating a DNS rebinding window, allowing an attacker-controlled hostname to resolve publicly during the check and to a loopback, private, link-local, or metadata address during connection. An authenticated attacker who can supply a URL to a safe-Axios-backed HTTP tool, workflow HTTP node, external file fetch, or other server-side integration can use this time-of-check/time-of-use gap to reach services that direct private-address inputs would block. The same independent re-resolution occurs after manual redirect hops because each redirect target is checked before a separate connection lookup. This issue is fixed in version 4.15.2.",
@@ -34,8 +60,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-09-21T16:17:09.390Z",
-    "lastModifiedAt": "2026-09-21T18:17:08.923Z",
-    "fetchedAt": "2026-09-22T23:54:03.331Z",
+    "lastModifiedAt": "2026-09-24T21:16:28.120Z",
+    "fetchedAt": "2026-09-25T00:06:49.664Z",
     "llmStatus": "ok"
   },
   {
@@ -47,8 +73,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-09-18T18:17:07.807Z",
-    "lastModifiedAt": "2026-09-18T18:17:07.807Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-09-24T21:25:27.050Z",
+    "fetchedAt": "2026-09-25T00:06:49.664Z",
     "llmStatus": "ok"
   },
   {
@@ -60,8 +86,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-09-18T18:17:06.640Z",
-    "lastModifiedAt": "2026-09-22T16:17:47.620Z",
-    "fetchedAt": "2026-09-22T23:54:03.331Z",
+    "lastModifiedAt": "2026-09-24T21:25:27.050Z",
+    "fetchedAt": "2026-09-25T00:06:49.664Z",
     "llmStatus": "ok"
   },
   {
@@ -190,8 +216,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-09-16T17:17:24.603Z",
-    "lastModifiedAt": "2026-09-18T18:17:07.480Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-09-24T21:23:54.397Z",
+    "fetchedAt": "2026-09-25T00:06:49.664Z",
     "llmStatus": "ok"
   },
   {
@@ -203,8 +229,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-09-16T16:17:03.010Z",
-    "lastModifiedAt": "2026-09-18T18:17:04.180Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-09-24T21:25:27.050Z",
+    "fetchedAt": "2026-09-25T00:06:49.664Z",
     "llmStatus": "ok"
   },
   {
@@ -385,8 +411,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-09-04T15:17:45.763Z",
-    "lastModifiedAt": "2026-09-04T18:18:06.540Z",
-    "fetchedAt": "2026-09-04T23:30:02.894Z",
+    "lastModifiedAt": "2026-09-24T20:43:32.537Z",
+    "fetchedAt": "2026-09-25T00:06:49.664Z",
     "llmStatus": "ok"
   },
   {
@@ -684,8 +710,8 @@
     "cvssScore": 7.4,
     "severity": "HIGH",
     "publishedAt": "2026-08-24T18:17:21.233Z",
-    "lastModifiedAt": "2026-08-24T19:16:58.897Z",
-    "fetchedAt": "2026-08-25T22:13:36.612Z",
+    "lastModifiedAt": "2026-09-24T20:43:32.537Z",
+    "fetchedAt": "2026-09-25T00:06:49.664Z",
     "llmStatus": "ok"
   },
   {
@@ -775,8 +801,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-19T22:17:27.960Z",
-    "lastModifiedAt": "2026-08-20T16:18:20.903Z",
-    "fetchedAt": "2026-08-20T22:14:20.271Z",
+    "lastModifiedAt": "2026-09-24T20:06:30.133Z",
+    "fetchedAt": "2026-09-25T00:06:49.664Z",
     "llmStatus": "ok"
   },
   {
@@ -840,8 +866,8 @@
     "cvssScore": 9,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-18T18:19:34.197Z",
-    "lastModifiedAt": "2026-08-19T16:19:09.840Z",
-    "fetchedAt": "2026-08-19T22:12:08.995Z",
+    "lastModifiedAt": "2026-09-24T20:06:30.133Z",
+    "fetchedAt": "2026-09-25T00:06:49.664Z",
     "llmStatus": "ok"
   },
   {
@@ -1100,8 +1126,8 @@
     "cvssScore": 10,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-14T19:18:01.457Z",
-    "lastModifiedAt": "2026-08-17T19:16:41.473Z",
-    "fetchedAt": "2026-08-18T22:09:52.758Z",
+    "lastModifiedAt": "2026-09-24T20:06:30.133Z",
+    "fetchedAt": "2026-09-25T00:06:49.664Z",
     "llmStatus": "ok"
   },
   {
@@ -1269,8 +1295,8 @@
     "cvssScore": 9.6,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-11T20:18:46.320Z",
-    "lastModifiedAt": "2026-08-11T20:18:46.320Z",
-    "fetchedAt": "2026-08-12T22:27:46.920Z",
+    "lastModifiedAt": "2026-09-24T20:43:32.537Z",
+    "fetchedAt": "2026-09-25T00:06:49.664Z",
     "llmStatus": "ok"
   },
   {
