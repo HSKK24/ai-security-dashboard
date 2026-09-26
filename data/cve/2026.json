@@ -3,26 +3,39 @@
     "id": "CVE-2026-61742",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61742",
     "descriptionEn": "DBHub is a database MCP server for Postgres, MySQL, SQL Server, Oracle, MariaDB, SQLite. Versions prior to 0.22.5 expose an unauthenticated HTTP MCP endpoint when started with the documented HTTP transport mode, for example `--transport http --port 8080`. The HTTP server attempts to protect browser-origin access by checking whether the `Origin` hostname equals the `Host` hostname, then reflecting the validated `Origin` into `Access-Control-Allow-Origin`. This does not stop DNS rebinding. After an attacker-controlled hostname rebinds to a victim-accessible DBHub HTTP server, both `Origin` and `Host` can contain the attacker-controlled hostname, so DBHub accepts the request and dispatches MCP tool calls. As a result, a malicious website can deterministically invoke DBHub MCP tools from the victim's browser without prompt injection or model involvement. With the default demo configuration this can read and write the demo SQLite database; with a real configured database, the same primitive can read, enumerate, and potentially write database contents depending on DBHub's configured tool permissions and database credentials. Version 0.22.5 fixes the issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "DBHubのバージョン0.22.5未満では、HTTPトランスポートモードで起動時に認証なしのMCPエンドポイントを公開していました。DNSリバインディング攻撃を悪用することで、攻撃者制御のウェブサイトが被害者のブラウザからDBHub MCPツールを呼び出すことが可能です。これにより、設定されたデータベースの内容を読み取ったり、列挙したり、権限によっては書き込んだりする恐れがあります。",
+    "category": "other",
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-09-24T18:17:16.173Z",
     "lastModifiedAt": "2026-09-24T18:17:16.173Z",
     "fetchedAt": "2026-09-25T00:06:49.664Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-61732",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61732",
     "descriptionEn": "Decepticon is an autonomous hacking agent for red teams. Versions prior to 1.1.17 wrap web crawl results — the output of agent reconnaissance against target services — into LLM messages without neutralizing ChatML special-token literals. Under the BYOK (Bring Your Own Key) deployment model, users configure their own LLM credentials to any OpenAI-compatible endpoint. Most open-source and self-deployed model providers (vLLM, SGLang, Ollama, LM Studio, text-generation-webui, etc.) do not filter special-token literals from user content in their default configurations. Those literals are parsed into structural role-boundary token IDs, meaning an attacker string planted in a target web page forges a new operator turn the model treats as authoritative, bypassing Decepticon's agent guardrails and resulting in arbitrary command execution inside the Kali Linux sandbox. Version 1.1.17 patches the issue.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Decepticonのバージョン1.1.17より前では、ウェブクローリング結果をLLMメッセージとして渡す際、ChatMLの特殊トークンリテラルが無害化されていませんでした。これにより、攻撃者がウェブページに埋め込んだ文字列がLLMによって権威あるオペレーターの指示として解釈され、Decepticonのガードレールを迂回される可能性があります。結果として、Kali Linuxサンドボックス内で任意のコマンド実行が行われる恐れがあります。",
+    "category": "prompt-injection",
     "cvssScore": 10,
     "severity": "CRITICAL",
     "publishedAt": "2026-09-24T18:17:15.860Z",
     "lastModifiedAt": "2026-09-24T19:17:14.910Z",
     "fetchedAt": "2026-09-25T00:06:49.664Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-97228",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-97228",
+    "descriptionEn": "Rapid7 Bulk Export MCP versions 0.2.5 through 0.6.1 suffer from a GraphQL query injection issue in the export-status component (`get_export_status` in `src/export_manager.py`), whereby the `export_id` value — an unvalidated MCP tool argument reaching the function via the `check_rapid7_export_status` and `download_rapid7_export` tools — is interpolated directly into the GraphQL query string. A crafted `export_id` containing quote and brace characters can terminate the intended `export(id: \"...\")` selection early and append attacker-controlled root-level selections (for example, schema introspection), producing a single well-formed GraphQL document that is then sent to the Rapid7 export API under the operator's own API key.\n\nNotably, this issue does not grant an existing actor any access they do not already have: every injected query executes within the operator's own already-authenticated API scope, using the operator's own valid API key, and cannot cross a tenant or account boundary. A directly-malicious operator gains nothing they could not already do by calling the API directly; the realistic exposure is limited to a compromised or careless upstream MCP client, or indirect prompt injection forwarding an unvalidated identifier. This is fixed in version 0.6.2, which passes `export_id` as a parameterized GraphQL variable (`$exportId: ID!`).",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 2.7,
+    "severity": "LOW",
+    "publishedAt": "2026-09-25T11:17:02.163Z",
+    "lastModifiedAt": "2026-09-25T13:26:09.190Z",
+    "fetchedAt": "2026-09-26T00:13:38.473Z",
     "llmStatus": "pending"
   },
   {
@@ -74,7 +87,7 @@
     "severity": "CRITICAL",
     "publishedAt": "2026-09-18T18:17:07.807Z",
     "lastModifiedAt": "2026-09-24T21:25:27.050Z",
-    "fetchedAt": "2026-09-25T00:06:49.664Z",
+    "fetchedAt": "2026-09-26T00:13:38.473Z",
     "llmStatus": "ok"
   },
   {
@@ -87,7 +100,7 @@
     "severity": "HIGH",
     "publishedAt": "2026-09-18T18:17:06.640Z",
     "lastModifiedAt": "2026-09-24T21:25:27.050Z",
-    "fetchedAt": "2026-09-25T00:06:49.664Z",
+    "fetchedAt": "2026-09-26T00:13:38.473Z",
     "llmStatus": "ok"
   },
   {
@@ -112,8 +125,8 @@
     "cvssScore": 8.6,
     "severity": "HIGH",
     "publishedAt": "2026-09-17T23:18:08.290Z",
-    "lastModifiedAt": "2026-09-18T15:17:10.130Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-09-25T20:13:26.863Z",
+    "fetchedAt": "2026-09-26T00:13:38.473Z",
     "llmStatus": "ok"
   },
   {
@@ -230,7 +243,7 @@
     "severity": "CRITICAL",
     "publishedAt": "2026-09-16T16:17:03.010Z",
     "lastModifiedAt": "2026-09-24T21:25:27.050Z",
-    "fetchedAt": "2026-09-25T00:06:49.664Z",
+    "fetchedAt": "2026-09-26T00:13:38.473Z",
     "llmStatus": "ok"
   },
   {
