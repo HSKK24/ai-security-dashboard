@@ -1,105 +1,27 @@
 [
   {
-    "id": "CVE-2021-41222",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41222",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the implementation of `SplitV` can trigger a segfault is an attacker supplies negative arguments. This occurs whenever `size_splits` contains more than one value and at least one value is negative. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの`SplitV`実装において、`size_splits`に複数の値があり、かつ少なくとも1つの値が負の場合にセグメンテーションフォールトが発生する脆弱性があります。攻撃者が負の引数を供給することで、サービス拒否を引き起こす可能性があります。この問題はTensorFlow 2.7.0で修正され、2.6.1、2.5.2、2.4.4にもバックポートされる予定です。",
+    "id": "CVE-2021-41213",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41213",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the code behind `tf.function` API can be made to deadlock when two `tf.function` decorated Python functions are mutually recursive. This occurs due to using a non-reentrant `Lock` Python object. Loading any model which contains mutually recursive functions is vulnerable. An attacker can cause denial of service by causing users to load such models and calling a recursive `tf.function`, although this is not a frequent scenario. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`tf.function` APIにおいて、相互再帰的なPython関数が使用されるとデッドロックが発生する脆弱性が存在します。これは非再入可能な`Lock`オブジェクトの誤用が原因で、細工されたモデルを読み込み、再帰的な`tf.function`を呼び出すことでサービス拒否（DoS）を引き起こす可能性があります。この問題はTensorFlow 2.7.0で修正され、以前のサポート対象バージョンにもバックポートされます。",
     "category": "ai-library",
     "cvssScore": 5.5,
     "severity": "MEDIUM",
-    "publishedAt": "2021-11-05T23:15:08.477Z",
-    "lastModifiedAt": "2026-06-17T04:08:07.540Z",
+    "publishedAt": "2021-11-05T23:15:08.217Z",
+    "lastModifiedAt": "2026-06-17T04:08:06.500Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
   },
   {
-    "id": "CVE-2021-41223",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41223",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the implementation of `FusedBatchNorm` kernels is vulnerable to a heap OOB access. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの`FusedBatchNorm`カーネルの実装において、ヒープ領域への境界外アクセス（OOB）の脆弱性が存在します。この脆弱性により、メモリ破損やサービス拒否などの影響が生じる可能性があります。修正はTensorFlow 2.7.0で提供され、サポートされている以前のバージョンにもバックポートされる予定です。",
-    "category": "ai-library",
-    "cvssScore": 7.1,
-    "severity": "HIGH",
-    "publishedAt": "2021-11-05T21:15:09.203Z",
-    "lastModifiedAt": "2026-06-17T04:08:07.657Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-41219",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41219",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the code for sparse matrix multiplication is vulnerable to undefined behavior via binding a reference to `nullptr`. This occurs whenever the dimensions of `a` or `b` are 0 or less. In the case on one of these is 0, an empty output tensor should be allocated (to conserve the invariant that output tensors are always allocated when the operation is successful) but nothing should be written to it (that is, we should return early from the kernel implementation). Otherwise, attempts to write to this empty tensor would result in heap OOB access. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの疎行列乗算コードに、入力行列の次元が0以下の場合に発生する未定義動作の脆弱性があります。この欠陥は、ヌルポインタへの参照結合を介してヒープ領域への境界外書き込みを引き起こす可能性があり、深刻なセキュリティリスクとなります。",
-    "category": "ai-library",
-    "cvssScore": 7.8,
-    "severity": "HIGH",
-    "publishedAt": "2021-11-05T21:15:09.137Z",
-    "lastModifiedAt": "2026-06-17T04:08:07.193Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-41217",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41217",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the process of building the control flow graph for a TensorFlow model is vulnerable to a null pointer exception when nodes that should be paired are not. This occurs because the code assumes that the first node in the pairing (e.g., an `Enter` node) always exists when encountering the second node (e.g., an `Exit` node). When this is not the case, `parent` is `nullptr` so dereferencing it causes a crash. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの制御フローグラフ構築処理において、ペアとなるべきノードが欠損している場合にヌルポインタ例外が発生する脆弱性があります。`Enter`ノードが存在しない状況で`Exit`ノードが処理されると、ヌルポインタの逆参照によりプロセスがクラッシュする可能性があります。この問題はTensorFlow 2.7.0で修正され、2.6.1、2.5.2、2.4.4にもバックポートされます。",
+    "id": "CVE-2021-41218",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41218",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference code for `AllToAll` can be made to execute a division by 0. This occurs whenever the `split_count` argument is 0. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`AllToAll`演算における形状推論コードにゼロ除算の脆弱性が存在します。この脆弱性は`split_count`引数が0の場合に発生し、クラッシュなどのサービス拒否に繋がる可能性があります。本脆弱性はTensorFlow 2.7.0で修正され、2.6.1、2.5.2、2.4.4にもバックポートされています。",
     "category": "ai-library",
     "cvssScore": 5.5,
     "severity": "MEDIUM",
-    "publishedAt": "2021-11-05T21:15:09.073Z",
-    "lastModifiedAt": "2026-06-17T04:08:06.960Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-41215",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41215",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference code for `DeserializeSparse` can trigger a null pointer dereference. This is because the shape inference function assumes that the `serialize_sparse` tensor is a tensor with positive rank (and having `3` as the last dimension). The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの`DeserializeSparse`におけるシェイプ推論コードにnullポインタ逆参照の脆弱性が存在します。この脆弱性は、シェイプ推論関数が`serialize_sparse`テンソルに関して誤った前提を置くことに起因します。本問題はTensorFlow 2.7.0で修正され、サポート対象の以前のバージョンにもバックポートされます。",
-    "category": "ai-library",
-    "cvssScore": 5.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2021-11-05T21:15:09.003Z",
-    "lastModifiedAt": "2026-06-17T04:08:06.730Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-41214",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41214",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference code for `tf.ragged.cross` has an undefined behavior due to binding a reference to `nullptr`. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの`tf.ragged.cross`における形状推論コードに未定義動作の脆弱性が存在します。これは、`nullptr`への参照バインドに起因します。本脆弱性はTensorFlow 2.7.0で修正される予定であり、2.6.1、2.5.2、および2.4.4にもバックポートされます。",
-    "category": "ai-library",
-    "cvssScore": 7.8,
-    "severity": "HIGH",
-    "publishedAt": "2021-11-05T21:15:08.940Z",
-    "lastModifiedAt": "2026-06-17T04:08:06.620Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-41212",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41212",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference code for `tf.ragged.cross` can trigger a read outside of bounds of heap allocated array. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの`tf.ragged.cross`関数の形状推論コードに、ヒープ領域外の読み取りを引き起こす可能性のある脆弱性が存在します。この問題は、細工された入力によってサービス運用妨害や情報漏洩につながる可能性があります。本脆弱性はTensorFlow 2.7.0で修正され、2.6.1、2.5.2、2.4.4にもバックポートされる予定です。",
-    "category": "ai-library",
-    "cvssScore": 7.1,
-    "severity": "HIGH",
-    "publishedAt": "2021-11-05T21:15:08.877Z",
-    "lastModifiedAt": "2026-06-17T04:08:06.387Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-41211",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41211",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference code for `QuantizeV2` can trigger a read outside of bounds of heap allocated array. This occurs whenever `axis` is a negative value less than `-1`. In this case, we are accessing data before the start of a heap buffer. The code allows `axis` to be an optional argument (`s` would contain an `error::NOT_FOUND` error code). Otherwise, it assumes that `axis` is a valid index into the dimensions of the `input` tensor. If `axis` is less than `-1` then this results in a heap OOB read. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, as this version is the only one that is also affected.",
-    "summaryJa": "TensorFlowの`QuantizeV2`操作において、`axis`引数が負の値（特に-1より小さい値）の場合にヒープ領域外読み取りの脆弱性が存在する。これにより、ヒープバッファの開始位置より前のメモリにアクセスされる可能性がある。本脆弱性はTensorFlow 2.7.0および2.6.1で修正される。",
-    "category": "ai-library",
-    "cvssScore": 7.1,
-    "severity": "HIGH",
-    "publishedAt": "2021-11-05T21:15:08.813Z",
-    "lastModifiedAt": "2026-06-17T04:08:06.273Z",
+    "publishedAt": "2021-11-05T22:15:08.667Z",
+    "lastModifiedAt": "2026-06-17T04:08:07.080Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
   },
@@ -114,7 +36,7 @@
     "publishedAt": "2021-11-05T21:15:08.750Z",
     "lastModifiedAt": "2026-06-17T04:08:05.550Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-41204",
@@ -127,7 +49,7 @@
     "publishedAt": "2021-11-05T21:15:08.683Z",
     "lastModifiedAt": "2026-06-17T04:08:05.433Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-41203",
@@ -140,20 +62,20 @@
     "publishedAt": "2021-11-05T21:15:08.613Z",
     "lastModifiedAt": "2026-06-17T04:08:05.300Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-41210",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41210",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference functions for `SparseCountSparseOutput` can trigger a read outside of bounds of heap allocated array. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`SparseCountSparseOutput`の形状推論関数に、ヒープ割り当て配列の境界外読み取りを引き起こす脆弱性が存在します。この脆弱性により、不正なメモリアクセスが発生する可能性があります。この問題はTensorFlow 2.7.0で修正され、以前のサポートされているバージョンにもバックポートされます。",
+    "category": "ai-library",
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2021-11-05T20:15:08.160Z",
     "lastModifiedAt": "2026-06-17T04:08:06.160Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-41201",
@@ -166,7 +88,7 @@
     "publishedAt": "2021-11-05T20:15:08.097Z",
     "lastModifiedAt": "2026-06-17T04:08:05.050Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-41200",
@@ -179,7 +101,7 @@
     "publishedAt": "2021-11-05T20:15:08.037Z",
     "lastModifiedAt": "2026-06-17T04:08:04.937Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-41199",
@@ -2496,6 +2418,19 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2021-41222",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41222",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the implementation of `SplitV` can trigger a segfault is an attacker supplies negative arguments. This occurs whenever `size_splits` contains more than one value and at least one value is negative. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`SplitV`実装において、`size_splits`に複数の値があり、かつ少なくとも1つの値が負の場合にセグメンテーションフォールトが発生する脆弱性があります。攻撃者が負の引数を供給することで、サービス拒否を引き起こす可能性があります。この問題はTensorFlow 2.7.0で修正され、2.6.1、2.5.2、2.4.4にもバックポートされる予定です。",
+    "category": "ai-library",
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2021-11-05T23:15:08.477Z",
+    "lastModifiedAt": "2026-06-17T04:08:07.540Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2021-41221",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41221",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference code for the `Cudnn*` operations in TensorFlow can be tricked into accessing invalid memory, via a heap buffer overflow. This occurs because the ranks of the `input`, `input_h` and `input_c` parameters are not validated, but code assumes they have certain values. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
@@ -2533,32 +2468,6 @@
     "lastModifiedAt": "2026-06-17T04:08:06.843Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-41213",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41213",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the code behind `tf.function` API can be made to deadlock when two `tf.function` decorated Python functions are mutually recursive. This occurs due to using a non-reentrant `Lock` Python object. Loading any model which contains mutually recursive functions is vulnerable. An attacker can cause denial of service by causing users to load such models and calling a recursive `tf.function`, although this is not a frequent scenario. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2021-11-05T23:15:08.217Z",
-    "lastModifiedAt": "2026-06-17T04:08:06.500Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
-  },
-  {
-    "id": "CVE-2021-41218",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41218",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference code for `AllToAll` can be made to execute a division by 0. This occurs whenever the `split_count` argument is 0. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2021-11-05T22:15:08.667Z",
-    "lastModifiedAt": "2026-06-17T04:08:07.080Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-41209",
@@ -2648,6 +2557,97 @@
     "severity": "HIGH",
     "publishedAt": "2021-11-05T21:15:09.263Z",
     "lastModifiedAt": "2026-06-17T04:08:07.773Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-41223",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41223",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the implementation of `FusedBatchNorm` kernels is vulnerable to a heap OOB access. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`FusedBatchNorm`カーネルの実装において、ヒープ領域への境界外アクセス（OOB）の脆弱性が存在します。この脆弱性により、メモリ破損やサービス拒否などの影響が生じる可能性があります。修正はTensorFlow 2.7.0で提供され、サポートされている以前のバージョンにもバックポートされる予定です。",
+    "category": "ai-library",
+    "cvssScore": 7.1,
+    "severity": "HIGH",
+    "publishedAt": "2021-11-05T21:15:09.203Z",
+    "lastModifiedAt": "2026-06-17T04:08:07.657Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-41219",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41219",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the code for sparse matrix multiplication is vulnerable to undefined behavior via binding a reference to `nullptr`. This occurs whenever the dimensions of `a` or `b` are 0 or less. In the case on one of these is 0, an empty output tensor should be allocated (to conserve the invariant that output tensors are always allocated when the operation is successful) but nothing should be written to it (that is, we should return early from the kernel implementation). Otherwise, attempts to write to this empty tensor would result in heap OOB access. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの疎行列乗算コードに、入力行列の次元が0以下の場合に発生する未定義動作の脆弱性があります。この欠陥は、ヌルポインタへの参照結合を介してヒープ領域への境界外書き込みを引き起こす可能性があり、深刻なセキュリティリスクとなります。",
+    "category": "ai-library",
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2021-11-05T21:15:09.137Z",
+    "lastModifiedAt": "2026-06-17T04:08:07.193Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-41217",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41217",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the process of building the control flow graph for a TensorFlow model is vulnerable to a null pointer exception when nodes that should be paired are not. This occurs because the code assumes that the first node in the pairing (e.g., an `Enter` node) always exists when encountering the second node (e.g., an `Exit` node). When this is not the case, `parent` is `nullptr` so dereferencing it causes a crash. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの制御フローグラフ構築処理において、ペアとなるべきノードが欠損している場合にヌルポインタ例外が発生する脆弱性があります。`Enter`ノードが存在しない状況で`Exit`ノードが処理されると、ヌルポインタの逆参照によりプロセスがクラッシュする可能性があります。この問題はTensorFlow 2.7.0で修正され、2.6.1、2.5.2、2.4.4にもバックポートされます。",
+    "category": "ai-library",
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2021-11-05T21:15:09.073Z",
+    "lastModifiedAt": "2026-06-17T04:08:06.960Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-41215",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41215",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference code for `DeserializeSparse` can trigger a null pointer dereference. This is because the shape inference function assumes that the `serialize_sparse` tensor is a tensor with positive rank (and having `3` as the last dimension). The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`DeserializeSparse`におけるシェイプ推論コードにnullポインタ逆参照の脆弱性が存在します。この脆弱性は、シェイプ推論関数が`serialize_sparse`テンソルに関して誤った前提を置くことに起因します。本問題はTensorFlow 2.7.0で修正され、サポート対象の以前のバージョンにもバックポートされます。",
+    "category": "ai-library",
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2021-11-05T21:15:09.003Z",
+    "lastModifiedAt": "2026-06-17T04:08:06.730Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-41214",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41214",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference code for `tf.ragged.cross` has an undefined behavior due to binding a reference to `nullptr`. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`tf.ragged.cross`における形状推論コードに未定義動作の脆弱性が存在します。これは、`nullptr`への参照バインドに起因します。本脆弱性はTensorFlow 2.7.0で修正される予定であり、2.6.1、2.5.2、および2.4.4にもバックポートされます。",
+    "category": "ai-library",
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2021-11-05T21:15:08.940Z",
+    "lastModifiedAt": "2026-06-17T04:08:06.620Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-41212",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41212",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference code for `tf.ragged.cross` can trigger a read outside of bounds of heap allocated array. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`tf.ragged.cross`関数の形状推論コードに、ヒープ領域外の読み取りを引き起こす可能性のある脆弱性が存在します。この問題は、細工された入力によってサービス運用妨害や情報漏洩につながる可能性があります。本脆弱性はTensorFlow 2.7.0で修正され、2.6.1、2.5.2、2.4.4にもバックポートされる予定です。",
+    "category": "ai-library",
+    "cvssScore": 7.1,
+    "severity": "HIGH",
+    "publishedAt": "2021-11-05T21:15:08.877Z",
+    "lastModifiedAt": "2026-06-17T04:08:06.387Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-41211",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41211",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference code for `QuantizeV2` can trigger a read outside of bounds of heap allocated array. This occurs whenever `axis` is a negative value less than `-1`. In this case, we are accessing data before the start of a heap buffer. The code allows `axis` to be an optional argument (`s` would contain an `error::NOT_FOUND` error code). Otherwise, it assumes that `axis` is a valid index into the dimensions of the `input` tensor. If `axis` is less than `-1` then this results in a heap OOB read. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, as this version is the only one that is also affected.",
+    "summaryJa": "TensorFlowの`QuantizeV2`操作において、`axis`引数が負の値（特に-1より小さい値）の場合にヒープ領域外読み取りの脆弱性が存在する。これにより、ヒープバッファの開始位置より前のメモリにアクセスされる可能性がある。本脆弱性はTensorFlow 2.7.0および2.6.1で修正される。",
+    "category": "ai-library",
+    "cvssScore": 7.1,
+    "severity": "HIGH",
+    "publishedAt": "2021-11-05T21:15:08.813Z",
+    "lastModifiedAt": "2026-06-17T04:08:06.273Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
   }
