@@ -1,109 +1,5 @@
 [
   {
-    "id": "CVE-2021-41213",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41213",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the code behind `tf.function` API can be made to deadlock when two `tf.function` decorated Python functions are mutually recursive. This occurs due to using a non-reentrant `Lock` Python object. Loading any model which contains mutually recursive functions is vulnerable. An attacker can cause denial of service by causing users to load such models and calling a recursive `tf.function`, although this is not a frequent scenario. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの`tf.function` APIにおいて、相互再帰的なPython関数が使用されるとデッドロックが発生する脆弱性が存在します。これは非再入可能な`Lock`オブジェクトの誤用が原因で、細工されたモデルを読み込み、再帰的な`tf.function`を呼び出すことでサービス拒否（DoS）を引き起こす可能性があります。この問題はTensorFlow 2.7.0で修正され、以前のサポート対象バージョンにもバックポートされます。",
-    "category": "ai-library",
-    "cvssScore": 5.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2021-11-05T23:15:08.217Z",
-    "lastModifiedAt": "2026-06-17T04:08:06.500Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-41218",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41218",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference code for `AllToAll` can be made to execute a division by 0. This occurs whenever the `split_count` argument is 0. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの`AllToAll`演算における形状推論コードにゼロ除算の脆弱性が存在します。この脆弱性は`split_count`引数が0の場合に発生し、クラッシュなどのサービス拒否に繋がる可能性があります。本脆弱性はTensorFlow 2.7.0で修正され、2.6.1、2.5.2、2.4.4にもバックポートされています。",
-    "category": "ai-library",
-    "cvssScore": 5.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2021-11-05T22:15:08.667Z",
-    "lastModifiedAt": "2026-06-17T04:08:07.080Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-41205",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41205",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference functions for the `QuantizeAndDequantizeV*` operations can trigger a read outside of bounds of heap allocated array. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.1,
-    "severity": "HIGH",
-    "publishedAt": "2021-11-05T21:15:08.750Z",
-    "lastModifiedAt": "2026-06-17T04:08:05.550Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
-  },
-  {
-    "id": "CVE-2021-41204",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41204",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions during TensorFlow's Grappler optimizer phase, constant folding might attempt to deep copy a resource tensor. This results in a segfault, as these tensors are supposed to not change. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2021-11-05T21:15:08.683Z",
-    "lastModifiedAt": "2026-06-17T04:08:05.433Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
-  },
-  {
-    "id": "CVE-2021-41203",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41203",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions an attacker can trigger undefined behavior, integer overflows, segfaults and `CHECK`-fail crashes if they can change saved checkpoints from outside of TensorFlow. This is because the checkpoints loading infrastructure is missing validation for invalid file formats. The fixes will be included in TensorFlow 2.7.0. We will also cherrypick these commits on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.8,
-    "severity": "HIGH",
-    "publishedAt": "2021-11-05T21:15:08.613Z",
-    "lastModifiedAt": "2026-06-17T04:08:05.300Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
-  },
-  {
-    "id": "CVE-2021-41210",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41210",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference functions for `SparseCountSparseOutput` can trigger a read outside of bounds of heap allocated array. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの`SparseCountSparseOutput`の形状推論関数に、ヒープ割り当て配列の境界外読み取りを引き起こす脆弱性が存在します。この脆弱性により、不正なメモリアクセスが発生する可能性があります。この問題はTensorFlow 2.7.0で修正され、以前のサポートされているバージョンにもバックポートされます。",
-    "category": "ai-library",
-    "cvssScore": 7.1,
-    "severity": "HIGH",
-    "publishedAt": "2021-11-05T20:15:08.160Z",
-    "lastModifiedAt": "2026-06-17T04:08:06.160Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-41201",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41201",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affeced versions during execution, `EinsumHelper::ParseEquation()` is supposed to set the flags in `input_has_ellipsis` vector and `*output_has_ellipsis` boolean to indicate whether there is ellipsis in the corresponding inputs and output. However, the code only changes these flags to `true` and never assigns `false`. This results in unitialized variable access if callers assume that `EinsumHelper::ParseEquation()` always sets these flags. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.8,
-    "severity": "HIGH",
-    "publishedAt": "2021-11-05T20:15:08.097Z",
-    "lastModifiedAt": "2026-06-17T04:08:05.050Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
-  },
-  {
-    "id": "CVE-2021-41200",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41200",
-    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions if `tf.summary.create_file_writer` is called with non-scalar arguments code crashes due to a `CHECK`-fail. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2021-11-05T20:15:08.037Z",
-    "lastModifiedAt": "2026-06-17T04:08:04.937Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
-  },
-  {
     "id": "CVE-2021-41199",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41199",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions if `tf.image.resize` is called with a large input argument then the TensorFlow process will crash due to a `CHECK`-failure caused by an overflow. The number of elements in the output tensor is too much for the `int64_t` type and the overflow is detected via a `CHECK` statement. This aborts the process. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
@@ -114,20 +10,20 @@
     "publishedAt": "2021-11-05T20:15:07.970Z",
     "lastModifiedAt": "2026-06-17T04:08:04.813Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-41198",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41198",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions if `tf.tile` is called with a large input argument then the TensorFlow process will crash due to a `CHECK`-failure caused by an overflow. The number of elements in the output tensor is too much for the `int64_t` type and the overflow is detected via a `CHECK` statement. This aborts the process. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.tile`関数に大きな入力引数が与えられると、`int64_t`のオーバーフローにより`CHECK`エラーが発生し、TensorFlowプロセスがクラッシュする脆弱性があります。これは出力テンソルの要素数が`int64_t`型で表現できる最大値を超えた場合に発生し、プロセスが異常終了します。この問題はTensorFlow 2.7.0で修正され、2.6.1、2.5.2、2.4.4などのサポート対象バージョンにもバックポートされます。",
+    "category": "ai-library",
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2021-11-05T20:15:07.907Z",
     "lastModifiedAt": "2026-06-17T04:08:04.690Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-41197",
@@ -140,7 +36,7 @@
     "publishedAt": "2021-11-05T20:15:07.843Z",
     "lastModifiedAt": "2026-06-17T04:08:04.550Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-41196",
@@ -153,20 +49,20 @@
     "publishedAt": "2021-11-05T20:15:07.780Z",
     "lastModifiedAt": "2026-06-17T04:08:04.427Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-41195",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41195",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the implementation of `tf.math.segment_*` operations results in a `CHECK`-fail related abort (and denial of service) if a segment id in `segment_ids` is large. This is similar to CVE-2021-29584 (and similar other reported vulnerabilities in TensorFlow, localized to specific APIs): the implementation (both on CPU and GPU) computes the output shape using `AddDim`. However, if the number of elements in the tensor overflows an `int64_t` value, `AddDim` results in a `CHECK` failure which provokes a `std::abort`. Instead, code should use `AddDimWithStatus`. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.math.segment_*`操作において、`segment_ids`内のセグメントIDが非常に大きい場合、出力形状の計算時に`int64_t`のオーバーフローが発生し、`CHECK`失敗によりサービス拒否（DoS）につながる脆弱性が存在する。この問題は、`AddDim`の代わりに`AddDimWithStatus`を使用することで解消され、TensorFlow 2.7.0で修正される。また、2.6.1、2.5.2、2.4.4などのサポートバージョンにもバックポートされる予定である。",
+    "category": "ai-library",
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2021-11-05T20:15:07.707Z",
     "lastModifiedAt": "2026-06-17T04:08:04.293Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-41127",
@@ -179,7 +75,7 @@
     "publishedAt": "2021-10-21T21:15:08.160Z",
     "lastModifiedAt": "2026-06-17T04:07:55.577Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-39207",
@@ -192,7 +88,7 @@
     "publishedAt": "2021-09-10T23:15:07.343Z",
     "lastModifiedAt": "2026-06-17T04:03:18.797Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-37690",
@@ -205,7 +101,7 @@
     "publishedAt": "2021-08-13T00:15:07.170Z",
     "lastModifiedAt": "2026-06-17T04:00:59.517Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-37692",
@@ -218,7 +114,7 @@
     "publishedAt": "2021-08-12T23:15:08.967Z",
     "lastModifiedAt": "2026-06-17T04:00:59.760Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-37691",
@@ -2470,6 +2366,32 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2021-41213",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41213",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the code behind `tf.function` API can be made to deadlock when two `tf.function` decorated Python functions are mutually recursive. This occurs due to using a non-reentrant `Lock` Python object. Loading any model which contains mutually recursive functions is vulnerable. An attacker can cause denial of service by causing users to load such models and calling a recursive `tf.function`, although this is not a frequent scenario. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`tf.function` APIにおいて、相互再帰的なPython関数が使用されるとデッドロックが発生する脆弱性が存在します。これは非再入可能な`Lock`オブジェクトの誤用が原因で、細工されたモデルを読み込み、再帰的な`tf.function`を呼び出すことでサービス拒否（DoS）を引き起こす可能性があります。この問題はTensorFlow 2.7.0で修正され、以前のサポート対象バージョンにもバックポートされます。",
+    "category": "ai-library",
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2021-11-05T23:15:08.217Z",
+    "lastModifiedAt": "2026-06-17T04:08:06.500Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-41218",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41218",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference code for `AllToAll` can be made to execute a division by 0. This occurs whenever the `split_count` argument is 0. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`AllToAll`演算における形状推論コードにゼロ除算の脆弱性が存在します。この脆弱性は`split_count`引数が0の場合に発生し、クラッシュなどのサービス拒否に繋がる可能性があります。本脆弱性はTensorFlow 2.7.0で修正され、2.6.1、2.5.2、2.4.4にもバックポートされています。",
+    "category": "ai-library",
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2021-11-05T22:15:08.667Z",
+    "lastModifiedAt": "2026-06-17T04:08:07.080Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2021-41209",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41209",
     "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the implementations for convolution operators trigger a division by 0 if passed empty filter tensor arguments. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
@@ -2650,5 +2572,83 @@
     "lastModifiedAt": "2026-06-17T04:08:06.273Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-41205",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41205",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference functions for the `QuantizeAndDequantizeV*` operations can trigger a read outside of bounds of heap allocated array. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.1,
+    "severity": "HIGH",
+    "publishedAt": "2021-11-05T21:15:08.750Z",
+    "lastModifiedAt": "2026-06-17T04:08:05.550Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "failed"
+  },
+  {
+    "id": "CVE-2021-41204",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41204",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions during TensorFlow's Grappler optimizer phase, constant folding might attempt to deep copy a resource tensor. This results in a segfault, as these tensors are supposed to not change. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2021-11-05T21:15:08.683Z",
+    "lastModifiedAt": "2026-06-17T04:08:05.433Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "failed"
+  },
+  {
+    "id": "CVE-2021-41203",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41203",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions an attacker can trigger undefined behavior, integer overflows, segfaults and `CHECK`-fail crashes if they can change saved checkpoints from outside of TensorFlow. This is because the checkpoints loading infrastructure is missing validation for invalid file formats. The fixes will be included in TensorFlow 2.7.0. We will also cherrypick these commits on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2021-11-05T21:15:08.613Z",
+    "lastModifiedAt": "2026-06-17T04:08:05.300Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "failed"
+  },
+  {
+    "id": "CVE-2021-41210",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41210",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions the shape inference functions for `SparseCountSparseOutput` can trigger a read outside of bounds of heap allocated array. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`SparseCountSparseOutput`の形状推論関数に、ヒープ割り当て配列の境界外読み取りを引き起こす脆弱性が存在します。この脆弱性により、不正なメモリアクセスが発生する可能性があります。この問題はTensorFlow 2.7.0で修正され、以前のサポートされているバージョンにもバックポートされます。",
+    "category": "ai-library",
+    "cvssScore": 7.1,
+    "severity": "HIGH",
+    "publishedAt": "2021-11-05T20:15:08.160Z",
+    "lastModifiedAt": "2026-06-17T04:08:06.160Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-41201",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41201",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affeced versions during execution, `EinsumHelper::ParseEquation()` is supposed to set the flags in `input_has_ellipsis` vector and `*output_has_ellipsis` boolean to indicate whether there is ellipsis in the corresponding inputs and output. However, the code only changes these flags to `true` and never assigns `false`. This results in unitialized variable access if callers assume that `EinsumHelper::ParseEquation()` always sets these flags. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2021-11-05T20:15:08.097Z",
+    "lastModifiedAt": "2026-06-17T04:08:05.050Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "failed"
+  },
+  {
+    "id": "CVE-2021-41200",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-41200",
+    "descriptionEn": "TensorFlow is an open source platform for machine learning. In affected versions if `tf.summary.create_file_writer` is called with non-scalar arguments code crashes due to a `CHECK`-fail. The fix will be included in TensorFlow 2.7.0. We will also cherrypick this commit on TensorFlow 2.6.1, TensorFlow 2.5.2, and TensorFlow 2.4.4, as these are also affected and still in supported range.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2021-11-05T20:15:08.037Z",
+    "lastModifiedAt": "2026-06-17T04:08:04.937Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "failed"
   }
 ]
