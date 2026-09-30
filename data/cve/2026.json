@@ -1,5 +1,44 @@
 [
   {
+    "id": "CVE-2026-100653",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-100653",
+    "descriptionEn": "vLLM is an inference and serving engine for large language models. In versions from 0.22.1 through 0.28.0, the operator-supplied model revision pin (--revision / --code-revision) is not propagated to several Hugging Face artifact loads for the FunAudioChat and Tarsier2 architectures: the WhisperFeatureExtractor and speech_tokenizer PreTrainedTokenizerFast loads in vllm/model_executor/models/funaudiochat.py and the Qwen2VLConfig.from_pretrained call used by Tarsier2ProcessingInfo in vllm/model_executor/models/qwen2_vl.py. As a result, deployments pinned to a reviewed revision still resolve these behavior-affecting processor, tokenizer, and config artifacts from the repository's default revision, so a later change to the upstream default branch can alter audio preprocessing, speech tokenizer behavior, or Tarsier2 configuration without any change to the operator's configured pin. This is a supply-chain integrity and reproducibility failure for pinned deployments; it is residual to the earlier fix tracked as GHSA-3ww4-5jv9-j5gm / CVE-2026-47155 and does not constitute remote code execution or a trust_remote_code=False bypass. The issue is fixed in version 0.28.0.",
+    "summaryJa": "vLLMのバージョン0.22.1から0.28.0において、指定されたモデルリビジョンがFunAudioChatおよびTarsier2アーキテクチャの一部のHugging Faceアーティファクト（プロセッサ、トークナイザ、設定）に伝播されません。これにより、ピン留めされたデプロイメントでもこれらのアーティファクトがアップストリームのデフォルトブランチから解決され、オペレーターが意図しない挙動変更が発生する可能性があります。これはサプライチェーンの整合性と再現性に関わる問題であり、バージョン0.28.0で修正済みです。",
+    "category": "ai-library",
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-09-26T14:16:47.953Z",
+    "lastModifiedAt": "2026-09-28T20:47:20.760Z",
+    "fetchedAt": "2026-09-29T01:20:30.432Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-102697",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-102697",
+    "descriptionEn": "Ollama versions 0.14.0 before 0.31.2 contain an incorrect authorization vulnerability in the experimental agent mode Bash tool approval mechanism that fails to properly parse shell syntax. Attackers who can influence model output through prompt injection can execute additional shell commands by appending control operators like semicolons or logical operators to approved commands, bypassing the session approval requirement.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-09-29T17:17:08.150Z",
+    "lastModifiedAt": "2026-09-29T21:32:59.833Z",
+    "fetchedAt": "2026-09-30T00:49:34.317Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-77177",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-77177",
+    "descriptionEn": "Open GenAI Stack (aka ogx-ai) 2026-06-11, as used in the Meta AI backend for WhatsApp and other products, allows code execution because prompt injection (with Jinja2 template syntax) can be used to achieve server-side expression evaluation without sanitization.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-09-29T16:17:11.363Z",
+    "lastModifiedAt": "2026-09-29T20:17:26.403Z",
+    "fetchedAt": "2026-09-30T00:49:34.317Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-100863",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-100863",
     "descriptionEn": "Heym versions 0.0.90 and earlier contain two server-side request forgery (SSRF) egress gaps, both remediated in app/services/ssrf_guard.py in 0.0.91. First, the LLM image-edit input loader (_load_image_bytes) fetched caller-controlled HTTP/HTTPS URLs with a bare httpx.get, applying only a scheme check and bypassing the egress-pinning HTTP client; because the workflow DSL supports \"imageInput\": \"$userInput.body.imageUrl\", a webhook or API caller can choose the fetch target when a workflow author uses that expression, allowing requests to loopback, RFC1918, and cloud metadata endpoints. Second, _is_public_address unwrapped only IPv4-mapped IPv6 addresses, so IPv6 transition forms — the NAT64 well-known prefix 64:ff9b::/96, deprecated IPv4-compatible ::x.x.x.x addresses, and 6to4 (2002::/16, classified as globally routable by Python 3.11.0 through 3.11.9) — could carry loopback, RFC1918, link-local, or cloud-metadata IPv4 destinations past both the initial URL validation and the dial-time IP pin. Version 0.0.91 routes the image loader through guard_http_url and the guarded client, evaluates NAT64 and IPv4-compatible addresses by their embedded IPv4 address, and refuses 64:ff9b:1::/48, 6to4, and Teredo (2001::/32) outright.",
@@ -11,19 +50,6 @@
     "lastModifiedAt": "2026-09-28T20:57:50.143Z",
     "fetchedAt": "2026-09-29T01:20:30.432Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-100653",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-100653",
-    "descriptionEn": "vLLM is an inference and serving engine for large language models. In versions from 0.22.1 through 0.28.0, the operator-supplied model revision pin (--revision / --code-revision) is not propagated to several Hugging Face artifact loads for the FunAudioChat and Tarsier2 architectures: the WhisperFeatureExtractor and speech_tokenizer PreTrainedTokenizerFast loads in vllm/model_executor/models/funaudiochat.py and the Qwen2VLConfig.from_pretrained call used by Tarsier2ProcessingInfo in vllm/model_executor/models/qwen2_vl.py. As a result, deployments pinned to a reviewed revision still resolve these behavior-affecting processor, tokenizer, and config artifacts from the repository's default revision, so a later change to the upstream default branch can alter audio preprocessing, speech tokenizer behavior, or Tarsier2 configuration without any change to the operator's configured pin. This is a supply-chain integrity and reproducibility failure for pinned deployments; it is residual to the earlier fix tracked as GHSA-3ww4-5jv9-j5gm / CVE-2026-47155 and does not constitute remote code execution or a trust_remote_code=False bypass. The issue is fixed in version 0.28.0.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 6.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-09-26T14:16:47.953Z",
-    "lastModifiedAt": "2026-09-28T20:47:20.760Z",
-    "fetchedAt": "2026-09-29T01:20:30.432Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-97228",
@@ -477,7 +503,7 @@
     "severity": null,
     "publishedAt": "2026-09-02T20:17:41.350Z",
     "lastModifiedAt": "2026-09-28T23:10:00.143Z",
-    "fetchedAt": "2026-09-29T01:20:30.432Z",
+    "fetchedAt": "2026-09-30T00:49:34.317Z",
     "llmStatus": "ok"
   },
   {
@@ -1113,8 +1139,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-17T16:16:46.710Z",
-    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-09-29T10:10:00.263Z",
+    "fetchedAt": "2026-09-30T00:49:34.317Z",
     "llmStatus": "ok"
   },
   {
@@ -1126,8 +1152,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-17T16:16:46.580Z",
-    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-09-29T10:10:00.263Z",
+    "fetchedAt": "2026-09-30T00:49:34.317Z",
     "llmStatus": "ok"
   },
   {
@@ -1139,8 +1165,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-17T16:16:46.447Z",
-    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-09-29T10:10:00.263Z",
+    "fetchedAt": "2026-09-30T00:49:34.317Z",
     "llmStatus": "ok"
   },
   {
@@ -1152,8 +1178,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-17T16:16:46.290Z",
-    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-09-29T10:10:00.263Z",
+    "fetchedAt": "2026-09-30T00:49:34.317Z",
     "llmStatus": "ok"
   },
   {
@@ -2977,6 +3003,32 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2025-32423",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32423",
+    "descriptionEn": "AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. Prior to 0.6.32, there is a DoS vulnerability in ExtractTextInformationBlock. Malicious users can amplify their input. For example, if a malicious user inputs 10K of content, the server will consume 50G of memory, eventually causing memory resources to be exhausted, resulting in DoS. This vulnerability is fixed in 0.6.32.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-06-26T17:16:31.553Z",
+    "lastModifiedAt": "2026-09-29T19:10:00.160Z",
+    "fetchedAt": "2026-09-30T00:49:34.317Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2025-32394",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32394",
+    "descriptionEn": "AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. Prior to 0.6.32, there is a DoS vulnerability in AITextSummarizerBlock. Malicious users can amplify their input. For example, if a malicious user inputs 10K of content, the server will consume 50G of memory, eventually causing memory resources to be exhausted, resulting in DoS. This vulnerability is fixed in 0.6.32.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-06-26T17:16:31.413Z",
+    "lastModifiedAt": "2026-09-29T19:10:00.160Z",
+    "fetchedAt": "2026-09-30T00:49:34.317Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-47214",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47214",
     "descriptionEn": "Docling simplifies document processing by parsing diverse formats and providing integrations with the generative AI ecosystem. Prior to 2.94.0, the HTML backend has unsafe URI and path handling. This vulnerability is fixed in 2.94.0.",
@@ -3105,6 +3157,58 @@
     "lastModifiedAt": "2026-07-01T19:26:30.593Z",
     "fetchedAt": "2026-07-04T11:33:42.505Z",
     "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2025-32437",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32437",
+    "descriptionEn": "AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. Prior to 0.6.63, `MediaDurationBlock` will download and store the video in a temporary directory without deleting before all noded are done. `StepThroughItemsBlock` can be used to iterate `MediaDurationBlock` multiple times. `StepThroughItemsBlock` does not limit the number of loops. In addition, `MediaDurationBlock ` does not limit the amount of disk space consumed in the current working directory and does not delete the video after outputing the result. When a malicious user chooses to screen shot many web pages, the disk space will eventually run out, causing a DoS. Version 0.6.63 patches the issue.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-06-18T17:16:26.923Z",
+    "lastModifiedAt": "2026-09-29T20:10:00.200Z",
+    "fetchedAt": "2026-09-30T00:49:34.317Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2025-32436",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32436",
+    "descriptionEn": "AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. Prior to 0.6.63, `AddAudioToVideoBlock` will download and store the video and audio in a temporary directory without deleting before all noded are done. `StepThroughItemsBlock` can be used to iterate `MediaDurationBlock` multiple times. `StepThroughItemsBlock` does not limit the number of loops. In addition, `AddAudioToVideoBlock` does not limit the amount of disk space consumed in the current working directory and does not delete the video after outputing the result. When a malicious user chooses to screen shot many web pages, the disk space will eventually run out, causing a DoS. Version 0.6.63 patches the issue.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-06-18T17:16:26.797Z",
+    "lastModifiedAt": "2026-09-29T20:10:00.200Z",
+    "fetchedAt": "2026-09-30T00:49:34.317Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2025-32424",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32424",
+    "descriptionEn": "AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. Prior to 0.6.63, ScreenshotWebPageBlock will store the captured screenshots in a temporary directory. `StepThroughItemsBlock` can be used to iterate `ScreenshotWebPageBlock` multiple times. `StepThroughItemsBlock` does not limit the number of loops. In addition, `ScreenshotWebPageBlock` does not limit the amount of disk space consumed in the current working directory. When a malicious user chooses to screen shot many web pages, the disk space will eventually run out, causing a DoS. Version 0.6.63 patches the issue.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-06-18T17:16:26.667Z",
+    "lastModifiedAt": "2026-09-29T20:10:00.200Z",
+    "fetchedAt": "2026-09-30T00:49:34.317Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2025-32422",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32422",
+    "descriptionEn": "AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. Prior to 0.6.63, `StepThroughItemsBlock` can iterate all the contents in a list and send them to `FileStoreBlock` for downloading one by one. Although `FileStoreBlock` has access time limits for downloading files, `StepThroughItemsBlock` can be used to slowly iterate and download relatively small files (e.g., 100M) multiple times. `StepThroughItemsBlock` does not limit the number of loops. In addition, `FileStoreBlock` does not limit the amount of disk space consumed in the current working directory. When a malicious user chooses to download too many videos, the disk space will eventually run out, causing a DoS. Version 0.6.63 patches the issue.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-06-18T17:16:26.547Z",
+    "lastModifiedAt": "2026-09-29T20:10:00.200Z",
+    "fetchedAt": "2026-09-30T00:49:34.317Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-48782",
