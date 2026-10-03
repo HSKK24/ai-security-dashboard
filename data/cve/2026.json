@@ -1,5 +1,31 @@
 [
   {
+    "id": "CVE-2025-71427",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-71427",
+    "descriptionEn": "Office-PowerPoint-MCP-Server through 2.0.7 contains a path traversal vulnerability that allows MCP callers to write and read files outside the working directory by supplying absolute paths or ../ sequences. Attackers can steer an AI agent via prompt injection to abuse save_presentation, open_presentation, or manage_image output_path to overwrite any server-writable file or load external files.",
+    "summaryJa": "Office-PowerPoint-MCP-Server 2.0.7以前のバージョンにはパストラバーサル脆弱性が存在し、攻撃者は絶対パスや`../`シーケンスを用いて作業ディレクトリ外のファイルを読み書き可能です。この脆弱性を悪用し、プロンプトインジェクションによりAIエージェントを操作することで、`save_presentation`、`open_presentation`、`manage_image`の`output_path`を介して任意のサーバー書き込み可能なファイルを上書きしたり、外部ファイルをロードしたりするおそれがあります。",
+    "category": "prompt-injection",
+    "cvssScore": 6.8,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-10-01T23:16:46.613Z",
+    "lastModifiedAt": "2026-10-02T20:16:59.250Z",
+    "fetchedAt": "2026-10-03T00:47:37.879Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-96561",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-96561",
+    "descriptionEn": "The AI Engine – The Chatbot, AI Framework & MCP for WordPress plugin for WordPress is vulnerable to Stored Cross-Site Scripting in versions up to, and including, 3.8.0 This is due to a chain of missing input neutralization and output escaping across the /mwai-ui/v1/chats/submit REST endpoint, the PHP error-log parser (MeowKit_MWAI_Helpers::php_error_logs), the Advisor task (Meow_MWAI_Modules_Advisor::run_advisor), and the Advisor dashboard widget (advisor_metabox): the server-parameter denylist in chat_submit strips only exact key names such as 'model' while convert_keys() later canonicalizes 'model_' back to 'model', allowing an unauthenticated caller to place an attacker-controlled string (including CR/LF) into $query->model; final_checks() throws an Exception whose message embeds that raw string, and the non-streaming, non-admin catch branch writes it to the PHP error log unmodified — creating a forged log line that the plugin's own parser subsequently returns as recent PHP-error content; run_advisor() then appends that content verbatim to the AI prompt (indirect prompt injection — CWE-1427), the returned JSON is stored in the mwai_advisor_data option with no schema validation or HTML sanitization, and advisor_metabox() concatenates the resulting 'title' and 'description' values directly into the WordPress dashboard widget without esc_html(), wp_kses(), or equivalent escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever an administrator accesses the WordPress dashboard.",
+    "summaryJa": "WordPressプラグイン「AI Engine – The Chatbot, AI Framework & MCP」のバージョン3.8.0以下には、Stored Cross-Site Scripting（XSS）の脆弱性が存在します。この脆弱性は、RESTエンドポイントへの入力処理不備から始まり、AIプロンプトへの間接的なプロンプトインジェクション（CWE-1427）を経て、最終的にWordPressダッシュボードウィジェットでHTMLエスケープが適切に行われないことによるものです。これにより、認証されていない攻撃者が管理者のWordPressダッシュボード上で任意のウェブスクリプトを実行できる可能性があります。",
+    "category": "prompt-injection",
+    "cvssScore": 7.2,
+    "severity": "HIGH",
+    "publishedAt": "2026-10-01T04:18:22.110Z",
+    "lastModifiedAt": "2026-10-01T15:17:37.143Z",
+    "fetchedAt": "2026-10-02T01:10:31.864Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2026-51871",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-51871",
     "descriptionEn": "Devika v1.0 is vulnerable to Code Injection in the Runner.execute function in src/agents/runner/runner.py which allows an attacker to achieve arbitrary code execution by exploiting the direct execution of LLM-generated content.",
@@ -89,58 +115,6 @@
     "lastModifiedAt": "2026-10-01T15:15:21.197Z",
     "fetchedAt": "2026-10-02T01:10:31.864Z",
     "llmStatus": "failed"
-  },
-  {
-    "id": "CVE-2025-32392",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32392",
-    "descriptionEn": "AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. Prior to 0.6.63, AutoGPT's LoopVideoBLock allows users to input a video file and process the video, such as looping it 5 times or extending the time, and finally writing it to disk. However, there is no limit on the resources that can be allocated during execution. For example, the number of loops is user-controllable and unlimited. When a malicious attacker loops too many times, the generated video is too large, and after writing it to disk, the disk space is exhausted, eventually causing DoS. Version 0.6.63 patches the issue.",
-    "summaryJa": "AutoGPTのバージョン0.6.63より前において、LoopVideoBlock機能にリソース枯渇の脆弱性が存在します。攻撃者が無制限のループ回数を指定して巨大なビデオファイルを生成させることで、ディスク容量を枯渇させ、サービス拒否（DoS）を引き起こす可能性があります。この脆弱性はバージョン0.6.63で修正されました。",
-    "category": "ai-service",
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-06-18T17:16:26.407Z",
-    "lastModifiedAt": "2026-09-30T21:10:00.190Z",
-    "fetchedAt": "2026-10-01T00:53:39.020Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2025-32425",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32425",
-    "descriptionEn": "AutoGPT is a platform that allows users to create, deploy, and manage continuous artificial intelligence agents that automate complex workflows. In AutoGPT, the execution process is recorded to the console (stdout/stderr), and deployed in container mode, which is automatically captured by Docker and stored as \"container logs\". However, prior to 0.6.32, there is no limit on the log size when the container is deployed. When the number of user accesses is too large, the log on the server disk will be too large, causing disk resource exhaustion and eventually causing DoS. autogpt-platform-beta-v0.6.32 fixes the issue.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-05-13T16:16:35.297Z",
-    "lastModifiedAt": "2026-09-30T22:10:00.273Z",
-    "fetchedAt": "2026-10-01T00:53:39.020Z",
-    "llmStatus": "failed"
-  },
-  {
-    "id": "CVE-2025-71427",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-71427",
-    "descriptionEn": "Office-PowerPoint-MCP-Server through 2.0.7 contains a path traversal vulnerability that allows MCP callers to write and read files outside the working directory by supplying absolute paths or ../ sequences. Attackers can steer an AI agent via prompt injection to abuse save_presentation, open_presentation, or manage_image output_path to overwrite any server-writable file or load external files.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 6.8,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-10-01T23:16:46.613Z",
-    "lastModifiedAt": "2026-10-01T23:16:46.613Z",
-    "fetchedAt": "2026-10-02T01:10:31.864Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-96561",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-96561",
-    "descriptionEn": "The AI Engine – The Chatbot, AI Framework & MCP for WordPress plugin for WordPress is vulnerable to Stored Cross-Site Scripting in versions up to, and including, 3.8.0 This is due to a chain of missing input neutralization and output escaping across the /mwai-ui/v1/chats/submit REST endpoint, the PHP error-log parser (MeowKit_MWAI_Helpers::php_error_logs), the Advisor task (Meow_MWAI_Modules_Advisor::run_advisor), and the Advisor dashboard widget (advisor_metabox): the server-parameter denylist in chat_submit strips only exact key names such as 'model' while convert_keys() later canonicalizes 'model_' back to 'model', allowing an unauthenticated caller to place an attacker-controlled string (including CR/LF) into $query->model; final_checks() throws an Exception whose message embeds that raw string, and the non-streaming, non-admin catch branch writes it to the PHP error log unmodified — creating a forged log line that the plugin's own parser subsequently returns as recent PHP-error content; run_advisor() then appends that content verbatim to the AI prompt (indirect prompt injection — CWE-1427), the returned JSON is stored in the mwai_advisor_data option with no schema validation or HTML sanitization, and advisor_metabox() concatenates the resulting 'title' and 'description' values directly into the WordPress dashboard widget without esc_html(), wp_kses(), or equivalent escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever an administrator accesses the WordPress dashboard.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.2,
-    "severity": "HIGH",
-    "publishedAt": "2026-10-01T04:18:22.110Z",
-    "lastModifiedAt": "2026-10-01T15:17:37.143Z",
-    "fetchedAt": "2026-10-02T01:10:31.864Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-102697",
@@ -1172,15 +1146,15 @@
   {
     "id": "CVE-2026-64849",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-64849",
-    "descriptionEn": "MLflow is an open source AI engineering platform for agents, large language models, and machine learning models. Prior to 3.15.0, the unauthenticated POST /api/2.0/mlflow/webhooks/{id}/test endpoint calls _validate_webhook_url() in mlflow/utils/validation.py only for the original URL while mlflow/webhooks/delivery.py follows redirects and re-resolves the hostname without pinning the validated address, allowing attackers to reach internal or cloud metadata services and receive response_status and response_body. This issue is fixed in version 3.15.0.",
-    "summaryJa": "MLflowのバージョン3.15.0より前の環境において、認証されていないウェブフックテストエンドポイントに脆弱性が存在します。この脆弱性により、検証プロセスが元のURLのみを対象とし、リダイレクト後にホスト名が再解決される際に検証済みアドレスが固定されないため、攻撃者は内部またはクラウドのメタデータサービスに到達し、応答ステータスやボディを取得できる可能性があります。この問題はバージョン3.15.0で修正されています。",
-    "category": "ai-library",
+    "descriptionEn": "MLflow is an open source AI engineering platform for agents, large language models, and machine learning models. Starting in 3.3.0 and prior to 3.15.0, the unauthenticated POST /api/2.0/mlflow/webhooks/{id}/test endpoint calls _validate_webhook_url() in mlflow/utils/validation.py only for the original URL while mlflow/webhooks/delivery.py follows redirects and re-resolves the hostname without pinning the validated address, allowing attackers to reach internal or cloud metadata services and receive response_status and response_body. This issue is fixed in version 3.15.0.",
+    "summaryJa": null,
+    "category": null,
     "cvssScore": 9.3,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-17T22:17:23.580Z",
-    "lastModifiedAt": "2026-08-20T19:16:57.867Z",
-    "fetchedAt": "2026-08-20T22:14:20.271Z",
-    "llmStatus": "ok"
+    "lastModifiedAt": "2026-10-02T19:16:42.033Z",
+    "fetchedAt": "2026-10-03T00:47:37.879Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-73560",
@@ -1204,8 +1178,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-17T20:16:45.927Z",
-    "lastModifiedAt": "2026-09-09T21:11:25.743Z",
-    "fetchedAt": "2026-09-10T23:30:15.266Z",
+    "lastModifiedAt": "2026-10-02T19:30:34.767Z",
+    "fetchedAt": "2026-10-03T00:47:37.879Z",
     "llmStatus": "ok"
   },
   {
@@ -1438,8 +1412,8 @@
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-13T15:20:17.773Z",
-    "lastModifiedAt": "2026-09-09T20:58:37.713Z",
-    "fetchedAt": "2026-09-09T23:37:03.740Z",
+    "lastModifiedAt": "2026-10-02T19:28:34.510Z",
+    "fetchedAt": "2026-10-03T00:47:37.879Z",
     "llmStatus": "ok"
   },
   {
@@ -3354,6 +3328,19 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2025-32392",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32392",
+    "descriptionEn": "AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. Prior to 0.6.63, AutoGPT's LoopVideoBLock allows users to input a video file and process the video, such as looping it 5 times or extending the time, and finally writing it to disk. However, there is no limit on the resources that can be allocated during execution. For example, the number of loops is user-controllable and unlimited. When a malicious attacker loops too many times, the generated video is too large, and after writing it to disk, the disk space is exhausted, eventually causing DoS. Version 0.6.63 patches the issue.",
+    "summaryJa": "AutoGPTのバージョン0.6.63より前において、LoopVideoBlock機能にリソース枯渇の脆弱性が存在します。攻撃者が無制限のループ回数を指定して巨大なビデオファイルを生成させることで、ディスク容量を枯渇させ、サービス拒否（DoS）を引き起こす可能性があります。この脆弱性はバージョン0.6.63で修正されました。",
+    "category": "ai-service",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-06-18T17:16:26.407Z",
+    "lastModifiedAt": "2026-09-30T21:10:00.190Z",
+    "fetchedAt": "2026-10-01T00:53:39.020Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2026-48782",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-48782",
     "descriptionEn": "Pydantic AI is a Python agent framework for building applications and workflows with Generative AI. In versions 1.56.0 through 1.101.0, 2.0.0b1, and 2.0.0b2, the cloud-metadata blocklist could be bypassed by encoding the metadata IP in an IPv6 transition form that the previous fix, CVE-2026-46678, did not decode, exposing cloud IAM short-term credentials. The previous remediation decoded only IPv4-mapped IPv6, 6to4, and the NAT64 well-known prefix, so the metadata guarantee did not hold for the remaining transition forms: IPv4-compatible IPv6 (::a.b.c.d), the NAT64 RFC 8215 local-use prefix (64:ff9b:1::/48), operator-chosen NAT64 prefixes, and ISATAP. The IPv6 wrapper is then delivered to the underlying IPv4 metadata endpoint. This occurs when an application using Pydantic AI opts a URL into force_download='allow-local' (which disables the default block on private/internal IPs) and runs on a network that actually routes the affected IPv6 transition forms: NAT64-configured networks (IPv6-only or dual-stack-with-NAT64 deployments, including some Kubernetes setups) for the NAT64 variants, or networks with an ISATAP tunnel for ISATAP. A standard dual-stack cloud VM or container does not route these forms and is not affected in practice. The IPv4-compatible and Teredo variants are deprecated and addressed as defense-in-depth. This is an incomplete fix of GHSA-cqp8-fcvh-x7r3 / CVE-2026-46678 (itself a follow-up to CVE-2026-25580). This issue has been fixed in version 2.0.0b3.",
@@ -4054,6 +4041,19 @@
     "lastModifiedAt": "2026-07-15T02:21:54.583Z",
     "fetchedAt": "2026-07-15T22:45:30.672Z",
     "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2025-32425",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32425",
+    "descriptionEn": "AutoGPT is a platform that allows users to create, deploy, and manage continuous artificial intelligence agents that automate complex workflows. In AutoGPT, the execution process is recorded to the console (stdout/stderr), and deployed in container mode, which is automatically captured by Docker and stored as \"container logs\". However, prior to 0.6.32, there is no limit on the log size when the container is deployed. When the number of user accesses is too large, the log on the server disk will be too large, causing disk resource exhaustion and eventually causing DoS. autogpt-platform-beta-v0.6.32 fixes the issue.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-05-13T16:16:35.297Z",
+    "lastModifiedAt": "2026-09-30T22:10:00.273Z",
+    "fetchedAt": "2026-10-01T00:53:39.020Z",
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-42456",
