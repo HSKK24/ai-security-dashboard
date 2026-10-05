@@ -1,55 +1,16 @@
 [
   {
-    "id": "CVE-2026-102583",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-102583",
-    "descriptionEn": "A flaw was found in Moodle. An incorrect capability check in the artificial intelligence (AI) editor placement's image generation web service allows an authenticated user to invoke the feature without holding the required capability. This flaw permits unauthorized users to access and utilize the AI image generation functionality.",
-    "summaryJa": "MoodleのAIエディタ画像生成ウェブサービスに不適切な権限チェックの脆弱性が発見されました。これにより、認証済みユーザーは本来必要な権限を持たずにAI画像生成機能を利用できてしまいます。結果として、未承認のユーザーがAI画像生成機能にアクセスし、利用することが可能となります。",
-    "category": "other",
-    "cvssScore": 2.7,
-    "severity": "LOW",
-    "publishedAt": "2026-09-30T09:17:15.493Z",
-    "lastModifiedAt": "2026-10-01T15:15:21.197Z",
-    "fetchedAt": "2026-10-02T01:10:31.864Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-64849",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-64849",
-    "descriptionEn": "MLflow is an open source AI engineering platform for agents, large language models, and machine learning models. Starting in 3.3.0 and prior to 3.15.0, the unauthenticated POST /api/2.0/mlflow/webhooks/{id}/test endpoint calls _validate_webhook_url() in mlflow/utils/validation.py only for the original URL while mlflow/webhooks/delivery.py follows redirects and re-resolves the hostname without pinning the validated address, allowing attackers to reach internal or cloud metadata services and receive response_status and response_body. This issue is fixed in version 3.15.0.",
-    "summaryJa": "MLflowのバージョン3.3.0から3.15.0未満において、認証されていないウェブフックテストエンドポイントにサーバーサイドリクエストフォージェリ（SSRF）の脆弱性が存在します。この脆弱性は、ウェブフックURLの検証がリダイレクトを考慮せずに内部ネットワークやクラウドメタデータサービスへのアクセスを許すことで発生します。結果として、攻撃者は内部サービスからの応答ステータスや応答ボディを取得できる可能性があります。",
-    "category": "ai-library",
-    "cvssScore": 9.3,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-08-17T22:17:23.580Z",
-    "lastModifiedAt": "2026-10-02T19:16:42.033Z",
-    "fetchedAt": "2026-10-03T00:47:37.879Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2025-32425",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32425",
-    "descriptionEn": "AutoGPT is a platform that allows users to create, deploy, and manage continuous artificial intelligence agents that automate complex workflows. In AutoGPT, the execution process is recorded to the console (stdout/stderr), and deployed in container mode, which is automatically captured by Docker and stored as \"container logs\". However, prior to 0.6.32, there is no limit on the log size when the container is deployed. When the number of user accesses is too large, the log on the server disk will be too large, causing disk resource exhaustion and eventually causing DoS. autogpt-platform-beta-v0.6.32 fixes the issue.",
-    "summaryJa": "AutoGPTプラットフォームでは、コンテナモードでデプロイされた際に生成されるログのサイズに制限がありませんでした。これにより、ユーザーアクセスが多い場合にサーバーのディスクリソースが枯渇し、サービス運用妨害（DoS）につながる可能性がありました。この問題はバージョン0.6.32より前のバージョンに影響し、autogpt-platform-beta-v0.6.32で修正されました。",
-    "category": "other",
-    "cvssScore": 5.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-05-13T16:16:35.297Z",
-    "lastModifiedAt": "2026-09-30T22:10:00.273Z",
-    "fetchedAt": "2026-10-01T00:53:39.020Z",
-    "llmStatus": "ok"
-  },
-  {
     "id": "CVE-2026-91108",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-91108",
     "descriptionEn": "The Alt Text AI – Automatically generate image alt text for SEO and accessibility plugin for WordPress is vulnerable to authorization bypass in all versions up to, and including, 1.10.41. This is due to the plugin not properly verifying that a user is authorized to perform an action. This makes it possible for authenticated attackers, with subscriber-level access and above, to overwrite the post_content of any post or page on the site — including content they do not own — with LLM-generated text influenced by attacker-controlled keywords, enabling black-hat SEO manipulation and unauthorized consumption of the site owner's paid AltText.ai API credits. The nonce required to invoke the action is emitted on every admin page including /wp-admin/profile.php, which is accessible to Subscribers, making the nonce trivially obtainable by any authenticated user.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "WordPressのAlt Text AIプラグイン（v1.10.41以前）に認可バイパスの脆弱性が存在します。この脆弱性により、認証済みの攻撃者（購読者レベル以上）は、Nonceを容易に入手し、所有していない投稿やページのコンテンツを、攻撃者が指定したキーワードに基づきLLMが生成したテキストで上書き可能です。これにより、ブラックハットSEO操作や、サイト所有者のAltText.ai APIクレジットの不正利用が発生する恐れがあります。",
+    "category": "other",
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-03T06:16:45.783Z",
     "lastModifiedAt": "2026-10-03T16:16:41.383Z",
-    "fetchedAt": "2026-10-04T00:12:10.346Z",
-    "llmStatus": "pending"
+    "fetchedAt": "2026-10-05T00:17:53.288Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2025-71427",
@@ -61,7 +22,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2026-10-01T23:16:46.613Z",
     "lastModifiedAt": "2026-10-02T20:16:59.250Z",
-    "fetchedAt": "2026-10-04T00:12:10.346Z",
+    "fetchedAt": "2026-10-05T00:17:53.288Z",
     "llmStatus": "ok"
   },
   {
@@ -153,6 +114,19 @@
     "publishedAt": "2026-09-30T18:18:37.550Z",
     "lastModifiedAt": "2026-09-30T20:17:32.923Z",
     "fetchedAt": "2026-10-01T00:53:39.020Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-102583",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-102583",
+    "descriptionEn": "A flaw was found in Moodle. An incorrect capability check in the artificial intelligence (AI) editor placement's image generation web service allows an authenticated user to invoke the feature without holding the required capability. This flaw permits unauthorized users to access and utilize the AI image generation functionality.",
+    "summaryJa": "MoodleのAIエディタ画像生成ウェブサービスに不適切な権限チェックの脆弱性が発見されました。これにより、認証済みユーザーは本来必要な権限を持たずにAI画像生成機能を利用できてしまいます。結果として、未承認のユーザーがAI画像生成機能にアクセスし、利用することが可能となります。",
+    "category": "other",
+    "cvssScore": 2.7,
+    "severity": "LOW",
+    "publishedAt": "2026-09-30T09:17:15.493Z",
+    "lastModifiedAt": "2026-10-01T15:15:21.197Z",
+    "fetchedAt": "2026-10-02T01:10:31.864Z",
     "llmStatus": "ok"
   },
   {
@@ -1180,6 +1154,19 @@
     "publishedAt": "2026-08-17T22:17:26.243Z",
     "lastModifiedAt": "2026-09-18T20:05:53.723Z",
     "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-64849",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-64849",
+    "descriptionEn": "MLflow is an open source AI engineering platform for agents, large language models, and machine learning models. Starting in 3.3.0 and prior to 3.15.0, the unauthenticated POST /api/2.0/mlflow/webhooks/{id}/test endpoint calls _validate_webhook_url() in mlflow/utils/validation.py only for the original URL while mlflow/webhooks/delivery.py follows redirects and re-resolves the hostname without pinning the validated address, allowing attackers to reach internal or cloud metadata services and receive response_status and response_body. This issue is fixed in version 3.15.0.",
+    "summaryJa": "MLflowのバージョン3.3.0から3.15.0未満において、認証されていないウェブフックテストエンドポイントにサーバーサイドリクエストフォージェリ（SSRF）の脆弱性が存在します。この脆弱性は、ウェブフックURLの検証がリダイレクトを考慮せずに内部ネットワークやクラウドメタデータサービスへのアクセスを許すことで発生します。結果として、攻撃者は内部サービスからの応答ステータスや応答ボディを取得できる可能性があります。",
+    "category": "ai-library",
+    "cvssScore": 9.3,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-08-17T22:17:23.580Z",
+    "lastModifiedAt": "2026-10-02T19:16:42.033Z",
+    "fetchedAt": "2026-10-03T00:47:37.879Z",
     "llmStatus": "ok"
   },
   {
@@ -4066,6 +4053,19 @@
     "publishedAt": "2026-05-14T15:16:48.933Z",
     "lastModifiedAt": "2026-07-15T02:21:54.583Z",
     "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2025-32425",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32425",
+    "descriptionEn": "AutoGPT is a platform that allows users to create, deploy, and manage continuous artificial intelligence agents that automate complex workflows. In AutoGPT, the execution process is recorded to the console (stdout/stderr), and deployed in container mode, which is automatically captured by Docker and stored as \"container logs\". However, prior to 0.6.32, there is no limit on the log size when the container is deployed. When the number of user accesses is too large, the log on the server disk will be too large, causing disk resource exhaustion and eventually causing DoS. autogpt-platform-beta-v0.6.32 fixes the issue.",
+    "summaryJa": "AutoGPTプラットフォームでは、コンテナモードでデプロイされた際に生成されるログのサイズに制限がありませんでした。これにより、ユーザーアクセスが多い場合にサーバーのディスクリソースが枯渇し、サービス運用妨害（DoS）につながる可能性がありました。この問題はバージョン0.6.32より前のバージョンに影響し、autogpt-platform-beta-v0.6.32で修正されました。",
+    "category": "other",
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-05-13T16:16:35.297Z",
+    "lastModifiedAt": "2026-09-30T22:10:00.273Z",
+    "fetchedAt": "2026-10-01T00:53:39.020Z",
     "llmStatus": "ok"
   },
   {
