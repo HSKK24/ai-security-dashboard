@@ -3,131 +3,131 @@
     "id": "CVE-2026-105762",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-105762",
     "descriptionEn": "Dify is an open-source LLM app development platform. Prior to 1.13.0, the /console/api/remote-files/upload endpoint in api/controllers/web/remote_files.py accepted an attacker-controlled URL without authentication and caused the Dify server to retrieve it. A remote attacker could use the endpoint to send requests to internal services or cloud metadata endpoints, potentially exposing sensitive data and using the server as a network pivot. This issue is fixed in version 1.13.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "DifyのLLMアプリ開発プラットフォームにおいて、バージョン1.13.0より前の`/console/api/remote-files/upload`エンドポイントに認証不要でURLが指定できる脆弱性が存在しました。これにより、攻撃者はDifyサーバーを介して内部サービスやクラウドメタデータエンドポイントにリクエストを送信し、機密情報の漏洩やサーバーのネットワークピボット利用が可能になる恐れがありました。本問題はバージョン1.13.0で修正されています。",
+    "category": "ai-service",
     "cvssScore": 8.3,
     "severity": "HIGH",
     "publishedAt": "2026-10-06T00:16:33.090Z",
-    "lastModifiedAt": "2026-10-06T00:16:33.090Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
-    "llmStatus": "pending"
+    "lastModifiedAt": "2026-10-06T16:08:43.180Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-105761",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-105761",
     "descriptionEn": "Dify is an open-source LLM app development platform. Prior to 1.16.0, the PUT /console/api/apps/&lt;app_id&gt;/server endpoint in api/controllers/console/app/mcp_server.py used AppMCPServerController.put() to retrieve an AppMCPServer by the client-supplied server ID without verifying that the server belonged to the requested application and tenant. An authenticated workspace member could therefore change another application's MCP server status and parameters, potentially redirecting data or disabling the service. This issue is fixed in version 1.16.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Difyのバージョン1.16.0より前において、PUT /console/api/apps/<app_id>/serverエンドポイントに脆弱性がありました。この脆弱性は、クライアントが提供するサーバーIDでAppMCPServerを取得する際に、そのサーバーが要求されたアプリケーションやテナントに属しているかの検証が欠如していたことに起因します。これにより、認証されたワークスペースメンバーは他のアプリケーションのMCPサーバーのステータスやパラメータを不正に変更し、データのリダイレクトやサービス停止を引き起こす可能性がありました。",
+    "category": "other",
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2026-10-05T23:17:03.050Z",
-    "lastModifiedAt": "2026-10-05T23:17:03.050Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
-    "llmStatus": "pending"
+    "lastModifiedAt": "2026-10-06T16:08:43.180Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-105760",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-105760",
     "descriptionEn": "vLLM is an inference and serving engine for large language models. Prior to 0.30.0, a caller can use the request-level media_io_kwargs field to select the GLMGA video backend and supply large values for the fps and max_frames options without a strict work ceiling. GLMGA constructs and deduplicates an attacker-sized pre-decode frame-index list, allowing a compact request and tiny valid video to consume disproportionate CPU time and memory in the shared media-loading executor. This issue is fixed in version 0.30.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "vLLM 0.30.0より前のバージョンにおいて、攻撃者はリクエストレベルのmedia_io_kwargsフィールドを使用し、GLMGAビデオバックエンドを選択してfpsおよびmax_framesオプションに過大な値を指定することが可能でした。これにより、厳密な処理上限なしに、コンパクトなリクエストと小さな有効なビデオによって共有のメディアローディングエグゼキューターに不釣り合いなCPU時間とメモリを消費させ、サービス拒否を引き起こす可能性があります。この問題はバージョン0.30.0で修正されています。",
+    "category": "ai-library",
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T23:17:02.903Z",
-    "lastModifiedAt": "2026-10-05T23:17:02.903Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
-    "llmStatus": "pending"
+    "lastModifiedAt": "2026-10-06T15:17:15.257Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-105759",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-105759",
     "descriptionEn": "vLLM is an inference and serving engine for large language models. Prior to 0.30.0, the Rust frontend's track_http_metrics middleware records the raw HTTP method token as a Prometheus label for requests reaching registered routes. An unauthenticated attacker can send unique arbitrary method tokens to unguarded routes such as /tokenize, causing Prometheus's Family::get_or_create function to permanently create counter and histogram label sets. Those label sets increase process memory usage and enlarge the /metrics response until the service or monitoring path is exhausted. This issue is fixed in version 0.30.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "vLLM 0.30.0未満のバージョンにおいて、RustフロントエンドのHTTPメトリックミドルウェアに脆弱性があります。未認証の攻撃者が、保護されていないルートに一意のHTTPメソッドトークンを送信することで、Prometheusのラベルセットを永続的に増加させることが可能です。これにより、プロセスメモリが枯渇し、`/metrics`応答が肥大化するサービス拒否攻撃に繋がる可能性があります。",
+    "category": "ai-library",
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T23:17:02.760Z",
-    "lastModifiedAt": "2026-10-05T23:17:02.760Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
-    "llmStatus": "pending"
+    "lastModifiedAt": "2026-10-06T18:16:46.407Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-105758",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-105758",
     "descriptionEn": "vLLM is an inference and serving engine for large language models. From 0.24.0 until 0.30.0, the Qwen2VLVideoBackend and Qwen3VLVideoBackend classes accept request-level values for the media_io_kwargs.video.max_frames and media_io_kwargs.video.fps fields without enforcing server-side ceilings. An unauthenticated caller can submit these values to the /tokenize endpoint, causing the sampler to decode every frame selected from attacker-controlled video input, consume disproportionate frontend memory, and potentially terminate the API process before scheduling or admission control. The Rust frontend is not affected because it rejects the media_io_kwargs field. This issue is fixed in version 0.30.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "vLLMのバージョン0.24.0から0.30.0に存在する脆弱性により、Qwen2VLVideoBackendおよびQwen3VLVideoBackendクラスが`media_io_kwargs.video.max_frames`と`media_io_kwargs.video.fps`フィールドのリクエスト値をサーバー側で適切に検証しません。認証されていない攻撃者が`/tokenize`エンドポイントを悪用すると、過剰なメモリ消費を誘発し、APIプロセスが終了する可能性があります。この問題はバージョン0.30.0で修正されています。",
+    "category": "ai-library",
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T23:17:02.610Z",
-    "lastModifiedAt": "2026-10-05T23:17:02.610Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
-    "llmStatus": "pending"
+    "lastModifiedAt": "2026-10-06T14:59:48.280Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-105757",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-105757",
     "descriptionEn": "vLLM is an inference and serving engine for large language models. Prior to 0.30.0, structured-output request failures can escape request-scoped validation and reach the EngineCore fatal-error path. A per-request backend mismatch can re-raise a grammar compilation exception, padding produced by the ngram_gpu speculative-decoding mode can pass a negative token to guidance validation, and the Rust frontend can admit empty structured-output values that the Python frontend rejects, allowing ordinary constrained-generation requests to terminate the shared engine. This issue is fixed in version 0.30.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "vLLM（大規模言語モデルの推論・提供エンジン）において、バージョン0.30.0より前のバージョンでは、構造化出力リクエストの検証不備により致命的エラーパスに到達する脆弱性があります。これにより、文法コンパイル例外の再発生や、不適切なトークン処理、あるいは空の構造化出力値の許容などによって、通常の制約付き生成リクエストが共有エンジンを異常終了させる可能性があります。",
+    "category": "ai-library",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T23:17:02.467Z",
-    "lastModifiedAt": "2026-10-05T23:17:02.467Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
-    "llmStatus": "pending"
+    "lastModifiedAt": "2026-10-06T15:19:48.933Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-105756",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-105756",
     "descriptionEn": "vLLM is an inference and serving engine for large language models. Prior to 0.30.0, OpenAI-compatible request models accept a non-empty cache_salt value without enforcing the character and length restrictions required by the IPCCacheServerKey consumer in LMCache-MP. On deployments using the LMCache-MP connector, a salt that contains a forbidden character or exceeds the permitted length can raise an uncaught ValueError during scheduler cache lookup, causing EngineCore to terminate and denying service to all concurrent users. This issue is fixed in version 0.30.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "vLLMのバージョン0.30.0より前において、OpenAI互換リクエストモデルが`cache_salt`値の文字・長さ制限を適切に検証していませんでした。LMCache-MPコネクタを使用する環境では、不正な`cache_salt`がキャッシュルックアップ時に`ValueError`を引き起こし、`EngineCore`を終了させることで、全ユーザーへのサービス拒否（DoS）を招く可能性があります。この問題はバージョン0.30.0で修正されました。",
+    "category": "ai-library",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T23:17:02.317Z",
-    "lastModifiedAt": "2026-10-05T23:17:02.317Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
-    "llmStatus": "pending"
+    "lastModifiedAt": "2026-10-06T15:17:15.150Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-105755",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-105755",
     "descriptionEn": "vLLM is an inference and serving engine for large language models. Prior to 0.30.0, flash late-interaction scoring at the /score and /rerank endpoints derives each worker's query_key value from the caller-controlled X-Request-Id header. A concurrent request that reuses a victim's identifier can overwrite the cached query embedding so the victim's documents are scored against the attacker's query, and shared use counters can also cause a late-interaction cache-miss error. This issue is fixed in version 0.30.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "vLLMのバージョン0.30.0より前において、Flash late-interaction scoringを使用する`/score`および`/rerank`エンドポイントに脆弱性が存在します。X-Request-Idヘッダーから派生するquery_keyの値が悪用されることで、攻撃者は被害者の識別子を再利用してキャッシュされたクエリ埋め込みを上書きし、被害者のドキュメントを攻撃者のクエリに対してスコア付けさせることが可能です。この問題はバージョン0.30.0で修正されています。",
+    "category": "ai-library",
     "cvssScore": 4.2,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T23:17:02.167Z",
-    "lastModifiedAt": "2026-10-05T23:17:02.167Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
-    "llmStatus": "pending"
+    "lastModifiedAt": "2026-10-06T18:16:46.240Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-105754",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-105754",
     "descriptionEn": "vLLM is an inference and serving engine for large language models. Prior to 0.30.0, the /inference/v1/generate endpoint in the disaggregated scale-out path accepts caller-supplied tensors in the features.kwargs_data field, cache identifiers in the features.mm_hashes field, ranges in the features.mm_placeholders field, and wire-selected multimodal field processors without rebinding them to the active model renderer contract. Forged grid geometry, field types, or non-positive placeholder lengths can terminate the shared EngineCore; when an attacker knows or can induce a victim's content hash, forged cache hashes can poison or retrieve cross-request encoder-cache state; and dropped sparse placeholder masks can alter replayed transport semantics. This issue is fixed in version 0.30.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "vLLMのバージョン0.30.0未満において、分散スケールアウトパスの`/inference/v1/generate`エンドポイントは、提供されたテンソルやキャッシュ識別子をアクティブなモデルのコントラクトに適切にバインドせずに処理します。これにより、偽造された入力が共有EngineCoreを異常終了させたり、クロスリクエストのエンコーダキャッシュ状態を汚染または取得したり、トランスポートセマンティクスを改変したりする可能性があります。この脆弱性はバージョン0.30.0で修正されました。",
+    "category": "ai-library",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T23:17:02.017Z",
-    "lastModifiedAt": "2026-10-05T23:17:02.017Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
-    "llmStatus": "pending"
+    "lastModifiedAt": "2026-10-06T14:59:48.280Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-105753",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-105753",
     "descriptionEn": "vLLM is an inference and serving engine for large language models. Prior to 0.28.0, the default mirrored multimodal LRU cache can commit a media hash in the frontend sender cache during multimodal rendering and before engine admission, while the engine receiver cache never receives the payload if that request is rejected. A later request reusing the same media hash causes MultiModalProcessorSenderCache to send no payload and MultiModalReceiverCache to reach an assertion with the message \"Expected a cached item,\" producing a shared-service availability failure. This issue is fixed in version 0.28.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "vLLM（大規模言語モデルの推論・提供エンジン）のバージョン0.28.0より前のバージョンに、マルチモーダルLRUキャッシュの脆弱性が存在しました。リクエストが拒否されると、送信者キャッシュにはメディアハッシュが登録される一方で、受信者キャッシュはペイロードを受け取らないため、データの不整合が発生します。これにより、同じメディアハッシュを用いた後続のリクエストが共有サービスの可用性障害を引き起こす可能性がありました。",
+    "category": "ai-library",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T23:17:01.867Z",
-    "lastModifiedAt": "2026-10-05T23:17:01.867Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
-    "llmStatus": "pending"
+    "lastModifiedAt": "2026-10-06T15:19:48.933Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-105752",
@@ -138,8 +138,8 @@
     "cvssScore": 3.1,
     "severity": "LOW",
     "publishedAt": "2026-10-05T23:17:01.710Z",
-    "lastModifiedAt": "2026-10-05T23:17:01.710Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T15:17:15.043Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "pending"
   },
   {
@@ -151,8 +151,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-10-05T22:16:58.253Z",
-    "lastModifiedAt": "2026-10-05T22:16:58.253Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T17:17:19.053Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "pending"
   },
   {
@@ -164,8 +164,8 @@
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T22:16:58.097Z",
-    "lastModifiedAt": "2026-10-05T22:16:58.097Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T19:17:41.540Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "pending"
   },
   {
@@ -177,8 +177,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T22:16:57.943Z",
-    "lastModifiedAt": "2026-10-05T22:16:57.943Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T14:59:48.280Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "pending"
   },
   {
@@ -190,8 +190,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T22:16:57.793Z",
-    "lastModifiedAt": "2026-10-05T22:16:57.793Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T15:17:14.930Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "pending"
   },
   {
@@ -203,8 +203,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T22:16:57.633Z",
-    "lastModifiedAt": "2026-10-05T22:16:57.633Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T15:17:14.817Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "pending"
   },
   {
@@ -216,8 +216,8 @@
     "cvssScore": 2.2,
     "severity": "LOW",
     "publishedAt": "2026-10-05T22:16:57.480Z",
-    "lastModifiedAt": "2026-10-05T22:16:57.480Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T17:17:18.927Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "pending"
   },
   {
@@ -229,8 +229,8 @@
     "cvssScore": 6.7,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T22:16:57.330Z",
-    "lastModifiedAt": "2026-10-05T22:16:57.330Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T15:17:14.707Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "pending"
   },
   {
@@ -242,8 +242,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-10-05T22:16:57.177Z",
-    "lastModifiedAt": "2026-10-05T22:16:57.177Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T19:17:41.353Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "pending"
   },
   {
@@ -255,8 +255,8 @@
     "cvssScore": 4,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T22:16:57.030Z",
-    "lastModifiedAt": "2026-10-05T22:16:57.030Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T14:59:48.280Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "pending"
   },
   {
@@ -268,8 +268,8 @@
     "cvssScore": 3.7,
     "severity": "LOW",
     "publishedAt": "2026-10-05T22:16:56.867Z",
-    "lastModifiedAt": "2026-10-05T22:16:56.867Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T14:59:48.280Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "pending"
   },
   {
@@ -281,8 +281,47 @@
     "cvssScore": 7.3,
     "severity": "HIGH",
     "publishedAt": "2026-10-05T07:16:30.180Z",
-    "lastModifiedAt": "2026-10-05T14:17:18.997Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T15:04:52.637Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2025-66389",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-66389",
+    "descriptionEn": "GitHub Copilot 1.372.0 allows filesystem access outside of a workspace folder (without user approval) via a file-handler URI parameter to fetch_webpage. Therefore, exfiltration could occur if there is indirect prompt injection.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-22T14:16:24.073Z",
+    "lastModifiedAt": "2026-10-05T18:10:00.200Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-106119",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-106119",
+    "descriptionEn": "LangChain is a framework for building LLM-powered applications. Prior to 1.3.1, MongoDBChatMessageHistory does not enforce the documented string type for an untrusted structured session identifier at runtime, allowing the identifier to be interpreted as a MongoDB query condition rather than as a literal value when multiple users' histories are stored in a shared MongoDB collection. An attacker able to invoke chat-history operations can read, modify, or delete another user's stored conversation. Applications using authenticated, server-controlled string identifiers are not affected. This issue is fixed in version 1.3.1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-06T19:17:42.800Z",
+    "lastModifiedAt": "2026-10-06T20:17:17.820Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-105799",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-105799",
+    "descriptionEn": "LangChain is a framework for building LLM-powered applications. Prior to 1.1.1, @langchain/redis does not escape attacker-controlled values in structured RediSearch TAG filters and structured RediSearch TEXT filters, allowing injected RediSearch syntax to alter or broaden the generated search query. When an application uses an attacker-influenceable filter as a tenant or document-access boundary, the modified query can expose indexed documents outside the attacker's intended scope. This issue is fixed in version 1.1.1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-06T15:17:17.030Z",
+    "lastModifiedAt": "2026-10-06T18:16:47.437Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "pending"
   },
   {
@@ -294,8 +333,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-03T06:16:45.783Z",
-    "lastModifiedAt": "2026-10-03T16:16:41.383Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T15:04:52.637Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "ok"
   },
   {
@@ -2621,8 +2660,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-15T22:16:45.417Z",
-    "lastModifiedAt": "2026-10-05T18:10:00.200Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
+    "lastModifiedAt": "2026-10-06T22:10:00.247Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "ok"
   },
   {
@@ -3562,19 +3601,6 @@
     "llmStatus": "ok"
   },
   {
-    "id": "CVE-2025-66389",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-66389",
-    "descriptionEn": "GitHub Copilot 1.372.0 allows filesystem access outside of a workspace folder (without user approval) via a file-handler URI parameter to fetch_webpage. Therefore, exfiltration could occur if there is indirect prompt injection.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.5,
-    "severity": "HIGH",
-    "publishedAt": "2026-06-22T14:16:24.073Z",
-    "lastModifiedAt": "2026-10-05T18:10:00.200Z",
-    "fetchedAt": "2026-10-06T01:58:33.029Z",
-    "llmStatus": "pending"
-  },
-  {
     "id": "CVE-2026-12045",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-12045",
     "descriptionEn": "Read-only transaction bypass in the pgAdmin 4 AI Assistant allows an attacker who can influence database content that the assistant reads to execute arbitrary SQL with the privileges of the pgAdmin user's database role.\n\nThe AI Assistant's execute_sql_query tool runs LLM-generated SQL inside a BEGIN TRANSACTION READ ONLY wrapper to prevent data modification. The LLM-supplied query was forwarded to the database driver without restriction to a single statement or to read-only verbs, so a multi-statement payload beginning with COMMIT, END, ROLLBACK, or ABORT terminated the read-only transaction and ran subsequent statements in autocommit mode. The trailing ROLLBACK then had no effect.\n\nDelivery is via prompt injection: an attacker who can write content into any object the AI Assistant may inspect (a row, a column value, a comment) can cause the LLM to emit the multi-statement payload as a tool call. With ordinary write privileges on the pgAdmin user's role the attacker can perform unauthorised data modification. When the pgAdmin user's role is a PostgreSQL superuser or holds pg_execute_server_program, the chain extends to remote code execution on the database server host via COPY ... TO PROGRAM.\n\nFix validates the LLM-supplied query up front: it must parse to exactly one non-empty / non-comment statement whose leading real token (after stripping whitespace, comments, and punctuation) is one of SELECT, WITH, EXPLAIN, SHOW, VALUES, or TABLE. Transaction-control verbs, DML, DDL, CALL, COPY, DO, SET/RESET, and everything else are rejected before any database work happens. PostgreSQL's READ ONLY mode continues to backstop data-modifying CTEs, EXPLAIN ANALYZE on writes, and volatile side effects.\n\nThis issue affects pgAdmin 4: from 9.13 before 9.16.",
@@ -3648,8 +3674,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-06-18T17:16:26.407Z",
-    "lastModifiedAt": "2026-09-30T21:10:00.190Z",
-    "fetchedAt": "2026-10-01T00:53:39.020Z",
+    "lastModifiedAt": "2026-10-06T22:10:00.247Z",
+    "fetchedAt": "2026-10-07T01:05:55.957Z",
     "llmStatus": "ok"
   },
   {
