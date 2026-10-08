@@ -1,5 +1,31 @@
 [
   {
+    "id": "CVE-2021-37646",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37646",
+    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions the implementation of `tf.raw_ops.StringNGrams` is vulnerable to an integer overflow issue caused by converting a signed integer value to an unsigned one and then allocating memory based on this value. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/string_ngrams_op.cc#L184) calls `reserve` on a `tstring` with a value that sometimes can be negative if user supplies negative `ngram_widths`. The `reserve` method calls `TF_TString_Reserve` which has an `unsigned long` argument for the size of the buffer. Hence, the implicit conversion transforms the negative value to a large integer. We have patched the issue in GitHub commit c283e542a3f422420cfdb332414543b62fc4e4a5. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2021-08-12T21:15:07.983Z",
+    "lastModifiedAt": "2026-06-17T04:00:53.887Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "failed"
+  },
+  {
+    "id": "CVE-2021-37645",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37645",
+    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions the implementation of `tf.raw_ops.QuantizeAndDequantizeV4Grad` is vulnerable to an integer overflow issue caused by converting a signed integer value to an unsigned one and then allocating memory based on this value. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/quantize_and_dequantize_op.cc#L126) uses the `axis` value as the size argument to `absl::InlinedVector` constructor. But, the constructor uses an unsigned type for the argument, so the implicit conversion transforms the negative value to a large integer. We have patched the issue in GitHub commit 96f364a1ca3009f98980021c4b32be5fdcca33a1. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, and TensorFlow 2.4.3, as these are also affected and still in supported range.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2021-08-12T21:15:07.887Z",
+    "lastModifiedAt": "2026-06-17T04:00:53.767Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "failed"
+  },
+  {
     "id": "CVE-2021-37644",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37644",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions providing a negative element to `num_elements` list argument of `tf.raw_ops.TensorListReserve` causes the runtime to abort the process due to reallocating a `std::vector` to have a negative number of elements. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/list_kernels.cc#L312) calls `std::vector.resize()` with the new size controlled by input given by the user, without checking that this input is valid. We have patched the issue in GitHub commit 8a6e874437670045e6c7dc6154c7412b4a2135e2. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
@@ -2624,31 +2650,5 @@
     "lastModifiedAt": "2026-06-17T04:00:54.417Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-37646",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37646",
-    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions the implementation of `tf.raw_ops.StringNGrams` is vulnerable to an integer overflow issue caused by converting a signed integer value to an unsigned one and then allocating memory based on this value. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/string_ngrams_op.cc#L184) calls `reserve` on a `tstring` with a value that sometimes can be negative if user supplies negative `ngram_widths`. The `reserve` method calls `TF_TString_Reserve` which has an `unsigned long` argument for the size of the buffer. Hence, the implicit conversion transforms the negative value to a large integer. We have patched the issue in GitHub commit c283e542a3f422420cfdb332414543b62fc4e4a5. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2021-08-12T21:15:07.983Z",
-    "lastModifiedAt": "2026-06-17T04:00:53.887Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
-  },
-  {
-    "id": "CVE-2021-37645",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37645",
-    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions the implementation of `tf.raw_ops.QuantizeAndDequantizeV4Grad` is vulnerable to an integer overflow issue caused by converting a signed integer value to an unsigned one and then allocating memory based on this value. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/quantize_and_dequantize_op.cc#L126) uses the `axis` value as the size argument to `absl::InlinedVector` constructor. But, the constructor uses an unsigned type for the argument, so the implicit conversion transforms the negative value to a large integer. We have patched the issue in GitHub commit 96f364a1ca3009f98980021c4b32be5fdcca33a1. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, and TensorFlow 2.4.3, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2021-08-12T21:15:07.887Z",
-    "lastModifiedAt": "2026-06-17T04:00:53.767Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
   }
 ]
