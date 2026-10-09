@@ -16,53 +16,53 @@
     "id": "CVE-2021-37645",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37645",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions the implementation of `tf.raw_ops.QuantizeAndDequantizeV4Grad` is vulnerable to an integer overflow issue caused by converting a signed integer value to an unsigned one and then allocating memory based on this value. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/quantize_and_dequantize_op.cc#L126) uses the `axis` value as the size argument to `absl::InlinedVector` constructor. But, the constructor uses an unsigned type for the argument, so the implicit conversion transforms the negative value to a large integer. We have patched the issue in GitHub commit 96f364a1ca3009f98980021c4b32be5fdcca33a1. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, and TensorFlow 2.4.3, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.QuantizeAndDequantizeV4Grad`に整数オーバーフローの脆弱性が存在します。これは、`axis`引数の負の符号付き整数値が、メモリ割り当てに使用される際に符号なし整数に変換され、過大なメモリ割り当てを引き起こすことが原因です。この問題はTensorFlow 2.6.0、2.5.1、および2.4.3で修正されています。",
+    "category": "ai-library",
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2021-08-12T21:15:07.887Z",
     "lastModifiedAt": "2026-06-17T04:00:53.767Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-37644",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37644",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions providing a negative element to `num_elements` list argument of `tf.raw_ops.TensorListReserve` causes the runtime to abort the process due to reallocating a `std::vector` to have a negative number of elements. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/list_kernels.cc#L312) calls `std::vector.resize()` with the new size controlled by input given by the user, without checking that this input is valid. We have patched the issue in GitHub commit 8a6e874437670045e6c7dc6154c7412b4a2135e2. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.TensorListReserve`関数において、`num_elements`引数に負の値を指定すると、内部で`std::vector`を負の要素数に再割り当てしようとすることでプロセスが異常終了する脆弱性があります。これはユーザー入力の検証不足に起因し、サービス拒否につながる可能性があります。本脆弱性はTensorFlow 2.6.0以降、および2.5.1、2.4.3、2.3.4のバックポートで修正されています。",
+    "category": "ai-library",
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2021-08-12T21:15:07.770Z",
     "lastModifiedAt": "2026-06-17T04:00:53.643Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-37641",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37641",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions if the arguments to `tf.raw_ops.RaggedGather` don't determine a valid ragged tensor code can trigger a read from outside of bounds of heap allocated buffers. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/ragged_gather_op.cc#L70) directly reads the first dimension of a tensor shape before checking that said tensor has rank of at least 1 (i.e., it is not a scalar). Furthermore, the implementation does not check that the list given by `params_nested_splits` is not an empty list of tensors. We have patched the issue in GitHub commit a2b743f6017d7b97af1fe49087ae15f0ac634373. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.RaggedGather`関数において、不適切な引数が与えられた場合にヒープバッファの範囲外読み取りが発生する脆弱性があります。これは、テンソルのランクチェックおよび`params_nested_splits`が空でないことの検証が不十分であることに起因します。この問題は、TensorFlow 2.6.0以降、および2.5.1、2.4.3、2.3.4の各バージョンで修正が適用されます。",
+    "category": "ai-library",
     "cvssScore": 7.3,
     "severity": "HIGH",
     "publishedAt": "2021-08-12T21:15:07.670Z",
     "lastModifiedAt": "2026-06-17T04:00:53.273Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-37635",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37635",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions the implementation of sparse reduction operations in TensorFlow can trigger accesses outside of bounds of heap allocated data. The [implementation](https://github.com/tensorflow/tensorflow/blob/a1bc56203f21a5a4995311825ffaba7a670d7747/tensorflow/core/kernels/sparse_reduce_op.cc#L217-L228) fails to validate that each reduction group does not overflow and that each corresponding index does not point to outside the bounds of the input tensor. We have patched the issue in GitHub commit 87158f43f05f2720a374f3e6d22a7aaa3a33f750. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの疎な削減操作の実装に脆弱性があり、ヒープ割り当てされたデータ領域外へのアクセスが発生する可能性があります。この脆弱性は、削減グループのオーバーフローやインデックスが入力テンソルの範囲外を指すことに対する検証不足に起因します。本問題は、TensorFlow 2.6.0およびそれ以降のバージョン、ならびに2.5.1、2.4.3、2.3.4で修正される予定です。",
+    "category": "ai-library",
     "cvssScore": 7.3,
     "severity": "HIGH",
     "publishedAt": "2021-08-12T21:15:07.577Z",
     "lastModifiedAt": "2026-06-17T04:00:52.523Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-37649",

@@ -100,7 +100,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2025-12-11T23:15:50.880Z",
     "lastModifiedAt": "2026-10-07T20:10:01.970Z",
-    "fetchedAt": "2026-10-08T01:25:11.376Z",
+    "fetchedAt": "2026-10-09T01:32:26.502Z",
     "llmStatus": "ok"
   },
   {
@@ -113,7 +113,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2025-12-11T23:15:50.690Z",
     "lastModifiedAt": "2026-10-07T20:10:01.970Z",
-    "fetchedAt": "2026-10-08T01:25:11.376Z",
+    "fetchedAt": "2026-10-09T01:32:26.502Z",
     "llmStatus": "ok"
   },
   {
@@ -126,7 +126,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2025-12-11T22:15:56.153Z",
     "lastModifiedAt": "2026-10-07T20:10:01.970Z",
-    "fetchedAt": "2026-10-08T01:25:11.376Z",
+    "fetchedAt": "2026-10-09T01:32:26.502Z",
     "llmStatus": "ok"
   },
   {
@@ -243,7 +243,7 @@
     "severity": "HIGH",
     "publishedAt": "2025-11-29T02:15:52.420Z",
     "lastModifiedAt": "2026-10-07T20:10:01.970Z",
-    "fetchedAt": "2026-10-08T01:25:11.376Z",
+    "fetchedAt": "2026-10-09T01:32:26.502Z",
     "llmStatus": "ok"
   },
   {
@@ -346,8 +346,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2025-11-21T19:16:02.467Z",
-    "lastModifiedAt": "2026-06-17T09:52:09.567Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-08T10:10:00.227Z",
+    "fetchedAt": "2026-10-09T01:32:26.502Z",
     "llmStatus": "ok"
   },
   {
@@ -359,8 +359,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2025-11-21T19:16:02.267Z",
-    "lastModifiedAt": "2026-06-17T09:52:09.447Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-08T10:10:00.227Z",
+    "fetchedAt": "2026-10-09T01:32:26.502Z",
     "llmStatus": "ok"
   },
   {
@@ -372,8 +372,8 @@
     "cvssScore": 7.2,
     "severity": "HIGH",
     "publishedAt": "2025-11-21T17:15:50.267Z",
-    "lastModifiedAt": "2026-06-17T08:33:18.510Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-08T10:10:00.227Z",
+    "fetchedAt": "2026-10-09T01:32:26.502Z",
     "llmStatus": "ok"
   },
   {
@@ -606,8 +606,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2025-10-24T09:15:42.680Z",
-    "lastModifiedAt": "2026-09-30T23:10:00.237Z",
-    "fetchedAt": "2026-10-01T00:53:39.020Z",
+    "lastModifiedAt": "2026-10-08T11:10:00.250Z",
+    "fetchedAt": "2026-10-09T01:32:26.502Z",
     "llmStatus": "ok"
   },
   {
@@ -671,8 +671,8 @@
     "cvssScore": 6.2,
     "severity": "MEDIUM",
     "publishedAt": "2025-10-13T21:15:35.560Z",
-    "lastModifiedAt": "2026-06-17T09:51:46.367Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-08T12:10:00.217Z",
+    "fetchedAt": "2026-10-09T01:32:26.502Z",
     "llmStatus": "ok"
   },
   {
@@ -684,8 +684,8 @@
     "cvssScore": 9.6,
     "severity": "CRITICAL",
     "publishedAt": "2025-10-10T20:15:38.613Z",
-    "lastModifiedAt": "2026-06-17T09:51:05.703Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-08T13:10:00.200Z",
+    "fetchedAt": "2026-10-09T01:32:26.502Z",
     "llmStatus": "ok"
   },
   {
@@ -697,8 +697,8 @@
     "cvssScore": 8.5,
     "severity": "HIGH",
     "publishedAt": "2025-10-09T19:15:43.837Z",
-    "lastModifiedAt": "2026-06-17T09:45:37.393Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-08T13:10:00.200Z",
+    "fetchedAt": "2026-10-09T01:32:26.502Z",
     "llmStatus": "ok"
   },
   {
@@ -710,8 +710,8 @@
     "cvssScore": 9.9,
     "severity": "CRITICAL",
     "publishedAt": "2025-10-08T23:15:31.357Z",
-    "lastModifiedAt": "2026-09-30T16:10:00.223Z",
-    "fetchedAt": "2026-10-01T00:53:39.020Z",
+    "lastModifiedAt": "2026-10-08T13:10:00.200Z",
+    "fetchedAt": "2026-10-09T01:32:26.502Z",
     "llmStatus": "ok"
   },
   {
@@ -723,8 +723,8 @@
     "cvssScore": 7.6,
     "severity": "HIGH",
     "publishedAt": "2025-10-07T19:15:39.133Z",
-    "lastModifiedAt": "2026-06-17T09:50:53.830Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-08T13:10:00.200Z",
+    "fetchedAt": "2026-10-09T01:32:26.502Z",
     "llmStatus": "ok"
   },
   {
