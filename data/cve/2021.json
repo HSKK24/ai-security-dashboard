@@ -1,55 +1,68 @@
 [
   {
+    "id": "CVE-2021-37646",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37646",
+    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions the implementation of `tf.raw_ops.StringNGrams` is vulnerable to an integer overflow issue caused by converting a signed integer value to an unsigned one and then allocating memory based on this value. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/string_ngrams_op.cc#L184) calls `reserve` on a `tstring` with a value that sometimes can be negative if user supplies negative `ngram_widths`. The `reserve` method calls `TF_TString_Reserve` which has an `unsigned long` argument for the size of the buffer. Hence, the implicit conversion transforms the negative value to a large integer. We have patched the issue in GitHub commit c283e542a3f422420cfdb332414543b62fc4e4a5. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`tf.raw_ops.StringNGrams`の実装において、整数オーバーフローの脆弱性が発見されました。ユーザーが負の`ngram_widths`を提供すると、符号付き整数が符号なし整数に誤って変換され、結果として大量のメモリが予約されてしまう可能性があります。この問題はTensorFlow 2.6.0で修正されており、影響を受ける以前のサポート対象バージョンにも修正がバックポートされます。",
+    "category": "ai-library",
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2021-08-12T21:15:07.983Z",
+    "lastModifiedAt": "2026-06-17T04:00:53.887Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
     "id": "CVE-2021-37649",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37649",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. The code for `tf.raw_ops.UncompressElement` can be made to trigger a null pointer dereference. The [implementation](https://github.com/tensorflow/tensorflow/blob/f24faa153ad31a4b51578f8181d3aaab77a1ddeb/tensorflow/core/kernels/data/experimental/compression_ops.cc#L50-L53) obtains a pointer to a `CompressedElement` from a `Variant` tensor and then proceeds to dereference it for decompressing. There is no check that the `Variant` tensor contained a `CompressedElement`, so the pointer is actually `nullptr`. We have patched the issue in GitHub commit 7bdf50bb4f5c54a4997c379092888546c97c3ebd. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.UncompressElement`において、`Variant`テンソルが`CompressedElement`を含んでいるか確認せずにポインタを逆参照するため、NULLポインタ逆参照の脆弱性が存在します。これにより、サービス拒否などの影響が生じる可能性があります。この問題は、GitHubコミット7bdf50bb4f5c54a4997c379092888546c97c3ebdで修正され、TensorFlow 2.6.0以降および特定のパッチバージョンで適用されます。",
+    "category": "ai-library",
     "cvssScore": 7.7,
     "severity": "HIGH",
     "publishedAt": "2021-08-12T19:15:09.057Z",
     "lastModifiedAt": "2026-06-17T04:00:54.283Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-37647",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37647",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. When a user does not supply arguments that determine a valid sparse tensor, `tf.raw_ops.SparseTensorSliceDataset` implementation can be made to dereference a null pointer. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/data/sparse_tensor_slice_dataset_op.cc#L240-L251) has some argument validation but fails to consider the case when either `indices` or `values` are provided for an empty sparse tensor when the other is not. If `indices` is empty, then [code that performs validation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/data/sparse_tensor_slice_dataset_op.cc#L260-L261) (i.e., checking that the indices are monotonically increasing) results in a null pointer dereference. If `indices` as provided by the user is empty, then `indices` in the C++ code above is backed by an empty `std::vector`, hence calling `indices->dim_size(0)` results in null pointer dereferencing (same as calling `std::vector::at()` on an empty vector). We have patched the issue in GitHub commit 02cc160e29d20631de3859c6653184e3f876b9d7. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.SparseTensorSliceDataset`において、不正な引数入力によりヌルポインタ参照が発生する脆弱性が存在します。空の疎行列テンソルに対して`indices`または`values`のいずれか一方が提供され、もう一方が提供されない場合、不完全な引数検証が原因でヌルポインタ逆参照が引き起こされます。この脆弱性は、TensorFlow 2.6.0、2.5.1、2.4.3、および2.3.4で修正されています。",
+    "category": "ai-library",
     "cvssScore": 7.7,
     "severity": "HIGH",
     "publishedAt": "2021-08-12T19:15:08.963Z",
     "lastModifiedAt": "2026-06-17T04:00:54.013Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-37643",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37643",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. If a user does not provide a valid padding value to `tf.raw_ops.MatrixDiagPartOp`, then the code triggers a null pointer dereference (if input is empty) or produces invalid behavior, ignoring all values after the first. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/linalg/matrix_diag_op.cc#L89) reads the first value from a tensor buffer without first checking that the tensor has values to read from. We have patched the issue in GitHub commit 482da92095c4d48f8784b1f00dda4f81c28d2988. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.MatrixDiagPartOp`において、無効なパディング値が提供された場合に脆弱性が存在します。これにより、入力が空の場合にヌルポインタ参照解除、または最初の値以降のすべてが無視される不正な動作が発生します。この問題は、テンソルに読み取るべき値があるかを確認せずにバッファから値を読み込むことに起因し、TensorFlow 2.6.0およびその他のサポート対象バージョンで修正されました。",
+    "category": "ai-library",
     "cvssScore": 7.7,
     "severity": "HIGH",
     "publishedAt": "2021-08-12T19:15:08.873Z",
     "lastModifiedAt": "2026-06-17T04:00:53.520Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-37639",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37639",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. When restoring tensors via raw APIs, if the tensor name is not provided, TensorFlow can be tricked into dereferencing a null pointer. Alternatively, attackers can read memory outside the bounds of heap allocated data by providing some tensor names but not enough for a successful restoration. The [implementation](https://github.com/tensorflow/tensorflow/blob/47a06f40411a69c99f381495f490536972152ac0/tensorflow/core/kernels/save_restore_tensor.cc#L158-L159) retrieves the tensor list corresponding to the `tensor_name` user controlled input and immediately retrieves the tensor at the restoration index (controlled via `preferred_shard` argument). This occurs without validating that the provided list has enough values. If the list is empty this results in dereferencing a null pointer (undefined behavior). If, however, the list has some elements, if the restoration index is outside the bounds this results in heap OOB read. We have patched the issue in GitHub commit 9e82dce6e6bd1f36a57e08fa85af213e2b2f2622. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowのraw APIでテンソルを復元する際、テンソル名の指定不足によりnullポインタ逆参照やヒープ領域の範囲外読み取り（OOB Read）が発生する脆弱性があります。これにより、サービス運用妨害や情報漏洩につながる可能性があります。この問題は入力検証の不備に起因し、TensorFlow 2.6.0、2.5.1、2.4.3、2.3.4で修正が適用されます。",
+    "category": "ai-library",
     "cvssScore": 8.4,
     "severity": "HIGH",
     "publishedAt": "2021-08-12T19:15:08.707Z",
     "lastModifiedAt": "2026-06-17T04:00:53.017Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-37638",
@@ -2585,19 +2598,6 @@
     "lastModifiedAt": "2026-06-17T04:00:54.417Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-37646",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37646",
-    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions the implementation of `tf.raw_ops.StringNGrams` is vulnerable to an integer overflow issue caused by converting a signed integer value to an unsigned one and then allocating memory based on this value. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/string_ngrams_op.cc#L184) calls `reserve` on a `tstring` with a value that sometimes can be negative if user supplies negative `ngram_widths`. The `reserve` method calls `TF_TString_Reserve` which has an `unsigned long` argument for the size of the buffer. Hence, the implicit conversion transforms the negative value to a large integer. We have patched the issue in GitHub commit c283e542a3f422420cfdb332414543b62fc4e4a5. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2021-08-12T21:15:07.983Z",
-    "lastModifiedAt": "2026-06-17T04:00:53.887Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-37645",
