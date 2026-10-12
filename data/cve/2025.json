@@ -853,8 +853,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2025-09-25T14:15:45.930Z",
-    "lastModifiedAt": "2026-09-30T23:10:00.237Z",
-    "fetchedAt": "2026-10-01T00:53:39.020Z",
+    "lastModifiedAt": "2026-10-11T20:10:00.200Z",
+    "fetchedAt": "2026-10-12T00:48:30.432Z",
     "llmStatus": "ok"
   },
   {
@@ -866,8 +866,8 @@
     "cvssScore": 3.1,
     "severity": "LOW",
     "publishedAt": "2025-09-25T14:15:45.677Z",
-    "lastModifiedAt": "2026-06-17T09:46:08.460Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-11T20:10:00.200Z",
+    "fetchedAt": "2026-10-12T00:48:30.432Z",
     "llmStatus": "ok"
   },
   {
@@ -879,8 +879,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2025-09-23T14:15:41.387Z",
-    "lastModifiedAt": "2026-06-17T10:02:52.510Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-11T20:10:00.200Z",
+    "fetchedAt": "2026-10-12T00:48:30.432Z",
     "llmStatus": "ok"
   },
   {
@@ -905,8 +905,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2025-09-22T20:15:39.387Z",
-    "lastModifiedAt": "2026-09-30T17:10:00.187Z",
-    "fetchedAt": "2026-10-01T00:53:39.020Z",
+    "lastModifiedAt": "2026-10-11T20:10:00.200Z",
+    "fetchedAt": "2026-10-12T00:48:30.432Z",
     "llmStatus": "ok"
   },
   {
@@ -918,8 +918,8 @@
     "cvssScore": 9.6,
     "severity": "CRITICAL",
     "publishedAt": "2025-09-22T20:15:39.017Z",
-    "lastModifiedAt": "2026-09-30T17:10:00.187Z",
-    "fetchedAt": "2026-10-01T00:53:39.020Z",
+    "lastModifiedAt": "2026-10-11T20:10:00.200Z",
+    "fetchedAt": "2026-10-12T00:48:30.432Z",
     "llmStatus": "ok"
   },
   {
