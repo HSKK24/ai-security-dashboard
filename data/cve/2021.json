@@ -1,107 +1,94 @@
 [
   {
-    "id": "CVE-2021-37638",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37638",
-    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. Sending invalid argument for `row_partition_types` of `tf.raw_ops.RaggedTensorToTensor` API results in a null pointer dereference and undefined behavior. The [implementation](https://github.com/tensorflow/tensorflow/blob/47a06f40411a69c99f381495f490536972152ac0/tensorflow/core/kernels/ragged_tensor_to_tensor_op.cc#L328) accesses the first element of a user supplied list of values without validating that the provided list is not empty. We have patched the issue in GitHub commit 301ae88b331d37a2a16159b65b255f4f9eb39314. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの`tf.raw_ops.RaggedTensorToTensor` APIにおいて、`row_partition_types`引数に無効な値を指定すると、ヌルポインタ参照が発生し未定義の動作を引き起こす脆弱性が存在します。これは、ユーザー提供のリストが空であることの検証なしに最初の要素にアクセスするためです。この問題は、TensorFlow 2.6.0、2.5.1、2.4.3、および2.3.4で修正されます。",
-    "category": "ai-library",
-    "cvssScore": 7.7,
-    "severity": "HIGH",
-    "publishedAt": "2021-08-12T19:15:08.603Z",
-    "lastModifiedAt": "2026-06-17T04:00:52.890Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
     "id": "CVE-2021-37637",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37637",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. It is possible to trigger a null pointer dereference in TensorFlow by passing an invalid input to `tf.raw_ops.CompressElement`. The [implementation](https://github.com/tensorflow/tensorflow/blob/47a06f40411a69c99f381495f490536972152ac0/tensorflow/core/data/compression_utils.cc#L34) was accessing the size of a buffer obtained from the return of a separate function call before validating that said buffer is valid. We have patched the issue in GitHub commit 5dc7f6981fdaf74c8c5be41f393df705841fb7c5. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.CompressElement`において、無効な入力が渡された場合にヌルポインタ参照解除を引き起こす脆弱性があります。これは、バッファが有効であることの検証前に、別の関数呼び出しから取得したバッファのサイズにアクセスしていたために発生します。この問題はGitHubコミット5dc7f6981fdaf74c8c5be41f393df705841fb7c5でパッチが適用され、TensorFlow 2.6.0、2.5.1、2.4.3、2.3.4で修正されます。",
+    "category": "ai-library",
     "cvssScore": 7.7,
     "severity": "HIGH",
     "publishedAt": "2021-08-12T19:15:08.500Z",
     "lastModifiedAt": "2026-06-17T04:00:52.770Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-37660",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37660",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions an attacker can cause a floating point exception by calling inplace operations with crafted arguments that would result in a division by 0. The [implementation](https://github.com/tensorflow/tensorflow/blob/84d053187cb80d975ef2b9684d4b61981bca0c41/tensorflow/core/kernels/inplace_ops.cc#L283) has a logic error: it should skip processing if `x` and `v` are empty but the code uses `||` instead of `&&`. We have patched the issue in GitHub commit e86605c0a336c088b638da02135ea6f9f6753618. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの特定バージョンにおいて、細工された引数でインプレース操作を呼び出すと、0による除算が発生し、浮動小数点例外が引き起こされる可能性があります。これは、`inplace_ops.cc`における論理エラー（`||`が`&&`の代わりに使われた）に起因します。攻撃者はこの脆弱性を悪用し、サービス拒否を引き起こす可能性があります。",
+    "category": "ai-library",
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2021-08-12T18:15:10.903Z",
     "lastModifiedAt": "2026-06-17T04:00:55.677Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-37653",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37653",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions an attacker can trigger a crash via a floating point exception in `tf.raw_ops.ResourceGather`. The [implementation](https://github.com/tensorflow/tensorflow/blob/f24faa153ad31a4b51578f8181d3aaab77a1ddeb/tensorflow/core/kernels/resource_variable_ops.cc#L725-L731) computes the value of a value, `batch_size`, and then divides by it without checking that this value is not 0. We have patched the issue in GitHub commit ac117ee8a8ea57b73d34665cdf00ef3303bc0b11. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.ResourceGather`関数において、`batch_size`がゼロであることの検証なしにゼロ除算が行われるため、浮動小数点例外を介してサービス拒否（クラッシュ）を引き起こす脆弱性が存在します。攻撃者は、この脆弱性を悪用してTensorFlowアプリケーションをクラッシュさせる可能性があります。この問題はTensorFlow 2.6.0で修正され、TensorFlow 2.5.1、2.4.3、2.3.4にもバックポートされています。",
+    "category": "ai-library",
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2021-08-12T18:15:10.803Z",
     "lastModifiedAt": "2026-06-17T04:00:54.800Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-37642",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37642",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions the implementation of `tf.raw_ops.ResourceScatterDiv` is vulnerable to a division by 0 error. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/resource_variable_ops.cc#L865) uses a common class for all binary operations but fails to treat the division by 0 case separately. We have patched the issue in GitHub commit 4aacb30888638da75023e6601149415b39763d76. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.ResourceScatterDiv`の実装において、ゼロ除算の脆弱性が存在します。これは、二項演算に共通のクラスが使用されているにもかかわらず、ゼロ除算のケースが適切に処理されていないために発生します。この問題は、TensorFlow 2.6.0および、バックポートされた2.5.1、2.4.3、2.3.4で修正されています。",
+    "category": "ai-library",
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2021-08-12T18:15:10.633Z",
     "lastModifiedAt": "2026-06-17T04:00:53.397Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-37640",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37640",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions the implementation of `tf.raw_ops.SparseReshape` can be made to trigger an integral division by 0 exception. The [implementation](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/reshape_util.cc#L176-L181) calls the reshaping functor whenever there is at least an index in the input but does not check that shape of the input or the target shape have both a non-zero number of elements. The [reshape functor](https://github.com/tensorflow/tensorflow/blob/8d72537c6abf5a44103b57b9c2e22c14f5f49698/tensorflow/core/kernels/reshape_util.cc#L40-L78) blindly divides by the dimensions of the target shape. Hence, if this is not checked, code will result in a division by 0. We have patched the issue in GitHub commit 4923de56ec94fff7770df259ab7f2288a74feb41. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1 as this is the other affected version.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.SparseReshape`の実装に、整数除算によるゼロ除算例外を引き起こす脆弱性が存在します。これは、入力またはターゲット形状の要素数がゼロでないことのチェックが欠如しているため発生します。この脆弱性はTensorFlow 2.6.0および2.5.1で修正されています。",
+    "category": "ai-library",
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2021-08-12T18:15:10.490Z",
     "lastModifiedAt": "2026-06-17T04:00:53.147Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-37636",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37636",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. In affected versions the implementation of `tf.raw_ops.SparseDenseCwiseDiv` is vulnerable to a division by 0 error. The [implementation](https://github.com/tensorflow/tensorflow/blob/a1bc56203f21a5a4995311825ffaba7a670d7747/tensorflow/core/kernels/sparse_dense_binary_op_shared.cc#L56) uses a common class for all binary operations but fails to treat the division by 0 case separately. We have patched the issue in GitHub commit d9204be9f49520cdaaeb2541d1dc5187b23f31d9. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.SparseDenseCwiseDiv`の実装において、ゼロ除算の脆弱性が発見されました。これは、共通のバイナリ操作クラスがゼロ除算のケースを個別に処理できていないことに起因します。本脆弱性は、GitHubコミットd9204be9f49520cdaaeb2541d1dc5187b23f31d9で修正され、TensorFlow 2.6.0、2.5.1、2.4.3、2.3.4で提供される予定です。",
+    "category": "ai-library",
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2021-08-12T18:15:10.377Z",
     "lastModifiedAt": "2026-06-17T04:00:52.647Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-29619",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29619",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. Passing invalid arguments (e.g., discovered via fuzzing) to `tf.raw_ops.SparseCountSparseOutput` results in segfault. The fix will be included in TensorFlow 2.5.0. We will also cherrypick this commit on TensorFlow 2.4.2, TensorFlow 2.3.3, TensorFlow 2.2.3 and TensorFlow 2.1.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.SparseCountSparseOutput`関数に無効な引数を渡すとセグメンテーションフォールトが発生する脆弱性が確認されました。この問題はファジングによって発見され、サービス運用妨害につながる可能性があります。修正はTensorFlow 2.5.0以降のバージョン、および2.4.2、2.3.3、2.2.3、2.1.4にバックポートされる予定です。",
+    "category": "ai-library",
     "cvssScore": 2.5,
     "severity": "LOW",
     "publishedAt": "2021-05-14T20:15:16.357Z",
     "lastModifiedAt": "2026-06-17T03:48:02.350Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-29618",
@@ -2648,6 +2635,19 @@
     "severity": "HIGH",
     "publishedAt": "2021-08-12T19:15:08.707Z",
     "lastModifiedAt": "2026-06-17T04:00:53.017Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-37638",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-37638",
+    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. Sending invalid argument for `row_partition_types` of `tf.raw_ops.RaggedTensorToTensor` API results in a null pointer dereference and undefined behavior. The [implementation](https://github.com/tensorflow/tensorflow/blob/47a06f40411a69c99f381495f490536972152ac0/tensorflow/core/kernels/ragged_tensor_to_tensor_op.cc#L328) accesses the first element of a user supplied list of values without validating that the provided list is not empty. We have patched the issue in GitHub commit 301ae88b331d37a2a16159b65b255f4f9eb39314. The fix will be included in TensorFlow 2.6.0. We will also cherrypick this commit on TensorFlow 2.5.1, TensorFlow 2.4.3, and TensorFlow 2.3.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`tf.raw_ops.RaggedTensorToTensor` APIにおいて、`row_partition_types`引数に無効な値を指定すると、ヌルポインタ参照が発生し未定義の動作を引き起こす脆弱性が存在します。これは、ユーザー提供のリストが空であることの検証なしに最初の要素にアクセスするためです。この問題は、TensorFlow 2.6.0、2.5.1、2.4.3、および2.3.4で修正されます。",
+    "category": "ai-library",
+    "cvssScore": 7.7,
+    "severity": "HIGH",
+    "publishedAt": "2021-08-12T19:15:08.603Z",
+    "lastModifiedAt": "2026-06-17T04:00:52.890Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
   }
