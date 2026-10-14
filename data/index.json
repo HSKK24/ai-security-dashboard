@@ -1,13 +1,8 @@
 {
-  "lastRunAt": "2026-10-13T02:48:11.399Z",
-  "totalCount": 1185,
-  "latestModifiedCursor": "2026-10-12T22:10:00.247Z",
+  "lastRunAt": "2026-10-14T00:47:46.345Z",
+  "totalCount": 1190,
+  "latestModifiedCursor": "2026-10-13T20:42:49.903Z",
   "carryover": [
-    "CVE-2021-29618",
-    "CVE-2021-29617",
-    "CVE-2021-29616",
-    "CVE-2021-29615",
-    "CVE-2021-29614",
     "CVE-2021-29613",
     "CVE-2021-29612",
     "CVE-2021-29611",
@@ -117,11 +112,11 @@
     "CVE-2018-3824",
     "CVE-2018-3823",
     "CVE-2018-11262",
-    "CVE-2026-84317",
-    "CVE-2025-71429",
-    "CVE-2026-57143",
-    "CVE-2026-107430",
-    "CVE-2026-108581"
+    "CVE-2026-110206",
+    "CVE-2026-110205",
+    "CVE-2026-110204",
+    "CVE-2026-110203",
+    "CVE-2026-110202"
   ],
   "years": [
     "2026",
@@ -139,10 +134,10 @@
     "2011"
   ],
   "lastRunStats": {
-    "nvdFetched": 2003,
-    "keywordMatched": 12,
-    "llmEnriched": 8,
+    "nvdFetched": 4127,
+    "keywordMatched": 29,
+    "llmEnriched": 24,
     "nvdFetchFailed": false
   },
-  "lastSuccessfulNvdFetchAt": "2026-10-13T02:48:11.399Z"
+  "lastSuccessfulNvdFetchAt": "2026-10-14T00:47:46.345Z"
 }

@@ -1,5 +1,135 @@
 [
   {
+    "id": "CVE-2026-84317",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-84317",
+    "descriptionEn": "Nginx UI is a web user interface for the Nginx web server. Prior to 2.4.1, internal/config/validation.go (ValidateConfigFile) is a security control that blocks dangerous nginx directives — js_*, perl_*, load_module of the njs/perl modules, and user root. It is enforced on three of the four config-write paths: api/config/add.go, api/config/modify.go, and mcp/config/config_modify.go. The fourth path — the MCP tool nginx_config_add (mcp/config/config_add.go) — does NOT call it: it writes the caller-supplied content straight to disk and reloads nginx. An authenticated MCP caller (or an MCP agent induced via prompt injection) can therefore inject exactly the directives the control is meant to block, leading to nginx code execution on deployments where the njs/perl module is available (e.g. the official Docker image). This issue is fixed in version 2.4.1.",
+    "summaryJa": "Nginx UIのバージョン2.4.0以前において、Nginxの設定を書き込むパスの一つである`mcp/config/config_add.go`が、危険なNginxディレクティブ（`js_*`、`perl_*`、`load_module`など）に対するセキュリティ検証をスキップしていました。これにより、認証されたユーザー、またはプロンプトインジェクションによって誘導されたMCPエージェントが、本来ブロックされるべきディレクティブを挿入し、njs/perlモジュールが利用可能な環境でNginxを介したコード実行を引き起こす可能性があります。この脆弱性はバージョン2.4.1で修正されました。",
+    "category": "prompt-injection",
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-10-12T21:17:22.213Z",
+    "lastModifiedAt": "2026-10-13T18:17:26.047Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2025-71429",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-71429",
+    "descriptionEn": "GPT-SoVITS through 20250606v2pro contains an OS command injection vulnerability in tools/uvr5/vr.py that allows unauthenticated attackers to execute commands via output folder paths. Attackers can enter shell substitutions like $(...) in the UVR5 WebUI output folder textboxes with mp3 or m4a export to run commands as the server user.",
+    "summaryJa": "GPT-SoVITSのバージョン20250606v2pro以前には、`tools/uvr5/vr.py`にOSコマンドインジェクションの脆弱性が存在します。この脆弱性により、認証されていない攻撃者はUVR5 WebUIの出力フォルダパスにシェル置換（例：`$(...)`）を挿入することで、サーバユーザーとして任意のコマンドを実行することが可能です。mp3またはm4aエクスポート時にこの脆弱性を悪用できます。",
+    "category": "other",
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-10-12T21:17:07.817Z",
+    "lastModifiedAt": "2026-10-13T17:17:13.893Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-57143",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-57143",
+    "descriptionEn": "PraisonAI is a multi-agent teams system. Prior to praisonaiagents 1.6.62, searxng_search and the search_web SearxNG provider pass the LLM-controlled searxng_url parameter directly to requests.get without validating its scheme, host, port, or resolved address. Prompt-injected content can direct the default search tool to internal JSON services, distinguish open and closed internal ports, and attempt cloud-metadata requests, with returned JSON results entering agent context. This issue is fixed in praisonaiagents 1.6.62.",
+    "summaryJa": "PraisonAIのマルチエージェントシステムでは、praisonaiagentsバージョン1.6.62より前において、searxng_searchおよびsearch_web SearxNG providerがLLMが制御するsearxng_urlパラメータを検証なしに直接requests.getに渡していました。その結果、プロンプトインジェクションにより、内部JSONサービスへのアクセス、内部ポートのスキャン、クラウドメタデータリクエストが可能となり、これらの情報がエージェントのコンテキストに入り込む可能性がありました。本脆弱性はバージョン1.6.62で修正されています。",
+    "category": "prompt-injection",
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-10-12T19:16:39.110Z",
+    "lastModifiedAt": "2026-10-13T16:17:22.207Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-107430",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-107430",
+    "descriptionEn": "Missing Authorization vulnerability in VideoWhisper.com VideoWhisper Site Manager for ChatGPT, Claude, Codex videowhisper-site-manager allows Exploiting Incorrectly Configured Access Control Security Levels.This issue affects VideoWhisper Site Manager for ChatGPT, Claude, Codex: from n/a through 1.2.10.",
+    "summaryJa": "VideoWhisper.comのVideoWhisper Site Manager for ChatGPT, Claude, Codexのバージョン1.2.10以前において、認証機能の欠如の脆弱性が存在します。これにより、誤って設定されたアクセス制御セキュリティレベルが悪用される可能性があります。",
+    "category": "ai-service",
+    "cvssScore": 5.4,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-10-12T08:17:18.577Z",
+    "lastModifiedAt": "2026-10-13T13:28:15.717Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-108581",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-108581",
+    "descriptionEn": "TencentCloud Octop through 1.0.2b6 contains a missing authorization vulnerability that allows authenticated low-privileged users to read stored provider API keys via GET /api/providers and GET /api/voice/providers. Attackers can query these endpoints, which only validate the JWT, to obtain plaintext LLM and voice provider API keys and abuse the upstream provider accounts.",
+    "summaryJa": "TencentCloud Octop 1.0.2b6までのバージョンには認証不備の脆弱性が存在し、認証された低権限ユーザーが/api/providersおよび/api/voice/providersエンドポイントを通じて保存されているプロバイダーAPIキーを読み取ることが可能です。この脆弱性を悪用することで、攻撃者はLLMおよび音声プロバイダーのAPIキーを平文で取得し、関連するアップストリームプロバイダーアカウントを不正利用する可能性があります。",
+    "category": "ai-service",
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-10-10T16:16:31.380Z",
+    "lastModifiedAt": "2026-10-10T16:16:31.380Z",
+    "fetchedAt": "2026-10-12T00:48:30.432Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-110206",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-110206",
+    "descriptionEn": "Roo Code through 3.54.0 contains a command approval bypass vulnerability in parseCommandLine() that allows attackers to auto-approve arbitrary shell commands by placing a command substitution in command position. Attackers using indirect prompt injection can submit commands like $(echo touch /tmp/x) that pass the echo allowlist check, causing the shell to execute the output without user approval.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-10-13T19:18:44.157Z",
+    "lastModifiedAt": "2026-10-13T19:30:29.797Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-110205",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-110205",
+    "descriptionEn": "Roo Code through 3.54.0 contains a command approval bypass vulnerability in parseCommandLine() that discards command substitutions placed next to * or ? glob characters. Attackers using indirect prompt injection can craft commands like echo *$(...) that match allowlisted prefixes, executing denied commands without user approval when auto-approval is enabled.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-10-13T19:18:44.003Z",
+    "lastModifiedAt": "2026-10-13T19:30:29.797Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-110204",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-110204",
+    "descriptionEn": "Roo Code through 3.54.0 contains a command approval bypass vulnerability that allows attackers to run denied shell commands because parseCommandLine() treats ${ command; } substitutions as parameter expansions. Attackers using indirect prompt injection can embed denied commands inside an allowlisted command like echo to execute them without user approval on bash 5.3+ or ksh93.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-10-13T19:18:43.857Z",
+    "lastModifiedAt": "2026-10-13T20:17:27.347Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-110203",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-110203",
+    "descriptionEn": "Roo Code through 3.54.0 contains a command approval bypass vulnerability that allows attackers to auto-approve denied shell commands by abusing quote-masking regex in parseCommandLine(). Attackers can use indirect prompt injection with escaped or single-quoted double quotes to hide command separators behind allowlisted prefixes like echo, executing commands without user approval.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-10-13T19:18:43.707Z",
+    "lastModifiedAt": "2026-10-13T19:30:29.797Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-110202",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-110202",
+    "descriptionEn": "Roo Code through 3.54.0 contains a command approval bypass vulnerability in getCommandDecision() that allows attackers to auto-approve denied shell commands by prefixing them with a bare >& redirect. Attackers using indirect prompt injection can make the allowlist match a redirect target like echo while the shell runs the denied command on the developer machine.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-10-13T19:18:43.543Z",
+    "lastModifiedAt": "2026-10-13T19:30:29.797Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-108863",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-108863",
     "descriptionEn": "Katanemo Plano through 0.4.37 contains a missing authentication vulnerability that allows unauthenticated network attackers to access the Envoy admin interface, which is bound to all host interfaces on port 9901. Attackers can request the /config_dump endpoint to read configured LLM provider API keys in plaintext from the WASM filter configuration.",
@@ -8,8 +138,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-10-11T14:17:06.360Z",
-    "lastModifiedAt": "2026-10-11T14:17:06.360Z",
-    "fetchedAt": "2026-10-12T00:48:30.432Z",
+    "lastModifiedAt": "2026-10-13T20:17:24.417Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -21,8 +151,8 @@
     "cvssScore": 5.4,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-11T13:17:20.680Z",
-    "lastModifiedAt": "2026-10-11T13:17:20.680Z",
-    "fetchedAt": "2026-10-12T00:48:30.432Z",
+    "lastModifiedAt": "2026-10-13T14:17:20.973Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -39,58 +169,6 @@
     "llmStatus": "ok"
   },
   {
-    "id": "CVE-2026-84317",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-84317",
-    "descriptionEn": "Nginx UI is a web user interface for the Nginx web server. Prior to 2.4.1, internal/config/validation.go (ValidateConfigFile) is a security control that blocks dangerous nginx directives — js_*, perl_*, load_module of the njs/perl modules, and user root. It is enforced on three of the four config-write paths: api/config/add.go, api/config/modify.go, and mcp/config/config_modify.go. The fourth path — the MCP tool nginx_config_add (mcp/config/config_add.go) — does NOT call it: it writes the caller-supplied content straight to disk and reloads nginx. An authenticated MCP caller (or an MCP agent induced via prompt injection) can therefore inject exactly the directives the control is meant to block, leading to nginx code execution on deployments where the njs/perl module is available (e.g. the official Docker image). This issue is fixed in version 2.4.1.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.8,
-    "severity": "HIGH",
-    "publishedAt": "2026-10-12T21:17:22.213Z",
-    "lastModifiedAt": "2026-10-12T21:17:22.213Z",
-    "fetchedAt": "2026-10-13T02:46:04.934Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2025-71429",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-71429",
-    "descriptionEn": "GPT-SoVITS through 20250606v2pro contains an OS command injection vulnerability in tools/uvr5/vr.py that allows unauthenticated attackers to execute commands via output folder paths. Attackers can enter shell substitutions like $(...) in the UVR5 WebUI output folder textboxes with mp3 or m4a export to run commands as the server user.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 9.8,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-10-12T21:17:07.817Z",
-    "lastModifiedAt": "2026-10-12T21:17:07.817Z",
-    "fetchedAt": "2026-10-13T02:46:04.934Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-57143",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-57143",
-    "descriptionEn": "PraisonAI is a multi-agent teams system. Prior to praisonaiagents 1.6.62, searxng_search and the search_web SearxNG provider pass the LLM-controlled searxng_url parameter directly to requests.get without validating its scheme, host, port, or resolved address. Prompt-injected content can direct the default search tool to internal JSON services, distinguish open and closed internal ports, and attempt cloud-metadata requests, with returned JSON results entering agent context. This issue is fixed in praisonaiagents 1.6.62.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 8.8,
-    "severity": "HIGH",
-    "publishedAt": "2026-10-12T19:16:39.110Z",
-    "lastModifiedAt": "2026-10-12T19:16:39.110Z",
-    "fetchedAt": "2026-10-13T02:46:04.934Z",
-    "llmStatus": "pending"
-  },
-  {
-    "id": "CVE-2026-107430",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-107430",
-    "descriptionEn": "Missing Authorization vulnerability in VideoWhisper.com VideoWhisper Site Manager for ChatGPT, Claude, Codex videowhisper-site-manager allows Exploiting Incorrectly Configured Access Control Security Levels.This issue affects VideoWhisper Site Manager for ChatGPT, Claude, Codex: from n/a through 1.2.10.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 5.4,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-10-12T08:17:18.577Z",
-    "lastModifiedAt": "2026-10-12T12:17:13.200Z",
-    "fetchedAt": "2026-10-13T02:46:04.934Z",
-    "llmStatus": "pending"
-  },
-  {
     "id": "CVE-2026-108670",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-108670",
     "descriptionEn": "JeecgBoot through 3.9.5 contains a missing authorization vulnerability in the promptExperiment handler of AiragPromptsController that allows any authenticated user to run AI prompt experiments. Low-privileged attackers can supply other users' prompt template and dataset ids to trigger large language model evaluation runs, write result rows into airag_ext_data, and change dataset status.",
@@ -99,8 +177,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-10T22:16:43.777Z",
-    "lastModifiedAt": "2026-10-10T22:16:43.777Z",
-    "fetchedAt": "2026-10-12T00:48:30.432Z",
+    "lastModifiedAt": "2026-10-13T20:42:49.903Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -112,8 +190,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-10T22:16:34.213Z",
-    "lastModifiedAt": "2026-10-10T22:16:34.213Z",
-    "fetchedAt": "2026-10-12T00:48:30.432Z",
+    "lastModifiedAt": "2026-10-13T20:42:49.903Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -125,8 +203,8 @@
     "cvssScore": 4.7,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-10T19:16:58.640Z",
-    "lastModifiedAt": "2026-10-10T19:16:58.640Z",
-    "fetchedAt": "2026-10-12T00:48:30.432Z",
+    "lastModifiedAt": "2026-10-13T19:18:08.220Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -164,8 +242,8 @@
     "cvssScore": 6.4,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-10T19:16:57.607Z",
-    "lastModifiedAt": "2026-10-10T19:16:57.720Z",
-    "fetchedAt": "2026-10-12T00:48:30.432Z",
+    "lastModifiedAt": "2026-10-13T12:17:12.980Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -190,22 +268,9 @@
     "cvssScore": 4.2,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-10T16:16:31.667Z",
-    "lastModifiedAt": "2026-10-10T16:16:31.667Z",
-    "fetchedAt": "2026-10-12T00:48:30.432Z",
+    "lastModifiedAt": "2026-10-13T13:17:16.200Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-108581",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-108581",
-    "descriptionEn": "TencentCloud Octop through 1.0.2b6 contains a missing authorization vulnerability that allows authenticated low-privileged users to read stored provider API keys via GET /api/providers and GET /api/voice/providers. Attackers can query these endpoints, which only validate the JWT, to obtain plaintext LLM and voice provider API keys and abuse the upstream provider accounts.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 6.5,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-10-10T16:16:31.380Z",
-    "lastModifiedAt": "2026-10-10T16:16:31.380Z",
-    "fetchedAt": "2026-10-12T00:48:30.432Z",
-    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-108159",
@@ -216,8 +281,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-10-09T17:16:47.027Z",
-    "lastModifiedAt": "2026-10-09T17:41:47.060Z",
-    "fetchedAt": "2026-10-12T00:48:30.432Z",
+    "lastModifiedAt": "2026-10-13T17:17:19.517Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -229,8 +294,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-08T22:17:27.560Z",
-    "lastModifiedAt": "2026-10-08T22:17:27.710Z",
-    "fetchedAt": "2026-10-10T01:22:35.617Z",
+    "lastModifiedAt": "2026-10-13T17:17:16.860Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -255,8 +320,8 @@
     "cvssScore": 7.6,
     "severity": "HIGH",
     "publishedAt": "2026-10-08T17:17:15.237Z",
-    "lastModifiedAt": "2026-10-08T20:35:31.200Z",
-    "fetchedAt": "2026-10-10T01:22:35.617Z",
+    "lastModifiedAt": "2026-10-13T14:16:53.140Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -268,8 +333,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-08T17:17:15.080Z",
-    "lastModifiedAt": "2026-10-09T16:17:21.983Z",
-    "fetchedAt": "2026-10-10T01:22:35.617Z",
+    "lastModifiedAt": "2026-10-13T13:49:02.473Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -278,11 +343,11 @@
     "descriptionEn": "Pydantic AI is a Python agent framework for building applications and workflows with Generative AI. From 0.3.4 until 1.107.4 and 2.27.1, OpenTelemetry instrumentation configured with InstrumentationSettings(include_content=False) can export retry prompts outside tool calls in gen_ai.input.messages and pydantic_ai.all_messages. Agents using NativeOutput, PromptedOutput, or output validators on text output can therefore disclose validation feedback, including invalid model values quoted by that feedback, to readers of the telemetry backend. Tool-call retries and deployments that do not use include_content=False are not affected by this specific path. This issue is fixed in versions 1.107.4 and 2.27.1.",
     "summaryJa": "Pydantic AIフレームワークにおいて、OpenTelemetry計装が`InstrumentationSettings(include_content=False)`で設定されている場合、ツール呼び出し外部の再試行プロンプトがテレメトリーバックエンドにエクスポートされる脆弱性があります。これにより、検証フィードバックや無効なモデル値が`gen_ai.input.messages`や`pydantic_ai.all_messages`を通じて不適切に開示される可能性があります。この問題はバージョン1.107.4および2.27.1で修正されました。",
     "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 5.3,
+    "severity": "MEDIUM",
     "publishedAt": "2026-10-08T17:17:14.933Z",
-    "lastModifiedAt": "2026-10-08T20:35:31.200Z",
-    "fetchedAt": "2026-10-10T01:22:35.617Z",
+    "lastModifiedAt": "2026-10-13T14:30:39.803Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -294,8 +359,8 @@
     "cvssScore": 6.4,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-08T17:17:14.770Z",
-    "lastModifiedAt": "2026-10-08T20:35:31.200Z",
-    "fetchedAt": "2026-10-10T01:22:35.617Z",
+    "lastModifiedAt": "2026-10-13T14:30:48.107Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -304,11 +369,11 @@
     "descriptionEn": "Pydantic AI is a Python agent framework for building applications and workflows with Generative AI. From 0.3.4 until 1.107.6 and 2.44.0, OpenTelemetry instrumentation configured with InstrumentationSettings(include_content=False) can still export sensitive agent content through exception.message and exception.stacktrace events, error status descriptions, and model_request_parameters containing instructions or the prompted_output_template. The exposed data is available to readers of the configured telemetry backend and can include tool feedback, provider error bodies, runtime instructions, and structured-output templates even though message attributes are redacted. This issue does not grant new access to agent data, and deployments that do not use include_content=False are not affected by the setting bypass. This issue is fixed in versions 1.107.6 and 2.44.0.",
     "summaryJa": "Pydantic AIのバージョン0.3.4から1.107.6および2.44.0において、OpenTelemetryの`InstrumentationSettings(include_content=False)`設定がバイパスされ、例外メッセージやスタックトレースなどを通じて機密性の高いエージェントコンテンツがテレメトリーバックエンドに漏洩する脆弱性がありました。これにより、ツールフィードバックやランタイム指示などが公開される可能性がありました。この問題はバージョン1.107.6および2.44.0で修正されています。",
     "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 4.3,
+    "severity": "MEDIUM",
     "publishedAt": "2026-10-08T17:17:14.590Z",
-    "lastModifiedAt": "2026-10-08T20:35:31.200Z",
-    "fetchedAt": "2026-10-10T01:22:35.617Z",
+    "lastModifiedAt": "2026-10-13T14:34:22.207Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -320,8 +385,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-08T17:17:14.413Z",
-    "lastModifiedAt": "2026-10-09T16:17:21.800Z",
-    "fetchedAt": "2026-10-10T01:22:35.617Z",
+    "lastModifiedAt": "2026-10-13T14:34:38.623Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -333,8 +398,8 @@
     "cvssScore": 6.8,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-08T16:17:04.337Z",
-    "lastModifiedAt": "2026-10-08T20:35:31.200Z",
-    "fetchedAt": "2026-10-10T01:22:35.617Z",
+    "lastModifiedAt": "2026-10-13T14:34:48.123Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -346,8 +411,8 @@
     "cvssScore": 3.7,
     "severity": "LOW",
     "publishedAt": "2026-10-08T16:17:04.147Z",
-    "lastModifiedAt": "2026-10-08T20:35:31.200Z",
-    "fetchedAt": "2026-10-10T01:22:35.617Z",
+    "lastModifiedAt": "2026-10-13T14:35:05.370Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -359,8 +424,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-08T16:17:03.973Z",
-    "lastModifiedAt": "2026-10-08T21:05:00.260Z",
-    "fetchedAt": "2026-10-10T01:22:35.617Z",
+    "lastModifiedAt": "2026-10-13T14:35:34.920Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
@@ -372,8 +437,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-10-08T15:17:40.753Z",
-    "lastModifiedAt": "2026-10-08T20:35:31.200Z",
-    "fetchedAt": "2026-10-10T01:22:35.617Z",
+    "lastModifiedAt": "2026-10-13T14:36:51.687Z",
+    "fetchedAt": "2026-10-14T00:43:22.587Z",
     "llmStatus": "ok"
   },
   {
