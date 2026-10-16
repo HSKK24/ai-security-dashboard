@@ -1,81 +1,16 @@
 [
   {
-    "id": "CVE-2021-29613",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29613",
-    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. Incomplete validation in `tf.raw_ops.CTCLoss` allows an attacker to trigger an OOB read from heap. The fix will be included in TensorFlow 2.5.0. We will also cherrypick these commits on TensorFlow 2.4.2, TensorFlow 2.3.3, TensorFlow 2.2.3 and TensorFlow 2.1.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの`tf.raw_ops.CTCLoss`に不完全な検証の脆弱性があり、攻撃者がヒープからの境界外読み取りを誘発する可能性があります。この問題は、TensorFlow 2.5.0およびそれ以前のサポート対象バージョンへのバックポートで修正されます。",
-    "category": "ai-library",
-    "cvssScore": 6.3,
-    "severity": "MEDIUM",
-    "publishedAt": "2021-05-14T20:15:16.037Z",
-    "lastModifiedAt": "2026-06-17T03:48:01.560Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-29612",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29612",
-    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. An attacker can trigger a heap buffer overflow in Eigen implementation of `tf.raw_ops.BandedTriangularSolve`. The implementation(https://github.com/tensorflow/tensorflow/blob/eccb7ec454e6617738554a255d77f08e60ee0808/tensorflow/core/kernels/linalg/banded_triangular_solve_op.cc#L269-L278) calls `ValidateInputTensors` for input validation but fails to validate that the two tensors are not empty. Furthermore, since `OP_REQUIRES` macro only stops execution of current function after setting `ctx->status()` to a non-OK value, callers of helper functions that use `OP_REQUIRES` must check value of `ctx->status()` before continuing. This doesn't happen in this op's implementation(https://github.com/tensorflow/tensorflow/blob/eccb7ec454e6617738554a255d77f08e60ee0808/tensorflow/core/kernels/linalg/banded_triangular_solve_op.cc#L219), hence the validation that is present is also not effective. The fix will be included in TensorFlow 2.5.0. We will also cherrypick this commit on TensorFlow 2.4.2, TensorFlow 2.3.3, TensorFlow 2.2.3 and TensorFlow 2.1.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの`tf.raw_ops.BandedTriangularSolve`のEigen実装において、ヒープバッファオーバーフローの脆弱性が存在します。これは、入力テンソルが空でないことの検証不足と、エラーチェックが不十分な`OP_REQUIRES`マクロの使用に起因します。攻撃者はこの脆弱性を悪用し、オーバーフローを引き起こす可能性があります。本問題はTensorFlow 2.5.0で修正され、サポート対象の旧バージョンにもバックポートされます。",
-    "category": "ai-library",
-    "cvssScore": 3.6,
-    "severity": "LOW",
-    "publishedAt": "2021-05-14T20:15:15.990Z",
-    "lastModifiedAt": "2026-06-17T03:48:01.423Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-29611",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29611",
-    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. Incomplete validation in `SparseReshape` results in a denial of service based on a `CHECK`-failure. The implementation(https://github.com/tensorflow/tensorflow/blob/e87b51ce05c3eb172065a6ea5f48415854223285/tensorflow/core/kernels/sparse_reshape_op.cc#L40) has no validation that the input arguments specify a valid sparse tensor. The fix will be included in TensorFlow 2.5.0. We will also cherrypick this commit on TensorFlow 2.4.2 and TensorFlow 2.3.3, as these are the only affected versions.",
-    "summaryJa": "TensorFlowの`SparseReshape`関数において、入力引数が有効なスパーステンソルを指定しているかの検証が不完全であるため、`CHECK`エラーによるサービス拒否（DoS）が発生する脆弱性があります。この問題はTensorFlow 2.5.0、2.4.2、および2.3.3で修正されます。",
-    "category": "ai-library",
-    "cvssScore": 3.6,
-    "severity": "LOW",
-    "publishedAt": "2021-05-14T20:15:15.947Z",
-    "lastModifiedAt": "2026-06-17T03:48:01.303Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-29610",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29610",
-    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. The validation in `tf.raw_ops.QuantizeAndDequantizeV2` allows invalid values for `axis` argument:. The validation(https://github.com/tensorflow/tensorflow/blob/eccb7ec454e6617738554a255d77f08e60ee0808/tensorflow/core/kernels/quantize_and_dequantize_op.cc#L74-L77) uses `||` to mix two different conditions. If `axis_ < -1` the condition in `OP_REQUIRES` will still be true, but this value of `axis_` results in heap underflow. This allows attackers to read/write to other data on the heap. The fix will be included in TensorFlow 2.5.0. We will also cherrypick this commit on TensorFlow 2.4.2, TensorFlow 2.3.3, TensorFlow 2.2.3 and TensorFlow 2.1.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの`tf.raw_ops.QuantizeAndDequantizeV2`において、`axis`引数の入力検証に不備があります。この不備により、`axis`に無効な負の値が渡された際にヒープアンダーフローが発生します。結果として、攻撃者はヒープ上の他のデータを読み書きできる可能性があります。",
-    "category": "ai-library",
-    "cvssScore": 3.6,
-    "severity": "LOW",
-    "publishedAt": "2021-05-14T20:15:15.900Z",
-    "lastModifiedAt": "2026-06-17T03:48:01.177Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2021-29609",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29609",
-    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. Incomplete validation in `SparseAdd` results in allowing attackers to exploit undefined behavior (dereferencing null pointers) as well as write outside of bounds of heap allocated data. The implementation(https://github.com/tensorflow/tensorflow/blob/656e7673b14acd7835dc778867f84916c6d1cac2/tensorflow/core/kernels/sparse_add_op.cc) has a large set of validation for the two sparse tensor inputs (6 tensors in total), but does not validate that the tensors are not empty or that the second dimension of `*_indices` matches the size of corresponding `*_shape`. This allows attackers to send tensor triples that represent invalid sparse tensors to abuse code assumptions that are not protected by validation. The fix will be included in TensorFlow 2.5.0. We will also cherrypick this commit on TensorFlow 2.4.2, TensorFlow 2.3.3, TensorFlow 2.2.3 and TensorFlow 2.1.4, as these are also affected and still in supported range.",
-    "summaryJa": "TensorFlowの`SparseAdd`関数に不完全な入力検証の脆弱性があり、攻撃者が無効な疎テンソルを送信することで、未定義の動作（ヌルポインタ参照）やヒープ領域外への書き込みを悪用できる可能性があります。この問題は、テンソルの空状態や次元の一致が検証されていないことに起因します。本脆弱性はTensorFlow 2.5.0で修正され、以前のサポートバージョンにもバックポートされる予定です。",
-    "category": "ai-library",
-    "cvssScore": 5.3,
-    "severity": "MEDIUM",
-    "publishedAt": "2021-05-14T20:15:15.850Z",
-    "lastModifiedAt": "2026-06-17T03:48:01.040Z",
-    "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "ok"
-  },
-  {
     "id": "CVE-2021-29608",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29608",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. Due to lack of validation in `tf.raw_ops.RaggedTensorToTensor`, an attacker can exploit an undefined behavior if input arguments are empty. The implementation(https://github.com/tensorflow/tensorflow/blob/656e7673b14acd7835dc778867f84916c6d1cac2/tensorflow/core/kernels/ragged_tensor_to_tensor_op.cc#L356-L360) only checks that one of the tensors is not empty, but does not check for the other ones. There are multiple `DCHECK` validations to prevent heap OOB, but these are no-op in release builds, hence they don't prevent anything. The fix will be included in TensorFlow 2.5.0. We will also cherrypick these commits on TensorFlow 2.4.2, TensorFlow 2.3.3, TensorFlow 2.2.3 and TensorFlow 2.1.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`tf.raw_ops.RaggedTensorToTensor`において、入力引数が空の場合のバリデーションが不足しており、未定義の動作を引き起こす可能性があります。この不備はヒープの範囲外アクセスにつながる可能性があり、リリースビルドでは`DCHECK`が機能しないため保護されません。本脆弱性はTensorFlow 2.5.0および一部の過去バージョンで修正予定です。",
+    "category": "ai-library",
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2021-05-14T20:15:15.803Z",
     "lastModifiedAt": "2026-06-17T03:48:00.903Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-29607",
@@ -88,7 +23,7 @@
     "publishedAt": "2021-05-14T20:15:15.763Z",
     "lastModifiedAt": "2026-06-17T03:48:00.770Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-29606",
@@ -101,7 +36,7 @@
     "publishedAt": "2021-05-14T20:15:15.717Z",
     "lastModifiedAt": "2026-06-17T03:48:00.640Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-29605",
@@ -114,7 +49,7 @@
     "publishedAt": "2021-05-14T20:15:15.670Z",
     "lastModifiedAt": "2026-06-17T03:48:00.520Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-29604",
@@ -127,33 +62,33 @@
     "publishedAt": "2021-05-14T20:15:15.620Z",
     "lastModifiedAt": "2026-06-17T03:48:00.390Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-29603",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29603",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. A specially crafted TFLite model could trigger an OOB write on heap in the TFLite implementation of `ArgMin`/`ArgMax`(https://github.com/tensorflow/tensorflow/blob/102b211d892f3abc14f845a72047809b39cc65ab/tensorflow/lite/kernels/arg_min_max.cc#L52-L59). If `axis_value` is not a value between 0 and `NumDimensions(input)`, then the condition in the `if` is never true, so code writes past the last valid element of `output_dims->data`. The fix will be included in TensorFlow 2.5.0. We will also cherrypick this commit on TensorFlow 2.4.2, TensorFlow 2.3.3, TensorFlow 2.2.3 and TensorFlow 2.1.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowのTFLiteにおける`ArgMin`/`ArgMax`の実装に、ヒープ上のOut-of-Bounds (OOB) 書き込みの脆弱性が存在します。細工されたTFLiteモデルが、`axis_value`が不正な範囲にある場合に`output_dims->data`の末尾を超えて書き込むことでこの脆弱性が誘発されます。この問題はTensorFlow 2.5.0で修正され、2.4.2、2.3.3、2.2.3、2.1.4バージョンにも修正がバックポートされます。",
+    "category": "ai-library",
     "cvssScore": 2.5,
     "severity": "LOW",
     "publishedAt": "2021-05-14T20:15:15.577Z",
     "lastModifiedAt": "2026-06-17T03:48:00.267Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-29602",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29602",
     "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. The implementation of the `DepthwiseConv` TFLite operator is vulnerable to a division by zero error(https://github.com/tensorflow/tensorflow/blob/1a8e885b864c818198a5b2c0cbbeca5a1e833bc8/tensorflow/lite/kernels/depthwise_conv.cc#L287-L288). An attacker can craft a model such that `input`'s fourth dimension would be 0. The fix will be included in TensorFlow 2.5.0. We will also cherrypick this commit on TensorFlow 2.4.2, TensorFlow 2.3.3, TensorFlow 2.2.3 and TensorFlow 2.1.4, as these are also affected and still in supported range.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "TensorFlowの`DepthwiseConv` TFLiteオペレータにゼロ除算の脆弱性が存在します。攻撃者は入力の4次元目を0とする細工したモデルを作成することで、サービス運用妨害を引き起こす可能性があります。この問題はTensorFlow 2.5.0以降、および2.4.2、2.3.3、2.2.3、2.1.4の各バージョンで修正される予定です。",
+    "category": "ai-library",
     "cvssScore": 2.5,
     "severity": "LOW",
     "publishedAt": "2021-05-14T20:15:15.530Z",
     "lastModifiedAt": "2026-06-17T03:48:00.137Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2021-29601",
@@ -166,7 +101,7 @@
     "publishedAt": "2021-05-14T20:15:15.487Z",
     "lastModifiedAt": "2026-06-17T03:48:00.013Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-29600",
@@ -179,7 +114,7 @@
     "publishedAt": "2021-05-14T20:15:15.443Z",
     "lastModifiedAt": "2026-06-17T03:47:59.890Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-29599",
@@ -192,7 +127,7 @@
     "publishedAt": "2021-05-14T20:15:15.400Z",
     "lastModifiedAt": "2026-06-17T03:47:59.770Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2021-29598",
@@ -2648,6 +2583,71 @@
     "severity": "HIGH",
     "publishedAt": "2021-05-14T20:15:16.080Z",
     "lastModifiedAt": "2026-06-17T03:48:01.697Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-29613",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29613",
+    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. Incomplete validation in `tf.raw_ops.CTCLoss` allows an attacker to trigger an OOB read from heap. The fix will be included in TensorFlow 2.5.0. We will also cherrypick these commits on TensorFlow 2.4.2, TensorFlow 2.3.3, TensorFlow 2.2.3 and TensorFlow 2.1.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`tf.raw_ops.CTCLoss`に不完全な検証の脆弱性があり、攻撃者がヒープからの境界外読み取りを誘発する可能性があります。この問題は、TensorFlow 2.5.0およびそれ以前のサポート対象バージョンへのバックポートで修正されます。",
+    "category": "ai-library",
+    "cvssScore": 6.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2021-05-14T20:15:16.037Z",
+    "lastModifiedAt": "2026-06-17T03:48:01.560Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-29612",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29612",
+    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. An attacker can trigger a heap buffer overflow in Eigen implementation of `tf.raw_ops.BandedTriangularSolve`. The implementation(https://github.com/tensorflow/tensorflow/blob/eccb7ec454e6617738554a255d77f08e60ee0808/tensorflow/core/kernels/linalg/banded_triangular_solve_op.cc#L269-L278) calls `ValidateInputTensors` for input validation but fails to validate that the two tensors are not empty. Furthermore, since `OP_REQUIRES` macro only stops execution of current function after setting `ctx->status()` to a non-OK value, callers of helper functions that use `OP_REQUIRES` must check value of `ctx->status()` before continuing. This doesn't happen in this op's implementation(https://github.com/tensorflow/tensorflow/blob/eccb7ec454e6617738554a255d77f08e60ee0808/tensorflow/core/kernels/linalg/banded_triangular_solve_op.cc#L219), hence the validation that is present is also not effective. The fix will be included in TensorFlow 2.5.0. We will also cherrypick this commit on TensorFlow 2.4.2, TensorFlow 2.3.3, TensorFlow 2.2.3 and TensorFlow 2.1.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`tf.raw_ops.BandedTriangularSolve`のEigen実装において、ヒープバッファオーバーフローの脆弱性が存在します。これは、入力テンソルが空でないことの検証不足と、エラーチェックが不十分な`OP_REQUIRES`マクロの使用に起因します。攻撃者はこの脆弱性を悪用し、オーバーフローを引き起こす可能性があります。本問題はTensorFlow 2.5.0で修正され、サポート対象の旧バージョンにもバックポートされます。",
+    "category": "ai-library",
+    "cvssScore": 3.6,
+    "severity": "LOW",
+    "publishedAt": "2021-05-14T20:15:15.990Z",
+    "lastModifiedAt": "2026-06-17T03:48:01.423Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-29611",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29611",
+    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. Incomplete validation in `SparseReshape` results in a denial of service based on a `CHECK`-failure. The implementation(https://github.com/tensorflow/tensorflow/blob/e87b51ce05c3eb172065a6ea5f48415854223285/tensorflow/core/kernels/sparse_reshape_op.cc#L40) has no validation that the input arguments specify a valid sparse tensor. The fix will be included in TensorFlow 2.5.0. We will also cherrypick this commit on TensorFlow 2.4.2 and TensorFlow 2.3.3, as these are the only affected versions.",
+    "summaryJa": "TensorFlowの`SparseReshape`関数において、入力引数が有効なスパーステンソルを指定しているかの検証が不完全であるため、`CHECK`エラーによるサービス拒否（DoS）が発生する脆弱性があります。この問題はTensorFlow 2.5.0、2.4.2、および2.3.3で修正されます。",
+    "category": "ai-library",
+    "cvssScore": 3.6,
+    "severity": "LOW",
+    "publishedAt": "2021-05-14T20:15:15.947Z",
+    "lastModifiedAt": "2026-06-17T03:48:01.303Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-29610",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29610",
+    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. The validation in `tf.raw_ops.QuantizeAndDequantizeV2` allows invalid values for `axis` argument:. The validation(https://github.com/tensorflow/tensorflow/blob/eccb7ec454e6617738554a255d77f08e60ee0808/tensorflow/core/kernels/quantize_and_dequantize_op.cc#L74-L77) uses `||` to mix two different conditions. If `axis_ < -1` the condition in `OP_REQUIRES` will still be true, but this value of `axis_` results in heap underflow. This allows attackers to read/write to other data on the heap. The fix will be included in TensorFlow 2.5.0. We will also cherrypick this commit on TensorFlow 2.4.2, TensorFlow 2.3.3, TensorFlow 2.2.3 and TensorFlow 2.1.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`tf.raw_ops.QuantizeAndDequantizeV2`において、`axis`引数の入力検証に不備があります。この不備により、`axis`に無効な負の値が渡された際にヒープアンダーフローが発生します。結果として、攻撃者はヒープ上の他のデータを読み書きできる可能性があります。",
+    "category": "ai-library",
+    "cvssScore": 3.6,
+    "severity": "LOW",
+    "publishedAt": "2021-05-14T20:15:15.900Z",
+    "lastModifiedAt": "2026-06-17T03:48:01.177Z",
+    "fetchedAt": "2026-06-28T22:51:58.940Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2021-29609",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-29609",
+    "descriptionEn": "TensorFlow is an end-to-end open source platform for machine learning. Incomplete validation in `SparseAdd` results in allowing attackers to exploit undefined behavior (dereferencing null pointers) as well as write outside of bounds of heap allocated data. The implementation(https://github.com/tensorflow/tensorflow/blob/656e7673b14acd7835dc778867f84916c6d1cac2/tensorflow/core/kernels/sparse_add_op.cc) has a large set of validation for the two sparse tensor inputs (6 tensors in total), but does not validate that the tensors are not empty or that the second dimension of `*_indices` matches the size of corresponding `*_shape`. This allows attackers to send tensor triples that represent invalid sparse tensors to abuse code assumptions that are not protected by validation. The fix will be included in TensorFlow 2.5.0. We will also cherrypick this commit on TensorFlow 2.4.2, TensorFlow 2.3.3, TensorFlow 2.2.3 and TensorFlow 2.1.4, as these are also affected and still in supported range.",
+    "summaryJa": "TensorFlowの`SparseAdd`関数に不完全な入力検証の脆弱性があり、攻撃者が無効な疎テンソルを送信することで、未定義の動作（ヌルポインタ参照）やヒープ領域外への書き込みを悪用できる可能性があります。この問題は、テンソルの空状態や次元の一致が検証されていないことに起因します。本脆弱性はTensorFlow 2.5.0で修正され、以前のサポートバージョンにもバックポートされる予定です。",
+    "category": "ai-library",
+    "cvssScore": 5.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2021-05-14T20:15:15.850Z",
+    "lastModifiedAt": "2026-06-17T03:48:01.040Z",
     "fetchedAt": "2026-06-28T22:51:58.940Z",
     "llmStatus": "ok"
   }
