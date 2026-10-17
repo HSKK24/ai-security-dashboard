@@ -1,5 +1,57 @@
 [
   {
+    "id": "CVE-2026-111704",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-111704",
+    "descriptionEn": "LangChat through commit 2a6285a contains a missing authentication vulnerability that allows unauthenticated remote attackers to access REST controllers because no Sa-Token interceptor is registered. Attackers can query /api/v1/auth/users to read plaintext passwords, retrieve LLM provider API keys, create super-admin accounts, and modify or delete data.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-10-16T18:17:54.370Z",
+    "lastModifiedAt": "2026-10-16T19:03:18.127Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-111682",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-111682",
+    "descriptionEn": "EFAK 5.0.0 through 5.1.0 contains a missing authorization vulnerability that allows authenticated low-privilege users to read LLM provider API keys through the /api/model-config REST API. Attackers with any ROLE_USER account can query /api/model-config/page or /api/model-config/{id} to retrieve unmasked keys, enabling provider account access and incurred costs.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-10-16T18:17:51.213Z",
+    "lastModifiedAt": "2026-10-16T20:17:22.140Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-111623",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-111623",
+    "descriptionEn": "Xiaozhi-esp32-server-java through 6.1.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to obtain valid device WebSocket tokens by requesting /api/device/ota with any MAC address. Attackers can open a victim device's WebSocket channel to read private role system prompts, write conversation history, consume LLM/STT/TTS credentials, and overwrite device metadata.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.6,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-10-16T18:17:42.133Z",
+    "lastModifiedAt": "2026-10-16T19:03:18.127Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-95183",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-95183",
+    "descriptionEn": "An issue in the context-compaction feature of DeepSeek Harness (dsh) commit c291e796 allows attackers to execute a prompt injection attack via crafted external content.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-16T15:17:37.050Z",
+    "lastModifiedAt": "2026-10-16T19:56:15.773Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-105038",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-105038",
     "descriptionEn": "The EnergizeLab Eilik and EilikO FastAPI AI inference and profiling services expose AI model administration functions without authentication. An unauthenticated remote attacker can change AI model configuration and switch the model in use at runtime.",
@@ -8,8 +60,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-10-15T21:17:04.467Z",
-    "lastModifiedAt": "2026-10-15T21:17:04.467Z",
-    "fetchedAt": "2026-10-15T23:58:09.925Z",
+    "lastModifiedAt": "2026-10-16T20:17:18.490Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -21,8 +73,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-10-15T02:20:15.603Z",
-    "lastModifiedAt": "2026-10-15T14:17:27.283Z",
-    "fetchedAt": "2026-10-15T23:58:09.925Z",
+    "lastModifiedAt": "2026-10-16T18:25:45.343Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -34,8 +86,8 @@
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-10-14T18:17:21.540Z",
-    "lastModifiedAt": "2026-10-15T16:17:33.123Z",
-    "fetchedAt": "2026-10-15T23:58:09.925Z",
+    "lastModifiedAt": "2026-10-16T20:02:37.630Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -47,22 +99,9 @@
     "cvssScore": 3.3,
     "severity": "LOW",
     "publishedAt": "2026-10-14T16:17:53.863Z",
-    "lastModifiedAt": "2026-10-15T16:18:21.623Z",
-    "fetchedAt": "2026-10-15T23:58:09.925Z",
+    "lastModifiedAt": "2026-10-16T16:00:33.533Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-41947",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-41947",
-    "descriptionEn": "Dify before version 1.14.2 contains an authorization bypass vulnerability that allows authenticated editor users to set and enable trace configurations for any application regardless of tenant ownership. Attackers can exploit missing tenant ownership checks in the trace configuration endpoints to redirect all messages and responses from victim applications to attacker-controlled LLM trace providers. NOTE: Dify Cloud allows unauthenticated free self-registration, making account creation trivially accessible to any attacker.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 9.1,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-05-18T15:16:25.827Z",
-    "lastModifiedAt": "2026-10-14T20:10:00.190Z",
-    "fetchedAt": "2026-10-15T23:58:09.925Z",
-    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-110206",
@@ -73,8 +112,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-10-13T19:18:44.157Z",
-    "lastModifiedAt": "2026-10-15T18:59:31.700Z",
-    "fetchedAt": "2026-10-15T23:58:09.925Z",
+    "lastModifiedAt": "2026-10-16T23:16:59.687Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -151,8 +190,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-10-12T21:17:07.817Z",
-    "lastModifiedAt": "2026-10-13T17:17:13.893Z",
-    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "lastModifiedAt": "2026-10-16T19:18:44.867Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -164,8 +203,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-10-12T19:16:39.110Z",
-    "lastModifiedAt": "2026-10-13T16:17:22.207Z",
-    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "lastModifiedAt": "2026-10-16T20:04:29.760Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -190,8 +229,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-10-11T14:17:06.360Z",
-    "lastModifiedAt": "2026-10-13T20:17:24.417Z",
-    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "lastModifiedAt": "2026-10-16T19:18:44.867Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -203,8 +242,8 @@
     "cvssScore": 5.4,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-11T13:17:20.680Z",
-    "lastModifiedAt": "2026-10-13T14:17:20.973Z",
-    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "lastModifiedAt": "2026-10-16T19:18:44.867Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -216,8 +255,8 @@
     "cvssScore": 3.3,
     "severity": "LOW",
     "publishedAt": "2026-10-11T13:17:20.380Z",
-    "lastModifiedAt": "2026-10-11T13:17:20.380Z",
-    "fetchedAt": "2026-10-12T00:48:30.432Z",
+    "lastModifiedAt": "2026-10-16T19:18:44.867Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -255,8 +294,8 @@
     "cvssScore": 4.7,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-10T19:16:58.640Z",
-    "lastModifiedAt": "2026-10-13T19:18:08.220Z",
-    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "lastModifiedAt": "2026-10-16T19:21:14.417Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -268,8 +307,8 @@
     "cvssScore": 4.7,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-10T19:16:58.487Z",
-    "lastModifiedAt": "2026-10-14T16:17:33.103Z",
-    "fetchedAt": "2026-10-15T23:58:09.925Z",
+    "lastModifiedAt": "2026-10-16T19:18:44.867Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -281,8 +320,8 @@
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-10T19:16:58.070Z",
-    "lastModifiedAt": "2026-10-10T19:16:58.070Z",
-    "fetchedAt": "2026-10-12T00:48:30.432Z",
+    "lastModifiedAt": "2026-10-16T19:18:44.867Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -307,8 +346,8 @@
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-10T19:16:57.463Z",
-    "lastModifiedAt": "2026-10-14T03:17:17.270Z",
-    "fetchedAt": "2026-10-15T23:58:09.925Z",
+    "lastModifiedAt": "2026-10-16T19:18:44.867Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -320,8 +359,8 @@
     "cvssScore": 4.2,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-10T16:16:31.667Z",
-    "lastModifiedAt": "2026-10-13T13:17:16.200Z",
-    "fetchedAt": "2026-10-14T00:43:22.587Z",
+    "lastModifiedAt": "2026-10-16T19:18:44.867Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -333,8 +372,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-10T16:16:31.380Z",
-    "lastModifiedAt": "2026-10-10T16:16:31.380Z",
-    "fetchedAt": "2026-10-12T00:48:30.432Z",
+    "lastModifiedAt": "2026-10-16T19:18:44.867Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -567,8 +606,8 @@
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T23:17:02.903Z",
-    "lastModifiedAt": "2026-10-06T15:17:15.257Z",
-    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "lastModifiedAt": "2026-10-16T20:39:54.097Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -580,8 +619,8 @@
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-05T23:17:02.760Z",
-    "lastModifiedAt": "2026-10-06T18:16:46.407Z",
-    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "lastModifiedAt": "2026-10-16T20:41:27.840Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -681,11 +720,11 @@
     "descriptionEn": "Docling simplifies document processing by parsing diverse formats and providing integrations with the generative AI ecosystem. From 2.107.0 until 2.120.3, docling/backend/opendocument_backend.py uses the xlink:href attribute value of a draw:image element as a filesystem path when the referenced part is not found in the document archive. The _image_ref_from_odf_image function reads that attacker-controlled path without a scheme check, extraction-directory confinement, or the enable_local_fetch setting used by other backends. Readable files that Pillow can decode as images are embedded in converted output, and other existing paths can be distinguished through the attempted read. This issue is fixed in 2.120.3.",
     "summaryJa": "Docling 2.107.0から2.120.3までのバージョンにおいて、OpenDocumentファイルの処理時に、`draw:image`要素の`xlink:href`属性が参照する画像がアーカイブに見つからない場合、その値をファイルシステムパスとして扱う脆弱性がありました。これにより、攻撃者は任意のローカルファイルを読み込み、変換出力に埋め込んだり、ファイルパスの存在を検出したりすることが可能になります。この問題はバージョン2.120.3で修正されています。",
     "category": "other",
-    "cvssScore": null,
-    "severity": null,
+    "cvssScore": 7.5,
+    "severity": "HIGH",
     "publishedAt": "2026-10-05T22:16:58.253Z",
-    "lastModifiedAt": "2026-10-06T17:17:19.053Z",
-    "fetchedAt": "2026-10-07T01:05:55.957Z",
+    "lastModifiedAt": "2026-10-16T20:45:30.910Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -1737,8 +1776,8 @@
     "cvssScore": 7.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-22T16:16:35.943Z",
-    "lastModifiedAt": "2026-10-14T13:10:00.187Z",
-    "fetchedAt": "2026-10-15T23:58:09.925Z",
+    "lastModifiedAt": "2026-10-16T20:17:48.063Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
   },
   {
@@ -4888,6 +4927,19 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2026-41947",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-41947",
+    "descriptionEn": "Dify before version 1.14.2 contains an authorization bypass vulnerability that allows authenticated editor users to set and enable trace configurations for any application regardless of tenant ownership. Attackers can exploit missing tenant ownership checks in the trace configuration endpoints to redirect all messages and responses from victim applications to attacker-controlled LLM trace providers. NOTE: Dify Cloud allows unauthenticated free self-registration, making account creation trivially accessible to any attacker.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.1,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-05-18T15:16:25.827Z",
+    "lastModifiedAt": "2026-10-14T20:10:00.190Z",
+    "fetchedAt": "2026-10-15T23:58:09.925Z",
+    "llmStatus": "failed"
+  },
+  {
     "id": "CVE-2026-44484",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44484",
     "descriptionEn": "PyTorch Lightning is a deep learning framework to pretrain and finetune AI models. Versions 2.6.2 and 2.6.2 have introduced functionality consistent with a credential harvesting mechanism.",
@@ -4992,6 +5044,19 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2026-43067",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-43067",
+    "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\next4: handle wraparound when searching for blocks for indirect mapped blocks\n\nCommit 4865c768b563 (\"ext4: always allocate blocks only from groups\ninode can use\") restricts what blocks will be allocated for indirect\nblock based files to block numbers that fit within 32-bit block\nnumbers.\n\nHowever, when using a review bot running on the latest Gemini LLM to\ncheck this commit when backporting into an LTS based kernel, it raised\nthis concern:\n\n   If ac->ac_g_ex.fe_group is >= ngroups (for instance, if the goal\n   group was populated via stream allocation from s_mb_last_groups),\n   then start will be >= ngroups.\n\n   Does this allow allocating blocks beyond the 32-bit limit for\n   indirect block mapped files? The commit message mentions that\n   ext4_mb_scan_groups_linear() takes care to not select unsupported\n   groups. However, its loop uses group = *start, and the very first\n   iteration will call ext4_mb_scan_group() with this unsupported\n   group because next_linear_group() is only called at the end of the\n   iteration.\n\nAfter reviewing the code paths involved and considering the LLM\nreview, I determined that this can happen when there is a file system\nwhere some files/directories are extent-mapped and others are\nindirect-block mapped.  To address this, add a safety clamp in\next4_mb_scan_groups().",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-05-05T16:16:15.937Z",
+    "lastModifiedAt": "2026-10-16T16:17:28.643Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-7178",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-7178",
     "descriptionEn": "A weakness has been identified in ChatGPTNextWeb NextChat up to 2.16.1. This affects the function storeUrl of the file app/api/artifacts/route.ts of the component Artifacts Endpoint. This manipulation of the argument ID causes server-side request forgery. It is possible to initiate the attack remotely. The exploit has been made available to the public and could be used for attacks. The project was informed of the problem early through an issue report but has not responded yet.",
@@ -5016,6 +5081,19 @@
     "lastModifiedAt": "2026-07-15T02:21:15.963Z",
     "fetchedAt": "2026-07-15T22:45:30.672Z",
     "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-31554",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-31554",
+    "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\nfutex: Require sys_futex_requeue() to have identical flags\n\nNicholas reported that his LLM found it was possible to create a UaF\nwhen sys_futex_requeue() is used with different flags. The initial\nmotivation for allowing different flags was the variable sized futex,\nbut since that hasn't been merged (yet), simply mandate the flags are\nidentical, as is the case for the old style sys_futex() requeue\noperations.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-04-24T15:16:29.730Z",
+    "lastModifiedAt": "2026-10-16T16:17:11.770Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-41182",
