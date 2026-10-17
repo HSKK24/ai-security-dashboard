@@ -3,53 +3,66 @@
     "id": "CVE-2026-105038",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-105038",
     "descriptionEn": "The EnergizeLab Eilik and EilikO FastAPI AI inference and profiling services expose AI model administration functions without authentication. An unauthenticated remote attacker can change AI model configuration and switch the model in use at runtime.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "EnergizeLabのEilikおよびEilikO FastAPI AI推論・プロファイリングサービスにおいて、AIモデル管理機能が認証なしに公開されている脆弱性がある。これにより、認証されていないリモート攻撃者はAIモデルの設定変更や、実行時に使用中のモデルの切り替えが可能となる。",
+    "category": "ai-service",
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-10-15T21:17:04.467Z",
     "lastModifiedAt": "2026-10-15T21:17:04.467Z",
     "fetchedAt": "2026-10-15T23:58:09.925Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-76066",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76066",
     "descriptionEn": "IntentKit through 2.6.3 contains an authorization bypass vulnerability where the executor validates tool calls against the full tool registry rather than the per-request narrowed tool advertisement enforced by ToolBindingMiddleware, allowing owner-only state-changing tools such as wallet transfer, posting, memory-write, and call-agent to execute without any human-in-the-loop or approval gate. An unauthenticated or public caller in WEB, API, TWITTER, or TELEGRAM contexts can exploit this by supplying the exact de-advertised tool name and arguments via indirect prompt injection or by replaying checkpoint and history data on a reused thread, achieving unauthorized execution of owner-restricted capabilities.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "IntentKit 2.6.3以前のバージョンには認証バイパスの脆弱性が存在します。この脆弱性は、ツール呼び出しの検証が、リクエストで限定されたツール広告ではなく、ツールレジストリ全体に対して行われることに起因します。これにより、攻撃者は間接的なプロンプトインジェクションなどを介して、所有者のみが実行可能なウォレット転送やメモリ書き込みといった機密性の高い操作を、承認なしで実行する可能性があります。",
+    "category": "ai-library",
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-10-15T02:20:15.603Z",
     "lastModifiedAt": "2026-10-15T14:17:27.283Z",
     "fetchedAt": "2026-10-15T23:58:09.925Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-104103",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-104103",
     "descriptionEn": "Ludwig is a low-code framework for building custom LLMs, neural networks, and other AI models. Prior to 0.17.8, ludwig.datasets.archives.extract_archive() validated tar member names before calling TarFile.extractall() but did not validate symlink members or hard-link members. A crafted archive could create a link that escaped the extraction directory and then write a later member through that link, placing attacker-controlled content at an arbitrary filesystem path with the extracting process's privileges. The same containment check used os.path.commonprefix, so a sibling path sharing the destination's character prefix could also pass. The dataset-loading path can download and extract configured archive URLs, but exploitation requires a user to process an archive from a source controlled or compromised by the attacker on supported Python 3.12 and 3.13 runtimes. Python 3.14 is not affected because its default tar data filter rejects escaping links. This issue is fixed in version 0.17.8.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Ludwigフレームワークのバージョン0.17.8未満において、アーカイブ展開機能`ludwig.datasets.archives.extract_archive()`にディレクトリトラバーサルの脆弱性が存在します。シンボリックリンクやハードリンクの検証が不十分だったため、細工されたtarアーカイブが抽出ディレクトリを脱出し、任意のファイルシステムパスにファイルを書き込む可能性があります。この脆弱性はPython 3.12および3.13環境に影響し、ユーザーが攻撃者提供のアーカイブを処理した場合に悪用される可能性があります。",
+    "category": "ai-library",
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-10-14T18:17:21.540Z",
     "lastModifiedAt": "2026-10-15T16:17:33.123Z",
     "fetchedAt": "2026-10-15T23:58:09.925Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-77572",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-77572",
     "descriptionEn": "VeraCrypt provides disk encryption with strong security based on TrueCrypt. In 1.26.29 and earlier, selected metadata IOCTL handlers in the VeraCrypt Windows veracrypt.sys driver accept caller-supplied object-manager and device paths broader than supported VeraCrypt workflows require. A local user who can open the intentionally user-accessible \\.\\VeraCrypt device can use TC_IOCTL_GET_RESOLVED_SYMLINK, TC_IOCTL_GET_DRIVE_PARTITION_INFO, VC_IOCTL_GET_DRIVE_GEOMETRY_EX, or the legacy TC_IOCTL_GET_DRIVE_GEOMETRY handler to make src/Driver/Ntdriver.c perform kernel-context symbolic-link or disk-device lookups outside the intended path scope. This can disclose low-sensitivity drive-letter targets, partition information, disk geometry, GPT or MBR state, and limited object-manager path metadata.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "VeraCryptのWindowsドライバー (veracrypt.sys) バージョン1.26.29以前において、特定のメタデータIOCTLハンドラーが、サポートされるワークフローよりも広範な呼び出し元指定のパスを受け入れていました。これにより、ローカルユーザーは\r.\rVeraCryptデバイスを介して、カーネルコンテキストで意図されたパススコープ外のシンボリックリンクやディスクデバイス情報を参照できました。結果として、ドライブレターターゲット、パーティション情報、ディスクジオメトリ、GPT/MBRの状態、および限定的なオブジェクトマネージャーのパスメタデータが漏洩する可能性があります。",
+    "category": "other",
     "cvssScore": 3.3,
     "severity": "LOW",
     "publishedAt": "2026-10-14T16:17:53.863Z",
     "lastModifiedAt": "2026-10-15T16:18:21.623Z",
     "fetchedAt": "2026-10-15T23:58:09.925Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-41947",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-41947",
+    "descriptionEn": "Dify before version 1.14.2 contains an authorization bypass vulnerability that allows authenticated editor users to set and enable trace configurations for any application regardless of tenant ownership. Attackers can exploit missing tenant ownership checks in the trace configuration endpoints to redirect all messages and responses from victim applications to attacker-controlled LLM trace providers. NOTE: Dify Cloud allows unauthenticated free self-registration, making account creation trivially accessible to any attacker.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.1,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-05-18T15:16:25.827Z",
+    "lastModifiedAt": "2026-10-14T20:10:00.190Z",
+    "fetchedAt": "2026-10-15T23:58:09.925Z",
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-110206",
@@ -4873,19 +4886,6 @@
     "lastModifiedAt": "2026-07-24T13:10:00.223Z",
     "fetchedAt": "2026-07-24T22:50:22.190Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-41947",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-41947",
-    "descriptionEn": "Dify before version 1.14.2 contains an authorization bypass vulnerability that allows authenticated editor users to set and enable trace configurations for any application regardless of tenant ownership. Attackers can exploit missing tenant ownership checks in the trace configuration endpoints to redirect all messages and responses from victim applications to attacker-controlled LLM trace providers. NOTE: Dify Cloud allows unauthenticated free self-registration, making account creation trivially accessible to any attacker.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 9.1,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-05-18T15:16:25.827Z",
-    "lastModifiedAt": "2026-10-14T20:10:00.190Z",
-    "fetchedAt": "2026-10-15T23:58:09.925Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-44484",
