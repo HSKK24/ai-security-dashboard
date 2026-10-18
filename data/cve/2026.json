@@ -3,53 +3,92 @@
     "id": "CVE-2026-111704",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-111704",
     "descriptionEn": "LangChat through commit 2a6285a contains a missing authentication vulnerability that allows unauthenticated remote attackers to access REST controllers because no Sa-Token interceptor is registered. Attackers can query /api/v1/auth/users to read plaintext passwords, retrieve LLM provider API keys, create super-admin accounts, and modify or delete data.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LangChatのコミット2a6285aまでのバージョンにおいて、Sa-Tokenインターセプターの未登録により認証機能の不備が存在します。これにより、認証されていないリモート攻撃者はRESTコントローラーにアクセスし、平文のパスワードやLLMプロバイダーのAPIキーの取得、スーパー管理者アカウントの作成、データの変更または削除が可能になります。",
+    "category": "ai-service",
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-10-16T18:17:54.370Z",
     "lastModifiedAt": "2026-10-16T19:03:18.127Z",
     "fetchedAt": "2026-10-17T23:35:40.848Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-111682",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-111682",
     "descriptionEn": "EFAK 5.0.0 through 5.1.0 contains a missing authorization vulnerability that allows authenticated low-privilege users to read LLM provider API keys through the /api/model-config REST API. Attackers with any ROLE_USER account can query /api/model-config/page or /api/model-config/{id} to retrieve unmasked keys, enabling provider account access and incurred costs.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "EFAK 5.0.0から5.1.0において、認証メカニズムの欠如により、認証済みの低権限ユーザーがLLMプロバイダーのAPIキーを読み取れる脆弱性が存在します。ROLE_USERアカウントを持つ攻撃者は、/api/model-config REST APIを通じてマスクされていないAPIキーを取得し、プロバイダーアカウントへの不正アクセスや費用発生を引き起こす可能性があります。",
+    "category": "ai-service",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-16T18:17:51.213Z",
     "lastModifiedAt": "2026-10-16T20:17:22.140Z",
     "fetchedAt": "2026-10-17T23:35:40.848Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-111623",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-111623",
     "descriptionEn": "Xiaozhi-esp32-server-java through 6.1.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to obtain valid device WebSocket tokens by requesting /api/device/ota with any MAC address. Attackers can open a victim device's WebSocket channel to read private role system prompts, write conversation history, consume LLM/STT/TTS credentials, and overwrite device metadata.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Xiaozhi-esp32-server-java 6.1.0までのバージョンには認証バイパスの脆弱性が存在します。認証されていない攻撃者は、任意MACアドレスで/api/device/otaをリクエストすることで有効なデバイスWebSocketトークンを取得可能です。これにより、攻撃者はプライベートなシステムプロンプトの読み取り、会話履歴の書き込み、LLM/STT/TTSクレデンシャルの悪用、およびデバイスメタデータの上書きが可能になります。",
+    "category": "ai-service",
     "cvssScore": 5.6,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-16T18:17:42.133Z",
     "lastModifiedAt": "2026-10-16T19:03:18.127Z",
     "fetchedAt": "2026-10-17T23:35:40.848Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-95183",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-95183",
     "descriptionEn": "An issue in the context-compaction feature of DeepSeek Harness (dsh) commit c291e796 allows attackers to execute a prompt injection attack via crafted external content.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "DeepSeek Harness (dsh) のコミット c291e796 に存在するコンテキスト圧縮機能の脆弱性により、攻撃者は巧妙に作成された外部コンテンツを介してプロンプトインジェクション攻撃を実行する可能性があります。",
+    "category": "prompt-injection",
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-10-16T15:17:37.050Z",
     "lastModifiedAt": "2026-10-16T19:56:15.773Z",
     "fetchedAt": "2026-10-17T23:35:40.848Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-41947",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-41947",
+    "descriptionEn": "Dify before version 1.14.2 contains an authorization bypass vulnerability that allows authenticated editor users to set and enable trace configurations for any application regardless of tenant ownership. Attackers can exploit missing tenant ownership checks in the trace configuration endpoints to redirect all messages and responses from victim applications to attacker-controlled LLM trace providers. NOTE: Dify Cloud allows unauthenticated free self-registration, making account creation trivially accessible to any attacker.",
+    "summaryJa": "Difyバージョン1.14.2未満において、認証されたエディターユーザーがテナント所有権に関わらず任意のアプリケーションのトレース設定を有効にできる認可バイパス脆弱性が存在します。この脆弱性により、攻撃者は被害者アプリケーションからのメッセージと応答を自身が制御するLLMトレースプロバイダーにリダイレクトできる可能性があります。Dify Cloudでは無認証で自己登録が可能なため、アカウント作成が容易であることも指摘されています。",
+    "category": "ai-service",
+    "cvssScore": 9.1,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-05-18T15:16:25.827Z",
+    "lastModifiedAt": "2026-10-14T20:10:00.190Z",
+    "fetchedAt": "2026-10-15T23:58:09.925Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-43067",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-43067",
+    "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\next4: handle wraparound when searching for blocks for indirect mapped blocks\n\nCommit 4865c768b563 (\"ext4: always allocate blocks only from groups\ninode can use\") restricts what blocks will be allocated for indirect\nblock based files to block numbers that fit within 32-bit block\nnumbers.\n\nHowever, when using a review bot running on the latest Gemini LLM to\ncheck this commit when backporting into an LTS based kernel, it raised\nthis concern:\n\n   If ac->ac_g_ex.fe_group is >= ngroups (for instance, if the goal\n   group was populated via stream allocation from s_mb_last_groups),\n   then start will be >= ngroups.\n\n   Does this allow allocating blocks beyond the 32-bit limit for\n   indirect block mapped files? The commit message mentions that\n   ext4_mb_scan_groups_linear() takes care to not select unsupported\n   groups. However, its loop uses group = *start, and the very first\n   iteration will call ext4_mb_scan_group() with this unsupported\n   group because next_linear_group() is only called at the end of the\n   iteration.\n\nAfter reviewing the code paths involved and considering the LLM\nreview, I determined that this can happen when there is a file system\nwhere some files/directories are extent-mapped and others are\nindirect-block mapped.  To address this, add a safety clamp in\next4_mb_scan_groups().",
+    "summaryJa": "Linuxカーネルのext4ファイルシステムにおいて、間接ブロックマップされたファイルのブロック検索時に、32ビットブロック番号の制限を超えてブロックを割り当ててしまう可能性のある脆弱性が修正されました。この問題は、ファイルシステムでエクステントマップと間接ブロックマップが混在する場合に発生し、ext4_mb_scan_groups()に安全クランプを追加することで対処されました。",
+    "category": "other",
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-05-05T16:16:15.937Z",
+    "lastModifiedAt": "2026-10-16T16:17:28.643Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-31554",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-31554",
+    "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\nfutex: Require sys_futex_requeue() to have identical flags\n\nNicholas reported that his LLM found it was possible to create a UaF\nwhen sys_futex_requeue() is used with different flags. The initial\nmotivation for allowing different flags was the variable sized futex,\nbut since that hasn't been merged (yet), simply mandate the flags are\nidentical, as is the case for the old style sys_futex() requeue\noperations.",
+    "summaryJa": "Linuxカーネルのfutexサブシステムにおいて、`sys_futex_requeue()`関数が異なるフラグで使用された場合にUse-after-Free (UaF) の脆弱性が存在しました。この問題はLLMによって発見され、`sys_futex_requeue()`に同一のフラグを要求するよう修正することで解決されました。これにより、古い`sys_futex()`のrequeue操作と同様に安全性が確保されます。",
+    "category": "other",
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-04-24T15:16:29.730Z",
+    "lastModifiedAt": "2026-10-16T16:17:11.770Z",
+    "fetchedAt": "2026-10-17T23:35:40.848Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-105038",
@@ -255,8 +294,8 @@
     "cvssScore": 3.3,
     "severity": "LOW",
     "publishedAt": "2026-10-11T13:17:20.380Z",
-    "lastModifiedAt": "2026-10-16T19:18:44.867Z",
-    "fetchedAt": "2026-10-17T23:35:40.848Z",
+    "lastModifiedAt": "2026-10-18T12:17:01.143Z",
+    "fetchedAt": "2026-10-18T23:46:02.813Z",
     "llmStatus": "ok"
   },
   {
@@ -320,8 +359,8 @@
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-10T19:16:58.070Z",
-    "lastModifiedAt": "2026-10-16T19:18:44.867Z",
-    "fetchedAt": "2026-10-17T23:35:40.848Z",
+    "lastModifiedAt": "2026-10-18T12:16:57.667Z",
+    "fetchedAt": "2026-10-18T23:46:02.813Z",
     "llmStatus": "ok"
   },
   {
@@ -372,8 +411,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-10T16:16:31.380Z",
-    "lastModifiedAt": "2026-10-16T19:18:44.867Z",
-    "fetchedAt": "2026-10-17T23:35:40.848Z",
+    "lastModifiedAt": "2026-10-18T12:16:57.417Z",
+    "fetchedAt": "2026-10-18T23:46:02.813Z",
     "llmStatus": "ok"
   },
   {
@@ -1841,8 +1880,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-20T17:19:40.930Z",
-    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-10-18T20:10:00.110Z",
+    "fetchedAt": "2026-10-18T23:46:02.813Z",
     "llmStatus": "ok"
   },
   {
@@ -4927,19 +4966,6 @@
     "llmStatus": "ok"
   },
   {
-    "id": "CVE-2026-41947",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-41947",
-    "descriptionEn": "Dify before version 1.14.2 contains an authorization bypass vulnerability that allows authenticated editor users to set and enable trace configurations for any application regardless of tenant ownership. Attackers can exploit missing tenant ownership checks in the trace configuration endpoints to redirect all messages and responses from victim applications to attacker-controlled LLM trace providers. NOTE: Dify Cloud allows unauthenticated free self-registration, making account creation trivially accessible to any attacker.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 9.1,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-05-18T15:16:25.827Z",
-    "lastModifiedAt": "2026-10-14T20:10:00.190Z",
-    "fetchedAt": "2026-10-15T23:58:09.925Z",
-    "llmStatus": "failed"
-  },
-  {
     "id": "CVE-2026-44484",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44484",
     "descriptionEn": "PyTorch Lightning is a deep learning framework to pretrain and finetune AI models. Versions 2.6.2 and 2.6.2 have introduced functionality consistent with a credential harvesting mechanism.",
@@ -5044,19 +5070,6 @@
     "llmStatus": "ok"
   },
   {
-    "id": "CVE-2026-43067",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-43067",
-    "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\next4: handle wraparound when searching for blocks for indirect mapped blocks\n\nCommit 4865c768b563 (\"ext4: always allocate blocks only from groups\ninode can use\") restricts what blocks will be allocated for indirect\nblock based files to block numbers that fit within 32-bit block\nnumbers.\n\nHowever, when using a review bot running on the latest Gemini LLM to\ncheck this commit when backporting into an LTS based kernel, it raised\nthis concern:\n\n   If ac->ac_g_ex.fe_group is >= ngroups (for instance, if the goal\n   group was populated via stream allocation from s_mb_last_groups),\n   then start will be >= ngroups.\n\n   Does this allow allocating blocks beyond the 32-bit limit for\n   indirect block mapped files? The commit message mentions that\n   ext4_mb_scan_groups_linear() takes care to not select unsupported\n   groups. However, its loop uses group = *start, and the very first\n   iteration will call ext4_mb_scan_group() with this unsupported\n   group because next_linear_group() is only called at the end of the\n   iteration.\n\nAfter reviewing the code paths involved and considering the LLM\nreview, I determined that this can happen when there is a file system\nwhere some files/directories are extent-mapped and others are\nindirect-block mapped.  To address this, add a safety clamp in\next4_mb_scan_groups().",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 9.8,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-05-05T16:16:15.937Z",
-    "lastModifiedAt": "2026-10-16T16:17:28.643Z",
-    "fetchedAt": "2026-10-17T23:35:40.848Z",
-    "llmStatus": "pending"
-  },
-  {
     "id": "CVE-2026-7178",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-7178",
     "descriptionEn": "A weakness has been identified in ChatGPTNextWeb NextChat up to 2.16.1. This affects the function storeUrl of the file app/api/artifacts/route.ts of the component Artifacts Endpoint. This manipulation of the argument ID causes server-side request forgery. It is possible to initiate the attack remotely. The exploit has been made available to the public and could be used for attacks. The project was informed of the problem early through an issue report but has not responded yet.",
@@ -5081,19 +5094,6 @@
     "lastModifiedAt": "2026-07-15T02:21:15.963Z",
     "fetchedAt": "2026-07-15T22:45:30.672Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-31554",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-31554",
-    "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\nfutex: Require sys_futex_requeue() to have identical flags\n\nNicholas reported that his LLM found it was possible to create a UaF\nwhen sys_futex_requeue() is used with different flags. The initial\nmotivation for allowing different flags was the variable sized futex,\nbut since that hasn't been merged (yet), simply mandate the flags are\nidentical, as is the case for the old style sys_futex() requeue\noperations.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.8,
-    "severity": "HIGH",
-    "publishedAt": "2026-04-24T15:16:29.730Z",
-    "lastModifiedAt": "2026-10-16T16:17:11.770Z",
-    "fetchedAt": "2026-10-17T23:35:40.848Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-41182",
