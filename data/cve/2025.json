@@ -21,8 +21,8 @@
     "cvssScore": 9.6,
     "severity": "CRITICAL",
     "publishedAt": "2025-12-23T23:15:45.470Z",
-    "lastModifiedAt": "2026-06-17T09:59:24.520Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T22:10:00.130Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -34,8 +34,8 @@
     "cvssScore": 8.6,
     "severity": "HIGH",
     "publishedAt": "2025-12-23T23:15:45.097Z",
-    "lastModifiedAt": "2026-06-17T09:59:24.050Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T22:10:00.130Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -47,8 +47,8 @@
     "cvssScore": 9.3,
     "severity": "CRITICAL",
     "publishedAt": "2025-12-23T23:15:44.933Z",
-    "lastModifiedAt": "2026-06-17T09:59:23.937Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T22:10:00.130Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -255,8 +255,8 @@
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2025-11-27T10:15:51.220Z",
-    "lastModifiedAt": "2026-06-17T08:34:01.517Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T13:10:00.110Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -268,8 +268,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2025-11-27T10:15:50.993Z",
-    "lastModifiedAt": "2026-06-17T08:34:01.197Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T13:10:00.110Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -320,8 +320,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2025-11-21T22:16:33.127Z",
-    "lastModifiedAt": "2026-06-17T09:55:27.457Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T13:10:00.110Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -333,8 +333,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2025-11-21T22:16:32.933Z",
-    "lastModifiedAt": "2026-06-17T09:55:27.350Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T13:10:00.110Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -385,8 +385,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2025-11-21T02:15:43.570Z",
-    "lastModifiedAt": "2026-06-17T09:51:53.037Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T13:10:00.110Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -398,8 +398,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2025-11-21T02:15:43.393Z",
-    "lastModifiedAt": "2026-06-17T09:51:47.210Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T13:10:00.110Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -411,8 +411,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2025-11-21T02:15:43.193Z",
-    "lastModifiedAt": "2026-06-17T09:51:29.260Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T13:10:00.110Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -425,7 +425,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2025-11-11T18:15:50.423Z",
     "lastModifiedAt": "2026-10-18T21:10:00.120Z",
-    "fetchedAt": "2026-10-18T23:46:02.813Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -489,8 +489,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2025-11-06T16:16:10.387Z",
-    "lastModifiedAt": "2026-06-17T09:51:15.410Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T13:10:00.110Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -502,8 +502,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2025-11-05T00:15:34.957Z",
-    "lastModifiedAt": "2026-06-17T09:53:50.557Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T13:10:00.110Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -515,8 +515,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2025-11-04T23:15:44.470Z",
-    "lastModifiedAt": "2026-06-17T09:53:50.340Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T13:10:00.110Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -528,8 +528,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2025-11-04T23:15:44.330Z",
-    "lastModifiedAt": "2026-06-17T09:53:50.220Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T13:10:00.110Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -581,7 +581,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2025-11-04T19:17:09.160Z",
     "lastModifiedAt": "2026-10-18T21:10:00.120Z",
-    "fetchedAt": "2026-10-18T23:46:02.813Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -594,7 +594,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2025-11-04T05:16:08.120Z",
     "lastModifiedAt": "2026-10-18T21:10:00.120Z",
-    "fetchedAt": "2026-10-18T23:46:02.813Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -632,8 +632,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2025-10-17T16:15:39.150Z",
-    "lastModifiedAt": "2026-06-17T09:51:45.290Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T16:10:00.260Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -658,8 +658,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2025-10-14T17:15:39.623Z",
-    "lastModifiedAt": "2026-06-17T09:14:53.230Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T16:10:00.260Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -736,8 +736,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2025-10-07T14:15:38.950Z",
-    "lastModifiedAt": "2026-06-17T09:46:08.690Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T16:10:00.260Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -762,8 +762,8 @@
     "cvssScore": 9.6,
     "severity": "CRITICAL",
     "publishedAt": "2025-10-06T16:15:34.377Z",
-    "lastModifiedAt": "2026-06-17T09:45:38.887Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T16:10:00.260Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -775,8 +775,8 @@
     "cvssScore": 8,
     "severity": "HIGH",
     "publishedAt": "2025-10-03T21:15:34.913Z",
-    "lastModifiedAt": "2026-06-17T09:46:53.997Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T16:10:00.260Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -788,8 +788,8 @@
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2025-10-03T18:15:36.230Z",
-    "lastModifiedAt": "2026-06-17T09:50:37.083Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T17:10:00.173Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -801,8 +801,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2025-10-03T18:15:36.067Z",
-    "lastModifiedAt": "2026-06-17T09:50:36.980Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T17:10:00.173Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -814,8 +814,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2025-10-03T17:15:47.690Z",
-    "lastModifiedAt": "2026-06-17T09:50:36.767Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T17:10:00.173Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -827,8 +827,8 @@
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2025-10-03T07:15:45.470Z",
-    "lastModifiedAt": "2026-06-17T09:50:36.653Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T17:10:00.173Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -840,8 +840,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2025-10-01T19:15:36.317Z",
-    "lastModifiedAt": "2026-06-17T09:43:50.817Z",
-    "fetchedAt": "2026-07-02T22:54:55.710Z",
+    "lastModifiedAt": "2026-10-19T17:10:00.173Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
@@ -893,7 +893,7 @@
     "severity": "CRITICAL",
     "publishedAt": "2025-09-22T20:15:39.530Z",
     "lastModifiedAt": "2026-10-18T21:10:00.120Z",
-    "fetchedAt": "2026-10-18T23:46:02.813Z",
+    "fetchedAt": "2026-10-20T00:46:53.756Z",
     "llmStatus": "ok"
   },
   {
