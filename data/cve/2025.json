@@ -22,7 +22,7 @@
     "severity": "CRITICAL",
     "publishedAt": "2025-12-23T23:15:45.470Z",
     "lastModifiedAt": "2026-10-19T22:10:00.130Z",
-    "fetchedAt": "2026-10-20T00:46:53.756Z",
+    "fetchedAt": "2026-10-21T00:13:50.373Z",
     "llmStatus": "ok"
   },
   {
@@ -35,7 +35,7 @@
     "severity": "HIGH",
     "publishedAt": "2025-12-23T23:15:45.097Z",
     "lastModifiedAt": "2026-10-19T22:10:00.130Z",
-    "fetchedAt": "2026-10-20T00:46:53.756Z",
+    "fetchedAt": "2026-10-21T00:13:50.373Z",
     "llmStatus": "ok"
   },
   {
@@ -48,7 +48,7 @@
     "severity": "CRITICAL",
     "publishedAt": "2025-12-23T23:15:44.933Z",
     "lastModifiedAt": "2026-10-19T22:10:00.130Z",
-    "fetchedAt": "2026-10-20T00:46:53.756Z",
+    "fetchedAt": "2026-10-21T00:13:50.373Z",
     "llmStatus": "ok"
   },
   {
