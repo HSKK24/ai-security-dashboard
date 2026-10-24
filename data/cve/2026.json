@@ -1,5 +1,122 @@
 [
   {
+    "id": "CVE-2026-115886",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-115886",
+    "descriptionEn": "MLflow is an open source AI engineering platform for agents, large language models, and machine learning models. From 3.12.0rc0 until 3.17.0, the scorer invoke, register, and GenAI evaluate endpoints, including unauthenticated POST /ajax-api/3.0/mlflow/scorer/invoke, accept serialized third-party scorer data that Scorer.model_validate_json resolves using a module-path allowlist without constraining the selected class or its constructor arguments. When optional trulens and trulens-providers-litellm packages are installed, an attacker can select mlflow.genai.scorers.trulens, choose a model URI outside MLflow's native provider registry so execution uses the LiteLLM fallback, and supply api_base and api_key values that cause the server to send an outbound request to an attacker-chosen or internal host with attacker-controlled headers and body. The vulnerable deserialization occurs before a tracking-store lookup or job submission. This issue is fixed in version 3.17.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-10-23T22:16:58.110Z",
+    "lastModifiedAt": "2026-10-23T22:16:58.110Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-99062",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-99062",
+    "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\nvsock/virtio: account only unread bytes in read_skb()\n\nAfter a partial stream receive, rx_bytes tracks the unread suffix while\nbuf_used and peer credit still cover the whole packet.\nvirtio_transport_read_skb() dequeues that packet but passes pkt_len for\nboth counters, underflowing rx_bytes.\n\nOn a connected CID_LOCAL stream with an SK_SKB verdict, a 40-byte read\nfrom a 100-byte packet made SIOCINQ report -40, an empty recv return\nELOOP, and poll report the empty socket readable.  After verdict detach,\nreceiving 40 bytes wrapped the counter to zero and hid those queued bytes\nuntil one more byte arrived.  The fixed run kept the counter balanced\nand exposed all queued data immediately.\n\nThis was found during an LLM-assisted manual source audit of VSOCK\nreceive accounting while re-evaluating virtio_transport_read_skb() after\nCVE-2024-50169.\n\nSubtract only skb->len minus the VSOCK offset from rx_bytes.  Retain the\nfull packet length for buf_used and peer credit.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-23T13:17:30.020Z",
+    "lastModifiedAt": "2026-10-23T13:17:30.020Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-99046",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-99046",
+    "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\ngve: fix XSK buffer leak on error descriptor\n\nWhen the error bit is set in the RX completion descriptor, the buf_state\nand its attached buffer should be freed. In the case of AF_XDP ZC, the\nXSK buffer was not freed, leading to a leak.\n\nThis issue was caught by LLM.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2026-10-23T13:17:28.073Z",
+    "lastModifiedAt": "2026-10-24T14:16:53.497Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-98873",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-98873",
+    "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\nnetfilter: nf_conntrack_expect: zero at allocation time\n\nThere are occasional LLM hints wrt. leaking uninitialized data to\nuserspace via ctnetlink.  Just zero at allocation time,\nexpectations are not frequently used these days.\n\nIntentionally keeps _init as-is because we could theoretically\nsupport re-init, so add the missing exp->dir there.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-23T12:18:20.753Z",
+    "lastModifiedAt": "2026-10-23T12:18:20.753Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-114612",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-114612",
+    "descriptionEn": "LiteLLM is a proxy server (AI Gateway) to call LLM APIs in OpenAI (or native) format. From 1.87.0 until 1.100.4, 1.101.3, 1.102.2, 1.103.1, and 1.104.0-rc.2, the proxy reuses one cryptographic context for at-rest secrets and session tokens, allowing an authenticated internal user to have crafted metadata containing a forged administrator credential encrypted and returned by the API-key flow. Replaying that ciphertext as a bearer token causes the proxy to trust the forged proxy administrator identity, permitting administrative access and arbitrary commands through the MCP stdio endpoint. Versions 1.87.0 through 1.90.x require EXPERIMENTAL_UI_LOGIN to be enabled, while versions after 1.91.0 are exploitable in the default configuration. This issue was fixed in LiteLLM 1.100.4, 1.101.3, 1.102.2, 1.103.1, and 1.104.0-rc.2.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.9,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-10-22T19:17:37.540Z",
+    "lastModifiedAt": "2026-10-23T19:42:24.553Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-114510",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-114510",
+    "descriptionEn": "Flexible GraphRAG is a Python framework for building graph and retrieval-augmented generation applications across multiple graph, vector, and search backends. From 0.6.0 until 0.8.2, the _escape() helper in flexible-graphrag/langchain/graph/pg_store_adapters/falkordb_adapter.py escapes quotes before backslashes and then interpolates the result into Cypher assembled by FalkorDBAdapter.add_graph_documents, allowing an inserted escape to be doubled and a quote to terminate the string early. When GRAPH_BACKEND=langchain and GRAPH_DB=falkordb are configured, attacker-influenced ingested document content can cause the extraction model to produce malicious entity or relationship values that reach these queries, allowing injected Cypher clauses to modify or delete graph data and, when the calling code surfaces query results to the user or LLM, disclose graph data. Dynamic node and relationship type identifiers are also inserted into backtick-quoted query positions without safe parameterization. The LlamaIndex FalkorDB store is not affected. This issue is fixed in version 0.8.2.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.1,
+    "severity": "HIGH",
+    "publishedAt": "2026-10-22T15:17:05.500Z",
+    "lastModifiedAt": "2026-10-22T17:29:28.470Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-111079",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-111079",
+    "descriptionEn": "A flaw was found in Goose. When the terminal integration feature is enabled, the application captures shell command history and sends it verbatim without sanitization to configured Large Language Model (LLM) provider endpoints during queries. If a user enters sensitive data—such as API tokens, passwords, or environment variables containing secrets—in the terminal, this unredacted information is transmitted across trust boundaries. This can lead to sensitive information disclosure, exposing confidential credentials to external service providers and logs.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.4,
+    "severity": "HIGH",
+    "publishedAt": "2026-10-22T11:17:15.460Z",
+    "lastModifiedAt": "2026-10-23T15:17:23.993Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-84912",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-84912",
+    "descriptionEn": "Missing Authorization vulnerability in Drupal AI (Artificial Intelligence) allows Forceful Browsing. This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.3.13, from 1.4.0 to 1.4.8.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 4.6,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-10-22T02:17:01.607Z",
+    "lastModifiedAt": "2026-10-22T16:54:17.390Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-84911",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-84911",
+    "descriptionEn": "Improper Neutralization of Input During Web Page Generation (\"Cross-site Scripting\") vulnerability in Drupal AI (Artificial Intelligence) allows Stored XSS. This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.3.13, from 1.4.0 to 1.4.8.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 3.1,
+    "severity": "LOW",
+    "publishedAt": "2026-10-22T02:17:01.490Z",
+    "lastModifiedAt": "2026-10-22T16:54:17.390Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-114107",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-114107",
     "descriptionEn": "HKUDS Vibe-Trading from 0.1.0 before 0.1.7 contains an indirect prompt injection vulnerability that allows remote attackers to execute shell commands as root by planting instructions in documents or web pages the agent processes. BashTool and BackgroundRunTool pass model-emitted commands to subprocess.run with shell=True and no allow-list or approval step, and read_url fetches arbitrary URLs, enabling command execution and server-side request forgery.",
@@ -8,8 +125,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-10-21T01:17:36.683Z",
-    "lastModifiedAt": "2026-10-21T01:17:36.683Z",
-    "fetchedAt": "2026-10-22T00:17:59.472Z",
+    "lastModifiedAt": "2026-10-22T17:40:46.877Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -21,8 +138,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-10-21T01:17:36.537Z",
-    "lastModifiedAt": "2026-10-21T01:17:36.537Z",
-    "fetchedAt": "2026-10-22T00:17:59.472Z",
+    "lastModifiedAt": "2026-10-22T17:40:46.877Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -57,11 +174,11 @@
     "descriptionEn": "OpenSRE through 0.1.2026.10.19 contains an approval gate bypass vulnerability that allows attackers to execute shell_run commands without confirmation because the headless presenter's execution_allowed() always returns True. Attackers can inject instructions into alerts or Slack messages triaged by the agent to run commands on the host and exfiltrate LLM, Slack and cloud credentials.",
     "summaryJa": "OpenSRE 0.1.2026.10.19までのバージョンに、承認ゲートバイパスの脆弱性が存在します。これは、headless presenterのexecution_allowed()が常にTrueを返すため、shell_runコマンドが確認なしで実行されることに起因します。攻撃者はエージェントによってトリアージされたアラートやSlackメッセージに命令を注入し、ホスト上でコマンドを実行して、LLM、Slack、クラウドの認証情報を窃取する可能性があります。",
     "category": "ai-service",
-    "cvssScore": 8.8,
-    "severity": "HIGH",
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
     "publishedAt": "2026-10-20T01:17:10.673Z",
-    "lastModifiedAt": "2026-10-20T20:11:29.833Z",
-    "fetchedAt": "2026-10-22T00:17:59.472Z",
+    "lastModifiedAt": "2026-10-22T22:18:00.267Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -83,11 +200,11 @@
     "descriptionEn": "LangAlpha through 2026.09.07 contains an indirect prompt injection vulnerability that allows remote attackers to execute shell commands or Python by planting instructions in web content retrieved by the agent. Because Bash and ExecuteCode lack an allow-list and human-in-the-loop approval, attackers can run code in the workspace sandbox and exfiltrate vault secrets from _internal/.vault_secrets.json.",
     "summaryJa": "LangAlpha（2026.09.07まで）には、間接的なプロンプトインジェクションの脆弱性が存在します。攻撃者はエージェントが取得するウェブコンテンツに悪意のある指示を埋め込むことで、シェルコマンドやPythonコードを実行できます。これにより、ワークスペースのサンドボックス内でコードが実行され、機密情報（例：_internal/.vault_secrets.json）が漏洩する恐れがあります。",
     "category": "prompt-injection",
-    "cvssScore": 8.1,
+    "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-10-20T01:17:10.103Z",
-    "lastModifiedAt": "2026-10-20T20:11:29.833Z",
-    "fetchedAt": "2026-10-22T00:17:59.472Z",
+    "lastModifiedAt": "2026-10-22T22:18:00.100Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -99,8 +216,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-19T20:17:53.620Z",
-    "lastModifiedAt": "2026-10-19T20:43:24.237Z",
-    "fetchedAt": "2026-10-20T00:46:53.756Z",
+    "lastModifiedAt": "2026-10-22T21:17:15.277Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -139,7 +256,7 @@
     "severity": "CRITICAL",
     "publishedAt": "2026-10-16T18:17:54.370Z",
     "lastModifiedAt": "2026-10-21T22:16:46.830Z",
-    "fetchedAt": "2026-10-22T00:17:59.472Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -164,8 +281,8 @@
     "cvssScore": 5.6,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-16T18:17:42.133Z",
-    "lastModifiedAt": "2026-10-16T19:03:18.127Z",
-    "fetchedAt": "2026-10-17T23:35:40.848Z",
+    "lastModifiedAt": "2026-10-23T19:17:42.793Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -197,15 +314,15 @@
   {
     "id": "CVE-2026-76066",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76066",
-    "descriptionEn": "IntentKit through 2.6.3 contains an authorization bypass vulnerability where the executor validates tool calls against the full tool registry rather than the per-request narrowed tool advertisement enforced by ToolBindingMiddleware, allowing owner-only state-changing tools such as wallet transfer, posting, memory-write, and call-agent to execute without any human-in-the-loop or approval gate. An unauthenticated or public caller in WEB, API, TWITTER, or TELEGRAM contexts can exploit this by supplying the exact de-advertised tool name and arguments via indirect prompt injection or by replaying checkpoint and history data on a reused thread, achieving unauthorized execution of owner-restricted capabilities.",
-    "summaryJa": "IntentKit 2.6.3以前のバージョンには認証バイパスの脆弱性が存在します。この脆弱性は、ツール呼び出しの検証が、リクエストで限定されたツール広告ではなく、ツールレジストリ全体に対して行われることに起因します。これにより、攻撃者は間接的なプロンプトインジェクションなどを介して、所有者のみが実行可能なウォレット転送やメモリ書き込みといった機密性の高い操作を、承認なしで実行する可能性があります。",
-    "category": "ai-library",
+    "descriptionEn": "IntentKit through 2.6.3, fixed in commit 5b91da5, contains an authorization bypass vulnerability where the executor validates tool calls against the full tool registry rather than the per-request narrowed tool advertisement enforced by ToolBindingMiddleware, allowing owner-only state-changing tools such as wallet transfer, posting, memory-write, and call-agent to execute without any human-in-the-loop or approval gate. An unauthenticated or public caller in WEB, API, TWITTER, or TELEGRAM contexts can exploit this by supplying the exact de-advertised tool name and arguments via indirect prompt injection or by replaying checkpoint and history data on a reused thread, achieving unauthorized execution of owner-restricted capabilities.",
+    "summaryJa": null,
+    "category": null,
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-10-15T02:20:15.603Z",
-    "lastModifiedAt": "2026-10-16T18:25:45.343Z",
-    "fetchedAt": "2026-10-17T23:35:40.848Z",
-    "llmStatus": "ok"
+    "lastModifiedAt": "2026-10-22T17:17:00.093Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-104103",
@@ -2036,8 +2153,8 @@
     "cvssScore": 8.5,
     "severity": "HIGH",
     "publishedAt": "2026-08-18T21:16:42.273Z",
-    "lastModifiedAt": "2026-09-04T13:17:48.183Z",
-    "fetchedAt": "2026-09-04T23:30:02.894Z",
+    "lastModifiedAt": "2026-10-22T21:09:59.367Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2049,8 +2166,8 @@
     "cvssScore": 9,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-18T18:19:34.197Z",
-    "lastModifiedAt": "2026-09-24T20:06:30.133Z",
-    "fetchedAt": "2026-09-25T00:06:49.664Z",
+    "lastModifiedAt": "2026-10-22T22:10:00.250Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2062,8 +2179,8 @@
     "cvssScore": 9.3,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-18T16:18:23.363Z",
-    "lastModifiedAt": "2026-09-08T20:32:39.347Z",
-    "fetchedAt": "2026-09-08T23:43:51.982Z",
+    "lastModifiedAt": "2026-10-22T22:10:00.250Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2075,8 +2192,8 @@
     "cvssScore": 7.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-18T16:18:23.057Z",
-    "lastModifiedAt": "2026-09-08T20:32:39.347Z",
-    "fetchedAt": "2026-09-08T23:43:51.982Z",
+    "lastModifiedAt": "2026-10-22T22:10:00.250Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2088,8 +2205,8 @@
     "cvssScore": 7.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-18T16:18:21.653Z",
-    "lastModifiedAt": "2026-09-08T20:32:39.347Z",
-    "fetchedAt": "2026-09-08T23:43:51.982Z",
+    "lastModifiedAt": "2026-10-22T22:10:00.250Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2101,8 +2218,8 @@
     "cvssScore": 7,
     "severity": "HIGH",
     "publishedAt": "2026-08-18T16:18:21.520Z",
-    "lastModifiedAt": "2026-09-08T20:32:39.347Z",
-    "fetchedAt": "2026-09-08T23:43:51.982Z",
+    "lastModifiedAt": "2026-10-22T22:10:00.250Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2166,8 +2283,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-17T21:16:48.960Z",
-    "lastModifiedAt": "2026-09-28T18:41:05.437Z",
-    "fetchedAt": "2026-09-29T01:20:30.432Z",
+    "lastModifiedAt": "2026-10-23T16:10:00.313Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2179,8 +2296,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-17T20:16:45.927Z",
-    "lastModifiedAt": "2026-10-02T19:30:34.767Z",
-    "fetchedAt": "2026-10-03T00:47:37.879Z",
+    "lastModifiedAt": "2026-10-23T16:10:00.313Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2192,8 +2309,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-17T16:17:44.307Z",
-    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2426,8 +2543,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-13T14:16:55.723Z",
-    "lastModifiedAt": "2026-08-28T16:08:09.497Z",
-    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "lastModifiedAt": "2026-10-23T18:10:00.167Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2439,8 +2556,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-13T12:17:24.083Z",
-    "lastModifiedAt": "2026-09-03T18:42:20.690Z",
-    "fetchedAt": "2026-09-04T23:30:02.894Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2452,8 +2569,8 @@
     "cvssScore": 10,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-12T18:18:15.197Z",
-    "lastModifiedAt": "2026-09-09T21:02:22.660Z",
-    "fetchedAt": "2026-09-09T23:37:03.740Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2465,8 +2582,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-11T20:18:46.470Z",
-    "lastModifiedAt": "2026-09-23T17:17:42.280Z",
-    "fetchedAt": "2026-09-24T00:05:17.504Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2478,8 +2595,8 @@
     "cvssScore": 9.6,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-11T20:18:46.320Z",
-    "lastModifiedAt": "2026-09-24T20:43:32.537Z",
-    "fetchedAt": "2026-09-25T00:06:49.664Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2530,8 +2647,8 @@
     "cvssScore": 8.5,
     "severity": "HIGH",
     "publishedAt": "2026-08-11T16:17:39.713Z",
-    "lastModifiedAt": "2026-09-09T20:46:02.457Z",
-    "fetchedAt": "2026-09-09T23:37:03.740Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2543,8 +2660,8 @@
     "cvssScore": 7.6,
     "severity": "HIGH",
     "publishedAt": "2026-08-11T16:17:32.320Z",
-    "lastModifiedAt": "2026-09-09T20:46:02.457Z",
-    "fetchedAt": "2026-09-09T23:37:03.740Z",
+    "lastModifiedAt": "2026-10-23T19:10:00.167Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2556,8 +2673,8 @@
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-08-11T15:17:38.350Z",
-    "lastModifiedAt": "2026-09-09T20:46:02.457Z",
-    "fetchedAt": "2026-09-09T23:37:03.740Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2569,8 +2686,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-11T13:19:07.490Z",
-    "lastModifiedAt": "2026-08-28T18:32:54.270Z",
-    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2582,8 +2699,8 @@
     "cvssScore": 5.9,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-10T22:17:10.660Z",
-    "lastModifiedAt": "2026-09-18T20:09:01.757Z",
-    "fetchedAt": "2026-09-18T23:42:41.316Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2608,8 +2725,8 @@
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-10T07:16:44.370Z",
-    "lastModifiedAt": "2026-09-03T17:56:18.093Z",
-    "fetchedAt": "2026-09-03T23:37:45.525Z",
+    "lastModifiedAt": "2026-10-23T20:10:00.160Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2621,8 +2738,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-07T20:16:52.007Z",
-    "lastModifiedAt": "2026-09-09T21:02:22.660Z",
-    "fetchedAt": "2026-09-09T23:37:03.740Z",
+    "lastModifiedAt": "2026-10-24T16:10:00.153Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2634,8 +2751,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-08-07T17:17:03.003Z",
-    "lastModifiedAt": "2026-08-11T18:54:19.877Z",
-    "fetchedAt": "2026-08-11T22:29:27.126Z",
+    "lastModifiedAt": "2026-10-23T20:10:00.160Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2647,8 +2764,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-07T07:16:26.377Z",
-    "lastModifiedAt": "2026-09-04T14:40:11.537Z",
-    "fetchedAt": "2026-09-04T23:30:02.894Z",
+    "lastModifiedAt": "2026-10-23T21:10:00.157Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2660,8 +2777,8 @@
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-08-06T22:16:55.410Z",
-    "lastModifiedAt": "2026-08-12T20:50:27.407Z",
-    "fetchedAt": "2026-08-12T22:27:46.920Z",
+    "lastModifiedAt": "2026-10-23T21:10:00.157Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2673,8 +2790,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-08-06T00:16:53.733Z",
-    "lastModifiedAt": "2026-09-10T20:37:00.427Z",
-    "fetchedAt": "2026-09-10T23:30:15.266Z",
+    "lastModifiedAt": "2026-10-24T16:10:00.153Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2686,8 +2803,8 @@
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-08-05T19:17:48.523Z",
-    "lastModifiedAt": "2026-08-07T13:16:53.430Z",
-    "fetchedAt": "2026-08-07T22:22:57.129Z",
+    "lastModifiedAt": "2026-10-24T13:10:00.147Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2712,8 +2829,8 @@
     "cvssScore": 10,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-04T20:16:54.610Z",
-    "lastModifiedAt": "2026-09-11T21:14:26.357Z",
-    "fetchedAt": "2026-09-11T23:37:50.969Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2725,8 +2842,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-04T20:16:54.473Z",
-    "lastModifiedAt": "2026-09-11T21:09:26.917Z",
-    "fetchedAt": "2026-09-11T23:37:50.969Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2738,8 +2855,8 @@
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-08-04T20:16:54.330Z",
-    "lastModifiedAt": "2026-09-11T21:09:17.230Z",
-    "fetchedAt": "2026-09-11T23:37:50.969Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2751,8 +2868,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-04T20:16:54.170Z",
-    "lastModifiedAt": "2026-09-11T21:08:48.403Z",
-    "fetchedAt": "2026-09-11T23:37:50.969Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2764,8 +2881,8 @@
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-08-04T19:16:54.977Z",
-    "lastModifiedAt": "2026-09-11T21:07:42.970Z",
-    "fetchedAt": "2026-09-11T23:37:50.969Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2777,8 +2894,8 @@
     "cvssScore": 8.5,
     "severity": "HIGH",
     "publishedAt": "2026-08-04T19:16:54.830Z",
-    "lastModifiedAt": "2026-09-11T21:05:40.573Z",
-    "fetchedAt": "2026-09-11T23:37:50.969Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2790,8 +2907,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-04T19:16:54.680Z",
-    "lastModifiedAt": "2026-09-14T19:01:45.947Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2803,8 +2920,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-04T19:16:54.540Z",
-    "lastModifiedAt": "2026-09-14T19:09:15.917Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2816,8 +2933,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-04T18:16:57.930Z",
-    "lastModifiedAt": "2026-09-14T19:19:38.873Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-24T15:10:00.190Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2829,8 +2946,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-04T17:17:01.683Z",
-    "lastModifiedAt": "2026-09-14T19:24:10.777Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-24T16:10:00.153Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2842,8 +2959,8 @@
     "cvssScore": 8.1,
     "severity": "HIGH",
     "publishedAt": "2026-08-04T17:17:01.547Z",
-    "lastModifiedAt": "2026-09-14T19:41:55.683Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-24T16:10:00.153Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2855,8 +2972,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-04T17:17:01.413Z",
-    "lastModifiedAt": "2026-09-14T19:47:08.963Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-24T16:10:00.153Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2868,8 +2985,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-08-04T17:17:01.280Z",
-    "lastModifiedAt": "2026-09-14T19:47:46.573Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-24T16:10:00.153Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2881,8 +2998,8 @@
     "cvssScore": 8.6,
     "severity": "HIGH",
     "publishedAt": "2026-08-04T17:17:00.840Z",
-    "lastModifiedAt": "2026-09-14T19:52:01.927Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-24T16:10:00.153Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2894,8 +3011,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-04T17:17:00.707Z",
-    "lastModifiedAt": "2026-09-14T19:53:48.650Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-24T16:10:00.153Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2907,8 +3024,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-04T17:17:00.570Z",
-    "lastModifiedAt": "2026-09-14T19:58:41.640Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-24T16:10:00.153Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2920,8 +3037,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-04T16:16:29.243Z",
-    "lastModifiedAt": "2026-09-14T19:59:27.650Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-23T23:10:00.157Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2933,8 +3050,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-04T16:16:29.100Z",
-    "lastModifiedAt": "2026-09-14T19:59:58.067Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-23T23:10:00.157Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2946,8 +3063,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-04T16:16:28.960Z",
-    "lastModifiedAt": "2026-09-14T20:01:38.190Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-23T23:10:00.157Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2972,8 +3089,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-08-04T15:16:44.277Z",
-    "lastModifiedAt": "2026-09-14T20:03:30.460Z",
-    "fetchedAt": "2026-09-15T00:02:55.149Z",
+    "lastModifiedAt": "2026-10-23T23:10:00.157Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -2985,8 +3102,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-08-03T21:16:37.963Z",
-    "lastModifiedAt": "2026-08-04T20:16:50.970Z",
-    "fetchedAt": "2026-08-05T22:46:15.193Z",
+    "lastModifiedAt": "2026-10-23T21:10:00.157Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3011,8 +3128,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-08-03T20:17:17.557Z",
-    "lastModifiedAt": "2026-08-04T14:48:22.933Z",
-    "fetchedAt": "2026-08-04T22:51:11.230Z",
+    "lastModifiedAt": "2026-10-23T21:10:00.157Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3024,8 +3141,8 @@
     "cvssScore": 7.4,
     "severity": "HIGH",
     "publishedAt": "2026-07-31T20:16:49.780Z",
-    "lastModifiedAt": "2026-08-04T14:48:22.933Z",
-    "fetchedAt": "2026-08-04T22:51:11.230Z",
+    "lastModifiedAt": "2026-10-23T23:10:00.157Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3037,8 +3154,8 @@
     "cvssScore": 9,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-31T16:16:59.807Z",
-    "lastModifiedAt": "2026-08-05T20:07:14.527Z",
-    "fetchedAt": "2026-08-05T22:46:15.193Z",
+    "lastModifiedAt": "2026-10-23T23:10:00.157Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3050,8 +3167,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-07-30T19:18:34.553Z",
-    "lastModifiedAt": "2026-07-31T23:17:25.930Z",
-    "fetchedAt": "2026-08-01T22:42:26.489Z",
+    "lastModifiedAt": "2026-10-23T22:10:00.160Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3063,8 +3180,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-07-30T17:16:33.900Z",
-    "lastModifiedAt": "2026-07-30T19:26:51.190Z",
-    "fetchedAt": "2026-07-30T22:54:23.751Z",
+    "lastModifiedAt": "2026-10-23T22:10:00.160Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3115,8 +3232,8 @@
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-27T10:16:37.747Z",
-    "lastModifiedAt": "2026-07-27T20:37:16.927Z",
-    "fetchedAt": "2026-07-28T22:49:01.930Z",
+    "lastModifiedAt": "2026-10-24T13:10:00.147Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3128,8 +3245,8 @@
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-24T15:19:07.050Z",
-    "lastModifiedAt": "2026-07-30T19:56:33.480Z",
-    "fetchedAt": "2026-08-01T22:42:26.489Z",
+    "lastModifiedAt": "2026-10-24T13:10:00.147Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3141,8 +3258,8 @@
     "cvssScore": 4.2,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-23T18:17:01.153Z",
-    "lastModifiedAt": "2026-07-23T19:17:05.160Z",
-    "fetchedAt": "2026-07-24T22:50:22.190Z",
+    "lastModifiedAt": "2026-10-24T13:10:00.147Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3154,8 +3271,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-22T12:18:18.857Z",
-    "lastModifiedAt": "2026-07-27T19:09:14.453Z",
-    "fetchedAt": "2026-07-28T22:49:01.930Z",
+    "lastModifiedAt": "2026-10-24T17:10:00.220Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3167,8 +3284,8 @@
     "cvssScore": 6.6,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-22T12:18:00.063Z",
-    "lastModifiedAt": "2026-07-22T16:23:35.893Z",
-    "fetchedAt": "2026-07-22T22:51:11.267Z",
+    "lastModifiedAt": "2026-10-24T17:10:00.220Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3180,8 +3297,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-21T23:18:02.817Z",
-    "lastModifiedAt": "2026-08-03T16:38:28.820Z",
-    "fetchedAt": "2026-08-03T22:49:30.510Z",
+    "lastModifiedAt": "2026-10-24T17:10:00.220Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3193,8 +3310,8 @@
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-21T23:18:02.460Z",
-    "lastModifiedAt": "2026-08-03T17:49:02.370Z",
-    "fetchedAt": "2026-08-04T22:51:11.230Z",
+    "lastModifiedAt": "2026-10-24T17:10:00.220Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3206,8 +3323,8 @@
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-07-21T21:16:54.287Z",
-    "lastModifiedAt": "2026-07-23T15:24:59.880Z",
-    "fetchedAt": "2026-07-23T22:44:45.727Z",
+    "lastModifiedAt": "2026-10-24T19:10:00.127Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3219,8 +3336,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-21T16:17:12.270Z",
-    "lastModifiedAt": "2026-07-22T15:17:17.247Z",
-    "fetchedAt": "2026-07-22T22:51:11.267Z",
+    "lastModifiedAt": "2026-10-24T20:10:00.137Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3232,8 +3349,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-21T16:17:11.920Z",
-    "lastModifiedAt": "2026-07-23T15:17:11.303Z",
-    "fetchedAt": "2026-07-23T22:44:45.727Z",
+    "lastModifiedAt": "2026-10-24T20:10:00.137Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3258,8 +3375,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-20T20:16:46.170Z",
-    "lastModifiedAt": "2026-07-23T15:24:59.880Z",
-    "fetchedAt": "2026-07-23T22:44:45.727Z",
+    "lastModifiedAt": "2026-10-24T20:10:00.137Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3271,8 +3388,8 @@
     "cvssScore": 6.1,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-16T18:16:43.913Z",
-    "lastModifiedAt": "2026-07-17T18:44:13.257Z",
-    "fetchedAt": "2026-07-17T22:37:04.930Z",
+    "lastModifiedAt": "2026-10-24T20:10:00.137Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3284,8 +3401,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-07-16T16:19:12.990Z",
-    "lastModifiedAt": "2026-07-17T14:17:24.793Z",
-    "fetchedAt": "2026-07-17T22:37:04.930Z",
+    "lastModifiedAt": "2026-10-24T20:10:00.137Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3297,8 +3414,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-07-16T16:19:12.860Z",
-    "lastModifiedAt": "2026-07-18T03:16:36.890Z",
-    "fetchedAt": "2026-07-21T22:43:05.183Z",
+    "lastModifiedAt": "2026-10-24T20:10:00.137Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3336,8 +3453,8 @@
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2026-07-15T20:17:13.500Z",
-    "lastModifiedAt": "2026-07-17T13:18:54.657Z",
-    "fetchedAt": "2026-07-17T22:37:04.930Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3349,8 +3466,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-15T19:16:57.773Z",
-    "lastModifiedAt": "2026-07-15T19:50:36.327Z",
-    "fetchedAt": "2026-07-16T22:45:38.104Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3362,8 +3479,8 @@
     "cvssScore": 6.2,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-14T21:16:56.547Z",
-    "lastModifiedAt": "2026-07-15T18:20:21.237Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3375,8 +3492,8 @@
     "cvssScore": 7.4,
     "severity": "HIGH",
     "publishedAt": "2026-07-14T21:16:56.440Z",
-    "lastModifiedAt": "2026-07-15T18:20:21.237Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3388,8 +3505,8 @@
     "cvssScore": 7.8,
     "severity": "HIGH",
     "publishedAt": "2026-07-14T21:16:56.333Z",
-    "lastModifiedAt": "2026-07-15T18:20:21.237Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3401,8 +3518,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-07-14T21:16:56.230Z",
-    "lastModifiedAt": "2026-07-15T18:20:21.237Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3414,8 +3531,8 @@
     "cvssScore": 6.2,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-14T21:16:56.123Z",
-    "lastModifiedAt": "2026-07-15T18:20:21.237Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3427,8 +3544,8 @@
     "cvssScore": 6.2,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-14T21:16:44.717Z",
-    "lastModifiedAt": "2026-07-15T18:20:21.237Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3440,8 +3557,8 @@
     "cvssScore": 6.4,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-14T21:16:44.510Z",
-    "lastModifiedAt": "2026-07-15T18:20:21.237Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3453,8 +3570,8 @@
     "cvssScore": 6.8,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-14T21:16:44.293Z",
-    "lastModifiedAt": "2026-07-15T18:20:21.237Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3466,8 +3583,8 @@
     "cvssScore": 8.4,
     "severity": "HIGH",
     "publishedAt": "2026-07-14T21:16:44.187Z",
-    "lastModifiedAt": "2026-07-15T18:20:21.237Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3479,8 +3596,8 @@
     "cvssScore": 7.3,
     "severity": "HIGH",
     "publishedAt": "2026-07-14T21:16:44.087Z",
-    "lastModifiedAt": "2026-07-15T18:20:21.237Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3492,8 +3609,8 @@
     "cvssScore": 6.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-14T21:16:43.880Z",
-    "lastModifiedAt": "2026-07-15T18:20:21.237Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3505,8 +3622,8 @@
     "cvssScore": 6.4,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-14T21:16:43.773Z",
-    "lastModifiedAt": "2026-09-22T13:29:25.103Z",
-    "fetchedAt": "2026-09-22T23:54:03.331Z",
+    "lastModifiedAt": "2026-10-24T21:10:00.130Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3518,8 +3635,8 @@
     "cvssScore": 6.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-14T04:17:16.077Z",
-    "lastModifiedAt": "2026-07-14T15:26:24.850Z",
-    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "lastModifiedAt": "2026-10-24T22:10:00.210Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -3661,8 +3778,8 @@
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-10T15:16:49.417Z",
-    "lastModifiedAt": "2026-07-14T02:16:57.743Z",
-    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "lastModifiedAt": "2026-10-24T23:10:00.160Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -4194,8 +4311,8 @@
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-06-24T18:17:16.353Z",
-    "lastModifiedAt": "2026-07-15T02:21:48.757Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-23T23:10:00.157Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -5265,6 +5382,19 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2026-35050",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-35050",
+    "descriptionEn": "text-generation-webui is an open-source web interface for running Large Language Models. Prior to 4.1.1, users can save extention settings in \"py\" format and in the app root directory. This allows to overwrite python files, for instance the \"download-model.py\" file could be overwritten. Then, this python file can be triggered to get executed from \"Model\" menu when requesting to download a new model. This vulnerability is fixed in 4.1.1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.1,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-04-06T18:16:42.583Z",
+    "lastModifiedAt": "2026-10-23T23:10:00.157Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-35030",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-35030",
     "descriptionEn": "LiteLLM is a proxy server (AI Gateway) to call LLM APIs in OpenAI (or native) format. Prior to 1.83.0, when JWT authentication is enabled (enable_jwt_auth: true), the OIDC userinfo cache uses token[:20] as the cache key. JWT headers produced by the same signing algorithm generate identical first 20 characters. This configuration option is not enabled by default. Most instances are not affected. An unauthenticated attacker can craft a token whose first 20 characters match a legitimate user's cached token. On cache hit, the attacker inherits the legitimate user's identity and permissions. This affects deployments with JWT/OIDC authentication enabled. Fixed in v1.83.0.",
@@ -5273,8 +5403,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-04-06T17:17:12.650Z",
-    "lastModifiedAt": "2026-07-15T02:20:40.403Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-24T13:10:00.147Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
@@ -5286,8 +5416,8 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-04-06T17:17:12.353Z",
-    "lastModifiedAt": "2026-07-15T02:20:40.183Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-23T23:10:00.157Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "ok"
   },
   {
