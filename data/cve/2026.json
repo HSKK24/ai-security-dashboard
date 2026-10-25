@@ -3,116 +3,142 @@
     "id": "CVE-2026-115886",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-115886",
     "descriptionEn": "MLflow is an open source AI engineering platform for agents, large language models, and machine learning models. From 3.12.0rc0 until 3.17.0, the scorer invoke, register, and GenAI evaluate endpoints, including unauthenticated POST /ajax-api/3.0/mlflow/scorer/invoke, accept serialized third-party scorer data that Scorer.model_validate_json resolves using a module-path allowlist without constraining the selected class or its constructor arguments. When optional trulens and trulens-providers-litellm packages are installed, an attacker can select mlflow.genai.scorers.trulens, choose a model URI outside MLflow's native provider registry so execution uses the LiteLLM fallback, and supply api_base and api_key values that cause the server to send an outbound request to an attacker-chosen or internal host with attacker-controlled headers and body. The vulnerable deserialization occurs before a tracking-store lookup or job submission. This issue is fixed in version 3.17.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "MLflowのバージョン3.12.0rc0から3.17.0において、スコアラーのinvoke、register、GenAI evaluateエンドポイントに脆弱性が存在します。攻撃者は、`Scorer.model_validate_json`がサードパーティのスコアラーデータを解決する際の不十分な検証を悪用し、特定の条件（`trulens`と`trulens-providers-litellm`がインストールされている場合）で、サーバーから任意の外部または内部ホストへHTTPリクエストを送信させることが可能です。この問題はバージョン3.17.0で修正されています。",
+    "category": "ai-library",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-23T22:16:58.110Z",
     "lastModifiedAt": "2026-10-23T22:16:58.110Z",
     "fetchedAt": "2026-10-24T23:50:25.766Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-99062",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-99062",
     "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\nvsock/virtio: account only unread bytes in read_skb()\n\nAfter a partial stream receive, rx_bytes tracks the unread suffix while\nbuf_used and peer credit still cover the whole packet.\nvirtio_transport_read_skb() dequeues that packet but passes pkt_len for\nboth counters, underflowing rx_bytes.\n\nOn a connected CID_LOCAL stream with an SK_SKB verdict, a 40-byte read\nfrom a 100-byte packet made SIOCINQ report -40, an empty recv return\nELOOP, and poll report the empty socket readable.  After verdict detach,\nreceiving 40 bytes wrapped the counter to zero and hid those queued bytes\nuntil one more byte arrived.  The fixed run kept the counter balanced\nand exposed all queued data immediately.\n\nThis was found during an LLM-assisted manual source audit of VSOCK\nreceive accounting while re-evaluating virtio_transport_read_skb() after\nCVE-2024-50169.\n\nSubtract only skb->len minus the VSOCK offset from rx_bytes.  Retain the\nfull packet length for buf_used and peer credit.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Linuxカーネルのvsock/virtioモジュールにおいて、部分的なストリーム受信処理時にrx_bytesカウンタがアンダーフローする脆弱性が修正されました。virtio_transport_read_skb()関数が未読バイト数ではなくパケット全体の長さをRXバイト数から減算していたため、SIOCINQが負の値を報告したり、空のソケットが読み取り可能と誤って報告されたりする問題が発生しました。この修正により、未読のサフィックスのみがRXバイト数から減算されるようになり、カウンタの整合性が保たれます。",
+    "category": "other",
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-10-23T13:17:30.020Z",
     "lastModifiedAt": "2026-10-23T13:17:30.020Z",
     "fetchedAt": "2026-10-24T23:50:25.766Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-99046",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-99046",
     "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\ngve: fix XSK buffer leak on error descriptor\n\nWhen the error bit is set in the RX completion descriptor, the buf_state\nand its attached buffer should be freed. In the case of AF_XDP ZC, the\nXSK buffer was not freed, leading to a leak.\n\nThis issue was caught by LLM.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Linuxカーネルのgveドライバーにおいて、AF_XDP ZCを利用する際にRX完了ディスクリプタでエラービットが設定されると、XSKバッファが適切に解放されず、メモリリークが発生する脆弱性が存在します。これは、buf_stateおよび関連バッファがエラー時に解放されないことに起因します。",
+    "category": "other",
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-10-23T13:17:28.073Z",
     "lastModifiedAt": "2026-10-24T14:16:53.497Z",
     "fetchedAt": "2026-10-24T23:50:25.766Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-98873",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-98873",
     "descriptionEn": "In the Linux kernel, the following vulnerability has been resolved:\n\nnetfilter: nf_conntrack_expect: zero at allocation time\n\nThere are occasional LLM hints wrt. leaking uninitialized data to\nuserspace via ctnetlink.  Just zero at allocation time,\nexpectations are not frequently used these days.\n\nIntentionally keeps _init as-is because we could theoretically\nsupport re-init, so add the missing exp->dir there.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Linuxカーネルのnetfilterサブシステムにおいて、nf_conntrack_expectの処理に脆弱性が存在しました。この脆弱性により、初期化されていないデータがctnetlinkを介してユーザー空間に漏洩する可能性がありました。対策として、割り当て時にメモリをゼロクリアするように修正されました。",
+    "category": "other",
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-10-23T12:18:20.753Z",
     "lastModifiedAt": "2026-10-23T12:18:20.753Z",
     "fetchedAt": "2026-10-24T23:50:25.766Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-114612",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-114612",
     "descriptionEn": "LiteLLM is a proxy server (AI Gateway) to call LLM APIs in OpenAI (or native) format. From 1.87.0 until 1.100.4, 1.101.3, 1.102.2, 1.103.1, and 1.104.0-rc.2, the proxy reuses one cryptographic context for at-rest secrets and session tokens, allowing an authenticated internal user to have crafted metadata containing a forged administrator credential encrypted and returned by the API-key flow. Replaying that ciphertext as a bearer token causes the proxy to trust the forged proxy administrator identity, permitting administrative access and arbitrary commands through the MCP stdio endpoint. Versions 1.87.0 through 1.90.x require EXPERIMENTAL_UI_LOGIN to be enabled, while versions after 1.91.0 are exploitable in the default configuration. This issue was fixed in LiteLLM 1.100.4, 1.101.3, 1.102.2, 1.103.1, and 1.104.0-rc.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LiteLLMのAI Gateway機能において、バージョン1.87.0から特定の修正バージョンまで、暗号化コンテキストの再利用に関する脆弱性が存在します。認証された内部ユーザーは、APIキーフローを悪用して偽造された管理者認証情報を暗号化し、その暗号文をベアラートークンとして再利用することで、管理者権限を獲得し、任意のコマンドを実行できる可能性があります。バージョン1.91.0以降はデフォルト設定で悪用可能です。",
+    "category": "ai-service",
     "cvssScore": 9.9,
     "severity": "CRITICAL",
     "publishedAt": "2026-10-22T19:17:37.540Z",
     "lastModifiedAt": "2026-10-23T19:42:24.553Z",
     "fetchedAt": "2026-10-24T23:50:25.766Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-114510",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-114510",
     "descriptionEn": "Flexible GraphRAG is a Python framework for building graph and retrieval-augmented generation applications across multiple graph, vector, and search backends. From 0.6.0 until 0.8.2, the _escape() helper in flexible-graphrag/langchain/graph/pg_store_adapters/falkordb_adapter.py escapes quotes before backslashes and then interpolates the result into Cypher assembled by FalkorDBAdapter.add_graph_documents, allowing an inserted escape to be doubled and a quote to terminate the string early. When GRAPH_BACKEND=langchain and GRAPH_DB=falkordb are configured, attacker-influenced ingested document content can cause the extraction model to produce malicious entity or relationship values that reach these queries, allowing injected Cypher clauses to modify or delete graph data and, when the calling code surfaces query results to the user or LLM, disclose graph data. Dynamic node and relationship type identifiers are also inserted into backtick-quoted query positions without safe parameterization. The LlamaIndex FalkorDB store is not affected. This issue is fixed in version 0.8.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Flexible GraphRAGのバージョン0.6.0から0.8.1までにおいて、FalkorDBアダプターの`_escape()`ヘルパーにおける不適切な引用符エスケープ処理に起因する脆弱性が存在します。この脆弱性により、攻撃者が操作した入力コンテンツを通じてCypherクエリインジェクションが可能となり、グラフデータの不正な変更、削除、または情報漏洩につながる恐れがあります。本問題はバージョン0.8.2で修正されました。",
+    "category": "ai-library",
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2026-10-22T15:17:05.500Z",
     "lastModifiedAt": "2026-10-22T17:29:28.470Z",
     "fetchedAt": "2026-10-24T23:50:25.766Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-111079",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-111079",
     "descriptionEn": "A flaw was found in Goose. When the terminal integration feature is enabled, the application captures shell command history and sends it verbatim without sanitization to configured Large Language Model (LLM) provider endpoints during queries. If a user enters sensitive data—such as API tokens, passwords, or environment variables containing secrets—in the terminal, this unredacted information is transmitted across trust boundaries. This can lead to sensitive information disclosure, exposing confidential credentials to external service providers and logs.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Gooseのターミナル統合機能が有効な場合、シェルコマンド履歴がサニタイズされずに設定された大規模言語モデル（LLM）プロバイダのエンドポイントに送信される脆弱性が存在する。これにより、ユーザーがターミナルに入力したAPIトークンやパスワードなどの機密情報が、信頼境界を越えて外部のLLMサービスに漏洩する恐れがある。",
+    "category": "ai-library",
     "cvssScore": 7.4,
     "severity": "HIGH",
     "publishedAt": "2026-10-22T11:17:15.460Z",
     "lastModifiedAt": "2026-10-23T15:17:23.993Z",
     "fetchedAt": "2026-10-24T23:50:25.766Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-84912",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-84912",
     "descriptionEn": "Missing Authorization vulnerability in Drupal AI (Artificial Intelligence) allows Forceful Browsing. This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.3.13, from 1.4.0 to 1.4.8.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Drupal AIモジュールのバージョン0.0.0から1.3.13、および1.4.0から1.4.8に認証不備の脆弱性が存在します。この脆弱性により、攻撃者は強制的なブラウジングが可能となります。",
+    "category": "ai-library",
     "cvssScore": 4.6,
     "severity": "MEDIUM",
     "publishedAt": "2026-10-22T02:17:01.607Z",
     "lastModifiedAt": "2026-10-22T16:54:17.390Z",
     "fetchedAt": "2026-10-24T23:50:25.766Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-84911",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-84911",
     "descriptionEn": "Improper Neutralization of Input During Web Page Generation (\"Cross-site Scripting\") vulnerability in Drupal AI (Artificial Intelligence) allows Stored XSS. This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.3.13, from 1.4.0 to 1.4.8.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "DrupalのAI（Artificial Intelligence）モジュールには、入力値の不適切な無害化に起因する保存型クロスサイトスクリプティング（XSS）の脆弱性が存在します。この脆弱性は、バージョン0.0.0から1.3.13および1.4.0から1.4.8のAIモジュールに影響を与えます。",
+    "category": "ai-library",
     "cvssScore": 3.1,
     "severity": "LOW",
     "publishedAt": "2026-10-22T02:17:01.490Z",
     "lastModifiedAt": "2026-10-22T16:54:17.390Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-76066",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76066",
+    "descriptionEn": "IntentKit through 2.6.3, fixed in commit 5b91da5, contains an authorization bypass vulnerability where the executor validates tool calls against the full tool registry rather than the per-request narrowed tool advertisement enforced by ToolBindingMiddleware, allowing owner-only state-changing tools such as wallet transfer, posting, memory-write, and call-agent to execute without any human-in-the-loop or approval gate. An unauthenticated or public caller in WEB, API, TWITTER, or TELEGRAM contexts can exploit this by supplying the exact de-advertised tool name and arguments via indirect prompt injection or by replaying checkpoint and history data on a reused thread, achieving unauthorized execution of owner-restricted capabilities.",
+    "summaryJa": "IntentKitのバージョン2.6.3までには認証バイパスの脆弱性が存在し、ツール実行者がリクエストごとのツール広告ではなく、完全なツールレジストリに対してツールコールを検証します。これにより、ウォレット転送などの所有者のみが可能な機密性の高いツールが、人間の承認なしに実行される可能性があります。攻撃者は間接的なプロンプトインジェクションなどを通じて、認証されていない状態でも所有者限定の機能を不正に実行できます。",
+    "category": "prompt-injection",
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2026-10-15T02:20:15.603Z",
+    "lastModifiedAt": "2026-10-22T17:17:00.093Z",
+    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-35050",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-35050",
+    "descriptionEn": "text-generation-webui is an open-source web interface for running Large Language Models. Prior to 4.1.1, users can save extention settings in \"py\" format and in the app root directory. This allows to overwrite python files, for instance the \"download-model.py\" file could be overwritten. Then, this python file can be triggered to get executed from \"Model\" menu when requesting to download a new model. This vulnerability is fixed in 4.1.1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.1,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-04-06T18:16:42.583Z",
+    "lastModifiedAt": "2026-10-23T23:10:00.157Z",
     "fetchedAt": "2026-10-24T23:50:25.766Z",
     "llmStatus": "pending"
   },
@@ -310,19 +336,6 @@
     "lastModifiedAt": "2026-10-16T20:17:18.490Z",
     "fetchedAt": "2026-10-17T23:35:40.848Z",
     "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-76066",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-76066",
-    "descriptionEn": "IntentKit through 2.6.3, fixed in commit 5b91da5, contains an authorization bypass vulnerability where the executor validates tool calls against the full tool registry rather than the per-request narrowed tool advertisement enforced by ToolBindingMiddleware, allowing owner-only state-changing tools such as wallet transfer, posting, memory-write, and call-agent to execute without any human-in-the-loop or approval gate. An unauthenticated or public caller in WEB, API, TWITTER, or TELEGRAM contexts can exploit this by supplying the exact de-advertised tool name and arguments via indirect prompt injection or by replaying checkpoint and history data on a reused thread, achieving unauthorized execution of owner-restricted capabilities.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": 7.5,
-    "severity": "HIGH",
-    "publishedAt": "2026-10-15T02:20:15.603Z",
-    "lastModifiedAt": "2026-10-22T17:17:00.093Z",
-    "fetchedAt": "2026-10-24T23:50:25.766Z",
-    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-104103",
@@ -3661,8 +3674,8 @@
     "cvssScore": 10,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-11T14:16:23.377Z",
-    "lastModifiedAt": "2026-07-13T18:05:36.130Z",
-    "fetchedAt": "2026-07-13T22:42:29.936Z",
+    "lastModifiedAt": "2026-10-25T15:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3674,8 +3687,8 @@
     "cvssScore": 9.9,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-11T14:16:23.240Z",
-    "lastModifiedAt": "2026-07-14T15:17:08.617Z",
-    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "lastModifiedAt": "2026-10-25T15:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3687,8 +3700,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-07-11T14:16:22.870Z",
-    "lastModifiedAt": "2026-07-14T15:17:08.340Z",
-    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "lastModifiedAt": "2026-10-25T15:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3700,8 +3713,8 @@
     "cvssScore": 3.3,
     "severity": "LOW",
     "publishedAt": "2026-07-10T22:16:39.597Z",
-    "lastModifiedAt": "2026-07-16T15:07:50.000Z",
-    "fetchedAt": "2026-07-16T22:45:38.104Z",
+    "lastModifiedAt": "2026-10-25T15:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3713,8 +3726,8 @@
     "cvssScore": 6.1,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-10T22:16:39.500Z",
-    "lastModifiedAt": "2026-08-06T14:44:34.063Z",
-    "fetchedAt": "2026-08-07T01:27:03.631Z",
+    "lastModifiedAt": "2026-10-25T15:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3739,8 +3752,8 @@
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-07-10T17:16:59.330Z",
-    "lastModifiedAt": "2026-07-10T20:16:47.833Z",
-    "fetchedAt": "2026-07-10T22:47:58.673Z",
+    "lastModifiedAt": "2026-10-25T15:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3752,8 +3765,8 @@
     "cvssScore": 8.6,
     "severity": "HIGH",
     "publishedAt": "2026-07-10T17:16:59.183Z",
-    "lastModifiedAt": "2026-07-10T17:35:11.103Z",
-    "fetchedAt": "2026-07-10T22:47:58.673Z",
+    "lastModifiedAt": "2026-10-25T15:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3765,8 +3778,8 @@
     "cvssScore": 7.4,
     "severity": "HIGH",
     "publishedAt": "2026-07-10T16:16:34.923Z",
-    "lastModifiedAt": "2026-07-13T19:17:24.127Z",
-    "fetchedAt": "2026-07-13T22:42:29.936Z",
+    "lastModifiedAt": "2026-10-25T15:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3779,7 +3792,7 @@
     "severity": "MEDIUM",
     "publishedAt": "2026-07-10T15:16:49.417Z",
     "lastModifiedAt": "2026-10-24T23:10:00.160Z",
-    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3843,8 +3856,8 @@
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-09T23:17:05.217Z",
-    "lastModifiedAt": "2026-07-16T16:37:07.970Z",
-    "fetchedAt": "2026-07-16T22:45:38.104Z",
+    "lastModifiedAt": "2026-10-25T15:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3856,8 +3869,8 @@
     "cvssScore": 7.7,
     "severity": "HIGH",
     "publishedAt": "2026-07-09T23:17:04.763Z",
-    "lastModifiedAt": "2026-07-16T16:36:20.480Z",
-    "fetchedAt": "2026-07-16T22:45:38.104Z",
+    "lastModifiedAt": "2026-10-25T15:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3869,8 +3882,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-09T22:17:09.363Z",
-    "lastModifiedAt": "2026-07-14T22:17:26.557Z",
-    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "lastModifiedAt": "2026-10-25T15:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3882,8 +3895,8 @@
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-09T19:17:06.933Z",
-    "lastModifiedAt": "2026-07-09T20:16:30.030Z",
-    "fetchedAt": "2026-07-10T22:47:58.673Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3895,8 +3908,8 @@
     "cvssScore": 4.9,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-09T18:16:52.160Z",
-    "lastModifiedAt": "2026-07-10T14:34:22.677Z",
-    "fetchedAt": "2026-07-10T22:47:58.673Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3908,8 +3921,8 @@
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-07-08T20:16:57.683Z",
-    "lastModifiedAt": "2026-09-03T13:05:59.573Z",
-    "fetchedAt": "2026-09-03T23:37:45.525Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3921,8 +3934,8 @@
     "cvssScore": 7.2,
     "severity": "HIGH",
     "publishedAt": "2026-07-08T20:16:57.547Z",
-    "lastModifiedAt": "2026-07-13T13:46:42.603Z",
-    "fetchedAt": "2026-07-13T22:42:29.936Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3934,8 +3947,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-08T20:16:57.413Z",
-    "lastModifiedAt": "2026-07-13T13:23:26.020Z",
-    "fetchedAt": "2026-07-13T22:42:29.936Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3947,8 +3960,8 @@
     "cvssScore": 4.9,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-08T20:16:57.277Z",
-    "lastModifiedAt": "2026-07-13T13:20:24.483Z",
-    "fetchedAt": "2026-07-13T22:42:29.936Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3960,8 +3973,8 @@
     "cvssScore": 6.8,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-08T20:16:57.123Z",
-    "lastModifiedAt": "2026-10-08T16:17:24.603Z",
-    "fetchedAt": "2026-10-10T01:22:35.617Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3986,8 +3999,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-08T20:16:48.430Z",
-    "lastModifiedAt": "2026-09-30T17:16:43.810Z",
-    "fetchedAt": "2026-10-01T00:53:39.020Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -3999,8 +4012,8 @@
     "cvssScore": 6.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-08T15:16:26.120Z",
-    "lastModifiedAt": "2026-08-31T16:17:52.823Z",
-    "fetchedAt": "2026-09-01T00:51:13.289Z",
+    "lastModifiedAt": "2026-10-25T20:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4025,8 +4038,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-07-07T22:16:53.217Z",
-    "lastModifiedAt": "2026-07-08T15:07:37.767Z",
-    "fetchedAt": "2026-07-08T22:53:51.869Z",
+    "lastModifiedAt": "2026-10-25T20:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4038,8 +4051,8 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-07T21:17:29.007Z",
-    "lastModifiedAt": "2026-10-08T16:17:23.227Z",
-    "fetchedAt": "2026-10-09T01:32:26.502Z",
+    "lastModifiedAt": "2026-10-25T20:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4051,8 +4064,8 @@
     "cvssScore": 8.6,
     "severity": "HIGH",
     "publishedAt": "2026-07-06T21:16:58.197Z",
-    "lastModifiedAt": "2026-07-07T19:07:47.350Z",
-    "fetchedAt": "2026-07-08T22:53:51.869Z",
+    "lastModifiedAt": "2026-10-25T20:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4064,8 +4077,8 @@
     "cvssScore": 10,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-06T21:16:58.047Z",
-    "lastModifiedAt": "2026-07-08T20:16:53.567Z",
-    "fetchedAt": "2026-07-08T22:53:51.869Z",
+    "lastModifiedAt": "2026-10-25T20:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4077,8 +4090,8 @@
     "cvssScore": 9.6,
     "severity": "CRITICAL",
     "publishedAt": "2026-07-06T21:16:57.907Z",
-    "lastModifiedAt": "2026-07-07T19:07:22.790Z",
-    "fetchedAt": "2026-07-07T22:49:48.545Z",
+    "lastModifiedAt": "2026-10-25T20:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4090,8 +4103,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-06T21:16:57.207Z",
-    "lastModifiedAt": "2026-07-07T19:02:37.753Z",
-    "fetchedAt": "2026-07-07T22:49:48.545Z",
+    "lastModifiedAt": "2026-10-25T20:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4103,8 +4116,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-06T20:16:37.663Z",
-    "lastModifiedAt": "2026-07-07T19:04:45.057Z",
-    "fetchedAt": "2026-07-07T22:49:48.545Z",
+    "lastModifiedAt": "2026-10-25T20:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4116,8 +4129,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-06T20:16:30.580Z",
-    "lastModifiedAt": "2026-07-07T16:16:37.877Z",
-    "fetchedAt": "2026-07-07T22:49:48.545Z",
+    "lastModifiedAt": "2026-10-25T20:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4129,8 +4142,8 @@
     "cvssScore": null,
     "severity": null,
     "publishedAt": "2026-07-06T09:16:36.170Z",
-    "lastModifiedAt": "2026-07-06T19:46:02.023Z",
-    "fetchedAt": "2026-07-07T22:49:48.545Z",
+    "lastModifiedAt": "2026-10-25T15:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4142,8 +4155,8 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-05T06:16:30.873Z",
-    "lastModifiedAt": "2026-07-06T19:16:57.690Z",
-    "fetchedAt": "2026-07-07T22:49:48.545Z",
+    "lastModifiedAt": "2026-10-25T15:10:00.147Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4155,8 +4168,8 @@
     "cvssScore": 7.4,
     "severity": "HIGH",
     "publishedAt": "2026-07-03T11:16:27.720Z",
-    "lastModifiedAt": "2026-07-06T19:01:56.880Z",
-    "fetchedAt": "2026-07-06T22:55:12.722Z",
+    "lastModifiedAt": "2026-10-25T21:10:00.770Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4168,8 +4181,8 @@
     "cvssScore": 4.9,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-01T17:16:36.957Z",
-    "lastModifiedAt": "2026-07-02T17:35:59.397Z",
-    "fetchedAt": "2026-07-04T11:33:42.505Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4181,8 +4194,8 @@
     "cvssScore": 4.6,
     "severity": "MEDIUM",
     "publishedAt": "2026-07-01T15:17:12.553Z",
-    "lastModifiedAt": "2026-07-02T14:38:25.923Z",
-    "fetchedAt": "2026-07-04T11:33:42.505Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4207,8 +4220,8 @@
     "cvssScore": 8.2,
     "severity": "HIGH",
     "publishedAt": "2026-06-30T20:17:27.387Z",
-    "lastModifiedAt": "2026-07-02T15:41:56.680Z",
-    "fetchedAt": "2026-07-04T11:33:42.505Z",
+    "lastModifiedAt": "2026-10-25T21:10:00.770Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4220,8 +4233,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-30T17:16:23.907Z",
-    "lastModifiedAt": "2026-07-14T22:17:27.663Z",
-    "fetchedAt": "2026-07-14T22:44:32.502Z",
+    "lastModifiedAt": "2026-10-25T21:10:00.770Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4233,9 +4246,35 @@
     "cvssScore": 8.8,
     "severity": "HIGH",
     "publishedAt": "2026-06-29T15:16:41.597Z",
-    "lastModifiedAt": "2026-06-30T16:17:39.403Z",
-    "fetchedAt": "2026-07-03T22:52:37.392Z",
+    "lastModifiedAt": "2026-10-25T21:10:00.770Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-56823",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56823",
+    "descriptionEn": "AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. Prior to , the `POST /api/integrations/webhooks/{webhook_id}/ping` endpoint fetches the target webhook by primary key alone without verifying that the webhook belongs to the authenticated user. Any authenticated user can supply an arbitrary webhook_id to confirm webhook existence, leak the webhook's OAuth provider type, and in some cases trigger a ping delivery on behalf of another user. This vulnerability is fixed in .",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.4,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-26T17:16:34.573Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-56663",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56663",
+    "descriptionEn": "AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. Prior to 0.6.52, an authenticated user can bypass the SSRF / private-IP protections in SendWebRequestBlock and reach internal network services. _is_ip_blocked() in backend/backend/util/request.py does not normalize IPv4-mapped IPv6 addresses before checking resolved IPs against the blocked IPv4 ranges, and does not block special-use ranges such as 100.64.0.0/10 (CGNAT, RFC 6598). A hostname that resolves to an IPv4-mapped IPv6 address therefore passes validation and the request reaches the embedded internal IPv4 endpoint. This affects all AutoGPT Platform deployments. This vulnerability is fixed in 0.6.52.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.5,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-26T17:16:34.453Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2025-32423",
@@ -4272,9 +4311,204 @@
     "cvssScore": 7.1,
     "severity": "HIGH",
     "publishedAt": "2026-06-26T16:16:31.373Z",
-    "lastModifiedAt": "2026-07-02T14:00:05.617Z",
-    "fetchedAt": "2026-07-04T11:33:42.505Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-44018",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44018",
+    "descriptionEn": "Docling simplifies document processing by parsing diverse formats and providing integrations with the generative AI ecosystem. From 2.45.0 until 2.91.0, the METS-GBS backend's XML parsing and the input document format detection lacked security controls. An attacker could craft malicious METS-GBS archives that, when processed, could read sensitive files, exhaust system resources, or cause application crashes. This vulnerability is fixed in 2.91.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-26T16:16:30.767Z",
+    "lastModifiedAt": "2026-10-25T17:10:00.197Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54040",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54040",
+    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.4-rc1, the POST /api/auth/2fa/backup/regenerate endpoint regenerates all 2FA backup codes without requiring any TOTP token or existing backup code verification. An attacker with a stolen session token can silently replace a victim's backup codes and use them to bypass 2FA login or disable 2FA entirely. This vulnerability is fixed in 0.8.4-rc1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.9,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-25T17:16:41.123Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54037",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54037",
+    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.4-rc1, the fix for CVE-2025-7105 added forkIpLimiter and forkUserLimiter rate limiters to POST /api/convos/fork to prevent rapid-fire conversation duplication. However, the POST /api/convos/duplicate endpoint — which is in the same file and performs the exact same expensive database operations — was not given any rate limiter. An authenticated user can bypass the CVE-2025-7105 fix by using /duplicate instead of /fork to exhaust server resources. This vulnerability is fixed in 0.8.4-rc1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-25T17:16:41.000Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54033",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54033",
+    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.4-rc1, LibreChat allows users to configure custom OpenAI-compatible API endpoints by setting a baseURL. This URL is used to construct HTTP requests without any SSRF validation — no private IP check, no scheme restriction, no DNS pinning. An authenticated user can set baseURL to internal network addresses. This vulnerability is fixed in 0.8.4-rc1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.7,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-25T17:16:40.783Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54030",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54030",
+    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.5, LibreChat's MCP OAuth implementation does not validate that the resource parameter from OAuth Protected Resource metadata (RFC 9728) matches the configured MCP server URL, allowing a malicious MCP server to steal access tokens intended for a legitimate server. This vulnerability is fixed in 0.8.5.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-25T17:16:40.660Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54029",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54029",
+    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.4-rc1, the DELETE /api/messages/:conversationId/:messageId endpoint allows any authenticated user to delete any other user's messages. The validateMessageReq middleware only validates that the conversationId belongs to the requesting user, but the handler calls deleteMessages({ messageId }) using only the messageId as the MongoDB filter — without adding a user constraint. An attacker provides their own valid conversationId (to pass validation) and the victim's messageId (to target deletion), resulting in permanent, irrecoverable message deletion. This vulnerability is fixed in 0.8.4-rc1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-25T17:16:40.537Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54027",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54027",
+    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.4-rc1, the POST /api/files/images endpoint allows any authenticated user to upload files into any agent's tool_resources (e.g., context, execute_code) without verifying ownership or EDIT permission on the target agent. A permission check was added to the POST /api/files route in a previous patch, but the image upload route was never updated with the same check. An attacker can simply use the image endpoint instead of the file endpoint to bypass the authorization entirely. This vulnerability is fixed in 0.8.4-rc1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-25T17:16:40.397Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54025",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54025",
+    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.4-rc1, there is a vulnerability in LibreChat's markdown artifact preview pipeline. The marked library v15.0.12 does not HTML-escape double-quote characters in image alt text when a custom renderer falls through to the default renderer. LibreChat's generateMarkdownHtml function (in client/src/utils/markdown.ts) installs a custom image renderer that returns false for URLs passing the isSafeUrl allowlist check, which causes marked to fall back to its built-in renderer. That built-in renderer inserts the raw alt text into the alt=\"...\" attribute without escaping double-quote characters. An attacker can craft an alt text such as \" onload=\"payload to break out of the attribute and inject an arbitrary event handler. The resulting HTML is then assigned to document.getElementById('content').innerHTML inside the Sandpack preview iframe, causing the payload to execute in the victim's browser. This vulnerability is fixed in 0.8.4-rc1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.4,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-25T17:16:40.277Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54024",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54024",
+    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.4-rc1, the fix for CVE-2024-11171 (commit bb58a2d0) added limits: { fileSize } to createMulterInstance() in the file upload routes. However, the POST /api/convos/import endpoint uses a separate multer instance that was never updated with the same limits configuration. Combined with the application-level size check being disabled by default (the CONVERSATION_IMPORT_MAX_FILE_SIZE_BYTES env var is commented out in .env.example), an authenticated user can upload arbitrarily large files to exhaust server disk space and memory. This vulnerability is fixed in 0.8.4-rc1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-25T17:16:40.153Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54036",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54036",
+    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.4-rc1, the GET /api/auth/2fa/enable endpoint can be called by an authenticated user (or attacker with a stolen session) even when 2FA is already fully enabled on the account. This endpoint overwrites the existing TOTP secret, generates new backup codes, and sets twoFactorEnabled to false — all without requiring any TOTP or backup code verification. An attacker with a valid session token can completely take over a victim's 2FA, locking the legitimate user out of their own two-factor authentication. This vulnerability is fixed in 0.8.4-rc1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-25T16:16:39.217Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-33235",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-33235",
+    "descriptionEn": "AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. In versions prior to 0.6.52, the Fill Text Template block is vulnerable to a Denial of Service (DoS) attack. While the backend implements a SandboxedEnvironment to prevent unauthorized attribute access (e.g., blocking __class__), it fails to limit the computational complexity or execution time of the expressions. An attacker can input computationally expensive Python/Jinja2 expressions that consume the server's CPU and memory, leading to a complete system hang or crash. In multi-tenant or self-hosted environments, this results in a complete service outage and \"noisy neighbor\" effects that require manual administrative intervention to recover. This issue has been fixed in version 0.6.52.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.7,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-24T21:16:53.320Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-55583",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55583",
+    "descriptionEn": "Twenty is an open-source CRM (customer relationship management) platform. Prior to 2.9.0, Twenty was vulnerable to a cross-workspace insecure direct object reference (IDOR) in the AI agent monitor's AgentTurnResolver, in packages/twenty-server/src/engine/metadata-modules/ai/ai-agent-monitor/reso lvers/agent-turn.resolver.ts. The agentTurns(agentId) query and the evaluateAgentTurn(turnId) mutation looked up rows by agentId or id only; although AgentTurnEntity has a workspaceId column, it was not included in the WHERE clause, and the class-level guards only checked that the caller was authenticated in some workspace rather than that the requested object belonged to it, with the same flaw present in agent-turn-grader.service.ts.  As a result, any authenticated user with the AI settings flag, a workspace owner by default, could target any other workspace on the same instance given the victim's agentId or turnId: agentTurns returned the victim's full  chat history including message parts such as raw chat text, tool calls, and tool outputs, while evaluateAgentTurn inserted an agentTurnEvaluation row with the victim's workspaceId and fed the victim's turn into the default LLM. The agentId and turnId are non-guessable UUIDs but are exposed  in the URL of the settings page. This issue is fixed in version 2.9.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.6,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-24T20:16:33.100Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-55611",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55611",
+    "descriptionEn": "AnythingLLM is an application that turns pieces of content into context that any LLM can use as references during chatting. From 1.11.1 until 1.14.1, userId/workspaceId scoping to the parsed-files read/delete paths was added. However, the POST /api/workspace/:slug/embed-parsed-file/:fileId flow still deletes the target file by primary key only, with no ownership check, inside two finally{} blocks that run even when the ownership-checked read fails. As a result a manager or admin (multi-user mode) can delete any other user's parsed file in any workspace — including workspaces they are not a member of — by enumerating integer fileIds. The server even returns \"File not found\" while still deleting the file. This vulnerability is fixed in 1.14.1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 0,
+    "severity": "NONE",
+    "publishedAt": "2026-06-24T18:17:19.443Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-48789",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-48789",
+    "descriptionEn": "AnythingLLM is an application that turns pieces of content into context that any LLM can use as references during chatting. Prior to 1.13.0, on Windows, the document folder listing route can accept an encoded absolute Windows path that resolves outside the intended documents directory. The shared path containment helper rejects POSIX-style \"../\" traversal but does not reject Windows-style parent paths returned by path.relative(), such as \"..\". This vulnerability is fixed in 1.13.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 4.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-24T18:17:18.800Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-44022",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44022",
+    "descriptionEn": "Docling simplifies document processing by parsing diverse formats and providing integrations with the generative AI ecosystem. From 2.73.0 until 2.91.0, he LaTeX backend's handling of \\includegraphics, \\input, and \\include commands lacked path containment validation. Attackers could craft malicious LaTeX documents with path traversal sequences to read arbitrary files from the file system accessible to the process, include sensitive files in the converted document output, or potentially access configuration files, credentials, or other sensitive data This vulnerability is fixed in 2.91.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-24T18:17:17.593Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-44020",
@@ -4285,8 +4519,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-24T18:17:17.467Z",
-    "lastModifiedAt": "2026-08-28T16:18:02.220Z",
-    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4298,8 +4532,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-24T18:17:17.337Z",
-    "lastModifiedAt": "2026-08-28T16:18:02.010Z",
-    "fetchedAt": "2026-08-29T03:24:23.524Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4316,6 +4550,19 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2026-54555",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54555",
+    "descriptionEn": "rtk filters and compresses command outputs before they reach your LLM context. Prior to 0.42.2, the permission splitter did not conservatively split or reject several shell constructs that Bash treats as command execution boundaries or nested execution. As a result, a command beginning with an allowed prefix such as git could hide a second command behind one of these constructs. rtk rewrite returned exit code 0, causing the Claude hook to emit permissionDecision: \"allow\". The rewritten command still contained the hidden command, so it ran without the user confirmation or denial that the permission rules were intended to enforce. This vulnerability is fixed in 0.42.2.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-23T20:16:49.737Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2026-45792",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-45792",
     "descriptionEn": "rtk filters and compresses command outputs before they reach your LLM context. Prior to 0.32.0, RTK (Rust Token Killer) improperly trusts project-local configuration files. RTK automatically loads .rtk/filters.toml from the working directory with highest priority and without user notification. An attacker can place a malicious filter file in a repository to apply regex-based modifications (e.g., strip_lines_matching) to shell command output before it is shown to the LLM, without any indication that the output has been modified. This allows attackers to selectively suppress or alter command output (including file contents, diffs, and security scan results) without detection, potentially concealing malicious code during AI-assisted development or review. This vulnerability is fixed in 0.32.0.",
@@ -4324,8 +4571,8 @@
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-06-23T20:16:47.850Z",
-    "lastModifiedAt": "2026-07-01T18:35:34.460Z",
-    "fetchedAt": "2026-07-04T11:33:42.505Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4337,9 +4584,113 @@
     "cvssScore": 6.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-06-23T19:17:11.713Z",
-    "lastModifiedAt": "2026-07-01T18:47:14.480Z",
-    "fetchedAt": "2026-07-04T11:33:42.505Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-53755",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53755",
+    "descriptionEn": "Crawl4AI is an open-source LLM friendly web crawler & scraper. Prior to 0.8.9, the Docker API server applied its SSRF destination check to the crawl target URL only, not to the proxy address. An unauthenticated request could supply a proxy pointing at an internal IP and route the browser through it, reaching internal services and cloud-metadata endpoints, while using a perfectly valid crawl URL. The Docker API is unauthenticated by default. /crawl, /crawl/stream, and /crawl/job accept a browser_config (and crawler_config). The following all feed Chromium's egress and were unchecked: browser_config.proxy_config.server, browser_config.proxy (deprecated field), crawler_config.proxy_config.server, and --proxy-server / --proxy-pac-url / --proxy-bypass-list / --host-resolver-rules flags in browser_config.extra_args. This vulnerability is fixed in 0.8.9.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.6,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-23T19:17:07.477Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-53754",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53754",
+    "descriptionEn": "Crawl4AI is an open-source LLM friendly web crawler & scraper. Prior to 0.8.8, the Docker API server's SSRF protection (validate_webhook_url / validate_url_destination in deploy/docker/utils.py) used an explicit IPv4/IPv6 CIDR blocklist that missed several address families. An attacker could reach internal services and cloud metadata endpoints (e.g. 169.254.169.254) despite the filter by encoding an internal IPv4 address inside an IPv6 transition form, or by using the IPv6 unspecified address. Because the Docker API is unauthenticated by default (jwt_enabled: false), no credentials are required. This vulnerability is fixed in 0.8.8.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-23T19:17:07.303Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-53753",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53753",
+    "descriptionEn": "Crawl4AI is an open-source LLM friendly web crawler & scraper. Prior to 0.8.7, the _safe_eval_expression() function in the computed fields feature uses an AST validator that only blocks attributes starting with underscore. Python generator and frame object attributes (gi_frame, f_back, f_builtins) do NOT start with underscore, enabling a complete sandbox escape to achieve arbitrary code execution. The attack requires no authentication (JWT disabled by default) and is triggered via POST /crawl with a crafted extraction schema. This vulnerability is fixed in 0.8.7.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.8,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-06-23T19:17:07.107Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54236",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54236",
+    "descriptionEn": "vLLM is an inference and serving engine for large language models (LLMs). Prior to 0.23.1rc0, the fix for CVE-2026-22778, which introduced a sanitize_message helper that strips object-repr memory addresses from error messages before they reach the client, is incomplete: several response paths echo str(exc) directly to clients without calling sanitize_message. The unsanitized sites include the Anthropic API router in vllm/entrypoints/anthropic/api_router.py (the POST /v1/messages and POST /v1/messages/count_tokens handlers), the Server-Sent Events streaming converter in vllm/entrypoints/anthropic/serving.py, and the realtime speech-to-text WebSocket in vllm/entrypoints/speech_to_text/realtime/connection.py. These paths catch the exception inside the route coroutine and construct the JSONResponse themselves, bypassing the sanitizing global FastAPI exception handler, and WebSocket frames do not traverse that handler chain at all. Using the same primitive as the parent issue, an unauthenticated attacker can send malformed image bytes through the Anthropic Messages API image content parts so that PIL.Image.open raises an UnidentifiedImageError whose message contains the BytesIO object repr, leaking the heap memory address verbatim in the error.message field of the response body. This vulnerability is fixed in 0.23.1rc0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-22T23:16:31.290Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54235",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54235",
+    "descriptionEn": "vLLM is an inference and serving engine for large language models (LLMs). Prior to 0.23.1rc0, ll temperature validation gates use comparison operators (<, >), which silently evaluate to False for NaN and for positive Infinity in Python's IEEE 754 float semantics. Both values pass every guard and propagate to GPU sampling kernels, where they produce undefined behavior or CUDA errors that can crash the inference worker. This vulnerability is fixed in 0.23.1rc0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-22T23:16:31.143Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54233",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54233",
+    "descriptionEn": "vLLM is an inference and serving engine for large language models (LLMs). Prior to 0.23.1rc0, vLLM's /v1/audio/transcriptions endpoint limits compressed upload size but not decoded PCM output. A 25MB OPUS file expands to ~14.9GB of float32 PCM at decode time. This vulnerability is fixed in 0.23.1rc0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-22T23:16:31.007Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-54232",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54232",
+    "descriptionEn": "vLLM is an inference and serving engine for large language models (LLMs). Prior to 0.22.1, the vLLM Dockerfile is vulnerable to a dependency confusion attack through the flashinfer-jit-cache package. The package is installed from a custom index (flashinfer.ai/whl/) using --extra-index-url, but the package name was not registered on PyPI, and UV_INDEX_STRATEGY=\"unsafe-best-match\" is set globally. An attacker who registers flashinfer-jit-cache on PyPI with version 0.6.11.post2 can execute arbitrary code as root during the Docker build and backdoor every resulting container image, enabling exfiltration of all user prompts, API credentials, and model data from production vLLM deployments This vulnerability is fixed in 0.22.1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 8.8,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-22T23:16:30.873Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-53923",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53923",
+    "descriptionEn": "vLLM is an inference and serving engine for large language models (LLMs). From 0.5.5 until 0.23.1rc0, integer truncation of tensor dimensions in vLLM's GGUF dequantize kernels (csrc/quantization/gguf/gguf_kernel.cu) causes partial tensor processing. The output tensor is allocated at full size via torch::empty (uninitialized memory), but the dequantize CUDA kernel processes only a truncated number of elements. The unfilled portion of the output tensor retains whatever was previously in GPU memory. In multi-tenant inference deployments, this residual GPU memory may contain tensor data from other users' inference requests, constituting information disclosure. This vulnerability is fixed in 0.23.1rc0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 7.5,
+    "severity": "HIGH",
+    "publishedAt": "2026-06-22T23:16:30.737Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-48746",
@@ -4350,9 +4701,22 @@
     "cvssScore": 9.1,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-22T23:16:30.490Z",
-    "lastModifiedAt": "2026-09-16T13:18:00.653Z",
-    "fetchedAt": "2026-09-16T23:56:38.912Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-47155",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-47155",
+    "descriptionEn": "vLLM is an inference and serving engine for large language models (LLMs). Prior to 0.22.0, vLLM's revision pinning controls do not consistently apply to all artifacts loaded for a model. A deployment that supplies --revision or --code-revision can still load dynamic code, GGUF files, image processors, retrieval side weights, or same-repository subfolder weights/config from an unpinned/default revision. This is a supply-chain integrity issue for pinned vLLM deployments. Operators can believe they are serving a reviewed model revision while vLLM resolves behavior-affecting nested or sibling artifacts outside that reviewed revision. This vulnerability is fixed in 0.22.0.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 6.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-22T23:16:30.357Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-41523",
@@ -4363,8 +4727,8 @@
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-22T23:16:30.200Z",
-    "lastModifiedAt": "2026-09-04T13:19:41.473Z",
-    "fetchedAt": "2026-09-04T23:30:02.894Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4376,8 +4740,8 @@
     "cvssScore": 9.8,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-22T21:16:25.190Z",
-    "lastModifiedAt": "2026-07-15T02:22:35.767Z",
-    "fetchedAt": "2026-07-15T22:45:30.672Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -4402,8 +4766,8 @@
     "cvssScore": 9,
     "severity": "CRITICAL",
     "publishedAt": "2026-06-19T00:16:46.703Z",
-    "lastModifiedAt": "2026-07-01T19:26:30.593Z",
-    "fetchedAt": "2026-07-04T11:33:42.505Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
   },
   {
@@ -5356,6 +5720,19 @@
     "llmStatus": "ok"
   },
   {
+    "id": "CVE-2026-40319",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-40319",
+    "descriptionEn": "Giskard is an open-source testing framework for AI models. In versions prior to 1.0.2b1, the RegexMatching check passes a user-supplied regular expression pattern directly to Python's re.search() without any timeout or complexity guard. A crafted regex pattern can trigger catastrophic backtracking, causing the process to hang indefinitely. Exploitation requires write access to a check definition and subsequent execution of the test suite. This issue has been fixed in giskard-checks version 1.0.2b1.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.5,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-04-17T18:16:32.063Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
     "id": "CVE-2025-69893",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-69893",
     "descriptionEn": "A side-channel vulnerability exists in the implementation of BIP-39 mnemonic processing, as observed in Trezor One v1.13.0 to v1.14.0, Trezor T v1.13.0 to v1.14.0, and Trezor Safe v1.13.0 to v1.14.0 hardware wallets. This originates from the BIP-39 standard guidelines, which induce non-constant time execution and specific branch patterns for word searching. An attacker with physical access during the initial setup phase can collect a single side-channel trace. By utilizing profiling-based Deep Learning Side-Channel Analysis (DL-SCA), the attacker can recover the mnemonic code and subsequently steal the assets. The issue was patched.",
@@ -5367,6 +5744,32 @@
     "lastModifiedAt": "2026-07-05T02:17:37.393Z",
     "fetchedAt": "2026-07-06T22:55:12.722Z",
     "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-40088",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-40088",
+    "descriptionEn": "PraisonAI is a multi-agent teams system. Prior to 4.5.121, the execute_command function and workflow shell execution are exposed to user-controlled input via agent workflows, YAML definitions, and LLM-generated tool calls, allowing attackers to inject arbitrary shell commands through shell metacharacters. This vulnerability is fixed in 4.5.121.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 9.6,
+    "severity": "CRITICAL",
+    "publishedAt": "2026-04-09T20:16:27.597Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-40087",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-40087",
+    "descriptionEn": "LangChain is a framework for building agents and LLM-powered applications. Prior to 0.3.84 and 1.2.28, LangChain's f-string prompt-template validation was incomplete in two respects. First, some prompt template classes accepted f-string templates and formatted them without enforcing the same attribute-access validation as PromptTemplate. In particular, DictPromptTemplate and ImagePromptTemplate could accept templates containing attribute access or indexing expressions and subsequently evaluate those expressions during formatting. Second, f-string validation based on parsed top-level field names did not reject nested replacement fields inside format specifiers. In this pattern, the nested replacement field appears in the format specifier rather than in the top-level field name. As a result, earlier validation based on parsed field names did not reject the template even though Python formatting would still attempt to resolve the nested expression at runtime. This vulnerability is fixed in 0.3.84 and 1.2.28.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": 5.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-04-09T20:16:27.400Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "pending"
   },
   {
     "id": "CVE-2026-34371",
@@ -5382,16 +5785,16 @@
     "llmStatus": "ok"
   },
   {
-    "id": "CVE-2026-35050",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-35050",
-    "descriptionEn": "text-generation-webui is an open-source web interface for running Large Language Models. Prior to 4.1.1, users can save extention settings in \"py\" format and in the app root directory. This allows to overwrite python files, for instance the \"download-model.py\" file could be overwritten. Then, this python file can be triggered to get executed from \"Model\" menu when requesting to download a new model. This vulnerability is fixed in 4.1.1.",
+    "id": "CVE-2026-35487",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-35487",
+    "descriptionEn": "text-generation-webui is an open-source web interface for running Large Language Models. Prior to 4.3, an unauthenticated path traversal vulnerability in load_prompt() allows reading any .txt file on the server filesystem. The file content is returned verbatim in the API response. This vulnerability is fixed in 4.3.",
     "summaryJa": null,
     "category": null,
-    "cvssScore": 9.1,
-    "severity": "CRITICAL",
-    "publishedAt": "2026-04-06T18:16:42.583Z",
-    "lastModifiedAt": "2026-10-23T23:10:00.157Z",
-    "fetchedAt": "2026-10-24T23:50:25.766Z",
+    "cvssScore": 5.3,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-04-07T16:16:26.853Z",
+    "lastModifiedAt": "2026-10-25T23:10:00.167Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "pending"
   },
   {
