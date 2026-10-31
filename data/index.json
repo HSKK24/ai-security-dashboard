@@ -1,9 +1,8 @@
 {
-  "lastRunAt": "2026-10-30T01:26:57.708Z",
-  "totalCount": 1359,
-  "latestModifiedCursor": "2026-10-29T21:17:31.327Z",
+  "lastRunAt": "2026-10-31T01:11:54.596Z",
+  "totalCount": 1368,
+  "latestModifiedCursor": "2026-10-30T20:17:00.030Z",
   "carryover": [
-    "CVE-2026-54033",
     "CVE-2026-54025",
     "CVE-2026-54024",
     "CVE-2026-54036",
@@ -137,15 +136,15 @@
     "CVE-2018-3824",
     "CVE-2018-3823",
     "CVE-2018-11262",
-    "CVE-2026-51863",
-    "CVE-2026-118761",
-    "CVE-2026-118760",
-    "CVE-2026-118759",
-    "CVE-2026-118758",
-    "CVE-2026-119050",
-    "CVE-2026-116690",
-    "CVE-2026-75913",
-    "CVE-2026-75857"
+    "CVE-2026-61789",
+    "CVE-2026-118553",
+    "CVE-2026-118552",
+    "CVE-2026-118551",
+    "CVE-2026-118550",
+    "CVE-2026-118549",
+    "CVE-2026-118548",
+    "CVE-2026-118546",
+    "CVE-2026-118545"
   ],
   "years": [
     "2026",
@@ -163,10 +162,10 @@
     "2011"
   ],
   "lastRunStats": {
-    "nvdFetched": 2643,
-    "keywordMatched": 14,
-    "llmEnriched": 6,
+    "nvdFetched": 3026,
+    "keywordMatched": 23,
+    "llmEnriched": 14,
     "nvdFetchFailed": false
   },
-  "lastSuccessfulNvdFetchAt": "2026-10-30T01:26:57.708Z"
+  "lastSuccessfulNvdFetchAt": "2026-10-31T01:11:54.596Z"
 }
