@@ -1,159 +1,29 @@
 [
   {
-    "id": "CVE-2026-61789",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61789",
-    "descriptionEn": "DBHub is a database MCP server for Postgres, MySQL, SQL Server, Oracle, MariaDB, SQLite. Prior to 0.22.6, read-only SQL validation can be bypassed on the MySQL and MariaDB connectors. In `src/utils/sql-parser.ts`, `scanSingleLineComment` treats every double dash as a comment start, whereas MySQL and MariaDB require following whitespace, a control character, or the end of the line. The read-only check in `src/tools/execute-sql.ts` validates split statements with `isReadOnlySQL`, but `src/connectors/mysql/index.ts` and `src/connectors/mariadb/index.ts` execute the original string with `multipleStatements` enabled. A double dash followed by a non-whitespace character can therefore hide a subsequent write or destructive DDL statement from the validator while the database interprets the dashes as minus operators and executes both statements. Anyone able to influence the assistant's SQL, including through prompt injection in content the assistant reads, can bypass read-only mode to modify or drop database data, subject to the database account's privileges. PostgreSQL is not affected by this path because its double-dash parsing agrees with the checker and its connector executes individual split statements. This issue is fixed in version 0.22.6.",
-    "summaryJa": "DBHubのバージョン0.22.6より前のMySQLおよびMariaDBコネクタにおいて、読み取り専用SQL検証をバイパスできる脆弱性が存在します。SQLパーサーが二重ダッシュコメント（`--`）をMySQL/MariaDBの実際の挙動と異なって解釈するため、攻撃者は`--`の後に非空白文字を続けることで、書き込みまたは破壊的なSQLステートメントを隠蔽し、データベースに実行させることが可能です。これにより、データベースアカウントの権限内でデータを不正に変更または削除される可能性があり、AIアシスタントのSQLにプロンプトインジェクションなどを通じて影響を与えることで悪用され得ます。",
-    "category": "other",
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-10-30T17:17:26.743Z",
-    "lastModifiedAt": "2026-10-30T17:17:26.867Z",
-    "fetchedAt": "2026-10-31T01:09:59.923Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-118553",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118553",
-    "descriptionEn": "Improper Neutralization of Input During Web Page Generation (\"Cross-site Scripting\") vulnerability in Drupal AI (Artificial Intelligence) allows Stored XSS. This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
-    "summaryJa": "DrupalのAIモジュールにおいて、Webページ生成時の入力処理の不備（不適切な無害化）に起因する格納型クロスサイトスクリプティング（Stored XSS）の脆弱性が発見されました。この脆弱性により、攻撃者は悪意のあるスクリプトを永続的に埋め込む可能性があります。影響を受けるバージョンは0.0.0から1.4.11、および1.5.0から1.5.2です。",
-    "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-10-30T04:18:20.690Z",
-    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
-    "fetchedAt": "2026-10-31T01:09:59.923Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-118552",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118552",
-    "descriptionEn": "Improper Neutralization of Input During Web Page Generation (\"Cross-site Scripting\") vulnerability in Drupal AI (Artificial Intelligence) allows Cross-Site Scripting (XSS). This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
-    "summaryJa": null,
-    "category": null,
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-10-30T04:18:20.547Z",
-    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
-    "fetchedAt": "2026-10-31T01:09:59.923Z",
-    "llmStatus": "failed"
-  },
-  {
-    "id": "CVE-2026-118551",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118551",
-    "descriptionEn": "Insecure Storage of Sensitive Information vulnerability in Drupal AI (Artificial Intelligence) allows Retrieve Embedded Sensitive Data. This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
-    "summaryJa": "Drupal AI (Artificial Intelligence)モジュールに機密情報の不適切な保存の脆弱性が存在します。この脆弱性により、埋め込まれた機密データが攻撃者によって取得される可能性があります。影響を受けるバージョンは0.0.0から1.4.11、および1.5.0から1.5.2です。",
-    "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-10-30T04:18:20.397Z",
-    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
-    "fetchedAt": "2026-10-31T01:09:59.923Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-118550",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118550",
-    "descriptionEn": "Use of Web Browser Cache Containing Sensitive Information vulnerability in Drupal AI (Artificial Intelligence) allows Exploiting Incorrectly Configured Access Control Security Levels. This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
-    "summaryJa": "Drupal AIモジュールにおいて、Webブラウザキャッシュに機密情報が保存される脆弱性が見つかりました。この脆弱性により、不適切に設定されたアクセス制御セキュリティレベルが悪用される可能性があります。この問題は、バージョン0.0.0から1.4.11、および1.5.0から1.5.2に影響します。",
-    "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-10-30T04:18:20.257Z",
-    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
-    "fetchedAt": "2026-10-31T01:09:59.923Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-118549",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118549",
-    "descriptionEn": "Improper Neutralization of Input During Web Page Generation (\"Cross-site Scripting\") vulnerability in Drupal AI (Artificial Intelligence) allows Cross-Site Scripting (XSS). This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
-    "summaryJa": "DrupalのAI（Artificial Intelligence）モジュールにおいて、ウェブページ生成時の入力値の不適切な無害化により、クロスサイトスクリプティング（XSS）の脆弱性が存在します。この問題は、バージョン0.0.0から1.4.11および1.5.0から1.5.2までのAIモジュールに影響を与えます。",
-    "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-10-30T04:18:20.100Z",
-    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
-    "fetchedAt": "2026-10-31T01:09:59.923Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-118548",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118548",
-    "descriptionEn": "Incorrect Authorization vulnerability in Drupal AI (Artificial Intelligence) allows Resource Injection. This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
-    "summaryJa": "Drupal AIモジュールにおいて、不適切な認証処理の脆弱性が存在します。この脆弱性により、攻撃者はリソースインジェクションを実行できる可能性があります。バージョン0.0.0から1.4.11、および1.5.0から1.5.2が影響を受けます。",
-    "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-10-30T04:18:19.960Z",
-    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
-    "fetchedAt": "2026-10-31T01:09:59.923Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-118546",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118546",
-    "descriptionEn": "Improper Neutralization of Input During Web Page Generation (\"Cross-site Scripting\") vulnerability in Drupal AI (Artificial Intelligence) allows Cross-Site Scripting (XSS). This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
-    "summaryJa": "Drupal AI（Artificial Intelligence）モジュールにおいて、Webページ生成時の入力値の不適切な無害化に起因するクロスサイトスクリプティング（XSS）の脆弱性が確認されました。この問題は、バージョン0.0.0から1.4.11、および1.5.0から1.5.2に影響を及ぼします。",
-    "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-10-30T04:18:19.813Z",
-    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
-    "fetchedAt": "2026-10-31T01:09:59.923Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-118545",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118545",
-    "descriptionEn": "Improper Neutralization of Input During Web Page Generation (\"Cross-site Scripting\") vulnerability in Drupal AI (Artificial Intelligence) allows Cross-Site Scripting (XSS). This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
-    "summaryJa": "Drupal AI（Artificial Intelligence）モジュールのバージョン0.0.0から1.4.11および1.5.0から1.5.2に、クロスサイトスクリプティング（XSS）の脆弱性が存在します。これは、Webページ生成時に入力値が適切に無害化されないことに起因し、攻撃者によって悪意のあるスクリプトが実行される可能性があります。",
-    "category": "ai-library",
-    "cvssScore": null,
-    "severity": null,
-    "publishedAt": "2026-10-30T04:18:19.680Z",
-    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
-    "fetchedAt": "2026-10-31T01:09:59.923Z",
-    "llmStatus": "ok"
-  },
-  {
-    "id": "CVE-2026-54025",
-    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54025",
-    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.4-rc1, there is a vulnerability in LibreChat's markdown artifact preview pipeline. The marked library v15.0.12 does not HTML-escape double-quote characters in image alt text when a custom renderer falls through to the default renderer. LibreChat's generateMarkdownHtml function (in client/src/utils/markdown.ts) installs a custom image renderer that returns false for URLs passing the isSafeUrl allowlist check, which causes marked to fall back to its built-in renderer. That built-in renderer inserts the raw alt text into the alt=\"...\" attribute without escaping double-quote characters. An attacker can craft an alt text such as \" onload=\"payload to break out of the attribute and inject an arbitrary event handler. The resulting HTML is then assigned to document.getElementById('content').innerHTML inside the Sandpack preview iframe, causing the payload to execute in the victim's browser. This vulnerability is fixed in 0.8.4-rc1.",
-    "summaryJa": "LibreChatの0.8.4-rc1より前のバージョンには、Markdownプレビューパイプラインに脆弱性が存在します。`marked`ライブラリが、カスタムレンダラーからデフォルトレンダラーにフォールバックした際に画像altテキスト中の二重引用符をHTMLエスケープしないことが原因です。これにより、攻撃者はaltテキストを細工して属性から脱出し、Sandpackプレビューiframe内で任意のXSSペイロードを実行させることが可能です。",
-    "category": "ai-service",
-    "cvssScore": 5.4,
-    "severity": "MEDIUM",
-    "publishedAt": "2026-06-25T17:16:40.277Z",
-    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
-    "fetchedAt": "2026-10-25T23:39:12.065Z",
-    "llmStatus": "ok"
-  },
-  {
     "id": "CVE-2026-54024",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54024",
     "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.4-rc1, the fix for CVE-2024-11171 (commit bb58a2d0) added limits: { fileSize } to createMulterInstance() in the file upload routes. However, the POST /api/convos/import endpoint uses a separate multer instance that was never updated with the same limits configuration. Combined with the application-level size check being disabled by default (the CONVERSATION_IMPORT_MAX_FILE_SIZE_BYTES env var is commented out in .env.example), an authenticated user can upload arbitrarily large files to exhaust server disk space and memory. This vulnerability is fixed in 0.8.4-rc1.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LibreChatのバージョン0.8.4-rc1より前のバージョンにおいて、`POST /api/convos/import`エンドポイントで使用されるファイルアップロードのmulterインスタンスに、ファイルサイズ制限が適用されていませんでした。この設定不備とデフォルトで無効化されているアプリケーションレベルのサイズチェックのため、認証済みユーザーは任意の大きなファイルをアップロードし、サーバーのディスクスペースとメモリを枯渇させサービス拒否攻撃を行う可能性があります。本脆弱性はバージョン0.8.4-rc1で修正されています。",
+    "category": "other",
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-06-25T17:16:40.153Z",
     "lastModifiedAt": "2026-10-25T22:10:00.150Z",
     "fetchedAt": "2026-10-25T23:39:12.065Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-54036",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54036",
     "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.4-rc1, the GET /api/auth/2fa/enable endpoint can be called by an authenticated user (or attacker with a stolen session) even when 2FA is already fully enabled on the account. This endpoint overwrites the existing TOTP secret, generates new backup codes, and sets twoFactorEnabled to false — all without requiring any TOTP or backup code verification. An attacker with a valid session token can completely take over a victim's 2FA, locking the legitimate user out of their own two-factor authentication. This vulnerability is fixed in 0.8.4-rc1.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "LibreChatの0.8.4-rc1より前のバージョンにおいて、認証済みユーザーがGET /api/auth/2fa/enableエンドポイントを呼び出すと、既存の2要素認証が有効な場合でもTOTP秘密鍵の上書き、バックアップコードの再生成、および2FAの無効化が、TOTP検証なしに実行されます。これにより、攻撃者は被害者の2要素認証を乗っ取り、正規ユーザーをアカウントから締め出すことが可能でした。",
+    "category": "other",
     "cvssScore": 5.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-06-25T16:16:39.217Z",
     "lastModifiedAt": "2026-10-25T22:10:00.150Z",
     "fetchedAt": "2026-10-25T23:39:12.065Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-33235",
@@ -166,7 +36,7 @@
     "publishedAt": "2026-06-24T21:16:53.320Z",
     "lastModifiedAt": "2026-10-25T22:10:00.150Z",
     "fetchedAt": "2026-10-25T23:39:12.065Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-55583",
@@ -179,7 +49,7 @@
     "publishedAt": "2026-06-24T20:16:33.100Z",
     "lastModifiedAt": "2026-10-25T22:10:00.150Z",
     "fetchedAt": "2026-10-25T23:39:12.065Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-55611",
@@ -192,46 +62,46 @@
     "publishedAt": "2026-06-24T18:17:19.443Z",
     "lastModifiedAt": "2026-10-25T22:10:00.150Z",
     "fetchedAt": "2026-10-25T23:39:12.065Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-48789",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-48789",
     "descriptionEn": "AnythingLLM is an application that turns pieces of content into context that any LLM can use as references during chatting. Prior to 1.13.0, on Windows, the document folder listing route can accept an encoded absolute Windows path that resolves outside the intended documents directory. The shared path containment helper rejects POSIX-style \"../\" traversal but does not reject Windows-style parent paths returned by path.relative(), such as \"..\". This vulnerability is fixed in 1.13.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "AnythingLLMのWindows版（バージョン1.13.0未満）において、ドキュメントフォルダのリスト表示機能にパス・トラバーサルの脆弱性が存在します。この脆弱性により、エンコードされた絶対パスを悪用することで、意図されたドキュメントディレクトリ外の任意のWindowsパスにアクセスされる可能性があります。問題は、パス検証がWindowsスタイルの親パス表現を適切に処理しないことにあり、バージョン1.13.0で修正されました。",
+    "category": "other",
     "cvssScore": 4.3,
     "severity": "MEDIUM",
     "publishedAt": "2026-06-24T18:17:18.800Z",
     "lastModifiedAt": "2026-10-25T22:10:00.150Z",
     "fetchedAt": "2026-10-25T23:39:12.065Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-44022",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-44022",
     "descriptionEn": "Docling simplifies document processing by parsing diverse formats and providing integrations with the generative AI ecosystem. From 2.73.0 until 2.91.0, he LaTeX backend's handling of \\includegraphics, \\input, and \\include commands lacked path containment validation. Attackers could craft malicious LaTeX documents with path traversal sequences to read arbitrary files from the file system accessible to the process, include sensitive files in the converted document output, or potentially access configuration files, credentials, or other sensitive data This vulnerability is fixed in 2.91.0.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "DoclingのLaTeXバックエンド（バージョン2.73.0から2.91.0まで）において、`\\includegraphics`、`\\input`、`\\include`コマンドのパス処理に不備がありました。これにより、攻撃者は細工したLaTeXドキュメントを介してパスTraversaiを実行し、システム上の任意のファイルを読み取ったり、機密情報をドキュメント出力に含めたりする可能性があります。この脆弱性はバージョン2.91.0で修正されています。",
+    "category": "other",
     "cvssScore": 5.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-06-24T18:17:17.593Z",
     "lastModifiedAt": "2026-10-25T22:10:00.150Z",
     "fetchedAt": "2026-10-25T23:39:12.065Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-54555",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54555",
     "descriptionEn": "rtk filters and compresses command outputs before they reach your LLM context. Prior to 0.42.2, the permission splitter did not conservatively split or reject several shell constructs that Bash treats as command execution boundaries or nested execution. As a result, a command beginning with an allowed prefix such as git could hide a second command behind one of these constructs. rtk rewrite returned exit code 0, causing the Claude hook to emit permissionDecision: \"allow\". The rewritten command still contained the hidden command, so it ran without the user confirmation or denial that the permission rules were intended to enforce. This vulnerability is fixed in 0.42.2.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "rtkのバージョン0.42.2より前のパーミッションスプリッターに脆弱性があり、Bashのコマンド実行境界となるシェル構文を適切に解析できませんでした。これにより、許可されたプレフィックスを持つコマンドの内部に隠された、未承認のコマンドがユーザーの承認なしに実行される可能性がありました。この問題は、LLMコンテキストにコマンド出力を送る前に、意図しないコマンドが実行されるリスクをもたらしました。",
+    "category": "ai-library",
     "cvssScore": 7.8,
     "severity": "HIGH",
     "publishedAt": "2026-06-23T20:16:49.737Z",
     "lastModifiedAt": "2026-10-25T23:10:00.167Z",
     "fetchedAt": "2026-10-25T23:39:12.065Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-53755",
@@ -244,20 +114,20 @@
     "publishedAt": "2026-06-23T19:17:07.477Z",
     "lastModifiedAt": "2026-10-25T23:10:00.167Z",
     "fetchedAt": "2026-10-25T23:39:12.065Z",
-    "llmStatus": "pending"
+    "llmStatus": "failed"
   },
   {
     "id": "CVE-2026-53754",
     "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-53754",
     "descriptionEn": "Crawl4AI is an open-source LLM friendly web crawler & scraper. Prior to 0.8.8, the Docker API server's SSRF protection (validate_webhook_url / validate_url_destination in deploy/docker/utils.py) used an explicit IPv4/IPv6 CIDR blocklist that missed several address families. An attacker could reach internal services and cloud metadata endpoints (e.g. 169.254.169.254) despite the filter by encoding an internal IPv4 address inside an IPv6 transition form, or by using the IPv6 unspecified address. Because the Docker API is unauthenticated by default (jwt_enabled: false), no credentials are required. This vulnerability is fixed in 0.8.8.",
-    "summaryJa": null,
-    "category": null,
+    "summaryJa": "Crawl4AIのバージョン0.8.8より前において、Docker APIサーバーのSSRF保護が不十分でした。攻撃者は、不完全なIPv4/IPv6 CIDRブロックリストを、IPv6遷移形式でのIPv4アドレスエンコードやIPv6未指定アドレスの使用によって迂回し、内部サービスやクラウドメタデータエンドポイントにアクセス可能でした。Docker APIがデフォルトで認証不要なため、認証なしで悪用される可能性があります。",
+    "category": "ai-library",
     "cvssScore": 7.5,
     "severity": "HIGH",
     "publishedAt": "2026-06-23T19:17:07.303Z",
     "lastModifiedAt": "2026-10-25T23:10:00.167Z",
     "fetchedAt": "2026-10-25T23:39:12.065Z",
-    "llmStatus": "pending"
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-53753",
@@ -1389,6 +1259,123 @@
     "lastModifiedAt": "2026-10-26T21:10:00.170Z",
     "fetchedAt": "2026-10-27T00:58:06.768Z",
     "llmStatus": "pending"
+  },
+  {
+    "id": "CVE-2026-61789",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-61789",
+    "descriptionEn": "DBHub is a database MCP server for Postgres, MySQL, SQL Server, Oracle, MariaDB, SQLite. Prior to 0.22.6, read-only SQL validation can be bypassed on the MySQL and MariaDB connectors. In `src/utils/sql-parser.ts`, `scanSingleLineComment` treats every double dash as a comment start, whereas MySQL and MariaDB require following whitespace, a control character, or the end of the line. The read-only check in `src/tools/execute-sql.ts` validates split statements with `isReadOnlySQL`, but `src/connectors/mysql/index.ts` and `src/connectors/mariadb/index.ts` execute the original string with `multipleStatements` enabled. A double dash followed by a non-whitespace character can therefore hide a subsequent write or destructive DDL statement from the validator while the database interprets the dashes as minus operators and executes both statements. Anyone able to influence the assistant's SQL, including through prompt injection in content the assistant reads, can bypass read-only mode to modify or drop database data, subject to the database account's privileges. PostgreSQL is not affected by this path because its double-dash parsing agrees with the checker and its connector executes individual split statements. This issue is fixed in version 0.22.6.",
+    "summaryJa": "DBHubのバージョン0.22.6より前のMySQLおよびMariaDBコネクタにおいて、読み取り専用SQL検証をバイパスできる脆弱性が存在します。SQLパーサーが二重ダッシュコメント（`--`）をMySQL/MariaDBの実際の挙動と異なって解釈するため、攻撃者は`--`の後に非空白文字を続けることで、書き込みまたは破壊的なSQLステートメントを隠蔽し、データベースに実行させることが可能です。これにより、データベースアカウントの権限内でデータを不正に変更または削除される可能性があり、AIアシスタントのSQLにプロンプトインジェクションなどを通じて影響を与えることで悪用され得ます。",
+    "category": "other",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-30T17:17:26.743Z",
+    "lastModifiedAt": "2026-10-30T17:17:26.867Z",
+    "fetchedAt": "2026-10-31T01:09:59.923Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-118553",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118553",
+    "descriptionEn": "Improper Neutralization of Input During Web Page Generation (\"Cross-site Scripting\") vulnerability in Drupal AI (Artificial Intelligence) allows Stored XSS. This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
+    "summaryJa": "DrupalのAIモジュールにおいて、Webページ生成時の入力処理の不備（不適切な無害化）に起因する格納型クロスサイトスクリプティング（Stored XSS）の脆弱性が発見されました。この脆弱性により、攻撃者は悪意のあるスクリプトを永続的に埋め込む可能性があります。影響を受けるバージョンは0.0.0から1.4.11、および1.5.0から1.5.2です。",
+    "category": "ai-library",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-30T04:18:20.690Z",
+    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
+    "fetchedAt": "2026-10-31T01:09:59.923Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-118552",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118552",
+    "descriptionEn": "Improper Neutralization of Input During Web Page Generation (\"Cross-site Scripting\") vulnerability in Drupal AI (Artificial Intelligence) allows Cross-Site Scripting (XSS). This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
+    "summaryJa": null,
+    "category": null,
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-30T04:18:20.547Z",
+    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
+    "fetchedAt": "2026-10-31T01:09:59.923Z",
+    "llmStatus": "failed"
+  },
+  {
+    "id": "CVE-2026-118551",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118551",
+    "descriptionEn": "Insecure Storage of Sensitive Information vulnerability in Drupal AI (Artificial Intelligence) allows Retrieve Embedded Sensitive Data. This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
+    "summaryJa": "Drupal AI (Artificial Intelligence)モジュールに機密情報の不適切な保存の脆弱性が存在します。この脆弱性により、埋め込まれた機密データが攻撃者によって取得される可能性があります。影響を受けるバージョンは0.0.0から1.4.11、および1.5.0から1.5.2です。",
+    "category": "ai-library",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-30T04:18:20.397Z",
+    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
+    "fetchedAt": "2026-10-31T01:09:59.923Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-118550",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118550",
+    "descriptionEn": "Use of Web Browser Cache Containing Sensitive Information vulnerability in Drupal AI (Artificial Intelligence) allows Exploiting Incorrectly Configured Access Control Security Levels. This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
+    "summaryJa": "Drupal AIモジュールにおいて、Webブラウザキャッシュに機密情報が保存される脆弱性が見つかりました。この脆弱性により、不適切に設定されたアクセス制御セキュリティレベルが悪用される可能性があります。この問題は、バージョン0.0.0から1.4.11、および1.5.0から1.5.2に影響します。",
+    "category": "ai-library",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-30T04:18:20.257Z",
+    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
+    "fetchedAt": "2026-10-31T01:09:59.923Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-118549",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118549",
+    "descriptionEn": "Improper Neutralization of Input During Web Page Generation (\"Cross-site Scripting\") vulnerability in Drupal AI (Artificial Intelligence) allows Cross-Site Scripting (XSS). This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
+    "summaryJa": "DrupalのAI（Artificial Intelligence）モジュールにおいて、ウェブページ生成時の入力値の不適切な無害化により、クロスサイトスクリプティング（XSS）の脆弱性が存在します。この問題は、バージョン0.0.0から1.4.11および1.5.0から1.5.2までのAIモジュールに影響を与えます。",
+    "category": "ai-library",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-30T04:18:20.100Z",
+    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
+    "fetchedAt": "2026-10-31T01:09:59.923Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-118548",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118548",
+    "descriptionEn": "Incorrect Authorization vulnerability in Drupal AI (Artificial Intelligence) allows Resource Injection. This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
+    "summaryJa": "Drupal AIモジュールにおいて、不適切な認証処理の脆弱性が存在します。この脆弱性により、攻撃者はリソースインジェクションを実行できる可能性があります。バージョン0.0.0から1.4.11、および1.5.0から1.5.2が影響を受けます。",
+    "category": "ai-library",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-30T04:18:19.960Z",
+    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
+    "fetchedAt": "2026-10-31T01:09:59.923Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-118546",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118546",
+    "descriptionEn": "Improper Neutralization of Input During Web Page Generation (\"Cross-site Scripting\") vulnerability in Drupal AI (Artificial Intelligence) allows Cross-Site Scripting (XSS). This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
+    "summaryJa": "Drupal AI（Artificial Intelligence）モジュールにおいて、Webページ生成時の入力値の不適切な無害化に起因するクロスサイトスクリプティング（XSS）の脆弱性が確認されました。この問題は、バージョン0.0.0から1.4.11、および1.5.0から1.5.2に影響を及ぼします。",
+    "category": "ai-library",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-30T04:18:19.813Z",
+    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
+    "fetchedAt": "2026-10-31T01:09:59.923Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-118545",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-118545",
+    "descriptionEn": "Improper Neutralization of Input During Web Page Generation (\"Cross-site Scripting\") vulnerability in Drupal AI (Artificial Intelligence) allows Cross-Site Scripting (XSS). This issue affects AI (Artificial Intelligence) versions: from 0.0.0 to 1.4.11, from 1.5.0 to 1.5.2.",
+    "summaryJa": "Drupal AI（Artificial Intelligence）モジュールのバージョン0.0.0から1.4.11および1.5.0から1.5.2に、クロスサイトスクリプティング（XSS）の脆弱性が存在します。これは、Webページ生成時に入力値が適切に無害化されないことに起因し、攻撃者によって悪意のあるスクリプトが実行される可能性があります。",
+    "category": "ai-library",
+    "cvssScore": null,
+    "severity": null,
+    "publishedAt": "2026-10-30T04:18:19.680Z",
+    "lastModifiedAt": "2026-10-30T19:27:58.620Z",
+    "fetchedAt": "2026-10-31T01:09:59.923Z",
+    "llmStatus": "ok"
   },
   {
     "id": "CVE-2026-51863",
@@ -6209,6 +6196,19 @@
     "cvssScore": 6.5,
     "severity": "MEDIUM",
     "publishedAt": "2026-06-25T17:16:40.397Z",
+    "lastModifiedAt": "2026-10-25T22:10:00.150Z",
+    "fetchedAt": "2026-10-25T23:39:12.065Z",
+    "llmStatus": "ok"
+  },
+  {
+    "id": "CVE-2026-54025",
+    "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54025",
+    "descriptionEn": "LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.4-rc1, there is a vulnerability in LibreChat's markdown artifact preview pipeline. The marked library v15.0.12 does not HTML-escape double-quote characters in image alt text when a custom renderer falls through to the default renderer. LibreChat's generateMarkdownHtml function (in client/src/utils/markdown.ts) installs a custom image renderer that returns false for URLs passing the isSafeUrl allowlist check, which causes marked to fall back to its built-in renderer. That built-in renderer inserts the raw alt text into the alt=\"...\" attribute without escaping double-quote characters. An attacker can craft an alt text such as \" onload=\"payload to break out of the attribute and inject an arbitrary event handler. The resulting HTML is then assigned to document.getElementById('content').innerHTML inside the Sandpack preview iframe, causing the payload to execute in the victim's browser. This vulnerability is fixed in 0.8.4-rc1.",
+    "summaryJa": "LibreChatの0.8.4-rc1より前のバージョンには、Markdownプレビューパイプラインに脆弱性が存在します。`marked`ライブラリが、カスタムレンダラーからデフォルトレンダラーにフォールバックした際に画像altテキスト中の二重引用符をHTMLエスケープしないことが原因です。これにより、攻撃者はaltテキストを細工して属性から脱出し、Sandpackプレビューiframe内で任意のXSSペイロードを実行させることが可能です。",
+    "category": "ai-service",
+    "cvssScore": 5.4,
+    "severity": "MEDIUM",
+    "publishedAt": "2026-06-25T17:16:40.277Z",
     "lastModifiedAt": "2026-10-25T22:10:00.150Z",
     "fetchedAt": "2026-10-25T23:39:12.065Z",
     "llmStatus": "ok"
